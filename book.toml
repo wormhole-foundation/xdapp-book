@@ -1,0 +1,8 @@
+[book]
+title = "xDapp Book 0.1.0"
+authors = [
+    "Dev Bharel"
+]
+language = "en"
+multilingual = false
+src = "src"
