@@ -1,0 +1,3 @@
+[submodule "projects/messenger/chains/evm/lib/forge-std"]
+	path = projects/messenger/chains/evm/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
