@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "sh test.sh"
+    "test": "sh tests/eth0-eth1.sh"
   },
   "keywords": [],
   "author": "",
