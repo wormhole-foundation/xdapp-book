@@ -10,11 +10,14 @@
   "author": "",
   "license": "MIT",
   "workspaces": [
-    "chains/evm"
+    "chains/evm",
+    "chains/algorand"
   ],
   "type": "module",
   "dependencies": {
     "@certusone/wormhole-sdk": "^0.3.3",
+    "algosdk": "^1.16.0",
+    "byteify": "^2.0.10",
     "ethers": "^5.6.6",
     "node-fetch": "^2.6.7"
   }

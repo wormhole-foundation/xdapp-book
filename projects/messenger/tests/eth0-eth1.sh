@@ -1,4 +1,3 @@
-cd ../
 node messenger.js eth0 deploy
 node messenger.js eth1 deploy
 node messenger.js eth0 register_chain eth1

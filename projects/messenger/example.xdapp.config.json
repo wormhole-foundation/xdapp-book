@@ -19,6 +19,10 @@
       "deployedAddress": "",
       "emittedVAAs": [
       ]
+    }, 
+    "algo": {
+      "type": "algorand",
+      "rpc": ""      
     }
   },
   "wormhole": {
