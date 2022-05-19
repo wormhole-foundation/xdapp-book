@@ -4,12 +4,13 @@
             "type": "evm",
             "rpc": "http://147.182.160.210:8545",
             "privateKey": "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d",
-            "deployed_address": "0x4cfb3f70bf6a80397c2e634e5bdd85bc0bb189ee"
+            "deployed_address": "0xc0b3b62dd0400e4baa721ddec9b8a384147b23ff"
         },
         "eth1": {
             "type": "evm",
             "rpc": "http://147.182.160.210:8546",
-            "privateKey": "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d"
+            "privateKey": "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d",
+            "deployed_address": "0x4339316e04cffb5961d1c41fef8e44bfa2a7fbd1"
         }
     }
 }
