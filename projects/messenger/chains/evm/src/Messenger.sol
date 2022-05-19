@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import "./Wormhole/IWormhole.sol";
 
 contract Messenger {
-    string private solana_msg;
+    string private current_msg;
     address private wormhole_core_bridge_address = address(0xC89Ce4735882C9F0f0FE26686c53074E09B0D550);
     IWormhole core_bridge = IWormhole(wormhole_core_bridge_address);
     uint32 nonce = 0;
@@ -21,7 +21,7 @@ contract Messenger {
         nonce = nonce+1;
     }
 
-    function recieveEncodedMsg(bytes memory encodedMsg) public {
+    function receiveEncodedMsg(bytes memory encodedMsg) public {
         (IWormhole.VM memory vm, bool valid, string memory reason) = core_bridge.parseAndVerifyVM(encodedMsg);
         
         //1. Check Wormhole Guardian Signatures
@@ -37,11 +37,11 @@ contract Messenger {
         _completedMessages[vm.hash] = true;
 
         //Do the thing
-        solana_msg = string(vm.payload);
+        current_msg = string(vm.payload);
     }
 
-    function getSolanaMsg() public view returns (string memory){
-        return solana_msg;
+    function getCurrentMsg() public view returns (string memory){
+        return current_msg;
     }
     /**
         Registers it's sibling applications on other chains as the only ones that can send this instance messages

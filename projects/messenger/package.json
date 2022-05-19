@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "deploy evm": "node xdapp.js deploy evm"
+    "test": "sh test.sh"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +15,7 @@
   "type": "module",
   "dependencies": {
     "@certusone/wormhole-sdk": "^0.3.3",
-    "ethers": "^5.6.6"
+    "ethers": "^5.6.6",
+    "node-fetch": "^2.6.7"
   }
 }
