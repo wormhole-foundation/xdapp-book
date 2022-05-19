@@ -1,0 +1,16 @@
+{
+  "name": "messenger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy evm": "node xdapp.js deploy evm"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "workspaces": [
+    "chains/evm"
+  ],
+  "type": "module"
+}
