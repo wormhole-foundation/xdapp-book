@@ -22,7 +22,13 @@
     }, 
     "algo": {
       "type": "algorand",
-      "rpc": ""      
+      "rpc": ""      ,
+      "wormholeChainId": 8,
+      "mnemonic": "",
+      "deployedAddress": "",
+      "appId": 0,
+      "bridgeId": 4,
+      "emittedVAAs":[]
     }
   },
   "wormhole": {
