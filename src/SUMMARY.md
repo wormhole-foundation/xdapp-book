@@ -2,7 +2,7 @@
 
 - [Introduction](./introduction/introduction.md)
     - [What is an xDapp](./introduction/xdapp.md)
-    - [What is Wormhole]()
+    - [What is Wormhole](./introduction/wormhole.md)
     - [What is Portal]()
 - [Wormhole Architecture]()
     - [Core Bridge Contracts]()
@@ -41,6 +41,7 @@
         - [Solana]()
         - [Algorand]()
     - [Relaying Messages](./development/messages/relaying/overview.md)
+        - [Manual Relays]()
         - [Rest Relayers]()
         - [Generic Relayers]()
         - [Spy Relayer]()

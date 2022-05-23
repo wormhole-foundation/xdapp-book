@@ -27,7 +27,7 @@ use errors::*;
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 
 #[program]
-pub mod solana_project {
+pub mod messenger {
 
     use anchor_lang::solana_program::program::invoke_signed;
 
