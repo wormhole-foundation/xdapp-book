@@ -1,6 +1,6 @@
-# MacOS Setup
+# macOS Setup
 
-## Prerequistes
+## Prerequisites
 You'll need to have `homebrew` on your system if you don't already. You can grab it with:
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"

@@ -1,7 +1,7 @@
 # Linux Devnet Setup
 
 ### Experimental Setup Script
-There's an experimental one command setup script that should install dependencies for you on Linux and configure everything properly. This is only reccomended if you're running headless Linux and unable to use Docker Desktop, as with Docker Desktop you don't need `minikube` and can just enable Kubernetes from Docker.
+There's an experimental one command setup script that should install dependencies for you on Linux and configure everything properly. This is only recommended if you're running headless Linux and unable to use Docker Desktop, as with Docker Desktop you don't need `minikube` and can just enable Kubernetes from Docker.
 
 ```sh
 curl $URL | sh install_linux.sh
@@ -18,7 +18,7 @@ rm -rf /usr/local/go && tar -C /usr/local -xzf go1.18.1.linux-amd64.tar.gz
 ```
 
 ### 2. Install Docker
-If you're using Linxu with a window manager, consider getting Docker Desktop instead of the following command. It comes with Kubernetes built in and you won't need to download `minikube`. It's reccomended to have atleast 4 CPUs and 16GB RAM dedicated to Docker. 
+If you're using Linux with a window manager, consider getting Docker Desktop instead of the following command. It comes with Kubernetes built in and you won't need to download `minikube`. It's recommended to have at least 4 CPUs and 16GB RAM dedicated to Docker. 
 
 Also make sure that you set up docker as a NON ROOT USER! 
 
@@ -65,4 +65,4 @@ tilt up --host=0.0.0.0 -- --webHost=0.0.0.0
 
 You can now access the Tilt UI at either your `localhost:10350` or `vm_external_ip:10350`. 
 
-If the VM's external IP doesn't work, check firewall and port settings to make sure your VM allows incoming traffic. 
+If the VM's external IP doesn't work, check firewall and port settings to make sure your VM allows incoming traffic.
