@@ -6,13 +6,13 @@
 
 # Overview
 
-- [xDapps](./dapps/xdappOverview.md)
+- [xDapps](./dapps/0_xdappOverview.md)
 
-  - [De-fi Ecosystem Basics](./dapps/defiBasics.md)
-  - [Cross-Chain Interoperability](./dapps/crossChainInteroperability.md)
-  - [xData & xAssets](./dapps/xdataxassets.md)
-  - [What is an xDapp?](./dapps/whatIsanXdapp.md)
-  - [Advantages](./dapps/advantages.ms)
+  - [Dapp Ecosystem Basics](./dapps/1_defiBasics.md)
+  - [Cross-Chain Interoperability](./dapps/2_crossChainInteroperability.md)
+  - [xData & xAssets](./dapps/3_xdataxassets.md)
+  - [What is an xDapp?](./dapps/4_whatIsanXdapp.md)
+  - [Advantages of xDapps](./dapps/5_advantages.md)
 
 - [Wormhole](./wormhole/wormholeOverview.md)
   - [What is Wormhole?](./wormhole/whatIsWormhole.md)
@@ -21,7 +21,7 @@
   - [Core Layer Contracts](./wormhole/coreLayerContracts.md)
   - [VAA: Verifiable Action Approval](./wormhole/vaa.md)
   - [Relayers](./wormhole/relayers.md)
-  - [Portal Token Bridge & xAssets](./wormhole/portalTokenBridge.md)
+  - [Portal xAsset Bridge](./wormhole/portalTokenBridge.md)
   - [Wormchain](./wormhole/wormchain.md)
 
 ---
