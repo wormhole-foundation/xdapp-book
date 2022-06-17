@@ -14,7 +14,7 @@ The handlers folder contains the js client code to deal with each chain's specif
 
 They all take in a context object that's made up of the
 
-### starter.js
+### orchestrator.js
 This file parses command line args and filters calls to chain management handlers. 
 
 ### xdapp.config.json

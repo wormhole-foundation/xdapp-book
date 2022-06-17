@@ -1,13 +1,19 @@
 # Introduction
 
-> **_NOTE:_** This book is a work in progress. To get a fuller picture of wormhole, also check out [a previous version of these documents](https://docs.wormholenetwork.com/wormhole/).
+## Welcome to the Wormhole xDapp Book!
 
-Welcome to the xDapp Book and beginning your journey to be a cross-chain developer. As crypto ecosystems mature, more and more applications will need to interact with programs outside the infrastructure they are deployed on. In Web2 we see this every day, as infrastructure like Azure, GCP, and AWS is abstracted away from the everyday user and applications can freely talk to each other over HTTP.
+This guide aims to help you in your journey as a cross-chain developer by explaining the core concepts of Wormhole and xDapp development.
 
-For blockchain applications to unlock their true potential, they too must be able to talk to applications on various infrastructure using a common language. These cross chain applications (xDapps) give rise to cross chain data (xData) and cross chain assets (xAssets). With these powerful primitives, blockchain applications can deliver on their promise of interoperability and composability.  
+We'll start off by outlining the most important aspects of Wormhole, and the considerations which must be taken when developing an xDapp. After that, the second portion of the book helps you set up a development environment and get started writing actual code.
 
-Ready to step *into the wormhole*?
+By the end of this guide, you should be ready to build and deploy your first xDapp!
+
+While this document doesn't assume you have experience with any particular technologies, a general understanding of blockchain development will help you get up to speed.
+
+Ready to step _into the wormhole_?
 
 ---
-Check out the [github repository](https://www.github.com/certusone/xdapp-book) of these docs to find the accompanying code in the projects/ directory.
 
+Check out this project's [github repository](https://www.github.com/certusone/xdapp-book) to find the accompanying code examples.
+
+See the **Reference** section for additional resources as well.
