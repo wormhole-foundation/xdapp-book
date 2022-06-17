@@ -115,7 +115,7 @@
 
 - [Glossary]()
 - [Reference]()
-  - [Tools] (./reference/tools.md)
+  - [Tools](./reference/tools.md)
   - [Github & Useful Links](./reference/github.md)
   - [Deployed Contracts](./reference/contracts.md)
   - [RPC Nodes](./reference/rpcnodes.md)
