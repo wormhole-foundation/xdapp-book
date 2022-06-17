@@ -3,7 +3,7 @@
 - [Introduction](./introduction/introduction.md)
     - [What is an xDapp](./introduction/xdapp.md)
     - [What is Wormhole](./introduction/wormhole.md)
-    - [What is Portal]()
+    - [What is Portal](./introduction/portal.md)
 - [Wormhole Architecture]()
     - [Core Bridge Contracts]()
     - [VAA: Verifiable Action Approval]()
