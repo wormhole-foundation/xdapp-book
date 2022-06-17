@@ -122,7 +122,6 @@
 
 - [Glossary]()
 - [Reference]()
-  - [Github & Useful Links]()
-  - [Contracts]()
-  - [Tilt Accounts]()
-  - [RPC Nodes]()
+  - [Github & Useful Links](./reference/github.md)
+  - [Deployed Contracts](./reference/contracts.md)
+  - [RPC Nodes](./reference/rpcnodes.md)
