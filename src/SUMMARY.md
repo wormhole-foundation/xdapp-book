@@ -70,6 +70,7 @@
     - [Solana CLI]()
     - [Anchor]()
   - [Algorand]()
+  - [CosmWasm]()
 - [Sending Messages](./development/messages/sending/overview.md)
   - [EVM](./development/messages/sending/evm.md)
   - [Solana]()
@@ -82,11 +83,10 @@
   - [CosmWasm]()
 - [Relaying Messages](./development/messages/relaying/overview.md)
   - [Manual Relays]()
-  - [Rest Relayers]()
-  - [Spy Relayer]()
+  - [REST & Spy Relayer]()
   - [Generic Relayers]()
-- [Receving Messages]()
-  - [EVM]()
+- [Receving Messages](./development/messages/receiving/overview.md)
+  - [EVM](./development/messages/receiving/evm.md)
   - [Solana]()
   - [Algorand]()
   - [CosmWasm]()
@@ -95,13 +95,6 @@
     - [Prerequistes]()
       - [EVM]()
   - [Lever Puzzle]()
-- [Tools]()
-  - [Testnet]()
-  - [Wormhole Explorer]()
-  - [Bridge UI]()
-  - [Tilt]()
-  - [Wormhole SDK]()
-
 ---
 
 # Portal Token Bridge
@@ -122,6 +115,7 @@
 
 - [Glossary]()
 - [Reference]()
+  - [Tools] (./reference/tools.md)
   - [Github & Useful Links](./reference/github.md)
   - [Deployed Contracts](./reference/contracts.md)
   - [RPC Nodes](./reference/rpcnodes.md)
