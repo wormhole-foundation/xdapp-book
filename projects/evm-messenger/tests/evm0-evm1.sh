@@ -1,11 +1,11 @@
-node orchestrator.js eth0 deploy
-node orchestrator.js eth1 deploy
-node orchestrator.js eth0 register_chain eth1
-node orchestrator.js eth1 register_chain eth0
-node orchestrator.js eth0 send_msg "From: eth0\nMsg: Hello World!"
-node orchestrator.js eth1 submit_vaa eth0 latest
-node orchestrator.js eth1 send_msg "From: eth1\nMsg: Hello World!"
-node orchestrator.js eth0 submit_vaa eth1 latest
+node orchestrator.js evm0 deploy
+node orchestrator.js evm1 deploy
+node orchestrator.js evm0 register_chain evm1
+node orchestrator.js evm1 register_chain evm0
+node orchestrator.js evm0 send_msg "From: evm0\nMsg: Hello World!"
+node orchestrator.js evm1 submit_vaa evm0 latest
+node orchestrator.js evm1 send_msg "From: evm1\nMsg: Hello World!"
+node orchestrator.js evm0 submit_vaa evm1 latest
 sleep 10
-node orchestrator.js eth0 get_current_msg
-node orchestrator.js eth1 get_current_msg
+node orchestrator.js evm0 get_current_msg
+node orchestrator.js evm1 get_current_msg
