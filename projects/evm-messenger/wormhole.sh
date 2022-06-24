@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [! docker info > /dev/null 2>&1] ; then
+if [! docker info > /dev/null ] ; then
   echo "This script uses docker, and it isn't running - please start docker and try again!"
   exit 1
 fi
@@ -96,8 +96,11 @@ else
         --moonbeamRPC ws://host.docker.internal:8545 \
         --neonRPC ws://host.docker.internal:8545 \
         --terraWS ws://host.docker.internal:8545 \
+        --terra2WS ws://host.docker.internal:8545 \
         --terraLCD https://http://terra-terrad:1317 \
+        --terra2LCD http://host.docker.internal:1317  \
         --terraContract terra18vd8fpwxzck93qlwghaj6arh4p7c5n896xzem5 \
+        --terra2Contract terra18vd8fpwxzck93qlwghaj6arh4p7c5n896xzem5 \
         --solanaContract Bridge1p5gheXUvJ6jGWGeCsgPKgnE3YgdGKRVCMY9o \
         --solanaWS ws://host.docker.internal:8900 \
         --solanaRPC http://host.docker.internal:8899 \
