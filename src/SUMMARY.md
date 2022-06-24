@@ -14,15 +14,15 @@
   - [What is an xDapp?](./dapps/4_whatIsanXdapp.md)
   - [Advantages of xDapps](./dapps/5_advantages.md)
 
-- [Wormhole](./wormhole/wormholeOverview.md)
-  - [What is Wormhole?](./wormhole/whatIsWormhole.md)
-  - [Architecture Overview](./wormhole/architectureOverview.md)
-  - [Guardian Network](./wormhole/guardianNetwork.md)
-  - [Core Layer Contracts](./wormhole/coreLayerContracts.md)
-  - [VAA: Verifiable Action Approval](./wormhole/vaa.md)
-  - [Relayers](./wormhole/relayers.md)
-  - [Portal xAsset Bridge](./wormhole/portalTokenBridge.md)
-  - [Wormchain](./wormhole/wormchain.md)
+- [Wormhole](./wormhole/0_wormholeOverview.md)
+  - [What is Wormhole?](./wormhole/1_whatIsWormhole.md)
+  - [Architecture Overview](./wormhole/2_architectureOverview.md)
+  - [Core Layer Contracts](./wormhole/3_coreLayerContracts.md)
+  - [VAA: Verified Action Approval](./wormhole/4_vaa.md)
+  - [Guardian Network](./wormhole/5_guardianNetwork.md)
+  - [Relayers](./wormhole/6_relayers.md)
+  - [Portal xAsset Bridge](./wormhole/7_portalTokenBridge.md)
+  - [Wormchain](./wormhole/8_wormchain.md)
 
 ---
 

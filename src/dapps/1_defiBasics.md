@@ -18,7 +18,7 @@ In the introvening years, a rich ecosystem of Dapps has cropped up across the my
 
 However, today's Dapps are not without their limitations, and many of these limitations are tied to the underlying blockchains themselves.
 
-Two key limitations of baseline blockchain technology is that it has no access to off-chain data, and also no mechanism to interact with other blockchains. These limitations have lead to a fractured ecosystem, where each blockchain is - by default - siloed off from the others. Assets native to Polygon are not accessible on Ethereum, and services like Uniswap can't be leveraged on Solana.
+Two key limitations of blochains are that they have no access to off-chain data, and also no mechanism to interact with other blockchains. These limitations have lead to a fractured ecosystem, where each blockchain is - by default - siloed off from the others. Assets native to Polygon are not accessible on Ethereum, and services like Uniswap can't be leveraged on Solana.
 
 This is obviously not a desireable state of the world, and blockchain developers are now aiming to solve these interoperability problems in order to create a better, more unified ecosystem where the gory details of each blockchain are abstracted away. In this new cross-chain ecosystem, people stop being "Ethereum" or "Solana" users, and simply become Web3 users.
 
