@@ -105,7 +105,10 @@ async function main() {
             const messenger = new ethers.Contract(
                 network.deployedAddress,
                 JSON.parse(fs.readFileSync('./chains/evm/out/Messenger.sol/Messenger.json').toString()).abi,
-                signer
+                signer,
+                {
+                    gasPrice: '2000000000'
+                }
             );
             await messenger.registerApplicationContracts(targetNetwork.wormholeChainId, emitterAddr);
         } else if (network.type == "algorand"){
@@ -145,15 +148,19 @@ async function main() {
             const messenger = new ethers.Contract(
                 network.deployedAddress,
                 JSON.parse(fs.readFileSync('./chains/evm/out/Messenger.sol/Messenger.json').toString()).abi,
-                signer
+                signer,
+                {
+                    gasPrice: '2000000000'
+                }
             );
-            const tx = await (await messenger.sendMsg(Buffer.from(process.argv[4]))).wait();
+            const tx = await (await messenger.sendMsg(Buffer.from(process.argv[4]), {gasPrice: '2000000000'})).wait();
             await new Promise((r) => setTimeout(r, 5000));
             const emitterAddr = getEmitterAddressEth(messenger.address);
             const seq = parseSequenceFromLogEth(
                 tx,
                 network.bridgeAddress
             );
+            console.log(`${config.wormhole.restAddress}/v1/signed_vaa/${network.wormholeChainId}/${emitterAddr}/${seq}`);
             const vaaBytes = await (
                 await fetch(
                     `${config.wormhole.restAddress}/v1/signed_vaa/${network.wormholeChainId}/${emitterAddr}/${seq}`
@@ -239,7 +246,10 @@ async function main() {
             const messenger = new ethers.Contract(
                 network.deployedAddress,
                 JSON.parse(fs.readFileSync('./chains/evm/out/Messenger.sol/Messenger.json').toString()).abi,
-                signer
+                signer,
+                {
+                    gasPrice: '2000000000'
+                }
             );
             
             const tx = await messenger.receiveEncodedMsg(Buffer.from(vaaBytes, "base64"));
@@ -286,7 +296,10 @@ async function main() {
             const messenger = new ethers.Contract(
                 network.deployedAddress,
                 JSON.parse(fs.readFileSync('./chains/evm/out/Messenger.sol/Messenger.json').toString()).abi,
-                signer
+                signer,
+                {
+                    gasPrice: '2000000000'
+                }
             );
             console.log(`${process.argv[2]} Current Msg: `, await messenger.getCurrentMsg());
         }

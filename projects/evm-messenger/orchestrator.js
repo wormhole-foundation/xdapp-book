@@ -1,6 +1,6 @@
 import { exec } from "child_process";
 import fs from "fs";
-import { ethers } from "ethers";
+import { ethers, ContractFactory } from "ethers";
 import {
     getEmitterAddressEth,
     parseSequenceFromLogEth,
@@ -21,6 +21,7 @@ async function main() {
             console.log(
                 `Deploying EVM network: ${process.argv[2]} to ${network.rpc}`
             );
+            
             exec(
                 `cd chains/evm && forge build && forge create --legacy --rpc-url ${network.rpc} --private-key ${network.privateKey} src/Messenger.sol:Messenger && exit`,
                 (err, out, errStr) => {
@@ -43,6 +44,24 @@ async function main() {
                     }
                 }
             );
+            
+            /*    
+            exec(`cd chains/evm && forge build`) //Compiles EVM Code
+            const signer = new ethers.Wallet(network.privateKey).connect(
+                new ethers.providers.JsonRpcProvider(network.rpc)
+            );
+            const MessengerJSON = JSON.parse(fs.readFileSync('./chains/evm/out/Messenger.sol/Messenger.json').toString());
+            const MessengerFactory = new ContractFactory(MessengerJSON.abi, Buffer.from(MessengerJSON.deployedBytecode.object, "hex"), signer);
+            const contract = await MessengerFactory.deploy();
+            console.log("Deployed to address: ", contract.address);
+            network.deployedAddress = contract.address;
+            network.emittedVAAs = [];
+            config.networks[process.argv[2]] = network;
+            fs.writeFileSync(
+                "./xdapp.config.json",
+                JSON.stringify(config, null, 4)
+            );
+            */
         } else {
             throw new Error("Invalid Network Type!");
         }
@@ -71,13 +90,7 @@ async function main() {
 
             const messenger = new ethers.Contract(
                 network.deployedAddress,
-                JSON.parse(
-                    fs
-                        .readFileSync(
-                            "./chains/evm/out/Messenger.sol/Messenger.json"
-                        )
-                        .toString()
-                ).abi,
+                JSON.parse(fs.readFileSync('./chains/evm/out/Messenger.sol/Messenger.json').toString()).abi,
                 signer
             );
             await messenger.registerApplicationContracts(
@@ -86,7 +99,7 @@ async function main() {
             );
         }
         console.log(
-            `Network(${process.argv[2]}) Registered Emitter: ${targetNetwork.deployedAddress} from Chain: ${targetNetwork.wormholeChainId}`
+            `Network(${process.argv[2]}) Registered Emitter: ${targetNetwork.deployedAddress} from Chain: ${process.argv[4]}`
         );
     } else if (process.argv[3] == "send_msg") {
         if (!network.deployedAddress) {
@@ -99,21 +112,17 @@ async function main() {
             );
             const messenger = new ethers.Contract(
                 network.deployedAddress,
-                JSON.parse(
-                    fs
-                        .readFileSync(
-                            "./chains/evm/out/Messenger.sol/Messenger.json"
-                        )
-                        .toString()
-                ).abi,
+                JSON.parse(fs.readFileSync('./chains/evm/out/Messenger.sol/Messenger.json').toString()).abi,
                 signer
             );
             const tx = await (
                 await messenger.sendMsg(Buffer.from(process.argv[4]))
             ).wait();
+            
             await new Promise((r) => setTimeout(r, 5000));
             const emitterAddr = getEmitterAddressEth(messenger.address);
             const seq = parseSequenceFromLogEth(tx, network.bridgeAddress);
+            console.log("Searching for: ",  `${config.wormhole.restAddress}/v1/signed_vaa/${network.wormholeChainId}/${emitterAddr}/${seq}`)
             const vaaBytes = await (
                 await fetch(
                     `${config.wormhole.restAddress}/v1/signed_vaa/${network.wormholeChainId}/${emitterAddr}/${seq}`
@@ -149,19 +158,11 @@ async function main() {
             );
             const messenger = new ethers.Contract(
                 network.deployedAddress,
-                JSON.parse(
-                    fs
-                        .readFileSync(
-                            "./chains/evm/out/Messenger.sol/Messenger.json"
-                        )
-                        .toString()
-                ).abi,
+                JSON.parse(fs.readFileSync('./chains/evm/out/Messenger.sol/Messenger.json').toString()).abi,
                 signer
             );
 
-            const tx = await messenger.receiveEncodedMsg(
-                Buffer.from(vaaBytes, "base64")
-            );
+            const tx = await messenger.receiveEncodedMsg(Buffer.from(vaaBytes, "base64"));
             console.log(`Submitted VAA: ${vaaBytes}\nTX: ${tx.hash}`);
         }
     } else if (process.argv[3] == "get_current_msg") {
@@ -174,13 +175,7 @@ async function main() {
             );
             const messenger = new ethers.Contract(
                 network.deployedAddress,
-                JSON.parse(
-                    fs
-                        .readFileSync(
-                            "./chains/evm/out/Messenger.sol/Messenger.json"
-                        )
-                        .toString()
-                ).abi,
+                JSON.parse(fs.readFileSync('./chains/evm/out/Messenger.sol/Messenger.json').toString()).abi,
                 signer
             );
             console.log(

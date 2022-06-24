@@ -9,7 +9,7 @@ fi
 # If it doens't then clone and build guardiand
 if [ ! -d "./wormhole" ] 
 then
-    #git clone https://github.com/certusone/wormhole
+    git clone https://github.com/certusone/wormhole
     cd wormhole/
     DOCKER_BUILDKIT=1 docker build --target go-export -f Dockerfile.proto -o type=local,dest=node .
     DOCKER_BUILDKIT=1 docker build --target node-export -f Dockerfile.proto -o type=local,dest=. .
@@ -26,21 +26,13 @@ then
 fi
 
 # Start EVM Chain 0
-npx pm2 start 'ganache -p 8545 -m "myth like bonus scare over problem client lizard pioneer submit female collect" --block-time 2' --name eth0
+npx pm2 start 'ganache -p 8545 -m "myth like bonus scare over problem client lizard pioneer submit female collect" --block-time 1' --name evm0
 # Start EVM Chain 1
-npx pm2 start 'ganache -p 8546 -m "myth like bonus scare over problem client lizard pioneer submit female collect" --block-time 2' --name eth1
-
+npx pm2 start 'ganache -p 8546 -m "myth like bonus scare over problem client lizard pioneer submit female collect" --block-time 1' --name evm1
 #Install Wormhole Eth Dependencies
 cd wormhole/ethereum
-if [ ! -d "./node_modules/" ]
-then
-    npm i
-fi
-
-if [! -f "./.env"] 
-then
-    cp .env.test .env
-fi
+npm i
+cp .env.test .env
 
 npm run build
 

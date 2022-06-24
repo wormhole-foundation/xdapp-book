@@ -5,7 +5,7 @@
     "main": "starter.js",
     "scripts": {
         "guardiand": "sh wormhole.sh",
-        "cleanup": "npx pm2 kill && docker kill guardiand && docker rm guardiand",
+        "cleanup": "docker kill guardiand && docker rm guardiand && npx pm2 kill",
         "test": "sh tests/evm0-evm1.sh"
     },
     "keywords": [],
