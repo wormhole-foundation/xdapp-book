@@ -1,6 +1,6 @@
 # xData and xAssets
 
-One of the biggest items on the wishlist of features for blockchains is the ability to detach tokens from their native chains. It is a tremendous limitation that ETH only exists on Ethereum, MATIC only exists on Polygon, and SOL only exists on Solana. It would be much more convenient if those assets existed independently of their blockchains, and were able to move freely.
+One of the biggest items on the wishlist of features for blockchains is the ability to detach tokens from their native chains. It is a tremendous limitation that ETH only exists on Ethereum, MATIC only exists on Polygon, and SOL only exists on Solana. It would be far more convenient if those assets existed independently of their blockchains, and were able to move freely.
 
 This is the concept of an **xAsset**, and it should be thought of as the next-generation _wrapped token_. The key feature of an xAsset is that it is chain and path agnostic, and thus retains fungibility regardless of where it travels. xAssets can move fluidly around the blockchain ecosystem without ever becoming double-wrapped. In a sense, xAssets are abstracted to a layer _outside_ of the blockchain ecosystem, and are then able to transact on whatever blockchain is most sensible.
 

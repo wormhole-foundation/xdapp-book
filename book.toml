@@ -1,8 +1,12 @@
 [book]
-title = "xDapp Book 0.1.0"
+title = "Wormhole xDapp Development Book v0.1.0"
 authors = [
     "Dev Bharel"
 ]
 language = "en"
 multilingual = false
 src = "src"
+
+[output.html]
+default-theme= "ayu"
+git-repository-url="https://github.com/certusone/xdapp-book"
