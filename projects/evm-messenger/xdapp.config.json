@@ -6,10 +6,8 @@
       "rpc": "http://localhost:8545",
       "privateKey": "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d",
       "bridgeAddress": "0xC89Ce4735882C9F0f0FE26686c53074E09B0D550",
-      "deployedAddress": "0xfcced5e997e7fb1d0594518d3ed57245bb8ed17e",
-      "emittedVAAs": [
-        "AQAAAAABAKWa25QetRl/vZ45Y4s1NKOXe01+Q0olM4dKfe6EroILVAjrxOk5OZNplA/0weOFvtirBgy1cybbnd/fHNumnUEBYrYAOgAAAAAAAgAAAAAAAAAAAAAAAPzO1emX5/sdBZRRjT7VckW7jtF+AAAAAAAAAAABRnJvbTogZXZtMFxuTXNnOiBIZWxsbyBXb3JsZCE="
-      ]
+      "deployedAddress": "",
+      "emittedVAAs": []
     },
     "evm1": {
       "type": "evm",
@@ -17,10 +15,8 @@
       "rpc": "http://localhost:8546",
       "privateKey": "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d",
       "bridgeAddress": "0xC89Ce4735882C9F0f0FE26686c53074E09B0D550",
-      "deployedAddress": "0xfcced5e997e7fb1d0594518d3ed57245bb8ed17e",
-      "emittedVAAs": [
-        "AQAAAAABAE29ghIeU7n00u2DECRWvICEYEJbQpDxoxSwj6JSLlQjBjjbbL0Px+wrkDxpmOPnxdgNACRGeTsVNUntX42f4FcBYrYARQAAAAAABAAAAAAAAAAAAAAAAPzO1emX5/sdBZRRjT7VckW7jtF+AAAAAAAAAAABRnJvbTogZXZtMVxuTXNnOiBIZWxsbyBXb3JsZCE="
-      ]
+      "deployedAddress": "",
+      "emittedVAAs": []
     }
   },
   "wormhole": {

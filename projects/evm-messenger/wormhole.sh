@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+npm run cleanup
 if [! docker info > /dev/null ] ; then
   echo "This script uses docker, and it isn't running - please start docker and try again!"
   exit 1
