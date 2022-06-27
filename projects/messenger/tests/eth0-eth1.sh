@@ -1,5 +1,6 @@
 node messenger.js eth0 deploy
 node messenger.js eth1 deploy
+sleep 5
 node messenger.js eth0 register_chain eth1
 node messenger.js eth1 register_chain eth0
 node messenger.js eth0 send_msg "From: eth0\nMsg: Hello World!"

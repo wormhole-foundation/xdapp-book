@@ -19,7 +19,7 @@ import  {
 
 import fetch from 'node-fetch';
 
-async function main(){
+async function main() {
     let config = JSON.parse(fs.readFileSync('./xdapp.config.json').toString());
     
     let network = config.networks[process.argv[2]];
@@ -27,7 +27,7 @@ async function main(){
         throw new Error("Network not defined in config file.")
     }
 
-    if(process.argv[3] == "deploy"){
+    if(process.argv[3] == "deploy") {
         if(network.type == "evm"){
             console.log(`Deploying EVM network: ${process.argv[2]} to ${network.rpc}`);
             exec(
@@ -65,6 +65,14 @@ async function main(){
                     }
                 })
             )
+        } else if (network.type == "solana") {
+            //node exec solana deployer
+            /**
+             *  solana config set --url $TILT_RPC_IP:8899
+                cd solana-project && anchor build && solana airdrop 100 -k test_keypair.json && sleep 5 && cd ../
+                cd solana-deployer && cargo build --release && cargo run --release -- -m=8 --payer=../solana-project/test_keypair.json --program-kp-path=../solana-project/solana_project-keypair.json --program-path=../solana-project/target/deploy/solana_project.so -r=$TILT_RPC_IP:8899 -s=1 -t=5 --thread-count=8 && cd ../
+                sleep 10
+             */
         } else {
             throw new Error("Invalid Network Type!");
         }
@@ -97,7 +105,10 @@ async function main(){
             const messenger = new ethers.Contract(
                 network.deployedAddress,
                 JSON.parse(fs.readFileSync('./chains/evm/out/Messenger.sol/Messenger.json').toString()).abi,
-                signer
+                signer,
+                {
+                    gasPrice: '2000000000'
+                }
             );
             await messenger.registerApplicationContracts(targetNetwork.wormholeChainId, emitterAddr);
         } else if (network.type == "algorand"){
@@ -137,15 +148,19 @@ async function main(){
             const messenger = new ethers.Contract(
                 network.deployedAddress,
                 JSON.parse(fs.readFileSync('./chains/evm/out/Messenger.sol/Messenger.json').toString()).abi,
-                signer
+                signer,
+                {
+                    gasPrice: '2000000000'
+                }
             );
-            const tx = await (await messenger.sendMsg(Buffer.from(process.argv[4]))).wait();
+            const tx = await (await messenger.sendMsg(Buffer.from(process.argv[4]), {gasPrice: '2000000000'})).wait();
             await new Promise((r) => setTimeout(r, 5000));
             const emitterAddr = getEmitterAddressEth(messenger.address);
             const seq = parseSequenceFromLogEth(
                 tx,
                 network.bridgeAddress
             );
+            console.log(`${config.wormhole.restAddress}/v1/signed_vaa/${network.wormholeChainId}/${emitterAddr}/${seq}`);
             const vaaBytes = await (
                 await fetch(
                     `${config.wormhole.restAddress}/v1/signed_vaa/${network.wormholeChainId}/${emitterAddr}/${seq}`
@@ -231,7 +246,10 @@ async function main(){
             const messenger = new ethers.Contract(
                 network.deployedAddress,
                 JSON.parse(fs.readFileSync('./chains/evm/out/Messenger.sol/Messenger.json').toString()).abi,
-                signer
+                signer,
+                {
+                    gasPrice: '2000000000'
+                }
             );
             
             const tx = await messenger.receiveEncodedMsg(Buffer.from(vaaBytes, "base64"));
@@ -278,7 +296,10 @@ async function main(){
             const messenger = new ethers.Contract(
                 network.deployedAddress,
                 JSON.parse(fs.readFileSync('./chains/evm/out/Messenger.sol/Messenger.json').toString()).abi,
-                signer
+                signer,
+                {
+                    gasPrice: '2000000000'
+                }
             );
             console.log(`${process.argv[2]} Current Msg: `, await messenger.getCurrentMsg());
         }
