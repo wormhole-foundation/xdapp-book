@@ -57,8 +57,8 @@
 
 # xDapp Development
 
-- [Before You Start]()
-  - [Choosing an Environment]()
+- [Before You Start](./development/overview.md/)
+- [Guardiand](./development/guardiand.md)
 - [Tilt Installation](./development/tilt/overview.md)
   - [MacOS](./development/tilt/mac.md)
   - [Linux](./development/tilt/linux.md)
