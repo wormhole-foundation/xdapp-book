@@ -1,6 +1,6 @@
 import { exec } from "child_process";
 import fs from "fs";
-import { ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 import {
     getEmitterAddressEth,
     parseSequenceFromLogEth,
@@ -35,7 +35,7 @@ async function main() {
         );
 
         exec(
-            `cd chains/evm && forge build && forge create --legacy --rpc-url ${network.rpc} --private-key ${network.privateKey} src/Treasury.sol:Treasury && exit`,
+            `cd chains/evm && forge install && forge build && forge create --legacy --rpc-url ${network.rpc} --private-key ${network.privateKey} src/Treasury.sol:Treasury && exit`,
             (err, out, errStr) => {
                 if (err) {
                     throw new Error(err);
@@ -130,8 +130,11 @@ async function main() {
             signer
         );  
         console.log(`${process.argv[2]} Treasury has ${await treasury.getTKNCount()} tokens.`);
-        console.log(`Minting 100 tokens.`);
-        await TKN.mint(deployment[process.argv[2]].deployedAddress, 100);
+        const tokenAmt = ethers.utils.parseUnits(process.argv[4], "18");
+        console.log(`Minting ${tokenAmt} tokens.`);
+        await TKN.mint(deployment[process.argv[2]].deployedAddress, tokenAmt, {
+            gasLimit: 2000000
+        });
         await new Promise((r) => setTimeout(r, 3000));
         console.log(`${process.argv[2]} Treasury has ${await treasury.getTKNCount()} tokens.`);
     } else if (process.argv[3] == "attest_token") {
@@ -248,13 +251,16 @@ async function main() {
             ).abi,
             signer
         );
+        
+        //Multiply out the decimals to 18 (default for ERC20)
+        const bridgeAmt = ethers.utils.parseUnits(process.argv[5], "18");
 
 
         // Remember to allow Token Bridge to move tokens from Treasury account to it's own account
-        console.log(`Approving ${process.argv[5]} Tokens to be bridged by Token Bridge`);
-        await treasury.approveTokenBridge(parseInt(process.argv[5], {
+        console.log(`Approving ${process.argv[5]} (${bridgeAmt} in proper ERC20 format) Tokens to be bridged by Token Bridge`);
+        await treasury.approveTokenBridge(bridgeAmt, {
             gasLimit: 2000000,
-        }));
+        });
         await new Promise((r) => setTimeout(r, 5000)); //Time out to let block propogate
 
         const targetNetwork = config.networks[process.argv[4]];
@@ -262,9 +268,10 @@ async function main() {
         if (!targetDeployment.deployedAddress) {
             throw new Error("Target Network not deployed yet!");
         }
-        console.log("Bridging Tokens!")
+
+        console.log(`Bridging ${process.argv[5]} Tokens which is ${bridgeAmt} Tokens`);
         const targetRecepient = Buffer.from(tryNativeToHexString(targetDeployment.deployedAddress, "ethereum"), 'hex');
-        const tx = await (await treasury.bridgeToken(parseInt(process.argv[5]), targetNetwork.wormholeChainId, targetRecepient)).wait();
+        const tx = await (await treasury.bridgeToken(bridgeAmt, targetNetwork.wormholeChainId, targetRecepient)).wait();
         const emitterAddr = getEmitterAddressEth(network.tokenBridgeAddress);
         const seq = parseSequenceFromLogEth(tx, network.bridgeAddress);
         const vaaURL =  `${config.wormhole.restAddress}/v1/signed_vaa/${network.wormholeChainId}/${emitterAddr}/${seq}`;
