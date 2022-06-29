@@ -1,0 +1,25 @@
+{
+  "networks": {
+    "evm0": {
+      "type": "evm",
+      "wormholeChainId": 2,
+      "rpc": "http://localhost:8545",
+      "privateKey": "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d",
+      "bridgeAddress": "0xC89Ce4735882C9F0f0FE26686c53074E09B0D550",
+      "tokenBridgeAddress": "0x0290FB167208Af455bB137780163b7B7a9a10C16",
+      "testToken": "0x2D8BE6BF0baA74e0A907016679CaE9190e80dD0A"
+    },
+    "evm1": {
+      "type": "evm",
+      "wormholeChainId": 4,
+      "rpc": "http://localhost:8546",
+      "privateKey": "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d",
+      "tokenBridgeAddress": "0x0290FB167208Af455bB137780163b7B7a9a10C16",
+      "bridgeAddress": "0xC89Ce4735882C9F0f0FE26686c53074E09B0D550",
+      "testToken": "0x2D8BE6BF0baA74e0A907016679CaE9190e80dD0A"
+    }
+  },
+  "wormhole": {
+    "restAddress": "http://localhost:7071"
+  }
+}
