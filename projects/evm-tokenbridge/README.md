@@ -15,11 +15,8 @@ Simply run `npm run guardiand` and wait while the Wormhole Guardian builds a doc
 
 ## Test Scripts
 After you have Guardiand running, you can run the basic test with `npm run test`. This will: 
-- Deploy a simple Messenger contract (found in chains/evm/src/Messenger.sol) to each EVM chain
-- Register each contract with the other chain
-- Send a message from each contract
-- Fetch the VAA from the Guardian
-- Submit the VAA to each contract
-- Print out the Message
+- Deploy a Treasury contract
+- Attest the TKN ERC20 token from Chain0 (ETH) to Chain1 (BSC)
+- Mint 100 TKN tokens to the Treasury on ETH
+- Approve & Transfer 50 TKN tokens from the treasury on ETH to the Treasury on BSC.
 
-If everything goes correctly, you should get a printout with the Hello World messages on each chain.
