@@ -46,7 +46,6 @@ contract Treasury {
         return token_bridge.transferTokens(TKN_address, amt, receipientChainId, recipient, 0, nonce);
     }   
 
-
     function approveTokenBridge(uint256 amt) public returns (bool) {
         return TKN.approve(token_bridge_address, amt);
     }
