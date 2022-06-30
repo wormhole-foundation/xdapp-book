@@ -83,7 +83,7 @@
 - [Portal](./development/portal/overview.md)
   - [EVM]()
     - [Attesting](./development/portal/evm/attestingToken.md)
-    - [Transfer Tokens](./development//portal/evm/tokenTransfer.md)
+    - [Transfer Tokens](./development/portal/evm/tokenTransfer.md)
   - [Portal JS Client Transfers]()
     - [EVM to Solana Transfer]()
     - [Polygon to Oasis with Relayers]()
