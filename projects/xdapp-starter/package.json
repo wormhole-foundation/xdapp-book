@@ -1,7 +1,7 @@
 {
-    "name": "evm-tokenbridge-example",
+    "name": "xdapp-starter",
     "version": "1.0.0",
-    "description": "A simple template for transferring tokens using EVM.",
+    "description": "A simple template for getting started with xDapps.",
     "main": "starter.js",
     "scripts": {
         "guardiand": "sh wormhole.sh",

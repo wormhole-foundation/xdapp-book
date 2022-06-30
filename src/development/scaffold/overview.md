@@ -19,3 +19,6 @@ This file parses command line args and filters calls to chain management handler
 
 ### xdapp.config.json
 The config file contains all the information about the network rpc nodes, accounts, and other constants used to communicate with contracts deployed to the selected chains.
+
+### wormhole.sh
+This is a script that spins up chains using PM2 and guardiand via docker. It'll clone the wormhole repo. It is NOT necessary to do this for every project, if you're creating multiple xdapps, maybe have one folder that you run guardiand from so you're not rebuilding it every time you start a new project. 
