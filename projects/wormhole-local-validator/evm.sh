@@ -2,11 +2,11 @@
 
 # Start EVM Chain 0
 npx pm2 stop evm0
-npx pm2 start 'ganache -p 8545 -m "myth like bonus scare over problem client lizard pioneer submit female collect" --block-time 1' --name evm0
+npx pm2 start 'npx ganache -p 8545 -m "myth like bonus scare over problem client lizard pioneer submit female collect" --block-time 1' --name evm0
 
 # Start EVM Chain 1
 npx pm2 stop evm1
-npx pm2 start 'ganache -p 8546 -m "myth like bonus scare over problem client lizard pioneer submit female collect" --block-time 1' --name evm1
+npx pm2 start 'npx ganache -p 8546 -m "myth like bonus scare over problem client lizard pioneer submit female collect" --block-time 1' --name evm1
 
 #Install Wormhole Eth Dependencies
 cd wormhole/ethereum
