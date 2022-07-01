@@ -18,4 +18,4 @@ One thing to watch out for is that because testnet only has a single guardian ru
 When you're ready to deploy to mainnet, you can find the mainnet contracts [here](../reference/contracts.md) and the mainnet rpc nodes [here](../reference/rpcnodes.md).
 
 ## Next Steps
-To get started, first clone the a local host environment (WLV or Tilt), then proceed to the first project, the [evm-messenger]().
+To get started, first clone the a local host environment (WLV or Tilt), then proceed to the first project, the [evm-messenger](../projects/evm-messenger/overview.md).
