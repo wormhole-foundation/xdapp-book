@@ -6,8 +6,7 @@
     "scripts": {
         "setup": "sh setup.sh",
         "wormhole": "npm run setup && sh wormhole.sh",
-        "evm0": "npm run setup && sh evm0.sh",
-        "evm1": "npm run setup && sh evm1.sh",
+        "evm": "npm run setup && sh evm.sh",
         "solana": "npm run setup && sh solana.sh",
         "cleanup": "docker kill guardiand & docker rm guardiand & npx pm2 kill"
     },
