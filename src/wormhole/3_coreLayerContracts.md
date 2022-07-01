@@ -44,7 +44,7 @@ VAAs simply attest that "This contract on this chain said this thing". Therefore
 
 This multicast-by-default model is intentional, and also integral to the design. Having this multicast capacity makes it easy to synchronize state across the entire ecosystem, because a single blockchain can make its data available to every chain in a single action with low latency. This, in turn, reduces the complexity of the n^2 problems encountered by routing data to a large number of blockchains.
 
-Usecases where the message has an intended recipient or is only meant to be consumed once must be handled in logic outside the Core Contract. There are standard practices for accomplishing these features shown later on in the code examples, and some ecosystem contracts (namely Portal & the Relaying contract) handle this on behalf of downstream consumers.
+Use cases where the message has an intended recipient or is only meant to be consumed once must be handled in logic outside the Core Contract. There are standard practices for accomplishing these features shown later on in the code examples, and some ecosystem contracts (namely Portal & the Relaying contract) handle this on behalf of downstream consumers.
 
 Lastly, because the VAA creation is a separate concern from relaying, there is _no additional cost_ to this multicast model when a single chain is being targetted. If the data isn't needed on a certain blockchain, don't relay it there, and it won't cost anything.
 
