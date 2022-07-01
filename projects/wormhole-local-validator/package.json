@@ -8,7 +8,7 @@
         "wormhole": "npm run setup && sh wormhole.sh",
         "evm": "npm run setup && sh evm.sh",
         "solana": "npm run setup && sh solana.sh",
-        "cleanup": "docker kill guardiand & docker rm guardiand & npx pm2 kill"
+        "cleanup": "npx pm2 kill"
     },
     "keywords": [],
     "author": "",
