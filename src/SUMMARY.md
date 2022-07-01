@@ -58,7 +58,7 @@
 # xDapp Development
 
 - [Before You Start](./development/overview.md)
-- [Guardiand](./development/guardiand.md)
+- [Wormhole Local Validator](./development/wormhole-local-validator.md)
 - [Tilt Installation](./development/tilt/overview.md)
   - [MacOS](./development/tilt/mac.md)
   - [Linux](./development/tilt/linux.md)
@@ -66,7 +66,6 @@
 - [Project Scaffold](./development/scaffold/overview.md)
 - [Sending Messages](./development/messages/sending/overview.md)
   - [EVM](./development/messages/sending/evm.md)
-
 - [Registering xDapps](./development/messages/registration/overview.md)
   - [EVM](./development/messages/registration/evm.md)
 - [Relaying Messages](./development/messages/relaying/overview.md)

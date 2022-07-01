@@ -4,8 +4,6 @@
     "description": "A simple template for transferring tokens using EVM.",
     "main": "starter.js",
     "scripts": {
-        "guardiand": "sh wormhole.sh",
-        "cleanup": "docker kill guardiand && docker rm guardiand && npx pm2 kill",
         "test": "sh tests/treasury_bridge.sh"
     },
     "keywords": [],
