@@ -1,0 +1,27 @@
+# CORE BRIDGE
+[[test.genesis]]
+address = "Bridge1p5gheXUvJ6jGWGeCsgPKgnE3YgdGKRVCMY9o"
+program = "./core/core_bridge.so"
+
+[[test.validator.account]]
+address = "FKoMTctsC7vJbEqyRiiPskPnuQx2tX1kurmvWByq5uZP"
+filename = "./core/bridge_config.json"
+
+[[test.validator.account]]
+address = "6MxkvoEwgB9EqQRLNhvYaPGhfcLtBtpBqdQugr3AZUgD"
+filename = "./core/guardian_set.json"
+
+[[test.validator.account]]
+address = "GXBsgBD3LDn3vkRZF6TfY5RqgajVZ4W5bMAdiAaaUARs"
+filename = "./core/fee_collector.json"
+
+# TOKEN BRIDGE
+[[test.genesis]]
+address = "B6RHG3mfcckmrYN1UhmJzyS1XX3fZKbkeUcpJe9Sy3FE"
+program = "./token/token_bridge.so"
+
+[[test.validator.account]]
+address = "3GwVs8GSLdo4RUsoXTkGQhojauQ1sXcDNjm7LSDicw19"
+filename = "./token/token_config.json"
+
+# NFT BRIDGE

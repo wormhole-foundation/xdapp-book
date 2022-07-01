@@ -4,7 +4,12 @@
     "description": "A simple template for getting started with xDapps.",
     "main": "starter.js",
     "scripts": {
-        "test": "sh tests/evm0-evm1.sh"
+        "setup": "sh setup.sh",
+        "wormhole": "npm run setup && sh wormhole.sh",
+        "evm0": "npm run setup && sh evm0.sh",
+        "evm1": "npm run setup && sh evm1.sh",
+        "solana": "npm run setup && sh solana.sh",
+        "cleanup": "docker kill guardiand & docker rm guardiand & npx pm2 kill"
     },
     "keywords": [],
     "author": "",
@@ -12,11 +17,7 @@
     "workspaces": [],
     "type": "module",
     "dependencies": {
-        "@certusone/wormhole-sdk": "^0.3.3",
-        "byteify": "^2.0.10",
-        "ethers": "^5.6.9",
         "ganache": "^7.3.1",
-        "node-fetch": "^3.2.6",
         "pm2": "^5.2.0"
     }
 }
