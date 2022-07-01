@@ -4,7 +4,7 @@ The Wormhole Local Validator is available [here](https://github.com/certusone/xd
 ## Dependencies
 You will also need Docker; you can get either [Docker Desktop](https://docs.docker.com/get-docker/) if you're developing on your computer or if you're in a headless vm, install [Docker Engine](https://docs.docker.com/engine/). Make sure to have Docker running before you run any of the following commands.
 
-To run EVM chains you will need [Ganache](https://github.com/trufflesuite/ganache#command-line-use)
+To run EVM chains you will need [Ganache](https://github.com/trufflesuite/ganache#command-line-use).  
 To run Solana chains you will need [Solana](https://docs.solana.com/cli/install-solana-cli-tools) installed. 
 
 ## Run EVM Chains
