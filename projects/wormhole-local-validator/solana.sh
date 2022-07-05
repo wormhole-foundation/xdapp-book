@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 # Start Solana
-npx pm2 kill -n solana
+npx pm2 stop solana 2> /dev/null || true
 
 npx pm2 start "solana-test-validator" --name solana -- -r \
                 --bpf-program Bridge1p5gheXUvJ6jGWGeCsgPKgnE3YgdGKRVCMY9o ./solana-accounts/core/core_bridge.so \
