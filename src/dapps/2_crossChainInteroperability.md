@@ -10,14 +10,14 @@ To solve the centralization problems with CEXs, decentralized exchanges (DEXs) w
 
 **Bridges** are complex and will be discussed at length in a later section. For now, we can categorize bridges as applications which 'lock' assets on one chain in exchange for **wrapped assets** on another chain. The wrapped assets can then be exchanged for the original 'backing' asset.
 
-There are some other essential things you should know about bridges before we go further:
+There are some other essential things you should know about bridges before going further:
 
 - Bridges are capable of being decentralized in theory, but are often quite centralized in practice.
 - Bridges are currently the only way to hold a token on a chain other than its 'native' chain. If you're holding ETH on a chain other than Ethereum, it is, by definition, a wrapped token.
 - Bridges are all mutually incompatible with eachother. Using multiple bridges just makes 'double wrapped' tokens.
 - If tokens have become double wrapped after traversing multiple bridges or blockchains, there can be a complex unwrapping process to get back to the original token.
 
-This explains how the ecosystem arrived at its current state--CEXs are a solution to siloed blockchains, DEXs are a simple response to CEXs, and DEXs have created a need for bridges. Each solution in this timeline is an ad-hoc patch to the previous problem, and the current landscape of fractured liquidity, double wrapped tokens, isolated userbases and wallet incompatibilities is the result.
+This explains how the ecosystem arrived at its current state--CEXs are a solution to siloed blockchains, DEXs are a simple response to CEXs, and DEXs have created a demand for bridges. Each solution in this timeline is an ad-hoc patch to the previous problem, and the current landscape of fractured liquidity, double wrapped tokens, isolated userbases and wallet incompatibilities is the result.
 
 More ad-hoc solutions would only be short-term fixes for long-term problems, so it's critical to design new primatives and core infrastructure that will allow the next generation of decentralized applications to move beyond these lingering limitations.
 
