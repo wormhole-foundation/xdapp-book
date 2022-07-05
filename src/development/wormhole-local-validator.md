@@ -2,7 +2,7 @@
 The Wormhole Local Validator is available [here](https://github.com/certusone/xdapp-book/tree/main/projects/wormhole-local-validator). It contains the wormhole local validator, along with code to spin up EVM and Solana local validators, and deployment code to add Wormhole contracts to those new chains.
 
 ## Dependencies
-You will also need Docker; you can get either [Docker Desktop](https://docs.docker.com/get-docker/) if you're developing on your computer or if you're in a headless vm, install [Docker Engine](https://docs.docker.com/engine/). Make sure to have Docker running before you run any of the following commands.
+You will also need Docker; you can get either [Docker Desktop](https://docs.docker.com/get-docker/) if you're developing on your computer or if you're in a headless VM, install [Docker Engine](https://docs.docker.com/engine/). Make sure to have Docker running before you run any of the following commands.
 
 To run EVM chains you will need [Ganache](https://github.com/trufflesuite/ganache#command-line-use).  
 To run Solana chains you will need [Solana](https://docs.solana.com/cli/install-solana-cli-tools) installed. 
@@ -17,10 +17,10 @@ They'll use the standard Wormhole test mnemonic (`myth like bonus scare over pro
 TODO: Add emitter registrations for token bridge.
 
 ## Run Wormhole
-After you have the dependencies installed and the chains running, you can run Womrhole.
+After you have the dependencies installed and the chains running, you can run Wormhole.
 
 Simply run `npm run wormhole` and wait while the Wormhole Guardian builds a docker image. The first time you run this command, it might take a while (up to 550 seconds on a modern laptop!). After the image is built however, it'll be relatively fast to bring it up and down. 
 
 ### FAQ & Common Problems
 - Anvil isn't working  
-While we reccomend Foundry's Forge tool for compling and deploying code elsewhere in these docs, we *do not* at this time reccomend using anvil for guardiand; this is because guardiand is spec'd against go-ethereum, and anvil is out of spec for how it reports block headers (non left padding to normalize length), which means go-ethereum freaks out and can't read anvil headers. 
+While we recommend Foundry's Forge tool for compiling and deploying code elsewhere in these docs, we *do not* at this time recommend using anvil for guardiand; this is because guardiand is spec'd against go-ethereum, and anvil is out of spec for how it reports block headers (non left padding to normalize length), which means go-ethereum freaks out and can't read anvil headers. 
