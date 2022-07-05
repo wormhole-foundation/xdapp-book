@@ -1,6 +1,3 @@
-cross chain applications, but more crucially, applications which are built for a cross-chain world. Leverage the strengths of each blockchain.
-Utilize xData to design powerful decentralized protocols which view individual blockchains as implementation details. xAssets are divorcible from the app and can move tokens across the ecosystem and custody on any chain.
-
 # What is an xDapp
 
 The term **xDapp** is short for "Cross-Chain Decentralized Application". At first glance, this might give the impression that xDapps are simply Dapps which meddle a bit in doing cross-chain things. However, once you get into the business of building decentralized products which are designed to operate across a variety of blockchains and runtimes, you begin to see that these applications are architected in a fundamentally different fashion than traditional Dapps.
