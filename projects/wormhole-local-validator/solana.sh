@@ -11,4 +11,5 @@ npx pm2 start "solana-test-validator" --name solana -- -r \
                 --account GXBsgBD3LDn3vkRZF6TfY5RqgajVZ4W5bMAdiAaaUARs ./solana-accounts/core/fee_collector.json \
                 --account 6MxkvoEwgB9EqQRLNhvYaPGhfcLtBtpBqdQugr3AZUgD ./solana-accounts/core/guardian_set.json  \
                 --bpf-program B6RHG3mfcckmrYN1UhmJzyS1XX3fZKbkeUcpJe9Sy3FE ./solana-accounts/token/token_bridge.so \
-                --account 3GwVs8GSLdo4RUsoXTkGQhojauQ1sXcDNjm7LSDicw19 ./solana-accounts/token/token_config.json
+                --account 3GwVs8GSLdo4RUsoXTkGQhojauQ1sXcDNjm7LSDicw19 ./solana-accounts/token/token_config.json \
+                --account 7UqWgfVW1TrjrqauMfDoNMcw8kEStSsQXWNoT2BbhDS5 ./solana-accounts/token/emitter_eth.json

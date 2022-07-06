@@ -24,4 +24,8 @@ program = "./token/token_bridge.so"
 address = "3GwVs8GSLdo4RUsoXTkGQhojauQ1sXcDNjm7LSDicw19"
 filename = "./token/token_config.json"
 
+[[test.validator.account]]
+address = "7UqWgfVW1TrjrqauMfDoNMcw8kEStSsQXWNoT2BbhDS5"
+filename = "./token/emitter_eth.json"
+
 # NFT BRIDGE
