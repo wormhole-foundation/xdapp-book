@@ -28,4 +28,8 @@ filename = "./token/token_config.json"
 address = "7UqWgfVW1TrjrqauMfDoNMcw8kEStSsQXWNoT2BbhDS5"
 filename = "./token/emitter_eth.json"
 
+[[test.validator.account]]
+address = "BmRvjCA2cQ1qUNAMVAnPgmjATSBPa2pxE3Q7bRoSGFED"
+filename = "./token/emitter_bsc.json"
+
 # NFT BRIDGE
