@@ -5,7 +5,7 @@ This repository contains a set of scripts to get started using Wormhole. It cont
 ## Dependencies
 You will also need Docker; you can get either [Docker Desktop](https://docs.docker.com/get-docker/) if you're developing on your computer or if you're in a headless vm, install [Docker Engine](https://docs.docker.com/engine/). Make sure to have Docker running before you run any of the following commands.
 
-To run EVM chains you will need [Ganache](https://github.com/trufflesuite/ganache#command-line-use)
+To run EVM chains you will need [Ganache](https://github.com/trufflesuite/ganache#command-line-use).  
 To run Solana chains you will need [Solana](https://docs.solana.com/cli/install-solana-cli-tools) installed. 
 
 ## Run EVM Chains
@@ -14,9 +14,7 @@ To run Solana chains you will need [Solana](https://docs.solana.com/cli/install-
 They'll use the standard Wormhole test mnemonic (`myth like bonus scare over problem client lizard pioneer submit female collect`) and use the first key for deployment and payment (Public Key: `0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1`, Private Key: (`0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d`)) 
 
 ## Run Solana Chain
-`npm run solana` will start up a Solana chain and load in Core Bridge (`Bridge1p5gheXUvJ6jGWGeCsgPKgnE3YgdGKRVCMY9o`) and Token Bridge (`B6RHG3mfcckmrYN1UhmJzyS1XX3fZKbkeUcpJe9Sy3FE`) accounts.
-TODO: Add emitter registrations for token bridge.
-
+`npm run solana` will start up a Solana chain and load in Core Bridge (`Bridge1p5gheXUvJ6jGWGeCsgPKgnE3YgdGKRVCMY9o`) and Token Bridge (`B6RHG3mfcckmrYN1UhmJzyS1XX3fZKbkeUcpJe9Sy3FE`) accounts.  
 
 ## Run Wormhole
 After you have the dependencies installed and the chains running, you can run Womrhole.
