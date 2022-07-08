@@ -3,8 +3,8 @@
 
 set -euo pipefail
 
-# Unofficial guardian build for now
-DOCKER_IMAGE="ckiss123/guardiand"
+# dev.v2 for now (until we make a release)
+DOCKER_IMAGE="ghcr.io/certusone/guardiand:dev.v2"
 
 DOCKER_FLAGS=
 HOST=
