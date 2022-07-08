@@ -16,6 +16,7 @@ if [ "$(uname -m)" = "arm64" ]; then
 else
    DOCKER_FLAGS="--network host"
    TERRAD_HOST="terra-terrad"
+   HOST="localhost"
 fi
 
 docker run --rm --name guardiand $DOCKER_FLAGS --hostname guardian-0 --cap-add=IPC_LOCK "$DOCKER_IMAGE" node \
