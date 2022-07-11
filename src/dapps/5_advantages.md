@@ -1,3 +1,5 @@
+# Advantages of xDapps
+
 Here are a few xDapp features that are making an impact across blockchain technologies:
 
 - **Expanded User Base** - Rather than being limited to the users of one blockchain, any user on any blockchain in the ecosystem can interact with an xDapp.
