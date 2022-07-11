@@ -1,12 +1,10 @@
 # Dapp Basics
 
-The fundamental starting point for any decentralized computing discussion is, of course, the blockchain.
+Since the launch of Bitcoin in 2009, the cryptocurrency and decentralized computing ecosystem has rapidly evolved and expanded. The ecosystem now includes hundreds of blockchains, often also referred to as **Layer 1s**.
 
-Since the launch of Bitcoin in 2009, the cryptocurrency and decentralized computing ecosystem has evolved and expanded year-over-year, to the point where it now includes hundreds of blockchains, often also referred to as **Layer 1s**.
+Prior to 2015, blockchain transactions were limited in their capacities, typically being used to transfer funds from one user to another. This changed with the intoduction of Ethereum and smart contracts. Smart contracts allowed developers to perform arbitrary on-chain computation as part of a blockchain transaction, opening the door for blockchain technology to become a global computing platform. These innovations laid the groundwork for the creation of **Decentralized Applications** or **Dapps**.
 
-Somewhat newer, however, is the concept of a **Decentralized Application** or **Dapp**, which only came into being in 2015 with the launch of Ethereum and 'smart contracts'. Prior to the introduction of smart contracts, blockchain transactions were limited in their capacities, and could more-or-less only transfer funds from point A to B. Smart contracts allow developers to perform arbitrary on-chain computation as part of a blockchain transaction. This feature opened the door for blockchain technology to become a global general-purpose computing platform, rather than just a simple history of token transfers.
-
-In the introvening years, a rich ecosystem of Dapps has cropped up across the myriad of smart-contract-enabled blockchains. These Dapps provide a wide array of services, and in some cases have created entirely new products. Dapps fall into categories such as:
+Now, a rich ecosystem of Dapps exists across an array of smart-contract-enabled blockchains. These Dapps provide a number of services across categories like:
 
 - Decentralized Exchanges (DEXs)
 - Decentralized Autonomous Organizations (DAOs)
@@ -16,10 +14,10 @@ In the introvening years, a rich ecosystem of Dapps has cropped up across the my
 - Metaverse Platforms
 - and more
 
-However, today's Dapps are not without their limitations, and many of these limitations are tied to the underlying blockchains themselves.
+However, Dapps are not without limitations, many of which are tied to their underlying blockchains.
 
-Two key limitations of blochains are that they have no access to off-chain data, and also no mechanism to interact with other blockchains. These limitations have lead to a fractured ecosystem, where each blockchain is - by default - siloed off from the others. Assets native to Polygon are not accessible on Ethereum, and services like Uniswap can't be leveraged on Solana.
+Two notable limitations are that blockchains have no access to off-chain data and no mechanism to interact with other blockchains. These limitations have lead to a fractured ecosystem where each blockchain is closed off from the others by default. That means assets native to one chain are not accessible on another, and some services can't be leveraged on particular chains altogether.
 
-This is obviously not a desireable state of the world, and blockchain developers are now aiming to solve these interoperability problems in order to create a better, more unified ecosystem where the gory details of each blockchain are abstracted away. In this new cross-chain ecosystem, people stop being "Ethereum" or "Solana" users, and simply become Web3 users.
+Blockchain developers are now aiming to solve these interoperability problems to create a unified ecosystem. In this new cross-chain ecosystem, people can move beyond being users of individual blockchains and take advantage of Web3 on a broader scale.
 
 In the next section, we'll discuss the history and challenges of cross-chain interoperability, as well as introduce the role Wormhole plays in the future of this space.

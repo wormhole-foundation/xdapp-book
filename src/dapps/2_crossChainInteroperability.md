@@ -1,31 +1,26 @@
 # Cross-Chain Interoperability
 
-The fact that each cryptocurrency is locked to its own chain has been a limitation of blockchains since day one. It's not 'real' Bitcoin unless it's on the Bitcoin ledger, and it's not 'your' Bitcoin unless you have the private keys to the wallet.
+Because blockchains are siloed by nature, individual cryptocurrencies being bound to their own chains has been a longtime limitation of blockchain technology. The first attempt at solving this problem was the creation of cryptocurrency exchanges like Coinbase and Binance. Today these are refered to as centralized exchanges (CEXs).
 
-This restriction is fine if you're content with just sending Bitcoin around, but it becomes a major obstacle as soon you want to exchange Bitcoin for any other currency.
+Centralized exchanges play an important role in cryptocurrency, but they are not a complete solution for cross-chain interoperability for two primary reasons: they're centralized, which is counterproductive to creating a decentralized platform, and they deal only with tokens. 
 
-The first attempt at solving this problem was by creating cryptocurrency exchanges, such as Coinbase and Binance. Today these are refered to as centralized exchanges, or CEXs.
+As blockchains move toward being general-purpose computing platforms, interoperability will require data structures that are more complex than tokens and operations that are more sophisticated than transfers.
 
-Centralized Exchanges play an important role in the cryptocurrency space, but they are certainly not a silver bullet for cross-chain interoperability. This is primarily due to two reasons.
+To solve the centralization problems with CEXs, decentralized exchanges (DEXs) were created. A DEX operates inside a smart contract runtime and can be as decentralized as the blockchain it runs on. Unfortunately, a DEX is only able to utilize the tokens on its native blockchain. In order to obtain a token which is not native to that chain, the DEX must be used in combination with a **bridge**.
 
-1. They're centralized, which directly defeats the purpose of creating a decentralized platform in the first place.
-2. They deal only with tokens. As blockchains move away from being a simple history of token transfers, and towards being general purpose computing platforms, interoperability will involve much more complex data structures than 'tokens', and much more sophisticated operations than 'transfers'.
+**Bridges** are complex and will be discussed at length in a later section. For now, we can categorize bridges as applications which 'lock' assets on one chain in exchange for **wrapped assets** on another chain. The wrapped assets can then be exchanged for the original 'backing' asset.
 
-To solve the centralization problems associated with CEXs, decentralized exchanges (DEXs) were created. A DEX operates inside a smart contract runtime, and therefore can be as decentralized as the blockchain it runs on. Unfortunately, a DEX is only able to utilize the tokens which exist on its native blockchain, so in order to obtain a token which is not native to that chain, the DEX must be used in combination with a **bridge**.
+There are some other essential things you should know about bridges before going further:
 
-**Bridges** are a complex beast which will be discussed in depth later. For now, we can simply categorize bridges as applications which 'lock' assets on one chain in exchange for **wrapped assets** on another chain. The wrapped assets can, in turn, be exchanged for the original 'backing' asset.
-
-Here are some other key things to understand about bridges:
-
-- Bridges are currently the only way to custody a token on a chain other than its 'native' chain. If you're holding ETH on some chain other than Ethereum, it is, _by definition_, a wrapped token.
-- Generally, wrapped tokens become 'double wrapped' when they traverse multiple bridges or blockchains. This requires an annoying unwrapping process to get back to the original token.
-- Bridges are all mutually incompatible with eachother. Using multiple bridges just makes double wrapped tokens.
 - Bridges are capable of being decentralized in theory, but are often quite centralized in practice.
+- Bridges are currently the only way to hold a token on a chain other than its 'native' chain. If you're holding ETH on a chain other than Ethereum, it is, by definition, a wrapped token.
+- Bridges are all mutually incompatible with eachother. Using multiple bridges just makes 'double wrapped' tokens.
+- If tokens have become double wrapped after traversing multiple bridges or blockchains, there can be a complex unwrapping process to get back to the original token.
 
-This brief history explains how we arrived at where we are today. CEXs are a simple solution to siloed blockchains, DEXs are a simple response to CEXs, and once you have DEXs, bridges become necessary infrastructure. Each solution in this timeline is an ad-hoc patch to the previous problem, and the current landscape of fractured liquidity, double-wrapped tokens, isolated userbases, and wallet incompatibilities is a result of this.
+This explains how the ecosystem arrived at its current state--CEXs are a solution to siloed blockchains, DEXs are a simple response to CEXs, and DEXs have created a demand for bridges. Each solution in this timeline is an ad-hoc patch to the previous problem, and the current landscape of fractured liquidity, double wrapped tokens, isolated userbases and wallet incompatibilities is the result.
 
-The way to address these issues is not to slap another bandage on top, but rather to go back to the drawing board, and design new primatives and core infrastructure which will allow the next generation of decentralized applications to never suffer from these problems in the first place.
+More ad-hoc solutions would only be short-term fixes for long-term problems, so it's critical to design new primatives and core infrastructure that will allow the next generation of decentralized applications to move beyond these lingering limitations.
 
-Wormhole is an attempt to do just this. It looks at the budding decentralized computing ecosystem and proposes a new way of developing applications which leverages the strengths of each blockchain while mitigating the problems which have thusfar plagued the ecosystem.
+This is why Wormhole exists. Wormhole proposes a new way of developing applications which leverages the strengths of each blockchain while mitigating the problems of the current ecosystem.
 
-The first step in this endeavor is to dethrone the 'token' as the fundamental atomic unit of blockchains, and instead to think of these platforms as global computers which operate on data. We'll expand upon this in the next section.
+Rethinking the next generation of decentralized applications means dethroning the token as the fundamental atomic unit of blockchains. We'll expand on this change in the next section.
