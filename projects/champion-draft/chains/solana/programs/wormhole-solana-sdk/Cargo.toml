@@ -1,0 +1,42 @@
+[package]
+name = "wormhole-solana-sdk"
+version = "0.1.0"
+description = "Created with Anchor"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "wormhole_solana_sdk"
+
+[profile.release]
+overflow-checks = true
+
+[dependencies]
+anchor-lang = "0.24.2"
+sha3 = "0.10.1"
+byteorder = "1.4.3"
+borsh = "0.9.3"
+hex = "0.4.3"
+
+[features]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+cpi = ["no-entrypoint"]
+
+default = ["core", "token", "nft", "devnet"]
+
+#Wormhole Core Bridge Methods
+core = []
+#Wormhole Token Bridge Methods
+token = []
+#Wormhole NFT Bridge Methods
+nft = []
+
+# Helper methods will target the Wormhole mainnet contract addresses.
+mainnet   = []
+# Helper methosd will target the Wormhole testnet contract addresses.
+testnet    = []
+# Helper methosd will target the Wormhole devnet contract addresses.
+devnet    = []
+

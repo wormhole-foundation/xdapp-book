@@ -1,0 +1,30 @@
+[package]
+name = "core-game"
+version = "0.1.0"
+description = "Created with Anchor"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "core_game"
+
+[features]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+cpi = ["no-entrypoint"]
+default = []
+
+[profile.release]
+overflow-checks = true
+
+[dependencies]
+anchor-lang = "0.24.2"
+anchor-spl = "0.24.2"
+# wormhole-solana-sdk = { git = "https://github.com/spacemandev-git/wormhole-solana-sdk", features=["devnet"]}
+# wormhole-solana-sdk = { path = "../wormhole-solana-sdk", features=["devnet", "cpi"]}
+sha3 = "0.10.1"
+byteorder = "1.4.3"
+borsh = "0.9.3"
+hex = "0.4.3"
+
