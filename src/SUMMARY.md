@@ -74,12 +74,9 @@
 - [Receving Messages](./development/messages/receiving/overview.md)
   - [EVM](./development/messages/receiving/evm.md)
 - [Projects](./projects/summary.md)
-  - [EVM Messenger](./projects/evm-messenger/overview.md) - [Solidity](./projects/evm-messenger/messenger.md) - [JS Client](./projects/evm-messenger/client.md)
-  - [Messenger](./projects/messenger/introduction.md)
-    - [Prerequistes]()
-      - [EVM]()
-  - [Lever Puzzle]()
-
+  - [EVM Messenger](./projects/evm-messenger/overview.md) 
+    - [Solidity](./projects/evm-messenger/messenger.md) 
+    - [JS Client](./projects/evm-messenger/client.md)
 ---
 
 # Portal Token Bridge
