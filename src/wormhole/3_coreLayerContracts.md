@@ -32,7 +32,7 @@ Currently there are no fees to publish a message (with the exception of publishi
 
 ---
 
-Next, we have the 'receiving' side of the Core contract.
+Next, we have the 'receiving' side of the Core Contract.
 
     parseAndVerifyVAA( byte[] VAA )
 
