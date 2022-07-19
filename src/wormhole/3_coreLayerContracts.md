@@ -1,8 +1,8 @@
 # Core Contracts
 
-The Wormhole Core Contracts are one of the most pivotal pieces of the Wormhole ecosystem. They serve as a great place to start when learning about how data flows through the ecosystem.
-
 The Core Contracts are the mechanism by which all Wormhole messages are emitted. All xDapps either interact directly with the Core Contract or interact with another contract that does. There is one Core Contract on each blockchain in the ecosystem, and this is the contract which the Guardians are required to observe. 
+
+The Wormhole Core Contracts are one of the most pivotal pieces of the Wormhole ecosystem. They serve as a great place to start when learning about how data flows through the ecosystem.
 
 In general, Core Contracts are simple with only a few public-facing functions, which we'll define next.
 
