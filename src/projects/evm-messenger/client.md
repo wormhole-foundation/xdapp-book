@@ -1,5 +1,7 @@
 # EVM Messenger Client
 
+Let's walk through a few of the elements of the EVM Messenger client you'll see in the project folders: 
+
 ## Orchestrator.js
 A JS client that deploys and calls the functions of the two Messenger contracts on two chains.
 
