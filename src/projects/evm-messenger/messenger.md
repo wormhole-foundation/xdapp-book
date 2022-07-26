@@ -1,7 +1,7 @@
 # Messenger.sol
-Messenger.sol an application contract on EVM that is capable of communicating with the Wormhole core bridge. 
+Messenger.sol is an application contract on EVM capable of communicating with the Wormhole core bridge. 
 
-We start with hard coding the Wormhole core bridge address, and creating a interfaced link to it. 
+Start by hard coding the Wormhole core bridge address, and creating a interfaced link to it. 
 
 ```solidity
 //SPDX-License-Identifier: Unlicense
@@ -26,7 +26,7 @@ contract Messenger {
 ```
 
 ## Constructor
-Nothing fancy, just setting the owner of the contract to the deployer. The owner is used later to register sibling contracts on foreign chains.
+This sets the owner of the contract to the deployer. The owner is used later to register sibling contracts on foreign chains.
 
 ```solidity
 
@@ -37,7 +37,7 @@ constructor(){
 ```
 
 ## SendMsg
-Takes in a bytes payload and calls the Wormhole Core Bridge to publish the bytes as a message. 
+This takes in a bytes payload and calls the Wormhole Core Bridge to publish the bytes as a message. 
 
 The `publishMessage()` function of the core_bridge take three arguements: 
 - Nonce: a number to uniquely identify this message, used to make sure that the target chain doesn't double process the same message
@@ -52,7 +52,7 @@ function sendMsg(bytes memory str) public returns (uint64 sequence) {
 ```
 
 ## ReceiveEncodedMsg
-The receive encoded message takes in a VAA as bytes. Then it calls the Core Bridge to verify the signatures match those of the gaurdians, check that it's from a contract on a foreign chain that we actually want to listen to, and that the message hasn't been processed already. If all those checks pass, we can decode the payload (in this case we know it's a string) and set the current_msg for the contract to that payload.
+The receive encoded message takes in a VAA as bytes. Then it calls the Core Bridge to verify the signatures match those of the gaurdians, check that it's from a contract on a foreign chain that we actually want to listen to and that the message hasn't been processed already. If all those checks pass, we can decode the payload (in this case we know it's a string) and set the current_msg for the contract to that payload.
 
 ```solidity
 
@@ -79,7 +79,7 @@ function receiveEncodedMsg(bytes memory encodedMsg) public {
 ```
 
 ## GetCurrentMsg
-Simple method that just returns what the current stored message is.
+A simple method that returns the current stored message.
 
 ```solidity
 
@@ -90,7 +90,7 @@ function getCurrentMsg() public view returns (string memory){
 ```
 
 ## RegisterApplicationContracts
-Generally, you want to register and track what contracts from foreign chains you're accepting VAAs from because anyone could deploy a contract and generate a fake VAA that looks like a real VAA you want to accept. 
+It's typically a good idea to register and track the contracts from foreign chains that you're accepting VAAs from, as anyone could deploy a contract and generate a fake VAA that looks like a real VAA you'd want to accept. 
 
 ```solidity
 

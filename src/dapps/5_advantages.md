@@ -1,17 +1,19 @@
-Let's wrap up our discussion of xDapps by highlighting the features they enable, and how they move the ball forward in blockchain technologies.
+# Advantages of xDapps
 
-- **Expanded User Base** - rather than being limited to the users of one blockchain, any user on any blockchain in the supported ecosystem can interact with an xDapp.
+Here are a few xDapp features that are making an impact across blockchain technologies:
 
-- **Unified Liquidity** - Liquidity fragmentation is a major problem in the current ecosystem. xAssets, unlike traditional tokens, can be pooled and moved anywhere necessary.
+- **Expanded User Base** - Rather than being limited to the users of one blockchain, any user on any blockchain in the ecosystem can interact with an xDapp.
 
-- **Decentralization** - Cross-chain solutions today usually involve highly centralized exchanges or bridges. Wormhole has been designed to be decentralized from day one, and eventually totally trustless.
+- **Unified Liquidity** - Liquidity fragmentation is a major problem in the current ecosystem. Unlike traditional tokens, xAssets can be pooled and moved anywhere.
 
-- **Increased Performance** - xDapps are able to utilize the strengths of each blockchain. Expensive computations can be offloaded onto high-performance platforms. Final settlement can be on the preferred chain of the user. Data can be stored wherever is cheapest.
+- **Decentralization** - Cross-chain solutions today usually involve centralized exchanges or bridges. However, Wormhole has been designed to be decentralized from day one, and eventually totally trustless.
 
-- **Broader Market Reach** - Because xAssets move freely through the ecosystem, they can be listed on a variety of exchanges, and custodied on any blockchain.
+- **Increased Performance** - xDapps are able to utilize the strengths of each blockchain. With xDapps, expensive computations can be offloaded onto high-performance platforms, final settlement can take place on a preferred chain and data can be stored wherever is cheapest.
 
-- **Increased Extensibility and Composeability** - xDapps expand upon the composeability and openness of smart contracts. xDapps can utilize anything across the ecosystem, including other xDapps.
+- **Broader Market Reach** - Because xAssets move freely through the ecosystem, they can be listed on a variety of exchanges and custodied on any blockchain.
 
-- **Future Proofing** - As new environments and protocols join the decentralized ecosystem, the connected nature of the Wormhole ecosystem allows existing protocols to expand and support them.
+- **Increased Extensibility and Composeability** - xDapps can utilize anything across the ecosystem, including other xDapps, expanding upon the composability and openness of smart contracts. 
 
-Now that you have an understanding of what xDapps are and the advantages they offer, let's move on to the next chapter, where we will delve into the nitty gritty of how Wormhole works, and how it enables the creation of these next-generation protocols.
+- **Futureproofing** - As new environments and protocols join the decentralized ecosystem, the connected nature of the Wormhole ecosystem allows existing protocols to expand and support them.
+
+Now that you have an understanding of what xDapps are and the advantages they offer, let's move on to the next chapter where we will delve into how Wormhole works and how it enables the creation of these next-generation protocols.
