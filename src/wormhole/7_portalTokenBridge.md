@@ -1,4 +1,4 @@
-# Portal
+# Portal xAsset Bridge
 
 Portal is a set of ecosystem contracts that provision Wormhole's xAsset layer. These contracts allow tokens to be bridged around the Wormhole Ecosystem in a **path-independent** fashion, and are easily composeable with other functions in the Wormhole ecosystem.
 
