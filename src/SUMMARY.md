@@ -27,34 +27,6 @@
 
 ---
 
-# xDapp Architecture
-
-- [xDapp Design]()
-  - [Key Considerations]()
-  - [Ecosystems]()
-    - [EVM]()
-    - [Solana]()
-    - [Cosmos]()
-    - [Algorand]()
-  - [Protocol-First Design]()
-  - [Topology]()
-    - [Hub & Spoke]()
-    - [Mesh]()
-  - [xAssets]()
-  - [Relayers]()
-    - [Generic Relayers]()
-    - [Protocol-Specific Relayers]()
-  - [Security]()
-    - [Trust Assumptions]()
-    - [Layer 1 Risk]()
-    - [Finality Guarantees]()
-  - [Examples]()
-    - [Cross-Chain Dex]()
-    - [Remote Staking]()
-  - [Common Use Cases]()
-
----
-
 # xDapp Development
 
 - [Before You Start](./development/overview.md)
@@ -81,7 +53,7 @@
   - [Messenger](./projects/messenger/introduction.md)
     - [Prerequistes]()
       - [EVM]()
-      
+
 ---
 
 # Portal Token Bridge
