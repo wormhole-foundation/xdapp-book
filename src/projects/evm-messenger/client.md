@@ -1,4 +1,4 @@
-**#EVM Messenger**
+# EVM Messenger
 
 ## Orchestrator.js
 A JS client that deploys and calls the functions of the two Messenger contracts on two chains.
