@@ -10,4 +10,10 @@ If you're familiar with web2 development, you might notice that this philosophy 
 
 Thus, a more fitting depiction of xDapps might be to see them as **Distributed Decentralized Applications** with multiple, specialized components working in unison to deliver a smooth, unified user experience across a variety of layer 1 ecosystems.
 
+## Branded Terms
+
+In some instances, Wormhole uses general terms for decentralized, cross-chain elements as branded verbiage. These terms are used to establish Wormhole as a leader in the cross-chain bridge space, with the power to define broader blockchain processes through its stature and influence. In most cases, the definition of the general term does not greatly differ from Wormhole definition, though Wormhole's definitions may be more narrow than general interpretations. 
+
+**xApp** - In the Wormhole xChain ecosystem, the term "xDapp" has been shortened to "xApp." These cross-chain applications are largely still decentralized, but for branding and simplicity purposes, the term "xApp" will be prioritized over "xDapp" when talking about Wormhole's xChain ecosystem.
+
 In the next section, we'll summarize the concrete advantages which xDapps built on Wormhole have over traditional Dapps today.
