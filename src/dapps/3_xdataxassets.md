@@ -10,4 +10,12 @@ xData is akin to an xAsset in that it exists in its own layer independent of any
 
 Cross-chain interoperability then becomes a matter of creating, consuming and managing xData. Once blockchains have the ability to read and write data into a shared, global reservior, application design can take on innovative new dimensions.
 
+## Branded Terms
+
+In some instances, Wormhole uses general terms for decentralized, cross-chain elements as branded verbiage. These terms are used to establish Wormhole as a leader in the cross-chain bridge space, with the power to define broader blockchain processes through its stature and influence. In most cases, the definition of the general term does not greatly differ from Wormhole definition, though Wormhole's definitions may be more narrow than general interpretations. 
+
+xData - Wormhole defines xData as "data that exists in a layer outside of Layer 1 blockchains, which is accessible by all chains." The Wormhole definition of xData presents it as a branded element of xChain.
+
+xAssets - Wormhole defines xAssets as a "chain-and-path agnostic token that exists on a layer outside the blockchain ecosystem, which can be used to conduct transactions on any blockchain." The Wormhole definition of xAssets presents itself as an element of xChain. 
+
 Later in this document, we'll delve deeper into how Wormhole implements this xData layer (also referred to as the 'Core' layer of Wormhole), but for now let's talk about how xData can be used to create xDapps.
