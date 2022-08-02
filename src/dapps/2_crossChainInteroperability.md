@@ -25,6 +25,8 @@ This is why Wormhole exists. Wormhole proposes a new way of developing applicati
 
 ## Branded Terms
 
+In some instances, Wormhole uses general terms for decentralized, cross-chain elements as branded verbiage. These terms are used to establish Wormhole as a leader in the cross-chain bridge space, with the power to define broader blockchain processes through its stature and influence. In most cases, the definition of the general term does not greatly differ from Wormhole definition, though Wormhole's definitions may be more narrow than general interpretations. 
+
 **xChain** - Across the Wormhole ecosystem, the full range of cross-blockchain interoperability is referred to under the term "xChain." "xChain" is the concept that houses other branded terms, like the Wormhole definitions of xAssets, xData and xApps.
 
 Rethinking the next generation of decentralized applications means dethroning the token as the fundamental atomic unit of blockchains. We'll expand on this change in the next section.
