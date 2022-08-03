@@ -12,7 +12,7 @@ Thus, a more fitting depiction of xDapps might be to see them as **Distributed D
 
 ## Branded Terms
 
-In some instances, Wormhole uses general terms for decentralized, cross-chain elements as branded verbiage. These terms are used to establish Wormhole as a leader in the cross-chain bridge space, with the power to define broader blockchain processes through its stature and influence. In most cases, the definition of the general term does not greatly differ from Wormhole definition, though Wormhole's definitions may be more narrow than general interpretations. 
+In some instances, Wormhole uses general terms for decentralized, cross-chain elements as branded verbiage. In most cases, the definition of the general term does not greatly differ from Wormhole definition, though Wormhole's definitions may be more narrow than general interpretations. 
 
 **xApp** - In the Wormhole xChain ecosystem, the term "xDapp" has been shortened to "xApp." These cross-chain applications are largely still decentralized, but for branding and simplicity purposes, the term "xApp" will be prioritized over "xDapp" when talking about Wormhole's xChain ecosystem.
 
