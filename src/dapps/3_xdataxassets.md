@@ -12,7 +12,7 @@ Cross-chain interoperability then becomes a matter of creating, consuming and ma
 
 ## Branded Terms
 
-In some instances, Wormhole uses general terms for decentralized, cross-chain elements as branded verbiage. These terms are used to establish Wormhole as a leader in the cross-chain bridge space, with the power to define broader blockchain processes through its stature and influence. In most cases, the definition of the general term does not greatly differ from Wormhole definition, though Wormhole's definitions may be more narrow than general interpretations. 
+In some instances, Wormhole uses general terms for decentralized, cross-chain elements as branded verbiage. In most cases, the definition of the general term does not greatly differ from Wormhole definition, though Wormhole's definitions may be more narrow than general interpretations. 
 
 **xData** - Wormhole defines xData as "data that exists in a layer outside of Layer 1 blockchains, which is accessible by all chains." The Wormhole definition of xData presents it as a branded element of xChain.
 
