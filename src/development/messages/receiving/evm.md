@@ -1,6 +1,6 @@
 # Receving Messages on EVM
 
-To receive messages in EVM we need to implement a function `receiveMsg`. The name of this function is arbitrary, any function name works as long as your relayer knows what to call on the application contract when submitting messages. 
+To receive messages in EVM, first we need to implement a function `receiveMsg`. The name of this function is arbitrary, so any function name will work as long as your relayer knows what to call on the application contract when submitting messages. 
 
 This function will take in an encoded set of `bytes` as the VAA and then call the `parseAndVerifyVM` function on the Core Bridge to validate the message.
 
