@@ -11,7 +11,7 @@ The SDK makes these addresses available in the `CONTRACTS` constant.
 | :-------------------- | :---------------- | :----------- | :------ | 
 | Solana                | 1                 | mainnet-beta | worm2ZoG2kUd4vFXhvjh93UUH596ayRfgQ2MgjNMTth  |
 | Ethereum              | 2                 | 1            | 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B   |
-| Terra                 | 3                 | columbus-5   | terra1dq03ugtd40zu9hcgdzrsq6z2z4hwhc9tqk2uy5 |
+| Terra Classic         | 3                 | columbus-5   | terra1dq03ugtd40zu9hcgdzrsq6z2z4hwhc9tqk2uy5 |
 | Binance Smart Chain   | 4                 | 56           | 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B   |
 | Polygon               | 5                 | 137          | 0x7A4B5a56256163F07b2C80A7cA55aBE66c4ec4d7   |
 | Avalanche (C-Chain)   | 6                 | 43114        | 0x54a8e5f9c4CbA08F9943965859F6c34eAF03E26c   |
@@ -22,6 +22,7 @@ The SDK makes these addresses available in the `CONTRACTS` constant.
 | Acala                 | 12                | 787          | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E   |
 | Klaytn                | 13                | 8217         | 0x0C21603c4f3a6387e241c0091A7EA39E43E90bb7   |
 | Celo                  | 14                | 42220        | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E   |
+| Terra                 | 18                | phoenix-1    | terra12mrnzvhx3rpej6843uge2yyfppfyd3u9c3uq223q8sl48huz9juqffcnh   |
 
 ### Token Bridge
 
@@ -40,6 +41,8 @@ The SDK makes these addresses available in the `CONTRACTS` constant.
 | Acala                 | 12                | 787          | 0xae9d7fe007b3327AA64A32824Aaac52C42a6E624   |
 | Klaytn                | 13                | 8217         | 0x5b08ac39EAED75c0439FC750d9FE7E1F9dD0193F   |
 | Celo                  | 14                | 42220        | 0x796Dff6D74F3E27060B71255Fe517BFb23C93eed   |
+| Terra                 | 18                | phoenix-1    | terra153366q50k7t8nn7gec00hg66crnhkdggpgdtaxltaq6xrutkkz3s992fw9   |
+
 
 ### NFT Bridge
 
@@ -79,6 +82,8 @@ The SDK makes these addresses available in the `CONTRACTS` constant.
 | Acala                  | 12                | 787          | 0x4377B49d559c0a9466477195C6AdC3D433e265c0   |
 | Klaytn                 | 13                | 1001         | 0x1830CC6eE66c84D2F177B94D544967c774E624cA   |
 | Celo                   | 14                | 44787        | 0x88505117CA88e7dd2eC6EA1E13f0948db2D50D56   |
+| Terra                  | 18                | pisco-1      | terra19nv3xr5lrmmr7egvrk2kqgw4kcn43xrtd5g0mpgwwvhetusk4k7s66jyv0   |
+
 
 ### Token Bridge
 
@@ -99,6 +104,8 @@ The SDK makes these addresses available in the `CONTRACTS` constant.
 | Acala                  | 12                | 787          | 0xebA00cbe08992EdD08ed7793E07ad6063c807004   |
 | Klaytn                 | 13                | 1001         | 0xC7A13BE098720840dEa132D860fDfa030884b09A   |
 | Celo                   | 14                | 44787        | 0x05ca6037eC51F8b712eD2E6Fa72219FEaE74E153   |
+| Terra                  | 18                | pisco-1      | terra1c02vds4uhgtrmcw7ldlg75zumdqxr8hwf7npseuf2h58jzhpgjxsgmwkvk   |
+
 
 ### NFT Bridge
 
