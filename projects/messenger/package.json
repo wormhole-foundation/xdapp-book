@@ -1,0 +1,18 @@
+{
+  "name": "messenger",
+  "version": "1.0.0",
+  "description": "A simple example of cross chain messaging with wormhole",
+  "main": "orchestrator.ts",
+  "author": "Dev Bharel",
+  "license": "MIT",
+  "dependencies": {
+    "@certusone/wormhole-sdk": "^0.6.0",
+    "commander": "^9.4.0",
+    "ethers": "^5.6.9",
+    "node-fetch": "2",
+    "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.6.4"
+  }
+}

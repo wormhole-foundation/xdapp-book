@@ -4,10 +4,10 @@
     "description": "A simple template for getting started with xDapps.",
     "main": "starter.js",
     "scripts": {
-        "setup": "sh setup.sh",
-        "wormhole": "npm run setup && sh wormhole.sh",
-        "evm": "npm run setup && sh evm.sh",
-        "solana": "npm run setup && sh solana.sh",
+        "setup": "bash setup.bash",
+        "wormhole": "npm run setup && bash wormhole.bash",
+        "evm": "npm run setup && bash evm.bash",
+        "solana": "npm run setup && bash solana-binary-deploy.bash",
         "cleanup": "npx pm2 kill"
     },
     "keywords": [],

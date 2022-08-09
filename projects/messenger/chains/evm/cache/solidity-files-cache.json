@@ -4,13 +4,14 @@
     "artifacts": "out",
     "sources": "src",
     "tests": "test",
+    "scripts": "script",
     "libraries": [
       "lib"
     ]
   },
   "files": {
     "src/Messenger.sol": {
-      "lastModificationDate": 1654006013773,
+      "lastModificationDate": 1659683988145,
       "contentHash": "b21dd2ab010d42c4abc588eed32658bd",
       "sourceName": "src/Messenger.sol",
       "solcConfig": {
@@ -35,7 +36,8 @@
               ]
             }
           },
-          "evmVersion": "london"
+          "evmVersion": "london",
+          "libraries": {}
         }
       },
       "imports": [
@@ -45,12 +47,12 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "Messenger": {
-          "0.8.10+commit.fc410830.Linux.gcc": "Messenger.sol/Messenger.json"
+          "0.8.10+commit.fc410830.Darwin.appleclang": "Messenger.sol/Messenger.json"
         }
       }
     },
     "src/Wormhole/IWormhole.sol": {
-      "lastModificationDate": 1654006013783,
+      "lastModificationDate": 1659683988146,
       "contentHash": "7c930d4b68538e731af28a8d1979f44e",
       "sourceName": "src/Wormhole/IWormhole.sol",
       "solcConfig": {
@@ -75,7 +77,8 @@
               ]
             }
           },
-          "evmVersion": "london"
+          "evmVersion": "london",
+          "libraries": {}
         }
       },
       "imports": [
@@ -84,12 +87,12 @@
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "IWormhole": {
-          "0.8.10+commit.fc410830.Linux.gcc": "IWormhole.sol/IWormhole.json"
+          "0.8.10+commit.fc410830.Darwin.appleclang": "IWormhole.sol/IWormhole.json"
         }
       }
     },
     "src/Wormhole/Structs.sol": {
-      "lastModificationDate": 1654006013783,
+      "lastModificationDate": 1659683988147,
       "contentHash": "4e824cc204959f4fcab06c4e806448c4",
       "sourceName": "src/Wormhole/Structs.sol",
       "solcConfig": {
@@ -114,14 +117,15 @@
               ]
             }
           },
-          "evmVersion": "london"
+          "evmVersion": "london",
+          "libraries": {}
         }
       },
       "imports": [],
       "versionRequirement": "^0.8.0",
       "artifacts": {
         "Structs": {
-          "0.8.10+commit.fc410830.Linux.gcc": "Structs.sol/Structs.json"
+          "0.8.10+commit.fc410830.Darwin.appleclang": "Structs.sol/Structs.json"
         }
       }
     }
