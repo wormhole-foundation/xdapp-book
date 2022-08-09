@@ -1,7 +1,8 @@
 # Sending Messages: EVM
 
-To send messages from EVM, first we have to download the Core Bridge interfaces. We need two interfaces, [IWormhole.sol](https://github.com/certusone/wormhole/raw/dev.v2/ethereum/contracts/interfaces/IWormhole.sol) and [Structs.sol](https://github.com/certusone/wormhole/raw/dev.v2/ethereum/contracts/Structs.sol)
+To send messages from EVM, first we have to download the Core Bridge interfaces. 
 
+We need two interfaces, [IWormhole.sol](https://github.com/certusone/wormhole/raw/dev.v2/ethereum/contracts/interfaces/IWormhole.sol) and [Structs.sol](https://github.com/certusone/wormhole/raw/dev.v2/ethereum/contracts/Structs.sol)
 
 In your xdapp-starter, place those files in 
 ```
@@ -13,7 +14,7 @@ In your xdapp-starter, place those files in
                 - Structs.sol
 ```
 
-also, let's modify the IWormhole.sol file to update the import for Structs.sol.
+Let's also modify the IWormhole.sol file to update the import for Structs.sol.
 
 ```solidity
 // contracts/Messages.sol
@@ -27,9 +28,9 @@ import "./Structs.sol";
 
 ```
 
-Now, let's create a new contract in our src/ folder `Messenger.sol`. In this contract, we also create a uint32 nonce. You can think of this nonce like a message id, it's just a number that let's the receiving contract know if it's already processed a message. 
+Now, let's create a new contract in our src/ folder `Messenger.sol`. In this contract, we'll also create a uint32 nonce. You can think of this nonce like a message id--it's just a number that lets the receiving contract know if it has already processed a message. 
 
-Also we'll set the consistency level here to 1, because we're just testing and want the Guardians to sign this VAA as soon as they see it, but if we were deploying to production, we might want to match this level to the deployed chain's finality guarantees.
+Also, we'll set the consistency level here to 1, because we're just testing and want the Guardians to sign this VAA as soon as they see it. If we were deploying to production, we might want to match this level to the deployed chain's finality guarantees.
 
 ```solidity
 
