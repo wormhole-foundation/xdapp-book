@@ -1,6 +1,8 @@
 # Registering Emitters: EVM
 
-Specifying applications that our EVM application is allowed to listen to is a fairly simple process; We can create a mapping of chainId to bytes32 addresses of the relevant contracts on other chains. The chainId used here is the *wormhole* chainId, and the address used here is the address in *bytes*.
+To specify applications that our EVM application is allowed to listen to, we can create a mapping of chainId to bytes32 addresses of the relevant contracts on other chains. 
+
+The chainId used here is the *wormhole* chainId, and the address used here is the address in *bytes*.
 
 ```solidity
 
