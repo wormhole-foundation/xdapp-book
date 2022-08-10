@@ -8,6 +8,7 @@ import * as ethers from "ethers";
 import { Config, Network } from ".";
 import { getUsersNetworkIdentifier } from "../util/chainConnection";
 
+
 export const getStaticProps: GetStaticProps = async () => {
   let config = JSON.parse(
     readFileSync("../xdapp.config.json").toString()
@@ -94,7 +95,7 @@ const Battle: NextPage<BattleProps> = ({ networks, abi }) => {
   };
 
   useEffect(() => {
-    console.log("inside");
+    console.log("inside")
     if (battleStarted) {
       return;
     }
@@ -106,13 +107,15 @@ const Battle: NextPage<BattleProps> = ({ networks, abi }) => {
       console.log("network; null");
       return;
     }
-    startBattle(usersNetwork, provider).catch((e) => {
-      console.log(e);
-      if (e && e.data && e.data.data) window.alert(e.data.data.reason);
-      else window.alert("Battle failed for unknown reason.");
-      router.back();
-    });
-
+      startBattle(usersNetwork, provider).catch((e) => {
+        console.log(e);
+        if (e && e.data && e.data.data)
+          window.alert(e.data.data.reason)
+        else 
+          window.alert("Battle failed for unknown reason.")
+        router.back();
+      })
+    
     setBattleStarted(true);
   }, [usersNetwork]);
 
@@ -123,9 +126,7 @@ const Battle: NextPage<BattleProps> = ({ networks, abi }) => {
       ) : (
         <>
           <BattleSummary battleInfo={battleInfo} />
-          <button className="btn btn-blue" onClick={() => router.back()}>
-            Back
-          </button>
+          <button className="btn btn-blue" onClick={()=>router.back()}>Back</button>
         </>
       )}
     </div>

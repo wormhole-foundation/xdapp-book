@@ -58,7 +58,7 @@ def champions():
     chainName = request.args.get('chain')
     if chainName not in chainListeners:
         return jsonify([])
-    
+
     return jsonify(chainListeners[chainName].getChampions())
 
 
@@ -72,7 +72,7 @@ def championVaa():
         return jsonify("error: please include a 32 bit champion hash in the URL query prefixed with 0x"), 400
     if championHash[0:2] != "0x":
         return jsonify("error: please enter champion hash in hex prefixed with 0x"), 400
-    
+
     return jsonify(chainListeners[chainName].getChampionVaa(championHash))
 
 @app.route("/battles")
@@ -86,7 +86,7 @@ def battles():
 
     if chainName not in chainListeners:
         return jsonify([])
-    
+
     return jsonify(chainListeners[chainName].getBattles(championHash))
 
 @app.route("/removebattle")
@@ -101,7 +101,7 @@ def removeBattle():
 
     if chainName not in chainListeners:
         return jsonify([])
-    
+
     return jsonify(chainListeners[chainName].removeBattle(championHash, seq))
 
 @app.route("/votes")
@@ -115,7 +115,7 @@ def votes():
 
     if chainName not in chainListeners:
         return jsonify([])
-    
+
     return jsonify(chainListeners[chainName].getVotes(championHash))
 
 
@@ -125,7 +125,7 @@ def metadataevm():
     id = request.args.get('id')
 
     print("metadata got", id)
-    
+
     if id == "1":
         return jsonify({
             "name": "Ape #7116",
@@ -151,5 +151,5 @@ def metadataevm():
 
 #     if chainName not in chainListeners:
 #         return jsonify([])
-    
+
 #     return jsonify(chainListeners[chainName].removeBattle(championHash, seq))

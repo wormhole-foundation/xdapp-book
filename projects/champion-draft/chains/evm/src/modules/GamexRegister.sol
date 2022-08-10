@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import "openzeppelin-contracts/contracts/utils/introspection/IERC165.sol";
-import "openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol";
+import "@openzeppelin/contracts/utils/introspection/IERC165.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
 import {GameHelpers} from "../helpers/GameHelpers.sol";
 import {GameLib} from "../lib/GameLib.sol";
 
@@ -10,7 +10,7 @@ contract GamexRegister is GameHelpers {
     event championRegistered(uint256 championHash, uint64 vaa);
 
     /**
-    
+
     Returns uint: the champion hash
      */
     function registerNFT(address _erc721Contract, uint256 _nft)

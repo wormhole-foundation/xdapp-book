@@ -21,7 +21,7 @@ const ChampionRegistrar = ({
   abi,
   championHash,
   setChampionHash,
-  playerKind,
+  playerKind
 }: ChampionRegistrarProps) => {
   const [walletConnected, setWalletConnected] = useState<boolean>(false);
   const [championData, setChampionData] = useState<any | null>(null);
@@ -72,9 +72,13 @@ const ChampionRegistrar = ({
     <div className="">
       {championData !== null ? (
         <div className="flex flex-col justify-center">
-          <ChampionCard champion={championData} isSelf={true} vaa="" />
+          <ChampionCard
+            champion={championData}
+            isSelf={true}
+            vaa=""
+          />
           <button
-            className="px-4 py-2 font-bold text-white bg-gray-500 rounded"
+            className="bg-gray-500 text-white font-bold py-2 px-4 rounded"
             onClick={() => {
               storage.removeChampionHash();
               storage.removeDraftHash();
@@ -84,37 +88,28 @@ const ChampionRegistrar = ({
             Logout
           </button>
         </div>
-      ) : (
-        <>
-          <div className="flex flex-col items-center justify-between w-64 px-4 py-8 rounded shadow-inner h-96 bg-neutral-300">
-            <p className="text-center">
-              {playerKind == "fighter"
-                ? `You haven't registered a champion 😔`
-                : `You haven't connected your wallet.`}
-            </p>
-            <p className="text-center">Want to change that?</p>
-            <div className="flex items-center h-1/2">
-              {walletConnected ? (
-                <>
-                  {playerKind == "fighter" && (
-                    <TokenSelector
-                      provider={provider}
-                      abi={abi}
-                      network={network}
-                      setChampionHash={setChampionHash}
-                    />
-                  )}
-                </>
-              ) : (
-                <MetamaskButton
-                  setConnected={(b) => setWalletConnected(b)}
-                  provider={provider}
-                />
-              )}
-            </div>
+
+      ) :  <>
+        <div className="flex flex-col items-center justify-between w-64 px-4 py-8 rounded shadow-inner h-96 bg-neutral-300">
+          <p className="text-center">{playerKind == "fighter" ? `You haven't registered a champion 😔` : `You haven't connected your wallet.`}</p>
+          <p className="text-center">Want to change that?</p>
+          <div className="flex items-center h-1/2">
+            {walletConnected ? (<>{ playerKind == "fighter" &&
+              <TokenSelector
+                provider={provider}
+                abi={abi}
+                network={network}
+                setChampionHash={setChampionHash}
+              />
+            }</>) : (
+              <MetamaskButton
+                setConnected={(b) => setWalletConnected(b)}
+                provider={provider}
+              />)}
           </div>
-        </>
-      )}
+        </div>
+      </>
+      }
     </div>
   );
 };

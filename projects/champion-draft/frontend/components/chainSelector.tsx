@@ -3,14 +3,11 @@ import { Network } from "../pages";
 type ChainSelectorProps = {
   networks: Record<string, Network>;
   setNetwork: (_: string) => void;
-  selectedNetworkName: string;
+  selectedNetworkName: string
 };
 
-const ChainSelector = ({
-  networks,
-  setNetwork,
-  selectedNetworkName,
-}: ChainSelectorProps) => {
+const ChainSelector = ({ networks, setNetwork , selectedNetworkName}: ChainSelectorProps) => {
+
   return (
     <span>
       {Object.keys(networks).map((key) => (

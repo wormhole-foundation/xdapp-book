@@ -2,7 +2,7 @@
 
 Register your NFTs into Champions and battle other champions!
 
-Champion Draft uses wormhole to allow you to register and battle NFTs from any chain! Audience members can also draft champions from any chain and create communities around them, including cross chain voting. 
+Champion Draft uses wormhole to allow you to register and battle NFTs from any chain! Audience members can also draft champions from any chain and create communities around them, including cross chain voting.
 
 ## Set up
 
@@ -45,7 +45,7 @@ Start the chain
 npm run solana
 ```
 
-4. Finally, run wormhole
+5. Finally, run wormhole
 
 ```
 npm run wormhole
@@ -64,10 +64,18 @@ The output should look something like this (with only evm chains running):
 └─────┴──────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
 ```
 
-### 2. Clone this repo and deploy contracts
+### 2. Navigate to this repo and deploy contracts
 
 ```
+cd projects/champion-draft
 sh deploy.sh
+```
+
+Optional: Run the unit tests for Solidity Code (REQUIRES FOUNDRY INSTALLATION)
+
+```
+cd chains/evm
+forge test -vvvv --fork-url http://localhost:8545
 ```
 
 ### 3. Set up redis and server
@@ -92,7 +100,7 @@ sh startServer.sh
 ```
 cd frontend/
 npm install
-npm run dev 
+npm run dev
 ```
 
 ### 4. Configure metamask
@@ -101,7 +109,7 @@ npm run dev
 2. Log in to the account deployed in step 1
 
     a. Choose "import existing wallet"
-    
+
     b. Enter the following as the mnemonic
 
     ```

@@ -40,8 +40,8 @@ const TokenSelector = ({
 
     const newHash = await contract.getChampionHash(contractAddress, tokenId);
     if ((await contract.champions(newHash)).championHash.toString() !== "0") {
-      setChampionHash(newHash);
-      return;
+        setChampionHash(newHash);
+        return;
     }
 
     const tx = await contract.registerNFT(contractAddress, tokenId);

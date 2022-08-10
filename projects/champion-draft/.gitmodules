@@ -4,3 +4,6 @@
 [submodule "chains/evm/lib/openzeppelin-contracts"]
 	path = chains/evm/lib/openzeppelin-contracts
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts
+[submodule "chains/evm/lib/surl"]
+	path = chains/evm/lib/surl
+	url = https://github.com/memester-xyz/surl

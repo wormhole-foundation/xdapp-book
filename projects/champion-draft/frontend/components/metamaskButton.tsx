@@ -7,7 +7,7 @@ type MetamaskButtonProps = {
 
 const MetamaskButton = ({ provider, setConnected }: MetamaskButtonProps) => {
   const requestAccount = async () => {
-    await console.log(provider.getNetwork());
+  await console.log(provider.getNetwork());
     // we must make this request so that wallet providers can prompt the user to accept
     await provider.send("eth_requestAccounts", []);
 
