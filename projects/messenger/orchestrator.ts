@@ -1,6 +1,7 @@
 import { Command } from 'commander';
 import * as fs from 'fs';
 import * as evm from './handlers/evm';
+import * as solana from './handlers/solana';
 
 const config = JSON.parse(fs.readFileSync('./xdapp.config.json').toString())
 
@@ -24,6 +25,9 @@ program
         switch(config.networks[network].type){
             case "evm":
                 await evm.deploy(network);
+                break;
+            case "solana":
+                await solana.deploy(network);
                 break;
         }
 
@@ -50,6 +54,8 @@ program
                 case 'evm':
                     await evm.registerApp(src,target);
                     break;
+                case "solana":
+                    await solana.registerApp(src, target);
             }
 
             console.log(`Foreign Network ${target} registered on ${src}`);
@@ -72,6 +78,9 @@ program
             switch(config.networks[src].type){
                 case 'evm':
                     await evm.sendMsg(src,msg);
+                    break;
+                case "solana":
+                    await solana.sendMsg(src, msg);
                     break;
             }
             console.log(`Emitted VAA on ${src} network. Submit it using \`submit-vaa\` command on a target network.`)
@@ -101,6 +110,9 @@ program
                 case 'evm':
                     await evm.submitVaa(src,target,idx);
                     break;
+                case "solana":
+                    await solana.submitVaa(src,target,idx);
+                    break;
             }
 
             console.log(`Submitted VAA #${idx} from ${target} to chain ${src}`);
@@ -124,6 +136,9 @@ program
             switch(config.networks[src].type){
                 case 'evm':
                     msg = await evm.getCurrentMsg(src);
+                    break;
+                case "solana":
+                    msg = await solana.getCurrentMsg(src);
                     break;
             }
 

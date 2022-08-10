@@ -3,7 +3,7 @@
 set -euo pipefail
 
 # Start Solana
-npx pm2 stop solana 2> /dev/null || true
+npx pm2 delete solana 2> /dev/null || true
 
 ### Uses prebuilt binaries to boot up STV. Leave the solana-accounts folder in there for those that want to use it with Anchor Validator
 npx pm2 start "solana-test-validator" --name solana -- -r \

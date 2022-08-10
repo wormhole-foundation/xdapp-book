@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import { exec } from "child_process";
-import { getEmitterAddressEth, getEmitterAddressSolana, parseSequenceFromLogEth } from '@certusone/wormhole-sdk';
+import { getEmitterAddressEth, getEmitterAddressSolana, parseSequenceFromLogEth, setDefaultWasm } from '@certusone/wormhole-sdk';
 import * as ethers from 'ethers';
 import fetch from 'node-fetch';
 
@@ -61,6 +61,7 @@ export async function registerApp(src:string, target:string){
             targetEmitter = getEmitterAddressEth(targetDeploymentInfo['address']);
             break;
         case 'solana':
+            setDefaultWasm("node"); // *sigh*
             targetEmitter = await getEmitterAddressSolana(targetDeploymentInfo['address']);
             break;
     }
@@ -144,7 +145,6 @@ export async function sendMsg(src:string, msg:string){
 
 export async function submitVaa(src:string, target:string, idx:string){
     const srcNetwork = config.networks[src];
-    const targetNetwork = config.networks[target];
     let srcDeploymentInfo;
     let targetDeploymentInfo;
 
