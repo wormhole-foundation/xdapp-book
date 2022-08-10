@@ -3,7 +3,7 @@ How to get started building cross chain applications with Wormhole
 
 ## Documentation
 
-The book is hosted at [book.wormholenetwork.com](https://book.wormholenetwork.com)
+The book is hosted at [book.wormhole.com](https://book.wormhole.com)
 
 ## Projects
 
