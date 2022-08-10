@@ -83,7 +83,7 @@ The SDK makes these addresses available in the `CONTRACTS` constant.
 | Klaytn                 | 13                | 1001         | 0x1830CC6eE66c84D2F177B94D544967c774E624cA   |
 | Celo                   | 14                | 44787        | 0x88505117CA88e7dd2eC6EA1E13f0948db2D50D56   |
 | Terra                  | 18                | pisco-1      | terra19nv3xr5lrmmr7egvrk2kqgw4kcn43xrtd5g0mpgwwvhetusk4k7s66jyv0   |
-
+| Injective              | 19                | testnet      | inj1xx3aupmgv3ce537c0yce8zzd3sz567syuyedpg   |
 
 ### Token Bridge
 
@@ -104,7 +104,7 @@ The SDK makes these addresses available in the `CONTRACTS` constant.
 | Acala                  | 12                | 787          | 0xebA00cbe08992EdD08ed7793E07ad6063c807004   |
 | Klaytn                 | 13                | 1001         | 0xC7A13BE098720840dEa132D860fDfa030884b09A   |
 | Celo                   | 14                | 44787        | 0x05ca6037eC51F8b712eD2E6Fa72219FEaE74E153   |
-| Terra                  | 18                | pisco-1      | terra1c02vds4uhgtrmcw7ldlg75zumdqxr8hwf7npseuf2h58jzhpgjxsgmwkvk   |
+| Injective              | 19                | testnet      | inj1q0e70vhrv063eah90mu97sazhywmeegp7myvnh   |
 
 
 ### NFT Bridge
