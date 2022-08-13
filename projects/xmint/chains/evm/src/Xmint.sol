@@ -62,13 +62,13 @@ contract Xmint is ERC20 {
         uint index = 0;
         BridgeStructs.TransferWithPayload calldata decoded = BridgeStructs.TransferWithPayload({
             payloadID: payload[0:1],
-            amount: payload[1:31],
-            tokenAddress: payload[32:39],
-            tokenChain: payload[39:71],
-            to: payload[71:103], 
-            toChain: payload[103:105],
-            fromAddress: payload[105:137],
-            payload: payload[137:]
+            amount: payload[1:33],
+            tokenAddress: payload[33:65],
+            tokenChain: payload[65:67],
+            to: payload[67:99], 
+            toChain: payload[99:101],
+            fromAddress: payload[101:133],
+            payload: payload[133:]
         });
     }   
 }
