@@ -1,0 +1,3 @@
+deployinfo/*.deploy.json
+keypairs/*.key
+node_modules/
