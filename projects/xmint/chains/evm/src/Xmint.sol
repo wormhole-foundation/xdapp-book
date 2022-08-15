@@ -58,17 +58,18 @@ contract Xmint is ERC20 {
         return sequence;
     }
 
-    function _decodePayload(bytes calldata payload) internal returns (BridgeStructs.TransferWithPayload memory) {
-        uint index = 0;
-        BridgeStructs.TransferWithPayload calldata decoded = BridgeStructs.TransferWithPayload({
-            payloadID: payload[0:1],
-            amount: payload[1:33],
-            tokenAddress: payload[33:65],
-            tokenChain: payload[65:67],
-            to: payload[67:99], 
-            toChain: payload[99:101],
-            fromAddress: payload[101:133],
-            payload: payload[133:]
+    function _decodePayload(bytes memory payload) internal pure returns (BridgeStructs.TransferWithPayload memory) {
+        BridgeStructs.TransferWithPayload memory decoded = BridgeStructs.TransferWithPayload({
+            payloadID: payload.slice(0,1).toUint8(0),
+            amount: payload.slice(1,32).toUint256(0),
+            tokenAddress: payload.slice(33,32).toBytes32(0),
+            tokenChain: payload.slice(65,2).toUint16(0),
+            to: payload.slice(67,32).toBytes32(0), 
+            toChain: payload.slice(99,2).toUint16(0),
+            fromAddress: payload.slice(101,32).toBytes32(0),
+            payload: payload.slice(133, payload.length)
         });
-    }   
+
+        return decoded;
+    }
 }
