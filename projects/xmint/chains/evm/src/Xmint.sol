@@ -16,7 +16,6 @@ contract Xmint is ERC20 {
     IWormhole core_bridge;
     ITokenBridge token_bridge;
     uint32 nonce = 0;
-    event PayloadLog(bytes indexed payload);
     event Log(string indexed str);
 
     constructor(
@@ -25,7 +24,6 @@ contract Xmint is ERC20 {
         address coreBridgeAddress,
         address tokenBridgeAddress
     ) ERC20(name_, symbol_) {
-        emit Log("Constructor Log");
         owner = msg.sender;
         core_bridge = IWormhole(coreBridgeAddress);
         token_bridge = ITokenBridge(tokenBridgeAddress);
@@ -52,6 +50,8 @@ contract Xmint is ERC20 {
             //multiply by 100 to get how many tokens to give out
         uint256 amtToMint = vaa.amount * 100;
         _mint(address(this), amtToMint);
+        // Give Token Bridge allowance to take tokens from this contract
+        this.approve(address(token_bridge), amtToMint);
         // Transfer tokens via Token Bridge over to Recipient in payload
         uint64 sequence = token_bridge.transferTokens(address(this), amtToMint, vaa.tokenChain, bytes32(vaa.payload), 0, nonce);
         nonce += 1;
@@ -67,7 +67,7 @@ contract Xmint is ERC20 {
             to: payload.slice(67,32).toBytes32(0), 
             toChain: payload.slice(99,2).toUint16(0),
             fromAddress: payload.slice(101,32).toBytes32(0),
-            payload: payload.slice(133, payload.length)
+            payload: payload.slice(133, payload.length-133)
         });
 
         return decoded;

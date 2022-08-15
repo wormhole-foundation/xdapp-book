@@ -113,13 +113,12 @@ export async function registerApp(src:string, target:string){
         targetNetwork.wormholeChainId,
         emitterBuffer
     );
-    console.log(`Registered ${target} network on ${src}`);
-    await new Promise((r) => setTimeout(r, 1000)); //wait for blocks to advance
+    console.log(`Registered ${target} application on ${src}`);
 
     // Alongside registering the App, go ahead register the tokens with one another
     // Register target token with src chain
-    
-    switch(targetNetwork['type']){
+    console.log(`Registering ${target} token on ${src}`);
+    switch(targetNetwork.type){
         case 'evm':
             await attest(target, src);
             break;
@@ -127,12 +126,12 @@ export async function registerApp(src:string, target:string){
             await solana.attest(target, src);
             break;
     }
-    console.log(`Attested ${target} network on ${src}`);
+    console.log(`Attested ${target} token on ${src}`);
 }
 
 
 /**
- * Attest token on src and create wrapped on target
+ * Attest token from src and create wrapped on target
  * @param src 
  * @param target 
  * @param address 
@@ -155,6 +154,8 @@ export async function attest(src: string, target: string, address:string = null)
     if(!address){
         address = srcDeployInfo.address;
     }
+
+    console.log(`Attesting ${address} from ${target} network onto ${src}`);
     
     const tx = await attestFromEth(
         srcNetwork.tokenBridgeAddress,
@@ -163,81 +164,31 @@ export async function attest(src: string, target: string, address:string = null)
         {
             gasLimit: 1500000
         }
-    )
+    );
 
     // in this context the target is network we're attesting *from* so it's the network the vaa comes from (hence being placed as the 'source')
     // The emitter for this is PORTAL, not our contract, so we set portal=true in fetchVaa
     const attestVaa = await fetchVaa(src, tx, true);
 
-    switch(srcNetwork.type){
+    switch(targetNetwork.type){
         case "evm":
-            await createWrapped(target, attestVaa)
+            await createWrapped(target, src, attestVaa)
             break;
         case "solana":
-            await solana.createWrapped(target, attestVaa)
+            await solana.createWrapped(target, src, attestVaa)
             break;
     }
 }
 
-
-/**
- * The 'target' here is the chain you want to attest from, which is the first step.
- * This is why we kick it off in that handler. For example, if I want to attest EVM0-Token to Sol0
- * We should attestFromEth() and then createWrappedOnSolana()
- * @param src The chain you want to attest the token on 
- * @param target The chain whose token you want to attest
- */
-export async function attestOld(src: string, target: string, address:string = null){
-    //Check TARGET type == EVM, else throw error
+export async function createWrapped(src:string, target: string, vaa:string){
     const srcNetwork = config.networks[src];
     const targetNetwork = config.networks[target];
     const targetDeployInfo = JSON.parse(fs.readFileSync(`./deployinfo/${target}.deploy.json`).toString());
-    const targetKey = fs.readFileSync(`keypairs/${target}.key`).toString();
-
-    if(targetNetwork.type != "evm"){
-        throw new Error("Wrong handler called to attest!");
-    }
-
-    const targetSigner = new ethers.Wallet(targetKey).connect(
-        new ethers.providers.JsonRpcProvider(targetNetwork.rpc)
-    );
-
-    console.log(`Attesting ${target} Network Token on ${src} Network`)
-    
-    if(!address){
-        address = targetDeployInfo.address;
-    }
-    
-    const tx = await attestFromEth(
-        targetNetwork.tokenBridgeAddress,
-        targetSigner,
-        address,
-        {
-            gasLimit: 1500000
-        }
-    )
-
-    // in this context the target is network we're attesting *from* so it's the network the vaa comes from (hence being placed as the 'source')
-    // The emitter for this is PORTAL, not our contract, so we set portal=true in fetchVaa
-    const attestVaa = await fetchVaa(target, tx, true);
-
-    switch(srcNetwork.type){
-        case "evm":
-            await createWrapped(src, attestVaa)
-            break;
-        case "solana":
-            await solana.createWrapped(src, attestVaa)
-            break;
-    }
-}
-
-export async function createWrapped(src:string, vaa:string){
-    const srcNetwork = config.networks[src];
     const key = fs.readFileSync(`keypairs/${src}.key`).toString();
     const signer = new ethers.Wallet(key).connect(
         new ethers.providers.JsonRpcProvider(srcNetwork.rpc)
     );
-    await createWrappedOnEth(
+    const tx = await createWrappedOnEth(
         srcNetwork.tokenBridgeAddress,
         signer,
         Buffer.from(vaa, 'base64'),
@@ -245,12 +196,20 @@ export async function createWrapped(src:string, vaa:string){
             gasLimit: 1000000
         }
     );
+    await new Promise((r) => setTimeout(r, 5000)); // wait for blocks to advance before fetching new foreign address
+
+    const foreignAddress = await getForeignAssetEth(
+        srcNetwork.tokenBridgeAddress,
+        signer,
+        targetNetwork.wormholeChainId,
+        tryNativeToUint8Array(targetDeployInfo.address, targetNetwork.wormholeChainId)
+    );
+    console.log(`${src} Network has new PortalWrappedToken for ${target} network at ${foreignAddress}`);
 }
 
 async function fetchVaa(src:string, tx:ethers.ethers.ContractReceipt, portal:boolean = false){
     const srcNetwork = config.networks[src];
     const srcDeploymentInfo = JSON.parse(fs.readFileSync(`./deployinfo/${src}.deploy.json`).toString());
-
     const seq = parseSequenceFromLogEth(tx, srcNetwork['bridgeAddress']);
     let emitterAddr = "";
     if(portal){
@@ -325,10 +284,11 @@ export async function submitForeignPurchase(src:string, target:string, vaa:strin
     );
 
     //This will mint tokens and create a VAA to transfer them back over to the src chain
-    fs.writeFileSync('vaa.u8', Uint8Array.from(Buffer.from(vaa, 'base64')).toString());
     const tx = await messenger.submitForeignPurchase(Buffer.from(vaa, "base64"), {gasLimit: 1000000});
-    console.log("SFP Tx: ", tx);
-    const claimTokensVaa = fetchVaa(src, tx);
+    console.log("Submit foreign purchase succeeded");
+
+    //Even though we call our contract, portal=true here because our contract calls Portal's transfer() function, making the emitter Portal
+    const claimTokensVaa = await fetchVaa(src, await tx.wait(), true);
     return claimTokensVaa;
 }
 
@@ -352,6 +312,7 @@ export async function claimTokens(src:string, vaa:string){
         new ethers.providers.JsonRpcProvider(srcNetwork.rpc)
     );
 
+    console.log(`Redeeming on ${src} network`);
     await redeemOnEth(
         srcNetwork.tokenBridgeAddress,
         signer,
@@ -399,7 +360,7 @@ export async function buyToken(src:string, target: string, amount: number): Prom
     );
 
     //For this project, 1 Native Token will always equal 100 Chain Tokens, no matter the source or target chains
-    const amt = ethers.BigNumber.from(amount/100); //how much native you want to transfer to buy AMT worth of Tokens on target chain
+    const ethToTransferAmt = ethers.utils.parseUnits((amount/100).toString(), "18"); //how much native you want to transfer to buy AMT worth of Tokens on target chain
     const targetChainAddress = tryNativeToUint8Array(targetDeploymentInfo.address, targetNetwork.wormholeChainId);
 
     //The payload is just the purchaser's public key
@@ -407,18 +368,30 @@ export async function buyToken(src:string, target: string, amount: number): Prom
     // If it errors, will send a Refund VAA back
     const purchaseOrderPayload = tryNativeToUint8Array(await signer.getAddress(), srcNetwork.wormholeChainId); 
 
+    //Gotta approve the WETH transfer before we actually transfer using Token Bridge
+    const WETH = new ethers.Contract(
+        srcNetwork.wrappedNativeAddress,
+        JSON.parse(fs.readFileSync("./chains/evm/out/PortalWrappedToken.sol/PortalWrappedToken.json").toString()).abi,
+        signer
+    );
+
+    await WETH.approve(srcNetwork.tokenBridgeAddress, ethToTransferAmt);
+    console.log("WETH Approved");
+
+    // Now call token bridge to do the transfer
     const tx = await transferFromEthNative(
-        srcNetwork['tokenBridgeAddress'],
+        srcNetwork.tokenBridgeAddress,
         signer,
-        amt, 
+        ethToTransferAmt, 
         targetNetwork.wormholeChainId,
         targetChainAddress,
         ethers.BigNumber.from(0),
         {
-            gasLimit: 1000000
+            gasPrice: 2000000000
         },
         purchaseOrderPayload
     );
+    console.log("ETH Native Transferred");
 
     // The buy order will be written to the SRC chain's vaa list
     // Needs to be submitted to target chain with `submitForeignPurchase`
@@ -427,7 +400,13 @@ export async function buyToken(src:string, target: string, amount: number): Prom
     return vaa;
 }
 
-export async function balance(src:string, target: string){
+/**
+ * Fetches the balance of the SRC KEY on the SRC NETWORK for either SRC NATIVE CURRENCY or Target Tokens
+ * @param src 
+ * @param target 
+ * @returns 
+ */
+export async function balance(src:string, target: string) : Promise<string> {
     const srcNetwork = config.networks[src];
     const targetNetwork = config.networks[target];
     const key = fs.readFileSync(`keypairs/${src}.key`).toString();
@@ -452,7 +431,7 @@ export async function balance(src:string, target: string){
 
     if(src == target){
         //Get native currency balance
-        return await signer.getBalance()
+        return (await signer.getBalance()).toString()
     }
 
     // Else get the Token Balance of the Foreign Network's token on Src Network
@@ -465,15 +444,8 @@ export async function balance(src:string, target: string){
 
     const TKN = new ethers.Contract(
         foreignAddress,
-        JSON.parse(
-            fs
-                .readFileSync(
-                    "./chains/evm/out/PortalWrappedToken.sol/PortalWrappedToken.json"
-                )
-                .toString()
-        ).abi,
+        JSON.parse(fs.readFileSync("./chains/evm/out/PortalWrappedToken.sol/PortalWrappedToken.json").toString()).abi,
         signer
     );
-
-    return (<ethers.BigNumber>(await TKN.balanceOf(await signer.getAddress()))).toNumber()  
+    return (<ethers.BigNumber>(await TKN.balanceOf(await signer.getAddress()))).div(1e8).toString()  
 }

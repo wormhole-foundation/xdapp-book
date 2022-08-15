@@ -49,25 +49,23 @@ xmint
             return;
         }
 
+        let srcHandler; 
         switch(config.networks[src].type){
             case "evm":
-                await evm.registerApp(src, target);
-                //Attest src WETH to target chain
-                try{
-                    await evm.attest(src, target, config.networks[src].wrappedNativeAddress)
-                } catch (e) {
-                    console.log("Wrapped Token exists already")
-                }
+                srcHandler = evm;
                 break;
             case "solana":
-                await solana.registerApp(src, target);
-                //Attest WSOL onto target chain
-                try{
-                    await solana.attest(src, target, config.networks[target].wrappedNativeAddress)
-                } catch (e) {
-                    console.log("Wrapped Token exists already")
-                }
+                srcHandler = solana;
                 break;
+        }
+
+        console.log(`Registering ${target} app and token onto ${src} network`)
+        await srcHandler.registerApp(src,target)
+        try{
+            console.log(`Attesting ${src} Wrapped Native to ${target}`);
+            await srcHandler.attest(target, src, config.networks[src].wrappedNativeAddress)
+        } catch (e) {
+            console.log("Wrapped Native attestion exists already")
         }
 
         console.log(`${target} contract address was registered on ${src} and ${target} token was attested to ${src}`)
@@ -121,7 +119,7 @@ xmint
         console.log(`Submitting buy vaa on ${target} network...`);
         const claimTokensVAA = await targetHandler.submitForeignPurchase(target, src, buyVAA);
         console.log(`Claiming tokens on ${src} network...`);
-        srcHandler.claimTokens(src, claimTokensVAA);
+        await srcHandler.claimTokens(src, claimTokensVAA);
 
         console.log(`Purchase of ${amt} of ${target} network's tokens complete.`)
     });
