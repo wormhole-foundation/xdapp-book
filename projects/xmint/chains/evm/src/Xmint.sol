@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "./Wormhole/IWormhole.sol";
 import "./Wormhole/ITokenBridge.sol";
 import "./Wormhole/BridgeStructs.sol";
-import "solidity-bytes-utils/contracts/BytesLib.sol";
+import "solidity-bytes-utils/BytesLib.sol";
 
 contract Xmint is ERC20 {
     using BytesLib for bytes;
