@@ -10,3 +10,6 @@
 [submodule "projects/xmint/chains/evm/lib/solidity-bytes-utils"]
 	path = projects/xmint/chains/evm/lib/solidity-bytes-utils
 	url = https://github.com/GNSPS/solidity-bytes-utils
+[submodule "projects/xmint/chains/evm/lib/forge-std"]
+	path = projects/xmint/chains/evm/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
