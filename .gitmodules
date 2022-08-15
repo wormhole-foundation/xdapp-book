@@ -4,3 +4,6 @@
 [submodule "projects/evm-tokenbridge/chains/evm/lib/openzeppelin-contracts"]
 	path = projects/evm-tokenbridge/chains/evm/lib/openzeppelin-contracts
 	url = https://github.com/openzeppelin/openzeppelin-contracts
+[submodule "projects/xmint/chains/evm/lib/openzeppelin-contracts"]
+	path = projects/xmint/chains/evm/lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts
