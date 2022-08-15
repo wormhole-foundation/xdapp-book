@@ -16,9 +16,9 @@ cd wormhole/ethereum
 make .env build
 
 # Deploy Wormhole Contracts to EVM Chain 0
-npm run migrate && npx truffle exec scripts/deploy_test_token.js && npx truffle exec scripts/register_solana_chain.js && npx truffle exec scripts/register_terra_chain.js && npx truffle exec scripts/register_eth_chain.js
+npm run migrate && npx truffle exec scripts/deploy_test_token.js && npx truffle exec scripts/register_solana_chain.js && npx truffle exec scripts/register_terra_chain.js && npx truffle exec scripts/register_eth_chain.js && npx truffle exec scripts/register_bsc_chain.js
 
 # Deploy Wormhole Contracts to EVM Chain 1
 perl -pi -e 's/CHAIN_ID=0x2/CHAIN_ID=0x4/g' .env && perl -pi -e 's/8545/8546/g' truffle-config.js 
-npm run migrate && npx truffle exec scripts/deploy_test_token.js && npx truffle exec scripts/register_solana_chain.js && npx truffle exec scripts/register_terra_chain.js && npx truffle exec scripts/register_eth_chain.js
+npm run migrate && npx truffle exec scripts/deploy_test_token.js && npx truffle exec scripts/register_solana_chain.js && npx truffle exec scripts/register_terra_chain.js && npx truffle exec scripts/register_eth_chain.js && npx truffle exec scripts/register_bsc_chain.js
 perl -pi -e 's/CHAIN_ID=0x4/CHAIN_ID=0x2/g' .env && perl -pi -e 's/8546/8545/g' truffle-config.js

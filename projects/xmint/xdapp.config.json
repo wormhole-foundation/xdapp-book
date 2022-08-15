@@ -1,0 +1,31 @@
+{
+    "networks": {
+        "evm0": {
+            "type": "evm",
+            "wormholeChainId": 2,
+            "rpc": "http://localhost:8545",
+            "bridgeAddress": "0xC89Ce4735882C9F0f0FE26686c53074E09B0D550",
+            "tokenBridgeAddress": "0x0290FB167208Af455bB137780163b7B7a9a10C16",
+            "wrappedNativeAddress": "0xDDb64fE46a91D46ee29420539FC25FD07c5FEa3E"
+        },
+        "evm1": {
+            "type": "evm",
+            "wormholeChainId": 4,
+            "rpc": "http://localhost:8546",
+            "bridgeAddress": "0xC89Ce4735882C9F0f0FE26686c53074E09B0D550",
+            "tokenBridgeAddress": "0x0290FB167208Af455bB137780163b7B7a9a10C16",
+            "wrappedNativeAddress": "0xDDb64fE46a91D46ee29420539FC25FD07c5FEa3E"
+        },
+        "sol0": {
+            "type": "solana",
+            "wormholeChainId": 1,
+            "rpc": "http://localhost:8899",
+            "bridgeAddress": "Bridge1p5gheXUvJ6jGWGeCsgPKgnE3YgdGKRVCMY9o",
+            "tokenBridgeAddress": "B6RHG3mfcckmrYN1UhmJzyS1XX3fZKbkeUcpJe9Sy3FE",
+            "wrappedNativeAddress": "So11111111111111111111111111111111111111112"
+        }
+    },
+    "wormhole": {
+        "restAddress": "http://localhost:7071"
+    }
+}
