@@ -1,10 +1,10 @@
 # EVM: Attesting a Token
 
-Attesting a token from EVM is fairly simple, and usually done via the Portal UI since it's a step that only needs to happen once per Token. 
+Attesting a token from EVM only needs to happen once per token, and is typically done via the Portal UI. 
 
-If for whatever reason you need to do it programmatically, you can also do it using the JS SDK:
+If you need to do it programmatically, you can also use the JS SDK to attest a token:
 
-The first step is to create an AttestMeta VAA. We do this by calling `attestFromEth()` function from the JS SDK and passing in the Token Bridge address, a Ethers signer object, and the address of the Token we want to attest:
+The first step is to create an AttestMeta VAA. We do this by calling `attestFromEth()` function from the JS SDK and passing in the Token Bridge address, an Ethers signer object, and the address of the Token we want to attest:
 
 ```js
 
@@ -18,7 +18,9 @@ const networkTokenAttestation = await attestFromEth(
 
 Anyone can attest any token on the network.
 
-To complete the Attestation, we grab the VAA that the `attestFromEth()` function generates by getting the Emitter address of the Token Bridge and the Sequence from the logs of the transaction receipt. We then fetch against a guardian REST endpoint. It could take a couple seconds (up to 30s!) for the guardian to see and sign the VAA, so it's a good idea to poll the guardian every couple seconds until the VAA is found. 
+To complete the attestation, grab the VAA that the `attestFromEth()` function generates by getting the Emitter address of the Token Bridge and the Sequence from the logs of the transaction receipt. 
+
+Then, fetch against a Guardian REST endpoint. It could take a moment (up to 30 seconds) for the Guardian to see and sign the VAA, so it's a good idea to poll the Guardian every few seconds until the VAA is found. 
 
 ```js
 
@@ -35,7 +37,7 @@ while(!vaaBytes.vaaBytes){
 
 ```
 
-Next, we submit the VAA onto the target chain to create a wrapped version of the Token by calling `createWrapped()`. On an EVM chain, this will deploy a Portal Wrapped Token contract who's mint authority is the Portal Token Bridge on that chain. Sometimes this transaction throws an unpredicatable gas price error, so it's a good idea to set a high gas limit.
+Next, we submit the VAA onto the target chain to create a wrapped version of the Token by calling `createWrapped()`. On an EVM chain, this will deploy a Portal Wrapped Token contract whose mint authority is the Portal Token Bridge on that chain. Sometimes, this transaction throws an unpredicatable gas price error, so set a high gas limit.
 
 After the wrapped token is created, you can get the new wrapped token address by calling the `wrappedAsset()` function of the TokenBridge.
 
