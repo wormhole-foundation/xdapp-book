@@ -1,6 +1,9 @@
 # Warning
 echo "Due to the nature of Solana accounts, you'll need to reset the Solana Local Validator (evm can stay as is) every time you run this test, otherwise it'll error saying accounts are already created and in use."
 
+# Build solana code so it's available in the handler
+cd chains/solana && anchor build && cd ../../ 
+
 # Deploy evm0 and sol0
 ts-node orchestrator.ts deploy evm0
 ts-node orchestrator.ts deploy sol0
