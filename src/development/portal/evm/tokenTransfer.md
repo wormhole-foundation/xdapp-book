@@ -1,8 +1,8 @@
 # EVM: Transferring a Token
 
-WARNING: To be able to successfully transfer a token from Chain A to Chain B, make sure you [attest](./attestingToken.md) it first. Otherwise the Token may be transferred, but you won't be able to claim it til it's attested.
+WARNING: To be able to successfully transfer a token from one chain to another, make sure you [attest](./attestingToken.md) it first. Otherwise the Token may be transferred, but you won't be able to claim it until it's attested.
 
-One big gotcha new EVM developers usually run into when working with ERC20 tokens is that because EVM uses unsigned integers, there's no concept of decimals. Therefore, tokens usually have up to 18 zeros behind them to denote up to 18 decimal places. Wormhole normalizes this to *eight* zeros, with transfer amounts rounded down to the nearest 8the decimal. 
+One challenge that arises for new EVM developers is that, because EVM uses unsigned integers, there's no concept of decimals. Therefore, tokens usually have up to 18 zeros behind them to denote up to 18 decimal places. Wormhole normalizes this to *eight* zeros, with transfer amounts rounded down to the nearest 8th decimal. 
 
 To wrap the Token Bridge functions in your contract, you can use the Token Bridge interfaces provided under [`projects/evm-tokenbridge/chains/evm/src/Wormhole`](https://github.com/certusone/xdapp-book/tree/main/projects/evm-tokenbridge/chains/evm/src/Wormhole) folder of the xDapp Book repository.
 
@@ -35,7 +35,7 @@ contract Treasury {
 
 ```
 
-To transfer a token, first we have to *approve* the Token Bridge to be able to spend that Token on our behalf (so it can transfer tokens form our contract to tself). Make sure the `bridgeAmt` properly takes into account decimals for the ERC20 token.
+To transfer a token, first we have to *approve* the Token Bridge to be able to spend that token on our behalf (so it can transfer tokens form our contract to itself). Make sure the `bridgeAmt` properly accounts for decimals in the ERC20 token.
 
 ```js
 // Here we are approving and transfering 50 tokens. The ERC20 token we are transfering has 18 decimal places.
@@ -47,7 +47,7 @@ await treasury.approveTokenBridge(bridgeAmt, {
 
 ```
 
-Then we simply call `transfer` to create the transfer VAA and fetch it from the guardians when it's ready. Note that the target receipient is a Wormhole normalized hex address left-padded to 32 bytes. 
+Then we simply call `transfer` to create the transfer VAA and fetch it from the Guardians when it's ready. Note that the target receipient is a Wormhole normalized hex address left-padded to 32 bytes. 
 
 ```js
 const targetRecepient = Buffer.from(tryNativeToHexString(targetDeployment.deployedAddress, "ethereum"), 'hex');
