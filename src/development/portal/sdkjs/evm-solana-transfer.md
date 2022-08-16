@@ -1,8 +1,10 @@
 # EVM to Solana Token Transfer
 
-A cornerstone of cross chain apps (xDapps) is the ability to move tokens from one chain to another. Wormhole’s APIs make that a breeze.  
+A defining feature of cross chain apps (xDapps) is the ability to move tokens from one chain to another. Wormhole’s APIs make that a breeze.  
 
-Let’s do a simple programmatic transfer from Eth to Solana. First, we need to figure out what address on Solana where we are sending the tokens. Unlike EVM chains where the address is just the wallet address, we need to send the tokens to our recipient address associated token account for that token. We can use a couple helper functions from the Wormhole SDK to make this possible.  
+To demonstrate, let’s do a simple programmatic transfer from Eth to Solana. 
+
+First, determine the address on Solana where we're sending the tokens. Unlike EVM chains where the wallet address is used, we need to send the tokens to the recipient address associated token account for that token. We can use helper functions from the Wormhole SDK to make this possible.  
 
 ```ts
 import {
@@ -35,7 +37,7 @@ const recipientAddress = await Token.getAssociatedTokenAddress(
 );
 ```
 
-After we have the receipt token account on Solana, we can come back and submit the transfer message on Ethereum. This will output a log that contains a sequence number (A nonce for the message) and an emitter address (the ETH Token Bridge Address as bytes) . The sequence number and emitter address will be used to fetch a VAA after it’s been signed by Guardians.  
+After we have the receipt token account on Solana, submit the transfer message on Ethereum. This will output a log that contains a sequence number (a nonce for the message) and an emitter address (the ETH Token Bridge Address as bytes). The sequence number and emitter address will be used to fetch a VAA after it’s been signed by Guardians.  
 
 ```ts
 import {
@@ -61,7 +63,7 @@ const sequence = parseSequenceFromLogEth(receipt, ETH_BRIDGE_ADDRESS);
 const emitterAddress = getEmitterAddressEth(ETH_TOKEN_BRIDGE_ADDRESS);
 ```
 
-Once the Guardians have signed the token message, we can fetch it to use in the redeem step. If you’re a developer, you might run this as an automatic process through an application specific relayer (more on that in a later thread!)  
+Once the Guardians have signed the token message, fetch it to use in the redeem step. If you’re a developer, you might run this as an automatic process through an application specific relayer (more on that in a later section).  
 
 ```ts
 import {
@@ -77,7 +79,7 @@ const { signedVAA } = await getSignedVAA(
 );
 ```
 
-Then we can post the VAA to Solana to mint the tokens. Because of the compute limit on Solana, we split the signature verification and token claim into steps. First we'll verify all the signatures and create a claim account for the Token.  
+Now, post the VAA to Solana to mint the tokens. Because of the compute limit on Solana, we split the signature verification and token claim into steps. To do that, verify all the signatures and create a claim account for the token.  
 
 ```ts
 const SOL_BRIDGE_ADDRESS = "worm2ZoG2kUd4vFXhvjh93UUH596ayRfgQ2MgjNMTth";
@@ -91,7 +93,7 @@ await postVaaSolana(
 );
 ```
 
-Finally we can claim the tokens  
+Finally, claim the tokens:  
 
 ```ts
 // Finally, redeem on Solana
