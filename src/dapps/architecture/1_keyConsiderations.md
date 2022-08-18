@@ -1,6 +1,6 @@
 # Key Considerations
 
-Before we get started, we should outline the key considerations which will shape your xDapp. Over the course of the chapter, we'll elaborate on how decisions made about these key points impact the way you may want to structure your application as a whole.
+Before we get started, we should outline the key considerations which will shape your xDapp. Over the course of the chapter, we'll elaborate on how decisions made about these key items impact the way you may want to structure your application as a whole.
 
 ### Why?
 
@@ -8,11 +8,11 @@ Why you are building an xDapp is definitely the foremost consideration. In the f
 
 ### Target Ecosystems & Languages
 
-A major consideration is which blockchains you intend to support. Because blockchains utilize different virtual machines, supporting more blockchains often (but not always) requires writing smart contracts in more than one language.
+Which blockchains do you intend to support? Due to the fact that blockchains utilize different virtual machines, supporting more blockchains often (but not always) requires writing smart contracts in more than one language.
 
 ### Data Flows
 
-Where does your data originate from and where does it have to go? Does all your data come from user-initiated transactions? Do you have governance messages which need to be emitted from a central governance location? Do you have automated actions which need to happen periodically to synchronize your data?
+Where does your data originate from and where does it have to go? Does all your data come from user-initiated transactions? Do you have governance messages which need to be emitted from a central governance contract? Do you have automated actions which need to happen periodically to synchronize your data?
 
 ### Liquidity & Tokens
 

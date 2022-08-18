@@ -8,7 +8,9 @@ Topology describes how data flows through your application, and the responsibili
 
 Ultra-light Clients are often the best option when designing an MVP for your xDapp. The defining feature of an Ultra-light Client is that you are able to support users from every chain in the Wormhole ecosystem while **only having smart contracts on a single chain (!!!)**.
 
-The way this works is by deploying a single _hub_ contract (or just using an existing Dapp). You then add an entrypoint which supports _contract controlled transfers_ from the Asset Layer to send tokens to your hub contract, along with instructions for what to do with the tokens. Once you've performed the necessary operation, you bridge the resultant tokens back to the wallet which originally sent the CCT. The only on-chain components is the relatively lightweight wrapper around the core Dapp logic. All other aspects of this topology are off-chain and untrusted. This pushes most of the development work out of smart contracts and into client-side typescript, without altering the trust assumptions of your application.
+This works by deploying a single _hub_ contract (or just using an existing Dapp) onto the hub chain. You then add an entrypoint which supports _contract controlled transfers_ from the xAsset contracts on the hub chain. This allows your hub contract to receive both tokens **and instructions for what to do with them** from other chains in the Wormhole ecosystem.
+
+From there, the hub contract performs any necessary operations, and bridges any resultant tokens back to the wallet which iniated the contract controlled transfer. The only on-chain components are hub contract, and a relatively lightweight wrapper which allows the hub contract to send and receive tokens using the xAsset contracts. All other aspects of this topology are off-chain and untrusted. This pushes most of the development work out of smart contracts and into client-side typescript. This dramatically decreases smart contract risk, without altering the trust assumptions of your application.
 
 **_Advantages:_**
 
@@ -24,16 +26,18 @@ The way this works is by deploying a single _hub_ contract (or just using an exi
 
 ## Hub and Spoke
 
-Hub and Spoke models are somewhat of a natural evolution of the ultra-light client. There is still a hub contract which handles all transactions, but there is not also a contract deployed to the remote chain.
+Hub and Spoke models are somewhat of a natural evolution of the ultra-light client. There is still a hub contract which handles all transactions, but there is now also a contract deployed to all the remote chains.
 
 Advantages:
 
-- Remote contracts are lightweight and don't carry huge amounts of risk.
-- Can perform trusted checks on the remote chain. (Such as validating wallet balance)
+- Remote contracts are lightweight and don't carry large amounts of risk.
+- Can perform trusted checks on the remote chain. (Such as validating wallet balance, or any other piece of blockchain state)
 
 Disadvantages:
 
-- Latency (same as Ultra Lightweight Clients) - Transaction Fees: - Managing multiple contracts
+- Latency (same as ultra-light clients)
+- Transaction Fees
+- Managing multiple contracts
 
 ## Mesh
 
@@ -41,14 +45,14 @@ A Mesh topology is one where each chain implements the full logic for a process,
 
 Advantages:
 
-- Latency: Users can perform their operation without waiting for other chains.
+- Latency: Users can often perform their operation without waiting for other chains.
 - Transaction Fees: Does not stack the transaction fees of multiple chains.
 
 Disadvantages:
 
 - Complexity: there are now quite a few contracts to manage, especially if they are implemented multiple times across different VMs.
-- Data desync: because each blockchain acts independently, each chain will have independent state. This can open up unwanted arbitrage opportunities and other discontinuities.
-- Race conditions: In cases where an event is supposed to propage through the entire system at a fixed time (example: closing a governance vote), it will be difficult to synchronize all the blockchains.
+- Data desync: because each blockchain acts independently, each chain will have independent state. This can open up unwanted arbitrage opportunities and other discrepancies.
+- Race conditions: In cases where an event is supposed to propagate through the entire system at a fixed time (for example, when closing a governance vote), it can be difficult to synchronize all the blockchains.
 
 ## Distributed
 
@@ -64,6 +68,6 @@ Disadvantages:
 
 ## Mix & Match
 
-Different use cases have different optimal topologies, and it's possible to use different topologies for different workflows in your application. This means your should not feel 'locked in' to a single topology, and should instead consider designing each workflow independently. For example, Governance is generally best implemented using a Hub and Spoke topology, even if the rest of your application uses a Mesh architecture. As such, your contracts will likely evolve over time as your xDapp evolves and adds in additional workflows.
+Different use cases have different optimal topologies, and it's possible to use different topologies for different workflows in your application. This means you should not feel 'locked in' to a single topology, and should instead consider designing each workflow independently. For example, governance workflows are generally best implemented using a Hub and Spoke topology, even if the rest of the application uses a Mesh architecture. As such, your contracts will likely evolve over time as your xDapp evolves and adds additional workflows.
 
-You can also progress through different topologies. A common strategy is to start off with an ultra-light client, move to a hub and spoke configuration, and then add optimizations and specialties to your contracts as the need arises.
+You can also progress through different topologies. A common strategy is to start off with an ultra-light client, move to a hub and spoke configuration, and then add optimizations and specialties to contracts as the need arises.

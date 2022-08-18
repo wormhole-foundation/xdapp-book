@@ -1,10 +1,10 @@
 # Ecosystems
 
-At present, there are 3 ecosystems supported by Wormhole, though the number of ecosystems supported is always growing.
+At present, there are 3 ecosystems supported by Wormhole, though the number of supported ecosystems is always growing.
 
 ### EVM
 
-EVM is the most popular ecosystem, and most xDapps will have some support for this platform. These contracts are written in Solidity, and are generally a 'jack of all trades' type of computation environment. A common strategy for xDapps is to develop one single contract in Solidity, and then deploy that contract to all the supported EVM blockchains.
+EVM is the most popular ecosystem, and most xDapps will have some support for this platform. These contracts are written in Solidity, and it is generally a 'jack of all trades' style of computation environment. A common strategy for xDapps is to develop one single contract in Solidity, and then deploy that contract to all the supported EVM blockchains.
 
 Example chains:
 
