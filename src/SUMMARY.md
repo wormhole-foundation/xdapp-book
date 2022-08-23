@@ -15,7 +15,7 @@
   - [Advantages of xDapps](./dapps/5_advantages.md)
 
 - [Wormhole](./wormhole/0_wormholeOverview.md)
-  
+
   - [What is Wormhole?](./wormhole/1_whatIsWormhole.md)
   - [Architecture Overview](./wormhole/2_architectureOverview.md)
   - [Core Layer Contracts](./wormhole/3_coreLayerContracts.md)
@@ -24,6 +24,14 @@
   - [Relayers](./wormhole/6_relayers.md)
   - [Portal xAsset Bridge](./wormhole/7_portalTokenBridge.md)
   - [Wormchain](./wormhole/8_wormchain.md)
+
+- [xDapp Design](./dapps/architecture/0_dappDesign.md)
+
+  - [Key Considerations](./dapps/architecture/1_keyConsiderations.md)
+  - [Ecosystems](./dapps/architecture/2_ecosystems.md)
+  - [Protocol Design](./dapps/architecture/3_protocolDesign.md)
+  - [Topology](./dapps/architecture/4_topology.md)
+  - [Relayers](./dapps/architecture/5_relayers.md)
 
 ---
 
@@ -47,8 +55,8 @@
 - [Receving Messages](./development/messages/receiving/overview.md)
   - [EVM](./development/messages/receiving/evm.md)
 - [Projects](./projects/summary.md)
-  - [EVM Messenger](./projects/evm-messenger/overview.md) 
-    - [Solidity](./projects/evm-messenger/messenger.md) 
+  - [EVM Messenger](./projects/evm-messenger/overview.md)
+    - [Solidity](./projects/evm-messenger/messenger.md)
     - [JS Client](./projects/evm-messenger/client.md)
   - [Messenger](./projects/messenger/introduction.md)
     - [Prerequistes]()

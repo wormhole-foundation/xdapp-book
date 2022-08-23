@@ -1,3 +1,6 @@
+# Build SOL code 
+cd chains/solana && anchor build && cd ../../
+
 # Deploy the code on EVM0 and SOL0
 ts-node orchestrator.ts deploy evm0 
 ts-node orchestrator.ts deploy sol0
