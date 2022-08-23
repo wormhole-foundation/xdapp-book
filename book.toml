@@ -9,4 +9,4 @@ src = "src"
 
 [output.html]
 default-theme= "ayu"
-git-repository-url="https://github.com/certusone/xdapp-book"
+git-repository-url="https://github.com/wormhole-foundation/xdapp-book"
