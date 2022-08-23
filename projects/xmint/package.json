@@ -7,8 +7,10 @@
   "dependencies": {
     "@certusone/wormhole-sdk": "^0.6.1",
     "@project-serum/anchor": "^0.25.0",
+    "@solana/spl-token": "^0.3.1",
     "@types/node": "^18.7.1",
     "@types/node-fetch": "^2.6.2",
+    "byteify": "^2.0.10",
     "commander": "^9.4.0",
     "ethers": "^5.6.9",
     "node-fetch": "2"

@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import fs from 'fs';
 import { 
     attestFromEth, 
     createWrappedOnEth, 
@@ -41,7 +41,7 @@ export async function deploy(src: string){
     )
 
     if (stderr) {
-        throw new Error(stderr.message);
+        throw new Error(stderr);
     }
 
     let deploymentAddress:string;
@@ -51,12 +51,12 @@ export async function deploy(src: string){
             .split("Deployed to: ")[1]
             .split("\n")[0]
             .trim();
-        const emittedVAAs = []; //Resets the emittedVAAs
         fs.writeFileSync(
             `./deployinfo/${src}.deploy.json`,
             JSON.stringify({
                 address: deploymentAddress,
-                vaas: emittedVAAs
+                tokenAddress: deploymentAddress,
+                vaas: []
             }, null, 4)
         );
     }
@@ -117,7 +117,7 @@ export async function registerApp(src:string, target:string){
 
     // Alongside registering the App, go ahead register the tokens with one another
     // Register target token with src chain
-    console.log(`Registering ${target} token on ${src}`);
+    console.log(`Attesting ${target} token on ${src}`);
     switch(targetNetwork.type){
         case 'evm':
             await attest(target, src);
@@ -137,7 +137,6 @@ export async function registerApp(src:string, target:string){
  * @param address 
  */
 export async function attest(src: string, target: string, address:string = null){
-    //Check TARGET type == EVM, else throw error
     const srcNetwork = config.networks[src];
     const targetNetwork = config.networks[target];
     const srcDeployInfo = JSON.parse(fs.readFileSync(`./deployinfo/${src}.deploy.json`).toString());
@@ -148,8 +147,6 @@ export async function attest(src: string, target: string, address:string = null)
     const srcSigner = new ethers.Wallet(srcKey).connect(
         new ethers.providers.JsonRpcProvider(srcNetwork.rpc)
     );
-
-    console.log(`Attesting ${src} Network Token on ${target} Network`)
     
     if(!address){
         address = srcDeployInfo.address;
@@ -211,12 +208,8 @@ async function fetchVaa(src:string, tx:ethers.ethers.ContractReceipt, portal:boo
     const srcNetwork = config.networks[src];
     const srcDeploymentInfo = JSON.parse(fs.readFileSync(`./deployinfo/${src}.deploy.json`).toString());
     const seq = parseSequenceFromLogEth(tx, srcNetwork['bridgeAddress']);
-    let emitterAddr = "";
-    if(portal){
-        emitterAddr = getEmitterAddressEth(srcNetwork['tokenBridgeAddress']);
-    } else {
-        emitterAddr = getEmitterAddressEth(srcDeploymentInfo['address']);
-    }    
+    const emitterAddr = portal ? getEmitterAddressEth(srcNetwork.tokenBridgeAddress) : getEmitterAddressEth(srcDeploymentInfo.address);
+
     await new Promise((r) => setTimeout(r, 5000)); //wait for Guardian to pick up message
     console.log(
         "Searching for: ",
