@@ -4,7 +4,7 @@
 set -euo pipefail
 
 # dev.v2 for now (until we make a release)
-DOCKER_IMAGE="ghcr.io/certusone/guardiand:dev.v2"
+DOCKER_IMAGE="ghcr.io/wormhole-foundation/guardiand:dev.v2"
 
 DOCKER_FLAGS=
 HOST=
