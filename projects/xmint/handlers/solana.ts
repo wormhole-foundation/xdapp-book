@@ -48,7 +48,6 @@ export async function deploy(src: string){
     console.log(stdout);
 
     // Also initalize the contract
-    await new Promise((r) => setTimeout(r, 15000)) // wait for the chain to recognize the program
     //Initalize the Contract
     const xmint = new anchor.Program<SolanaTypes>(
         IDL,
@@ -61,15 +60,6 @@ export async function deploy(src: string){
     const [configAcc, _] = findProgramAddressSync([
         Buffer.from("config")
     ], xmint.programId);
-
-    await xmint.methods
-            .initialize()
-            .accounts({
-                config: configAcc,
-                owner: xmint.provider.publicKey,
-                systemProgram: anchor.web3.SystemProgram.programId
-            })
-            .rpc();
     
     // Deploy the SPL Token for Xmint
     const mint = await createMint(
@@ -79,6 +69,18 @@ export async function deploy(src: string){
         xmint.programId,
         9 // We are using 9 to match the CLI decimal default exactly
     );
+    await new Promise((r) => setTimeout(r, 15000)) // wait for the chain to recognize the program
+
+    await xmint.methods
+            .initialize(
+                mint
+            )
+            .accounts({
+                config: configAcc,
+                owner: xmint.provider.publicKey,
+                systemProgram: anchor.web3.SystemProgram.programId
+            })
+            .rpc();
 
     // Store deploy info
     fs.writeFileSync(`./deployinfo/${src}.deploy.json`, JSON.stringify({
@@ -106,7 +108,7 @@ export async function attest(src: string, target:string, address:string = null){
     if(!address){
         address = srcDeployInfo.tokenAddress;
     }
-    console.log(`Attesting ${address} from ${target} network onto ${src}`);
+    console.log(`Attesting ${address} from ${src} network onto ${target}`);
 
     const tx = await attestFromSolana(
         connection,
@@ -114,9 +116,12 @@ export async function attest(src: string, target:string, address:string = null){
         srcNetwork.tokenBridgeAddress,
         srcKey.publicKey.toString(),
         address 
-    )
-    
-    const attestVaa = await fetchVaa(src, tx, true);
+    );
+    tx.partialSign(srcKey);
+    const txid = await connection.sendRawTransaction(tx.serialize());
+    console.log("TXID: ", txid);
+
+    const attestVaa = await fetchVaa(src, txid, true);
     switch(targetNetwork.type){
         case "evm":
             await evm.createWrapped(target, src, attestVaa);
@@ -132,7 +137,7 @@ export async function attest(src: string, target:string, address:string = null){
  * @param tx 
  * @param portal 
  */
-async function fetchVaa(src:string, tx, portal:boolean=false):Promise<string>{
+async function fetchVaa(src:string, tx:string, portal:boolean=false):Promise<string>{
     const srcNetwork = config.networks[src];
     const srcDeployInfo = JSON.parse(fs.readFileSync(`./deployinfo/${src}.deploy.json`).toString());
     const srcKey = anchor.web3.Keypair.fromSecretKey(Uint8Array.from(JSON.parse((fs.readFileSync(`keypairs/${src}.key`).toString())
@@ -141,8 +146,16 @@ async function fetchVaa(src:string, tx, portal:boolean=false):Promise<string>{
    
     setDefaultWasm("node");
     const emitterAddr = portal ? await getEmitterAddressSolana(srcNetwork.tokenBridgeAddress) : await getEmitterAddressSolana(srcDeployInfo.address);
-    const seq = parseSequenceFromLogSolana(await connection.getTransaction(tx));
-
+    let transaction = await connection.getTransaction(tx); 
+    let timeElapsed = 0;
+    while (!transaction) {
+        await new Promise((r) => setTimeout(r, 1000)) // wait for the chain to recognize the program
+        transaction = await connection.getTransaction(tx);
+        timeElapsed += 1;
+    }
+    console.log(`VAA from TX(${tx}) found in ${timeElapsed}s`);
+    const seq = parseSequenceFromLogSolana(transaction);
+    console.log("Seq", seq);
     await new Promise((r) => setTimeout(r, 5000)); //wait for gaurdian to pick up messsage
     console.log(
         "Searching for: ",
@@ -186,7 +199,7 @@ export async function createWrapped(src:string, target:string, vaa:string){
         connection,
         srcNetwork.tokenBridgeAddress,
         targetNetwork.wormholeChainId,
-        tryNativeToUint8Array(targetDeployInfo.address, targetNetwork.wormholeChainId)
+        tryNativeToUint8Array(targetDeployInfo.tokenAddress, targetNetwork.wormholeChainId)
     );
     console.log(`${src} Network has new PortalWrappedToken for ${target} network at ${foreignAddress}`);
 }
@@ -272,7 +285,7 @@ export async function balance(src: string, target: string) : Promise<string>{
         connection,
         srcNetwork.tokenBridgeAddress,
         targetNetwork.wormholeChainId,
-        tryNativeToUint8Array(targetDeployInfo.address, targetNetwork.wormholeChainId)
+        tryNativeToUint8Array(targetDeployInfo.tokenAddress, targetNetwork.wormholeChainId)
     );
 
     const tokenAccountAddress = await getOrCreateAssociatedTokenAccount(

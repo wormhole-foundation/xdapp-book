@@ -8,7 +8,7 @@ pub struct Initialize<'info>{
         seeds=[b"config"],
         payer=owner,
         bump,
-        space=8+32+8+1
+        space=8+32+8+32+1
     )]
     pub config: Account<'info, Config>,
     #[account(mut)]

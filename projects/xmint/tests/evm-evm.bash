@@ -1,3 +1,6 @@
+# Install Deps
+cd chains/evm && forge install --no-git --no-commit && cd ../../
+
 # Deploy the code
 ts-node orchestrator.ts deploy evm0 
 ts-node orchestrator.ts deploy evm1

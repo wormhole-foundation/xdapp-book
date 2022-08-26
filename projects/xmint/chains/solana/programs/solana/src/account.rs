@@ -4,6 +4,7 @@ use anchor_lang::prelude::*;
 pub struct Config {
     pub owner: Pubkey,
     pub nonce: u64,
+    pub mint: Pubkey
 }
 
 #[account]

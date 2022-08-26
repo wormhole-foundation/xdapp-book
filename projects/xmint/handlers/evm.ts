@@ -199,7 +199,7 @@ export async function createWrapped(src:string, target: string, vaa:string){
         srcNetwork.tokenBridgeAddress,
         signer,
         targetNetwork.wormholeChainId,
-        tryNativeToUint8Array(targetDeployInfo.address, targetNetwork.wormholeChainId)
+        tryNativeToUint8Array(targetDeployInfo.tokenAddress, targetNetwork.wormholeChainId)
     );
     console.log(`${src} Network has new PortalWrappedToken for ${target} network at ${foreignAddress}`);
 }
@@ -432,7 +432,7 @@ export async function balance(src:string, target: string) : Promise<string> {
         srcNetwork.tokenBridgeAddress,
         signer,
         targetNetwork.wormholeChainId,
-        tryNativeToUint8Array(targetDeploymentInfo.address, targetNetwork.wormholeChainId)
+        tryNativeToUint8Array(targetDeploymentInfo.tokenAddress, targetNetwork.wormholeChainId)
     );
 
     const TKN = new ethers.Contract(

@@ -17,9 +17,10 @@ declare_id!("BHz6MJGvo8PJaBFqaxyzgJYdY6o8h1rBgsRrUmnHCU9k");
 pub mod solana {
     use super::*;
 
-    pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
+    pub fn initialize(ctx: Context<Initialize>, mint:Pubkey) -> Result<()> {
         ctx.accounts.config.owner = ctx.accounts.owner.key();
         ctx.accounts.config.nonce = 0;
+        ctx.accounts.config.mint = mint;
         Ok(())
     }
 
