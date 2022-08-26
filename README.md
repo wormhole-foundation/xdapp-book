@@ -23,7 +23,7 @@ brew install mdbook
 Next, clone this repo and serve the book:
 
 ```sh
-git clone https://github.com/certusone/xdapp-book.git
+git clone https://github.com/wormhole-foundation/xdapp-book.git
 cd xdapp-book
 mdbook serve
 ```
