@@ -1,16 +1,6 @@
 # Linux Devnet Setup
 
-### Experimental Setup Script
-
-There's an experimental one command setup script that should install dependencies for you on Linux and configure everything properly. This is only recommended if you're running headless Linux and unable to use Docker Desktop, as with Docker Desktop you don't need `minikube` and can just enable Kubernetes from Docker.
-
-```sh
-curl $URL | sh install_linux.sh
-cd wormhole/
-./tilt.sh
-```
-
-## Regular Setup
+## Setup
 
 ### 1. Install Go
 
