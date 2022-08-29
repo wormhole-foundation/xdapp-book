@@ -1,5 +1,5 @@
 # Rerun solana validator
-cd ../wormhole-local-validator && npm run solana && cd ../xmint
+cd ../wormhole-local-validator && npm run evm && npm run solana && npm run wormhole && cd ../xmint
 
 # Deploy the code on EVM0 and SOL0
 ts-node orchestrator.ts deploy evm0 

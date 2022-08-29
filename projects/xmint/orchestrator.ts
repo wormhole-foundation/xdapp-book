@@ -163,4 +163,10 @@ xmint
         console.log(`Balance of ${src} key for ${target} tokens is ${balance}`);
     })
 
+xmint
+    .command("debug")
+    .action(async () => {
+        solana.createWrapped('sol0', 'evm0', 'AQAAAAABAN/Tvs+PQEPxFJzlILkIPBNCEZSDYRmLKAOdJ3ve8ddlL9ZsDFuxKYDdGYg4JvT2F+UghSCBNlWrh+DH8M1yiD4BYw0WejBGAQAAAgAAAAAAAAAAAAAAAAKQ+xZyCK9FW7E3eAFjt7epoQwWAAAAAAAAAAABAgAAAAAAAAAAAAAAAO6i/B0lX9KKoVxsIyStQLAyZ/nFAAISRVZNMFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABFVk0wLVRPS0VOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==')
+    })
+
 xmint.parse();

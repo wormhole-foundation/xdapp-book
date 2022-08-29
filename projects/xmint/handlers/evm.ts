@@ -166,7 +166,7 @@ export async function attest(src: string, target: string, address:string = null)
     // in this context the target is network we're attesting *from* so it's the network the vaa comes from (hence being placed as the 'source')
     // The emitter for this is PORTAL, not our contract, so we set portal=true in fetchVaa
     const attestVaa = await fetchVaa(src, tx, true);
-
+    console.log(`Creating wrapped on ${target}`);
     switch(targetNetwork.type){
         case "evm":
             await createWrapped(target, src, attestVaa)

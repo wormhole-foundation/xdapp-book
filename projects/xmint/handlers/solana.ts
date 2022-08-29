@@ -12,6 +12,7 @@ import {
     getEmitterAddressSolana, 
     getForeignAssetSolana, 
     parseSequenceFromLogSolana, 
+    postVaaSolanaWithRetry, 
     setDefaultWasm, 
     tryNativeToUint8Array 
 } from '@certusone/wormhole-sdk';
@@ -155,7 +156,6 @@ async function fetchVaa(src:string, tx:string, portal:boolean=false):Promise<str
     }
     console.log(`VAA from TX(${tx}) found in ${timeElapsed}s`);
     const seq = parseSequenceFromLogSolana(transaction);
-    console.log("Seq", seq);
     await new Promise((r) => setTimeout(r, 5000)); //wait for gaurdian to pick up messsage
     console.log(
         "Searching for: ",
@@ -185,6 +185,20 @@ export async function createWrapped(src:string, target:string, vaa:string){
     )));
     const connection = new anchor.web3.Connection(srcNetwork.rpc);
 
+    setDefaultWasm("node");
+    //Have to Post the VAA first before we can use it
+    await postVaaSolanaWithRetry(
+        connection,
+        async (transaction) => {
+            transaction.partialSign(srcKey);
+            return transaction;
+        },
+        srcNetwork.bridgeAddress,
+        srcKey.publicKey.toString(),
+        Buffer.from(vaa, "base64"),
+        10
+    );
+
     const tx = await createWrappedOnSolana(
         connection,
         srcNetwork.bridgeAddress,
@@ -192,9 +206,11 @@ export async function createWrapped(src:string, target:string, vaa:string){
         srcKey.publicKey.toString(),
         Buffer.from(vaa, "base64")
     );
+    tx.partialSign(srcKey);
+    const txid = await connection.sendRawTransaction(tx.serialize());
+    console.log("TXID: ", txid);
 
     await new Promise((r) => setTimeout(r, 5000)); // wait for blocks to advance before fetching new foreign address
-
     const foreignAddress = await getForeignAssetSolana(
         connection,
         srcNetwork.tokenBridgeAddress,
@@ -212,7 +228,6 @@ export async function registerApp(src:string, target:string){
     const srcKey = anchor.web3.Keypair.fromSecretKey(Uint8Array.from(JSON.parse((fs.readFileSync(`keypairs/${src}.key`).toString())
     )));
     const connection = new anchor.web3.Connection(srcNetwork.rpc);
-
     let targetEmitter;
     switch (targetNetwork.type){
         case 'evm': 
@@ -236,12 +251,18 @@ export async function registerApp(src:string, target:string){
         byteify.serializeUint16(targetNetwork.wormholeChainId)
     ], xmint.programId);
 
+    const [configAcc, _] = findProgramAddressSync([
+        Buffer.from("config")
+    ], xmint.programId);
+    
+
     const tx = await xmint.methods
                             .registerChain(
                                 targetNetwork.wormholeChainId,
                                 targetEmitter
                             )
                             .accounts({
+                                config: configAcc,
                                 emitterAcc: emitterAcc,
                                 owner: xmint.provider.publicKey,
                                 systemProgram: anchor.web3.SystemProgram.programId
