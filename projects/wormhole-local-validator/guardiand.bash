@@ -44,6 +44,7 @@ docker run --rm --name guardiand $DOCKER_FLAGS --hostname guardian-0 --cap-add=I
     --terra2Contract terra18vd8fpwxzck93qlwghaj6arh4p7c5n896xzem5 \
     --solanaContract Bridge1p5gheXUvJ6jGWGeCsgPKgnE3YgdGKRVCMY9o \
     --pythnetContract Bridge1p5gheXUvJ6jGWGeCsgPKgnE3YgdGKRVCMY9o \
+    --solanaWS ws://$HOST:8900 \
     --solanaRPC http://$HOST:8899 \
     --algorandIndexerRPC ws://$HOST:8545 \
     --algorandIndexerToken "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" \

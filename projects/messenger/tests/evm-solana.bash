@@ -1,6 +1,10 @@
 # Warning
 echo "Due to the nature of Solana accounts, you'll need to reset the Solana Local Validator (evm can stay as is) every time you run this test, otherwise it'll error saying accounts are already created and in use."
 
+# Install Deps
+yarn
+#cd chains/evm && forge install --no-git --no-commit && cd ../../
+
 # Build solana code so it's available in the handler
 cd chains/solana && anchor build && cd ../../ 
 
