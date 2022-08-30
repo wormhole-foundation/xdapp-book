@@ -63,8 +63,9 @@ xmint
         await srcHandler.registerApp(src,target)
         try{
             console.log(`Attesting ${src} Wrapped Native to ${target}`);
-            await srcHandler.attest(target, src, config.networks[src].wrappedNativeAddress)
+            await srcHandler.attest(src, target, config.networks[src].wrappedNativeAddress)
         } catch (e) {
+            console.log("ERROR: ", e);
             console.log("Wrapped Native attestion exists already")
         }
 
@@ -157,6 +158,7 @@ xmint
                 balance = await evm.balance(src, target);
                 break;
             case "solana":
+                balance = await solana.balance(src, target);
                 break;
         }
 
@@ -166,7 +168,7 @@ xmint
 xmint
     .command("debug")
     .action(async () => {
-        solana.createWrapped('sol0', 'evm0', 'AQAAAAABAN/Tvs+PQEPxFJzlILkIPBNCEZSDYRmLKAOdJ3ve8ddlL9ZsDFuxKYDdGYg4JvT2F+UghSCBNlWrh+DH8M1yiD4BYw0WejBGAQAAAgAAAAAAAAAAAAAAAAKQ+xZyCK9FW7E3eAFjt7epoQwWAAAAAAAAAAABAgAAAAAAAAAAAAAAAO6i/B0lX9KKoVxsIyStQLAyZ/nFAAISRVZNMFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABFVk0wLVRPS0VOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==')
+        await solana.debug();
     })
 
 xmint.parse();

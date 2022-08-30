@@ -1,3 +1,5 @@
+set -e pipefail
+
 # Rerun solana validator
 cd ../wormhole-local-validator && npm run evm && npm run solana && npm run wormhole && cd ../xmint
 

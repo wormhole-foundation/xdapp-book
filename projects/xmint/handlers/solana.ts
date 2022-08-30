@@ -110,7 +110,8 @@ export async function attest(src: string, target:string, address:string = null){
         address = srcDeployInfo.tokenAddress;
     }
     console.log(`Attesting ${address} from ${src} network onto ${target}`);
-
+    
+    setDefaultWasm("node");
     const tx = await attestFromSolana(
         connection,
         srcNetwork.bridgeAddress,
@@ -210,7 +211,7 @@ export async function createWrapped(src:string, target:string, vaa:string){
     const txid = await connection.sendRawTransaction(tx.serialize());
     console.log("TXID: ", txid);
 
-    await new Promise((r) => setTimeout(r, 5000)); // wait for blocks to advance before fetching new foreign address
+    await new Promise((r) => setTimeout(r, 15000)); // wait for blocks to advance before fetching new foreign address
     const foreignAddress = await getForeignAssetSolana(
         connection,
         srcNetwork.tokenBridgeAddress,
@@ -219,6 +220,29 @@ export async function createWrapped(src:string, target:string, vaa:string){
     );
     console.log(`${src} Network has new PortalWrappedToken for ${target} network at ${foreignAddress}`);
 }
+
+export async function debug(){
+    const src = "sol0";
+    const target = 'evm0';
+    const srcNetwork = config.networks[src];
+    const targetNetwork = config.networks[target];
+    const srcDeployInfo = JSON.parse(fs.readFileSync(`./deployinfo/${src}.deploy.json`).toString());
+    const targetDeployInfo = JSON.parse(fs.readFileSync(`./deployinfo/${target}.deploy.json`).toString());
+    const srcKey = anchor.web3.Keypair.fromSecretKey(Uint8Array.from(JSON.parse((fs.readFileSync(`keypairs/${src}.key`).toString())
+    )));
+    const connection = new anchor.web3.Connection(srcNetwork.rpc);
+
+    setDefaultWasm("node");
+    await new Promise((r) => setTimeout(r, 20000)); // wait for blocks to advance before fetching new foreign address
+    const foreignAddress = await getForeignAssetSolana(
+        connection,
+        srcNetwork.tokenBridgeAddress,
+        targetNetwork.wormholeChainId,
+        tryNativeToUint8Array(targetDeployInfo.tokenAddress, targetNetwork.wormholeChainId)
+    );
+    console.log(`${src} Network has new PortalWrappedToken for ${target} network at ${foreignAddress}`);
+}
+
 
 export async function registerApp(src:string, target:string){
     const srcNetwork = config.networks[src];
@@ -301,6 +325,7 @@ export async function balance(src: string, target: string) : Promise<string>{
         return (await connection.getBalance(srcKey.publicKey)).toString()
     }
 
+    setDefaultWasm("node")
     // Else get the Token Balance of the Foreign Network's token on the Src Network
     const foreignAddress = await getForeignAssetSolana(
         connection,
