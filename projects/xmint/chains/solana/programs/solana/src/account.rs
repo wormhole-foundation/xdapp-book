@@ -4,7 +4,6 @@ use anchor_lang::prelude::*;
 pub struct Config {
     pub owner: Pubkey,
     pub nonce: u64,
-    pub mint: Pubkey
 }
 
 #[account]
@@ -17,3 +16,8 @@ pub struct EmitterAddrAccount{
 //Empty account, we just need to check that it *exists*
 #[account]
 pub struct ProcessedVAA {}
+
+#[account]
+pub struct MintInfo {
+    pub mint: Pubkey
+}

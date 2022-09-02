@@ -22,6 +22,10 @@ import {
     getOrCreateAssociatedTokenAccount,
     createMint
 } from '@solana/spl-token'
+import {
+    PROGRAM_ID as metaplexProgramID,
+    createCreateMetadataAccountV3Instruction
+} from '@metaplex-foundation/mpl-token-metadata';
 
 const exec = promisify(require('child_process').exec);
 const config = JSON.parse(fs.readFileSync('./xdapp.config.json').toString());
@@ -63,26 +67,44 @@ export async function deploy(src: string){
     ], xmint.programId);
     
     // Deploy the SPL Token for Xmint
+    const mintAuthorityPDA = findProgramAddressSync([Buffer.from("mint_authority")], xmint.programId)[0];
+
     const mint = await createMint(
         connection,
         srcKey,
-        xmint.programId,
-        xmint.programId,
-        9 // We are using 9 to match the CLI decimal default exactly
+        mintAuthorityPDA, 
+        mintAuthorityPDA, 
+        9, // We are using 9 to match the CLI decimal default exactly
     );
     await new Promise((r) => setTimeout(r, 15000)) // wait for the chain to recognize the program
 
+    const metadataAccount = findProgramAddressSync([
+        Buffer.from("metadata"),
+        metaplexProgramID.toBuffer(),
+        mint.toBuffer()
+    ], metaplexProgramID)[0]
+    console.log("Metadata Account: ", metadataAccount);
+
+    // Initalize will also CPI into metaplex metadata program to setup metadata for the token
     await xmint.methods
             .initialize(
-                mint
+                `${src}-TOKEN`,
+                `${src}T`,
+                ""
             )
             .accounts({
                 config: configAcc,
-                owner: xmint.provider.publicKey,
-                systemProgram: anchor.web3.SystemProgram.programId
+                owner: srcKey.publicKey,
+                systemProgram: anchor.web3.SystemProgram.programId,
+                mint: mint,
+                mintAuthority: mintAuthorityPDA,
+                rent: anchor.web3.SYSVAR_RENT_PUBKEY,
+                metadataAccount: metadataAccount,
+                metadataProgram: metaplexProgramID,
             })
             .rpc();
 
+    await new Promise((r) => setTimeout(r, 15000)) // wait for the chain to recognize the metadata
     // Store deploy info
     fs.writeFileSync(`./deployinfo/${src}.deploy.json`, JSON.stringify({
         address: CONTRACT_ADDRESS,
