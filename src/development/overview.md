@@ -21,4 +21,4 @@ If you want to test on the various test and devnets of existing connected chains
 Because testnet only has a single Guardian, there's a small chance that your VAAs will not be processed. This rate is not indiciative of performance on mainnet, where there are 19 Guardians watching for transactions. 
 
 ### Mainnet
-When you're ready to deploy to mainnet, you can find the mainnet contracts at [../reference/contracts.md] and the mainnet rpc nodes at [../reference/rpcnodes.md].
+When you're ready to deploy to mainnet, you can find the mainnet contracts at [../reference/contracts.md](../reference/contracts.md) and the mainnet rpc nodes at [../reference/rpcnodes.md](../reference/rpcnodes.md).
