@@ -16,7 +16,7 @@ Before we set up an xDapp project, we'll need to choose a local environment to r
 To get started, first clone the a local host environment (WLV or Tilt), then proceed to the first project, the [evm-messenger](../projects/evm-messenger/overview.md).
 
 ### Testnet
-If you want to test on the various test and devnets of existing connected chains, there's a single Guardian node watching for transactions on various test networks. You can find the contracts at [../reference/contracts.md] and the rpc node at [../reference/rpcnodes.md].
+If you want to test on the various test and devnets of existing connected chains, there's a single Guardian node watching for transactions on various test networks. You can find the contracts at [../reference/contracts.md](../reference/contracts.md) and the rpc node at [../reference/rpcnodes.md](../reference/rpcnodes.md).
 
 Because testnet only has a single Guardian, there's a small chance that your VAAs will not be processed. This rate is not indiciative of performance on mainnet, where there are 19 Guardians watching for transactions. 
 
