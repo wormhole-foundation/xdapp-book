@@ -1,6 +1,6 @@
 # Summary
 
-[Introduction](./introduction/introduction.md)
+- [Introduction](./introduction/introduction.md)
 
 ---
 
@@ -89,6 +89,7 @@
 # Other Resources
 
 - [Reference]()
+
   - [Tools](./reference/tools.md)
   - [Github & Useful Links](./reference/github.md)
   - [Deployed Contracts](./reference/contracts.md)
