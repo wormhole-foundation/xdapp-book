@@ -1,6 +1,6 @@
 # Contracts
 
-Here you can find the addresses for the deployed contracts on all the chains that Wormhole supports, including Testnet. 
+Here you can find the addresses for the deployed contracts on all the chains that Wormhole supports, including testnet. 
 The SDK makes these addresses available in the `CONTRACTS` constant. 
 
 ## Mainnet
