@@ -37,23 +37,31 @@
 
 # xDapp Development
 
-- [Before You Start](./development/overview.md)
+- [xDapp Development Overview](./development/overview.md)
+
 - [Wormhole Local Validator](./development/wormhole-local-validator.md)
+ 
 - [Tilt Installation](./development/tilt/overview.md)
   - [MacOS](./development/tilt/mac.md)
   - [Linux](./development/tilt/linux.md)
   - [Constants](./development/tilt/constants.md)
+   
 - [Project Scaffold](./development/scaffold/overview.md)
+ 
 - [Sending Messages](./development/messages/sending/overview.md)
   - [EVM](./development/messages/sending/evm.md)
+  
 - [Registering xDapps](./development/messages/registration/overview.md)
   - [EVM](./development/messages/registration/evm.md)
+
 - [Relaying Messages](./development/messages/relaying/overview.md)
   - [Manual Relays]()
   - [REST & Spy Relayer]()
   - [Generic Relayers]()
+  
 - [Receving Messages](./development/messages/receiving/overview.md)
   - [EVM](./development/messages/receiving/evm.md)
+
 - [Projects](./projects/summary.md)
   - [EVM Messenger](./projects/evm-messenger/overview.md)
     - [Solidity](./projects/evm-messenger/messenger.md)
@@ -73,6 +81,7 @@
   - [Portal JS SDK](./development/portal/sdkjs/overview.md)
     - [EVM to Solana Transfer](./development/portal/sdkjs/evm-solana-transfer.md)
     - [Polygon to Oasis with Relayers](./development/portal/sdkjs/polygon-oasis-relayer.md)
+   
 - [Portal Payloads]()
 
 ---
