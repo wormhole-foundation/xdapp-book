@@ -23,11 +23,11 @@ The Header is used by the Core Contract to determine the authenticity of the VAA
     u8          consistency_level         (How many blocks were waited before emitting this VAA)
     []byte      payload                   (VAA message content)
 
-The Body is the relevant information for consumers and is handed back from parseAndVerifyVAA. Because the emitterAddress is included as part of the Body, the developer is able to tell if this VAA originated from a trusted contract.
+The Body is the relevant information for consumers and is handed back from `parseAndVerifyVM`. Because the emitterAddress is included as part of the Body, the developer is able to tell if this VAA originated from a trusted contract.
 
 VAAs are uniquely indexed by their emitterChain, emittedAddress and sequence. They can be obtained by querying a node in the Guardian Network with this information.
 
-Because baseline VAAs have no destination, they are effectively multicast. They will be verified as authentic by any Core Contract on any chain in the network, and it is entirely the responsibility of relayers to deliver VAAs to the appropriate place.
+Because baseline VAAs have no destination, they are effectively multicast. They will be verified as authentic by any Core Contract on any chain in the network -- the responsibility to deliver VAAs to the appropriate place is entirely that of relayers.
 
 ## Batch VAAs
 
