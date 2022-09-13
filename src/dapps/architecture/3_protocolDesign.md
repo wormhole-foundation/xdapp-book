@@ -26,6 +26,6 @@ When dealing with addresses inside your messages, it's recommended to always con
 
 ### Trusted Contract Network
 
-If your protocol has smart contracts deployed to multipe chains, it will be important for your contracts to know which other contracts are 'in network' for your protocol, as commonly the first check performed when receiving a message is to validate that it originates from a trusted source.
+If your protocol has smart contracts deployed to multiple chains, it will be important for your contracts to know which other contracts are 'in network' for your protocol, as commonly the first check performed when receiving a message is to validate that it originates from a trusted source.
 
 Generally, this list of trusted contracts is stored in the state of each contract individually, and updating the trusted contracts is tied into the governance mechanism of the protocol.
