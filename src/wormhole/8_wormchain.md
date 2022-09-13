@@ -13,4 +13,6 @@ Wormchain is built to provide things like:
 
 Wormchain is less relevant to xDapp developers than some other parts of the ecosystem, but it will become an increasingly important component as Wormhole matures and features are added. 
 
+---
+
 In the next section, we'll get into the key concepts that underpin xDapp design.

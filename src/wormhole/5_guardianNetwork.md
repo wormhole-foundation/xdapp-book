@@ -36,7 +36,7 @@ With our perspective on Decentralization laid out, the remaining elements fall i
 
 ## Modularity
 
-The Guardian Network is robust and trustworthy by itself, so there'ss no need for components like the relayer to contribute to the security model. That makes Wormhole able to have simple components that are very good at the one thing they do. That way, Guardians only need to verify on-chain activity and produce VAAs while Relayers only need to interact with blockchains and deliver messages.
+The Guardian Network is robust and trustworthy by itself, so there's no need for components like the relayer to contribute to the security model. That makes Wormhole able to have simple components that are very good at the one thing they do -- Guardians only need to verify on-chain activity and produce VAAs; Relayers only need to interact with blockchains and deliver messages.
 
 The signing scheme of the VAAs can be changed without affecting downstream users, and multiple relay mechanisms can exist independently. xAssets can be implemented purely at the application layer and xDapps can utilize whatever components suit them.
 
@@ -44,7 +44,7 @@ The signing scheme of the VAAs can be changed without affecting downstream users
 
 Today, Wormhole supports a wider range of ecosystems than any other interoperability protocol because it uses simple tech (t-schnorr signatures), an adaptable, heterogenous relayer model, and a robust validator network.
 
-Wormhole can expand to new ecosystems as quickly as a Core Contract can be developed for the smart contract runtime. Relayers don't need to be factored into the security model--they just need to be able to upload messages to the blockchain. The Guardians are able to observe every transaction on every chain, without taking shortcuts.
+Wormhole can expand to new ecosystems as quickly as a Core Contract can be developed for the smart contract runtime, Guardians can set up infrastructure to observe every transaction for that blockchain, and Relayers can upload messages to that blockchain.
 
 ## Scalability
 
@@ -57,5 +57,7 @@ However, once all the full nodes are running, the actual computation and network
 ## Upgradability
 
 Over time, the Guardian Set can be expanded beyond 19 with the use of threshold signatures. A variety of relaying models will emerge, each with their own strengths and weaknesses. ZKPs can be used on chains where they are well supported. The xDapp ecosystem will grow, and xDapps will become increasingly intermingled with eachother. There are very few APIs in Wormhole, and most items are implementation details from the perspective of an integrator. This creates a clear pathway towards a fully trustlessness interoperability layer which spans the entirety of decentralized computing.
+
+---
 
 In the next section, we will talk about the role and responsbilities of relayers in the Wormhole ecosystem.
