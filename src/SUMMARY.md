@@ -35,54 +35,38 @@
 
 ---
 
-# xDapp Development
+# Developing xDapps
 
-- [xDapp Development Overview](./development/overview.md)
+- [Environment Setup](./technical/environments.md)
 
-- [Wormhole Local Validator](./development/wormhole-local-validator.md)
- 
-- [Tilt Installation](./development/tilt/overview.md)
-  - [MacOS](./development/tilt/mac.md)
-  - [Linux](./development/tilt/linux.md)
-  - [Constants](./development/tilt/constants.md)
-   
-- [Project Scaffold](./development/scaffold/overview.md)
- 
-- [Sending Messages](./development/messages/sending/overview.md)
-  - [EVM](./development/messages/sending/evm.md)
-  
-- [Registering xDapps](./development/messages/registration/overview.md)
-  - [EVM](./development/messages/registration/evm.md)
+  - [Tilt](./technical/tilt.md)
+  - [Wormhole Local Validator](./technical/wlv.md)
+  - [Testnet](./technical/testnet.md)
 
-- [Relaying Messages](./development/messages/relaying/overview.md)
-  - [Manual Relays]()
-  - [REST & Spy Relayer]()
-  - [Generic Relayers]()
-  
-- [Receving Messages](./development/messages/receiving/overview.md)
-  - [EVM](./development/messages/receiving/evm.md)
+- [Contract Development]()
 
-- [Projects](./projects/summary.md)
-  - [EVM Messenger](./projects/evm-messenger/overview.md)
-    - [Solidity](./projects/evm-messenger/messenger.md)
-    - [JS Client](./projects/evm-messenger/client.md)
-  - [Messenger](./projects/messenger/introduction.md)
-    - [Prerequistes]()
-      - [EVM]()
+  - [EVM]()
+    - [Core Layer](./technical/evm/coreLayer.md)
+    - [xAsset Layer](./technical/evm/xassetLayer.md)
+    - [NFT Layer](./technical/evm/nftLayer.md)
+  - [Solana]()
+  - [Cosmos]()
+  - [Algorand]()
+  - [Near]()
+  - [Aptos]()
 
----
+- [Relayers]()
 
-# Portal Token Bridge
+  - [Plugin Relayer]()
+  - [Guardian Network](./technical/relayer/guardianNetwork.md)
 
-- [Portal](./development/portal/overview.md)
+- [Wormhole Typescript SDK](./development/portal/overview.md)
   - [EVM]()
     - [Attesting](./development/portal/evm/attestingToken.md)
     - [Transfer Tokens](./development/portal/evm/tokenTransfer.md)
   - [Portal JS SDK](./development/portal/sdkjs/overview.md)
     - [EVM to Solana Transfer](./development/portal/sdkjs/evm-solana-transfer.md)
     - [Polygon to Oasis with Relayers](./development/portal/sdkjs/polygon-oasis-relayer.md)
-   
-- [Portal Payloads]()
 
 ---
 
