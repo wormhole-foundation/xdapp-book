@@ -1,6 +1,6 @@
 # NFT Layer
 
-This is the interface for applications to interact with Wormhole's NFT Bridge Contract to publish messages or verify and parse a received message.
+This section will explain how to properly interact with the NFT Layer in an EVM ecosystem.
 
 ```
 // contracts/NFTBridge.sol
@@ -9,6 +9,7 @@ This is the interface for applications to interact with Wormhole's NFT Bridge Co
 pragma solidity ^0.8.0;
 
 import "./NFTBridgeGetters.sol";
+import "./NFTBridgeStructs.sol";
 
 interface INFTBridge is NFTGetters {
 
@@ -25,3 +26,18 @@ interface INFTBridge is NFTGetters {
 }
 
 ```
+
+## Overview
+
+Only ERC-721 supported, creates a wrapped NFT with identical metadata. Implementation varies by ecosystem
+
+## Sending an NFT
+
+- Unlike xAssets, there is no registration process
+- Code example to send
+
+## Receiving an NFT
+
+- completeTransfer code examples
+
+//TODO NFT verification and perhaps some other common usecases
