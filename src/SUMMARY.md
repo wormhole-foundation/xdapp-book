@@ -47,8 +47,9 @@
 
   - [EVM]()
     - [Core Layer](./technical/evm/coreLayer.md)
-    - [xAsset Layer](./technical/evm/xassetLayer.md)
-    - [NFT Layer](./technical/evm/nftLayer.md)
+    - [xAsset Module](./technical/evm/xassetLayer.md)
+    - [NFT Module](./technical/evm/nftLayer.md)
+    - [Relayer Module](./technical/evm/relayer.md)
   - [Solana]()
   - [Cosmos]()
   - [Algorand]()
@@ -57,7 +58,7 @@
 
 - [Relayers]()
 
-  - [Plugin Relayer]()
+  - [Plugin Relayer](./technical/relayer/pluginRelayers.md)
   - [Guardian Network](./technical/relayer/guardianNetwork.md)
 
 - [Wormhole Typescript SDK](./development/portal/overview.md)
