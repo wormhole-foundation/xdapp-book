@@ -37,11 +37,12 @@
 
 # Developing xDapps
 
-- [Environment Setup](./technical/environments.md)
+- [Environment Setup](./technical/env/environments.md)
 
-  - [Tilt](./technical/tilt.md)
-  - [Wormhole Local Validator](./technical/wlv.md)
-  - [Testnet](./technical/testnet.md)
+  - [Tooling](./technical/env/tooling.md)
+  - [Tilt](./technical/env/tilt.md)
+  - [Wormhole Local Validator](./technical/env/wlv.md)
+  - [Testnet](./technical/env/testnet.md)
 
 - [Contract Development]()
 
