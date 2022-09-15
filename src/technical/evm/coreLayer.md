@@ -36,7 +36,7 @@ To emit a message, always use `publishMessage` which takes in the following argu
     - Each blockchain has different finality periods. In general, higher consistencies mean more security against blockchain reorgs.
     - [Here]() are the consistency levels by blockchain that are used by the xAsset layer to have a high level of guarantee against reorgs.
 3. `Payload` (bytes[]): raw bytes to emit.
-    - It is up to the receiving contract to properly parse this arbitrary set of bytes.
+    - It is up to the emitting contract to properly define this arbitrary set of bytes.
 
 `publishMessage` will output a `sequence` (uint64) that is used in conjunction with `emitterChainID` and `emitterAddress` to retrive the generated VAA from the Guardian Network.
 
@@ -49,10 +49,18 @@ To emit a message, always use `publishMessage` which takes in the following argu
 
 Parsing and Verifying a message will depend on the type of VAA that your application expects: a Single VAA or a Batch VAA.
 
+For either message type, remember to collect gas fees associated with submitting them on-chain after all VAAs have been verified.
+
 **Single VAA**
 
-The properly parse and verify a single VAA, always use `parseAndVerifyVM` which takes in one argument: `encodedVM`. This function will return three arguments:
+To properly parse and verify a single VAA, always use `parseAndVerifyVM` which takes in one argument: `encodedVM` (bytes). This function will return three arguments:
 
-1. `vm` (VM): Structured data that reflects the content of the VAA. A breakdown of this message format is described in the [VAA](../../wormhole/4_vaa.md) section.
+1. `vm` (VM): Structured data that reflects the content of the VAA. A breakdown of this message format is described in the [VAA](../../wormhole/4_vaa.md) section. It is up to the receving contracting to properly parse this data structure for the necessary information. 
 2. `valid` (bool):  Boolean that reflects whether or not the VAA was properly signed by the Guardian Network
 3. `reason` (string): Explanatory error message if a VAA is invalid, or an empty string if it is valid. 
+
+**Batch VAA**
+
+To properly parse and verify a batch VAA, always use `parseAndVerifyBatchVM` which takes in two arguments: `encodedVM` (bytes) and `cache` (bool). 
+
+Batch VAAs are designed so that relayers can choose to submit any subset of the observations batched together. It is the receiving contract's responsiblity to verify that all VAAs contained in a batch are submitted.
