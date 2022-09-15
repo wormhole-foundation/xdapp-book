@@ -56,8 +56,9 @@
   - [Algorand]()
   - [Near]()
   - [Aptos]()
+  - [Sui]()
 
-- [Relayers]()
+- [Relayers](./technical/relayer/overview.md)
 
   - [Plugin Relayer](./technical/relayer/pluginRelayers.md)
   - [Guardian Network](./technical/relayer/guardianNetwork.md)
