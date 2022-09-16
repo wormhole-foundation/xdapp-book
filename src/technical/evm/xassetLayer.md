@@ -1,134 +1,21 @@
 # xAsset Layer
 
-This is the interface for applications to interact with the xAsset layer in Wormhole
+This section will explain how to properly interact with the Wormhome Core Layer in an EVM ecosystem.
 
-# Instantiating the interface
+# Configuring the interface
 
 - Same as instantiating any other EVM interface / Core Layer / NFT Layer,
 
-```
-// contracts/Bridge.sol
-// SPDX-License-Identifier: Apache 2
-
-pragma solidity ^0.8.0;
-
-import "./BridgeGetters.sol";
-
+[Here]() is the interface for applications to interact with Wormhole's xAsset layer.
 //TODO link to file in github so doesn't become stale
-interface ITokenBridge is BridgeGetters {
-    /*
-     *  @dev Produce a AssetMeta message for a given token
-     */
-    function attestToken(address tokenAddress, uint32 nonce) external payable returns (uint64 sequence);
 
-    /*
-     *  @notice Send eth through portal by first wrapping it to WETH.
-     */
-    function wrapAndTransferETH(
-        uint16 recipientChain,
-        bytes32 recipient,
-        uint256 arbiterFee,
-        uint32 nonce
-    ) external payable returns (uint64 sequence);
+Instantiating the interface will depend on your development ecosystem and blockchain. The Wormhole Core Layer contract address is usually stored in your contract address.
 
-    /*
-     *  @notice Send eth through portal by first wrapping it.
-     *
-     *  @dev This type of transfer is called a "contract-controlled transfer".
-     *  There are three differences from a regular token transfer:
-     *  1) Additional arbitrary payload can be attached to the message
-     *  2) Only the recipient (typically a contract) can redeem the transaction
-     *  3) The sender's address (msg.sender) is also included in the transaction payload
-     *
-     *  With these three additional components, xDapps can implement cross-chain
-     *  composable interactions.
-     */
-    function wrapAndTransferETHWithPayload(
-        uint16 recipientChain,
-        bytes32 recipient,
-        uint32 nonce,
-        bytes memory payload
-    ) external payable returns (uint64 sequence);
+Below is an example line of code to instantiate the interface for mainnet Ethereum:
 
-    /*
-     *  @notice Send ERC20 token through portal.
-     */
-    function transferTokens(
-        address token,
-        uint256 amount,
-        uint16 recipientChain,
-        bytes32 recipient,
-        uint256 arbiterFee,
-        uint32 nonce
-    ) external payable returns (uint64 sequence);
-
-    /*
-     *  @notice Send ERC20 token through portal.
-     *
-     *  @dev This type of transfer is called a "contract-controlled transfer".
-     *  There are three differences from a regular token transfer:
-     *  1) Additional arbitrary payload can be attached to the message
-     *  2) Only the recipient (typically a contract) can redeem the transaction
-     *  3) The sender's address (msg.sender) is also included in the transaction payload
-     *
-     *  With these three additional components, xDapps can implement cross-chain
-     *  composable interactions.
-     */
-    function transferTokensWithPayload(
-        address token,
-        uint256 amount,
-        uint16 recipientChain,
-        bytes32 recipient,
-        uint32 nonce,
-        bytes memory payload
-    ) external payable returns (uint64 sequence);
-
-    function updateWrapped(bytes memory encodedVm) external returns (address token);
-
-    function createWrapped(bytes memory encodedVm) external returns (address token);
-
-    /*
-     * @notice Complete a contract-controlled transfer of an ERC20 token.
-     *
-     * @dev The transaction can only be redeemed by the recipient, typically a
-     * contract.
-     *
-     * @param encodedVm    A byte array containing a VAA signed by the guardians.
-     *
-     * @return The byte array representing a BridgeStructs.TransferWithPayload.
-     */
-    function completeTransferWithPayload(bytes memory encodedVm) external returns (bytes memory);
-
-    /*
-     * @notice Complete a contract-controlled transfer of WETH, and unwrap to ETH.
-     *
-     * @dev The transaction can only be redeemed by the recipient, typically a
-     * contract.
-     *
-     * @param encodedVm    A byte array containing a VAA signed by the guardians.
-     *
-     * @return The byte array representing a BridgeStructs.TransferWithPayload.
-     */
-    function completeTransferAndUnwrapETHWithPayload(bytes memory encodedVm) external returns (bytes memory);
-
-    /*
-     * @notice Complete a transfer of an ERC20 token.
-     *
-     * @dev The msg.sender gets paid the associated fee.
-     *
-     * @param encodedVm A byte array containing a VAA signed by the guardians.
-     */
-    function completeTransfer(bytes memory encodedVm) external ;
-
-    /*
-     * @notice Complete a transfer of WETH and unwrap to eth.
-     *
-     * @dev The msg.sender gets paid the associated fee.
-     *
-     * @param encodedVm A byte array containing a VAA signed by the guardians.
-     */
-    function completeTransferAndUnwrapETH(bytes memory encodedVm) external ;
-}
+```
+address private wormhole_token_bridge_address = address(0x3ee18B2214AFF97000D974cf647E7C347E8fa585);
+ITokenBridge token_bridge = ITokenBridge(wormhole_token_bridge_address);
 ```
 
 ## Registering New Tokens
@@ -138,6 +25,14 @@ interface ITokenBridge is BridgeGetters {
 - Generally not done by the xDapp contract, but instead by an off-chain process or by hand
 - Probably don't need code examples, as it's not advised to do this on chain for most usecases
 
+Attesting a token from EVM needs to happen once per token. If a token is not attested, it will not be claimable until so. However, there are no restrictions to reattesting a token; doing so will update the metadata.
+
+It is not advised to attest tokens on-chain for most usecases.
+
+To attest a token by an off-chain process, you can either do it by hand through one of the Token Bridge UIs (for example [Portal](https://www.portalbridge.com/#/transfer)) or using the JS SDK.
+
+// If we want to show how to attest with JS SDK, have the example [here](https://book.wormhole.com/development/portal/evm/attestingToken.html)
+
 ## Basic Transfer
 
 - Code example for transferring an ERC-20, explain all the args, WORMHOLE ADDRESSES
@@ -145,10 +40,103 @@ interface ITokenBridge is BridgeGetters {
 - Use this only if you are transferring to an end user wallet. If you're transferring to a smart contract (which you control), use transferWithPayload instead. Explain why
 - Mention public relayers, unwrapping conventions, fee schedule.
 
+Basic transfer should only be used if you are transferring messages to an end user wallet. If the end destination is a contract, you should only use Contract Controlled Transfers (described below). 
+
+It is important to note the transferring native currency is a special case of the Basic Transfer. As such, a different function call is provided as a QoL improvement when initiating and completing the transfer messaging when unwrapping the ETH is desired.
+
+To transfer a token, there are four steps:
+1. Approve the Token Bridge to spend that token on our behalf.
+    - _Note: Tokens in EVM usually denote up to 18 decimals places. However. Wormhole normalizes this to **8** decimals._ 
+```
+contractAddress.approve(token_bridge_address, amt);
+```
+2. Transfer the token to create the transfer VAA.
+    - This function call will return a `sequence` (uint64) that is used in the VAA retrieval step.
+    - _Note: Wormhole addresses are 32 bytes for standardization across the different blockchains within the Wormhole ecosystem._
+```
+// To initiate transfer of normal ERC-20s
+token_bridge.transferTokens(tokenAddress, amount, recipientChain, recipient, arbiterFee, nonce);
+
+// To initiate transfer of native currency
+token_bridge.wrapAndTransferETH(recipientChain, recipient, arbiterFee, nonce); 
+```
+3. Retrieve the emitted VAA.
+    - _Note: Basic Transfer VAAs are retrieved from the Guardian Network by the `emitterChainID`, `emitterAddress`, and `sequence`_
+```
+const emitterAddr = getEmitterAddressEth(network.tokenBridgeAddress);
+const seq = parseSequenceFromLogEth(tx, network.bridgeAddress);
+const vaaURL = `${config.wormhole.restAddress}/v1/signed_vaa/${network.wormholeChainId}/${emitterAddr}/${seq}`;
+let vaaBytes = await (await fetch(vaaURL)).json();
+while (!vaaBytes.vaaBytes) {
+  console.log("VAA not found, retrying in 5s!");
+  await new Promise((r) => setTimeout(r, 5000)); //Timeout to let Guardiand pick up log and have VAA ready
+  vaaBytes = await (await fetch(vaaURL)).json();
+}
+```
+
+4. Complete the transfer using the VAA.
+    - _Note: VAAs are retrieved from the 
+```
+// To complete transfer of normal ERC-20s
+token_bridge.completeTransfer(VAA);
+
+// To complete transfer of native currency
+completeTransferAndUnwrapETH(VAA);
+```
+
 ## Contract Controlled Transfer
 
 - Differences when compared to a basic transfer: has a payload, can only be redeemed if msg.sender == the recipient, doesn't have a relayer fee field because of the redemption restriction.
 - Always use this when the destination is a contract
+
+For any message transfers where the destination is a contract, you should always used Contract Controlled Transfers.
+
+There are a few main differences between Contract Controlled Transfers and Basic Transfers:
+- message contains both tokens and an arbitrary payload
+- can only be redeemed by a specified contract address
+- does not have a relayer fee field because of the redemption restriction above.
+
+As was the case with Basic Transfers, transferring native currency is a special case for Contract Controlled Transfers as well. As such, a different function call is provided as a QoL improvement when initiating and completing the transfer messaging when unwrapping the ETH is desired.
+
+The process of sending a Contract Controlled Transfer is very similar to that of a Basic Transfer:
+1. Approve the Token Bridge to spend that token on our behalf.
+    - _Note: Tokens in EVM usually denote up to 18 decimals places. However. Wormhole normalizes this to **8** decimals._ 
+```
+contractAddress.approve(token_bridge_address, amt);
+```
+2. Transfer the token to create the transfer VAA.
+    - This function call will return a `sequence` (uint64) that is used in the VAA retrieval step.
+    - _Note: Wormhole addresses are 32 bytes for standardization across the different blockchains within the Wormhole ecosystem._
+```
+// To initiate transfer of normal ERC-20s
+token_bridge.transferTokesWithPayload(tokenAddress, amount, recipientChain, recipient, nonce, payload);
+
+// To initiate transfer of native currency
+token_bridge.wrapAndTransferETHWithPayload(recipientChain, recipient, nonce, payload); 
+```
+3. Retrieve the emitted VAA.
+    - _Note: Basic Transfer VAAs are retrieved from the Guardian Network by the `emitterChainID`, `emitterAddress`, and `sequence`_
+```
+const emitterAddr = getEmitterAddressEth(network.tokenBridgeAddress);
+const seq = parseSequenceFromLogEth(tx, network.bridgeAddress);
+const vaaURL = `${config.wormhole.restAddress}/v1/signed_vaa/${network.wormholeChainId}/${emitterAddr}/${seq}`;
+let vaaBytes = await (await fetch(vaaURL)).json();
+while (!vaaBytes.vaaBytes) {
+  console.log("VAA not found, retrying in 5s!");
+  await new Promise((r) => setTimeout(r, 5000)); //Timeout to let Guardiand pick up log and have VAA ready
+  vaaBytes = await (await fetch(vaaURL)).json();
+}
+```
+
+4. Complete the transfer using the VAA.
+    - _Note: VAAs are retrieved from the 
+```
+// To complete transfer of normal ERC-20s
+token_bridge.completeTransferWithPayload(VAA);
+
+// To complete transfer of native currency
+completeTransferAndUnwrapETHWithPayload(VAA);
+```
 
 ## Redemption
 
@@ -161,3 +149,5 @@ interface ITokenBridge is BridgeGetters {
 
 - completeTransferWithPayload for everything,
 - completeTransferAndUnwrapETH as a QoL function. Unwraps the ETH before giving it to the contract.
+
+LUMPED THIS INTO PREVIOUS SECTIONS

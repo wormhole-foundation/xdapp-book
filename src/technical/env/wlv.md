@@ -1,6 +1,6 @@
 # Wormhole Local Validator
 
-- windows local validator is a development build of the guardian software
+- wormhole local validator is a development build of the guardian software
 - easy to run, easy to configure. Connect it to whatever blockchain you feel like using, and use some provided scripts to deploy the necessary wormhole contracts
 - Newer, still has features being added
 
