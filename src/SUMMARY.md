@@ -39,10 +39,10 @@
 
 - [Environment Setup](./technical/env/environments.md)
 
-  - [Tooling](./technical/env/tooling.md)
   - [Tilt](./technical/env/tilt.md)
   - [Wormhole Local Validator](./technical/env/wlv.md)
   - [Testnet](./technical/env/testnet.md)
+  - [Tooling](./technical/env/tooling.md)
 
 - [Contract Development]()
 
