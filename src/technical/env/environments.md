@@ -30,7 +30,11 @@ Wormhole provides two different local development environments to simulate these
 
 To test your application on the various testnets, there are Wormhole contracts and one Guardian node deployed. You can find the contracts [here](../../reference/contracts.md) and the rpc node [here](../../reference/rpcnodes.md).
 
-Note that because there is only one Guardian node deployed for testnet, there is a small chance that your VAA will not be processed. This rate is _not_ indicative of performance on mainnet where there are 19 Guardian nodes watching for transactions.
+There are two main obstacles with testing in testnet:
+- Many testnet blockchains are somewhat unstable and unreliable
+- Getting testnet tokens is a nuisance
+
+**Note:** There is only one Guardian node deployed for testnet, there is a small chance that your VAA will not be processed. This rate is _not_ indicative of performance on mainnet where there are 19 Guardian nodes watching for transactions.
 
 ### Mainnet
 
