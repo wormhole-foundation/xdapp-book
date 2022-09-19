@@ -22,7 +22,7 @@
   - [VAA: Verified Action Approval](./wormhole/4_vaa.md)
   - [Guardian Network](./wormhole/5_guardianNetwork.md)
   - [Relayers](./wormhole/6_relayers.md)
-  - [Portal xAsset Bridge](./wormhole/7_portalTokenBridge.md)
+  - [xAsset Bridge](./wormhole/7_TokenBridge.md)
   - [Wormchain](./wormhole/8_wormchain.md)
 
 - [xDapp Design](./dapps/architecture/0_dappDesign.md)
