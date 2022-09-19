@@ -4,44 +4,68 @@ Topology describes how data flows through your application and defines the respo
 
 ## Ultra-light Clients
 
-![Ultra-light client](../../diagrams/images/ultralight.png "Ultra Light Clients")
+![Ultra-light client](../../diagrams/images/ultralight_2.png "Ultra Light Clients")
 
-Ultra-light clients are often the best option when designing an MVP for your xDapp. The defining feature of an ultra-light client is the ability to support users from every chain in the Wormhole ecosystem while only having smart contracts on a single chain.
+Ultra-light Clients are often the best option when designing an MVP for your xDapp. The defining feature of an Ultra-light Client is that you are able to support users from every chain in the Wormhole ecosystem while **only having smart contracts on a single chain (!!!)**.
 
-This works by deploying a single _hub_ contract (or just using an existing Dapp) onto the hub chain. From there, add an entrypoint which supports _contract controlled transfers_ from the xAsset contracts on the hub chain. This allows your hub contract to receive tokens--and instructions for what to do with them--from other chains in the Wormhole ecosystem.
+xDapps with this structure works by having a hub chain that all application contract logic is deployed on and entrypoints to receive and send Wormhole messages to remote chains. All of the Wormhole contracts deployed on other chains in the Wormhole ecosystem provide the rest of the heavy lifting to send messages across chains. 
 
-Once that's done, the hub contract performs any necessary operations and bridges any resultant tokens back to the wallet which initiated the transfer. The only on-chain components are the hub contract and a lightweight wrapper that allows the hub contract to send and receive tokens using the xAsset contracts. All other elements of this topology are off-chain and untrusted. This pushes most of the development work out of smart contracts and into client-side typescript, dramatically decreasing smart contract risk without altering the trust assumptions of your application.
+You can think of the data flow across a xDapp with a Ultra-light Client as follows:
+
+1. End User Wallet interacts with Wormhole contracts on remote chain.
+2. Wormhole contracts on remote chain generates VAA that is received by xDapp contract on hub chain.
+3. xDapp contract on hub chain performs all necessary operations.
+4. xDapp contract interacts with Wormhole contracts on hub chain.
+5. Wormhole contracts on hub chain generates VAA that is received by End User Wallet on remote chain.
 
 **_Advantages:_**
 
-- Risk: Very little added smart contract risk.
-- Ease: Simple to develop.
-- Community: Easiest way to get heterogenous ecosystem support.
+- Very little added smart contract risk.
+- Simple to develop.
+- Easiest way to get heterogenous ecosystem support.
 
 **_Disadvantages:_**
 
-- Latency: Because all transactions have to bridge in and out of the hub chain, each transaction incurs the finality latency of both the remote and hub chain.
-- Transaction fees: There are always a grand total of three transactions. Two on the remote chain, and one on the hub chain.
+- Latency: Transactions incur latencies associated with bridging into and out of both the remote and hub chain.
+- Transaction Fees: There are always a grand total of three transactions. Two on the remote chain, and one on the hub chain.
 - Use cases: There is no place to perform trusted computation on the remote chain, so some use cases are more difficult to implement (or potentially not possible).
 
 ## Hub-and-Spoke
 
-Hub-and-spoke models are a natural evolution of the ultra-light client. A hub contract still handles all transactions, but there is now also a contract deployed to all the remote chains.
+![Hub and Spoke](../../diagrams/images/hub_and_spoke.PNG "Hub and Spoke")
+
+Hub and Spoke models can somewhat be thought of as the natural evolution of the ultra-light client. There is still a hub contract which handles all transactions, but there is now also a contract deployed to all the remote chains that is capable of performing some trusted computation.
+
+You can think of the data flow across a xDapp with a Ultra-light Client as follows:
+
+1. End User Wallet interacts with xDapp contracts on remote chain.
+2. xDapp contracts on remote chain performs trusted computation.
+3. xDapp contract on remote chain interacts with Wormhole contracts on remote chain.
+4. Wormhole contract on remote chain generatesVAA that is received by xDapp contract on hub chain.
+5. xDapp contract on hub chain performs all necessary operations.
+6. xDapp contract interacts with Wormhole contracts on hub chain.
+7. Wormhole contracts on hub chain generates VAA that is received by xDapp contract on remote chain.
+8. xDapp contract on remote chain performs trusted computation.
+9. xDapp contract on remote chain interacts with End User Wallet.
 
 **_Advantages:_**
 
-- Risk: Remote contracts are lightweight and don't carry large amounts of risk.
-- Flexibility: Can perform trusted checks on the remote chain (such as validating wallet balance, or any other piece of blockchain state).
+- Remote contracts are lightweight and don't carry large amounts of risk.
+- Can perform trusted checks on the remote chain. (Such as validating wallet balance, or any other piece of blockchain state)
 
 **_Disadvantages:_**
 
-- Latency: Same as ultra-light clients, where each transaction incurs the finality latency of both the remote and hub chain.
-- Transaction fees: There are always a grand total of three transactions, in the same fashion as ultra-light clients. 
-- Complexity: Requires managing multiple contracts.
+- Latency (same as ultra-light clients)
+- Transaction Fees
+- Managing multiple contracts
 
 ## Mesh
 
-A mesh topology is one where each chain implements the full logic for a process, such that each contract is a peer of other contracts in the trusted network and can act autonomously.
+![Mesh](../../diagrams/images/mesh.PNG "Mesh")
+
+Mesh topologies can somewhat be thought of as the next evolution of the Hub and Spoke model. There are now contracts capable of handling all transactions for an application are deployed on all supported chains. Each contract can be thought of as a peer of other contracts in the trusted network and can act autonomously.
+
+This approach of deploying significant application contracts on each supported chain is how many projects such as 0x has gone multi-chain.
 
 **_Advantages:_**
 
@@ -50,24 +74,26 @@ A mesh topology is one where each chain implements the full logic for a process,
 
 **_Disadvantages:_**
 
-- Complexity: There are now quite a few contracts to manage, especially if they are implemented multiple times across different VMs.
-- Data desync: Because each blockchain acts independently, each chain will have independent state. This can open up unwanted arbitrage opportunities and other discrepancies.
+- Complexity: there are now quite a few contracts to manage, especially if they are implemented multiple times across different VMs.
+- Data desync: because each blockchain acts independently, each chain will have independent state. This can open up unwanted arbitrage opportunities and other discrepancies.
 - Race conditions: In cases where an event is supposed to propagate through the entire system at a fixed time (for example, when closing a governance vote), it can be difficult to synchronize all the blockchains.
 
 ## Distributed
 
-A distributed topology is one where different blockchains have different responsibilities.
+![Distributed](../../diagrams/images/distributed.PNG "Distributed")
 
-**_Advantages:_**
+Distributed topologies can somewhat be thought of as the next evolution of the Mesh model. Instead of contracts that are capable of handling all transactions for an application on all supported chain, applications are broken up into separate responsibilities (i.e. data storage, user interaction, asset custody, governance) and deployed to different blockchains.
 
-- Power: Utilizes each blockchain for their individual strengths.
+Advantages:
 
-**_Disadvantages:_**
+- Power: utilize each blockchain for whatever is most optimal.
 
-- Complexity: Requires multiple specialized smart contracts and additional on-chain processes.
+Disadvantages:
+
+- Complexity: requires multiple specialized smart contracts, and potentially additional on-chain processes.
 
 ## Mix & Match
 
-Different use cases have different optimal topologies, and it's possible to use different topologies for different workflows. You should not feel 'locked in' to a single topology, so consider designing each workflow independently. For example, governance workflows are generally best implemented using a hub-and-spoke topology, even if the rest of the application uses a mesh architecture. As such, your contracts will likely evolve as your xDapp evolves.
+Different use cases have different optimal topologies, and it's possible to use different topologies for different workflows in your application. This means you should not feel 'locked in' to a single topology, and should instead consider designing each workflow independently. For example, governance workflows are generally best implemented using a Hub and Spoke topology, even if the rest of the application uses a Mesh architecture. As such, your contracts will likely evolve over time as your xDapp evolves and adds additional workflows.
 
 You can also progress through different topologies. A common strategy is to start off with an ultra-light client, move to a hub and spoke configuration, and then add optimizations and specialties to contracts as the need arises.

@@ -11,9 +11,7 @@ Let's dive into a little more detail about why relayers are untrusted and what t
 A few key properties of VAAs:
 
 - They are publicly emitted from the Guardian Network.
-
 - They need to be signed by the Guardian Network to be considered authentic.
-
 - They can be verified as authentic by anyone and any Wormhole Core Contract.
 
 Relayers are untrusted as an inherent consequence of these properties. Anyone can pick up a VAA and deliver it anywhere, but no one can alter the content of the VAA without invalidating the signatures.
