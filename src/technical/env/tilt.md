@@ -1,10 +1,10 @@
-# Tilt
+# Tilt (Devnet)
 
 ### What is Tilt?
 
 [Tilt](https://tilt.dev/) is part of the official Docker ecosystem. It's a tool which allows developers to easily configure a Kubernetes environment for development.
 
-In the context of Wormhole, the 'Tilt' environment is the development environment used by the [Wormhole Core Repository](https://github.com/wormhole-foundation/wormhole). It utilizes Tilt to deploy an environment with all the tools necessary to build across multiple blockchains. It has docker images for all the common items encountered during cross-chain developing, including:
+However, in the context of Wormhole, the 'Tilt' usually refers to the development environment used by the [Wormhole Core Repository](https://github.com/wormhole-foundation/wormhole). This environment uses Tilt to stand up all the tools necessary to build across multiple blockchains. It has docker images for all the common items encountered during cross-chain developing, including:
 
 - All the supported blockchains / ecosystems of Wormhole
 - A Guardian Node
@@ -12,11 +12,11 @@ In the context of Wormhole, the 'Tilt' environment is the development environmen
 - Databases, Redis
 - Utility frontends
 
-The Tilt environment is meant to be an entire cross-chain development stack right out of the box.
+The 'Tilt' environment (also referred to as Wormhole 'Devnet') is meant to provide an entire cross-chain development stack right out of the box.
 
 ### Is Tilt Right for You?
 
-Tilt is a generally a good starting point for most developers. Here's a succinct list of the pros and cons of the environment, so you can decide if it's the right fit for you.
+Tilt is generally a good starting point for most developers. Here's a succinct list of the pros and cons of the environment, so you can decide if it's the right fit for you.
 
 ### Pros
 
@@ -33,7 +33,7 @@ Tilt is a generally a good starting point for most developers. Here's a succinct
 
 # Setting up Tilt
 
-The Tilt environment functions best in a UNIX-style environment. For Windows users, using a WSL environment is recommended.
+Tilt functions best in a UNIX-style environment. For Windows users, using a WSL environment is recommended.
 
 In order to run the Tilt environment, you'll first need to make sure you have [Tilt](https://docs.tilt.dev/install.html) and [Go](https://go.dev/doc/install) installed.
 
@@ -47,7 +47,7 @@ cd wormhole
 tilt up
 ```
 
-Be sure to check out the **Tiltfile**, which has much of the configuration and arguments for the development environment. It's relatively straightforward to enable and disable components. For example, you can disable blockchains by setting them to false at startup
+Be sure to check out the [**Tiltfile**](https://github.com/wormhole-foundation/wormhole/blob/dev.v2/Tiltfile), which has much of the configuration and arguments for the development environment. It's relatively straightforward to enable and disable components. For example, you can disable blockchains by setting them to false at startup
 
 ```
 tilt up -- --algorand=false --near=false --solana=false terra_classic=false terra2=false
@@ -59,10 +59,16 @@ Tilt can pretty much be treated as though it's an external environment that you 
 
 If you've followed the standard setup, all your resources will be bound to various ports on localhost. To see all the endpoints which are being hosted in your Tilt environment, you should check the Tilt dashboard, located at [http://localhost:10350/overview](http://localhost:10350/overview).
 
-Tilt is actually referred to as 'Devnet' in the Wormhole ecosystem, so anywhere you see information labeled as 'Devnet', you can apply it to Tilt.
+Tilt is alos referred to as 'Devnet' in the Wormhole ecosystem, so anywhere you see information labeled as 'Devnet', you can apply it to Tilt.
 
 For example, you can find all the deployed contract addresses in the 'Devnet' [constants](https://github.com/wormhole-foundation/wormhole/blob/dev.v2/sdk/js/src/utils/consts.ts) of the Wormhole Typescript SDK.
 
 Useful information pertaining to funded wallets & useful private keys can also be found in the [devnet.md](https://github.com/wormhole-foundation/wormhole/blob/dev.v2/docs/devnet.md) file of the docs.
 
 From here, Tilt is quite similar to using Testnet, and you should look at the [Tooling](./tooling.md) page for additional resources.
+
+In order to shut down Tilt, simply run
+
+```
+tilt down
+```
