@@ -2,9 +2,9 @@
 
 ### What is Tilt?
 
-[Tilt](https://tilt.dev/) is part of the Docker ecosystem. It allows developers to easily configure a Kubernetes environment for development.
+[Tilt](https://tilt.dev/) is part of the official Docker ecosystem. It's a tool which allows developers to easily configure a Kubernetes environment for development.
 
-In the context of Wormhole, the 'Tilt' environment is the development environment used by the [Wormhole Core Repository](https://github.com/wormhole-foundation/wormhole). It utilizes Tilt to set up a development environment with all the tools necessary to build across multiple blockchains. It has docker images for all the common items encountered during cross-chain developing, including:
+In the context of Wormhole, the 'Tilt' environment is the development environment used by the [Wormhole Core Repository](https://github.com/wormhole-foundation/wormhole). It utilizes Tilt to deploy an environment with all the tools necessary to build across multiple blockchains. It has docker images for all the common items encountered during cross-chain developing, including:
 
 - All the supported blockchains / ecosystems of Wormhole
 - A Guardian Node
@@ -12,7 +12,7 @@ In the context of Wormhole, the 'Tilt' environment is the development environmen
 - Databases, Redis
 - Utility frontends
 
-The Tilt environment is meant to be an entire cross-chain ecosystem right out of the box.
+The Tilt environment is meant to be an entire cross-chain development stack right out of the box.
 
 ### Is Tilt Right for You?
 
@@ -21,8 +21,9 @@ Tilt is a generally a good starting point for most developers. Here's a succinct
 ### Pros
 
 - Out-of-the-box support for the many components needed to develop across the heterogenous blockchain space.
-- Consistent development environment, where contracts deploy deterministically & everything is already linked up.
-- Ability to easily enable/disable contracts as needed.
+- Consistent development environment, where contracts deploy deterministically and everything is already linked up.
+- Ability to easily enable/disable components as needed.
+- Regularly updated as new components join the Wormhole ecosystem.
 
 ### Cons
 
@@ -56,7 +57,7 @@ tilt up -- --algorand=false --near=false --solana=false terra_classic=false terr
 
 Tilt can pretty much be treated as though it's an external environment that you can easily spin up and tear down.
 
-If you've followed the standard setup, all your resources will be bound to various ports on localhost. To see all the endpoints which are being hosted in your Tilt environment, you should check the Tilt dashboard, located at http://localhost:10350/overview.
+If you've followed the standard setup, all your resources will be bound to various ports on localhost. To see all the endpoints which are being hosted in your Tilt environment, you should check the Tilt dashboard, located at [http://localhost:10350/overview](http://localhost:10350/overview).
 
 Tilt is actually referred to as 'Devnet' in the Wormhole ecosystem, so anywhere you see information labeled as 'Devnet', you can apply it to Tilt.
 
