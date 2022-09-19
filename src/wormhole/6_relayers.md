@@ -44,7 +44,7 @@ Specialized relayers solve the UX problems of client-side relayers by adding a b
 
 In this model, relayers either listen directly to the Guardian Network via a spy (called **Spy Relaying**), or will simply provide a REST endpoint to accept a VAA which should be relayed (called **REST Relaying**). Once a relayer has the VAA, it simply performs any necessary off-chain calculations and submits the VAA to the required destination.
 
-An important consideration when developing a specialized relayer is that the relayer is still considered untrusted. VAAs are public and can be submitted by anyone, so the off-chain relayer should not do any computation which is considered "trusted." However, doing things like deterministic data transforms, waiting for gas prices to drop, or various forms of 'batching' can be very useful cost-reduction strategies that do not impact security.
+An important consideration when developing a specialized relayer is that the relayer is still considered untrusted. VAAs are public and can be submitted by anyone, so developers should not rely on off-chain relayers to perform any computation which is considered "trusted." However, things that do not impact security like deterministic data transforms, waiting for gas prices to drop, or various forms of 'batching' can be very useful cost-reduction strategies.
 
 Specialized Relayers have the following advantages:
 
@@ -57,11 +57,13 @@ However, they also have a couple notable downsides
     - They add a backend relaying component which is responsible for liveness
     - They can complicate fee-modeling, as relayers are responsible for paying target chain fees.
 
-Because relayers are responsible for liveness, they become another dependency component for the xDapp. If the relayers are all down, your application has an outage. This is similar to how dependencies like the frontend, blockchain nodes, blockchains, third party APIs, etc, can also cause outages.
+Due to specialized relayers being such a common solution, here is a reference implementation provided in the main Wormhole repository which stands up the infrastructure needed to provide a Spy interface, a REST interface and the ability to interact with each blockchain in the ecosystem. If you plan to develop a specialized relayer, consider starting from the reference implementation and add modifications as needed.
 
-To mitigate this, multiple relayers can be run in order to provide redundancy. It's also possible to design specialized relaying solutions which are entirely decentralized, such that there are a network of relayers which run based off economic incentives. However, creating a robust model for decentralized relaying is generally application-specific and complex.
+Because relayers are responsible for liveness, they become another dependency component (similar to the frontend, blockchain nodes, blockchains, third party APIs, etc.) for the xDapp. If the relayers are all down, your application has an outage.
 
-Due to specialized relayers being such a common solution, there is a reference implementation provided in the main Wormhole repository which stands up the infrastructure needed to provide a Spy interface, a REST interface and the ability to interact with each blockchain in the ecosystem. If you plan to develop a specialized relayer, consider starting from the reference implementation and add modifications as needed.
+To mitigate this, multiple relayers can be run in order to provide redundancy either by (1) the xDapp team or (2) a decentralized network based off economic incentives. _However, creating a robust model for decentralized relaying is generally application-specific and complex._
+
+Overall, Specialized Relayers add a backend component that is responsible for liveness, but can simplify the user experience. It's generally recommend if your goal is a highly-polished user experience and you want to have better control over message delivery.
 
 # Generic Relayers
 
@@ -81,6 +83,8 @@ And potential downsides:
     - They require all calculations to be done on-chain
     - They have less gas efficiency
     - They may not be supported on all chains
+
+Overall, Generic Relayers simply both the developer and user experience. It's generally recommend if your goal is a highly-polished user experience and increase decentralization of the xDapp.
 
 ---
 
