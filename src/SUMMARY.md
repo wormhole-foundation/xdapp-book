@@ -39,7 +39,8 @@
 
 - [Environment Setup](./technical/env/environments.md)
 
-  - [Tilt](./technical/env/tilt.md)
+  - [Tilt (Devnet)](./technical/env/tilt.md)
+    - [Troubleshooting](./technical/env/troubleshooting.md)
   - [Wormhole Local Validator](./technical/env/wlv.md)
   - [Testnet](./technical/env/testnet.md)
   - [Tooling](./technical/env/tooling.md)
