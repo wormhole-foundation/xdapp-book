@@ -2,7 +2,7 @@
 
 Wormhole is a complex ecosystem with several noteworthy components. Before we go into each component in depth, let's talk about the names of the major pieces and how they fit together.
 
-![Architecture Diagram](../diagrams/images/architecture-2022-01-02-1935.png)
+![Architecture Diagram](../diagrams/images/architecture.png)
 
 ### On-Chain Components
 
@@ -12,7 +12,7 @@ Wormhole is a complex ecosystem with several noteworthy components. Before we go
 
    - **Core Contracts** - Primary ecosystem contracts. These are the contracts which the Guardians observe and which fundamentally allow for cross-chain communication.
  
-    - **Portal xAsset Contracts** - Contracts that allow normal tokens to be converted to xAssets and enable these xAssets to be bridged.
+    - **xAsset Contracts** - Contracts that allow normal tokens to be converted to xAssets and enable these xAssets to be bridged.
  
     - **Relay Contracts** - _in development\*_ - Contracts that allow xDapps to send messages to a specific blockchain via the decentralized Generic Relayer network.
  
