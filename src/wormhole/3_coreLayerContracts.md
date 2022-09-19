@@ -4,11 +4,11 @@ The Core Contracts are the mechanism by which all Wormhole messages are emitted.
 
 The Wormhole Core Contracts are one of the most pivotal pieces of the Wormhole ecosystem. They serve as a great place to start when learning about how data flows through the ecosystem.
 
-In general, Core Contracts are simple with only a few public-facing functions, which we'll define next.
+In general, Core Contracts are simple and can be broekn down to a **sending** and **receiving** side, which we'll define next.
 
----
+### Sending
 
-First, we have the 'sending' side of the Core Contract:
+Below is the mechanism by which Wormhole messages (aka Verified ACtion Approval, VAA) are emitted:
 
     publishMessage(
         int nonce,
@@ -16,23 +16,23 @@ First, we have the 'sending' side of the Core Contract:
         int consistencyLevel
     ) returns int sequenceNumber
 
-This is the foundational mechanism by which Wormhole Messages are emitted. Let's break it down a bit:
+ Let's break it down a bit:
 
 - **payload** - The content of the emitted message and an arbitrary byte array. It may be capped to a certain maximum length due to the constraints of individual blockchains.
 
 - **consistencyLevel** - The number of blocks which the Guardians should wait prior to emitting a VAA for this message. This number is usually either 1 or equal to the chain's finality period. This is a defense against transactions being orphaned.
 
-- **nonce** -  If multiple messages in the same transaction have the same nonce, a batch VAA will be produced alongside the individual VAAs on chains that allow them. This reduces gas costs and simplifies composeability.
+- **nonce** -  If multiple messages in the same transaction have the same nonce, a batch VAA will be produced alongside the individual VAAs on chains that allow them. This reduces gas costs and simplifies composability.
 
 - **sequenceNumber** - A unique index number for the message. When combined with the emitter contract address and emitter chain ID, the corresponding VAA can be retrieved from a guardian network node.
 
-The implementation strategy for publishMessage differs by chain, but the general strategy consists of the Core Contract posting the emitterAddress (the contract which called publishMessage), sequenceNumber, and consistencyLevel into the blockchain logs. Once the desired consistencyLevel has elapsed, the Guardian Network will produce the requested VAAs.
+The implementation strategy for publishMessage differs by chain, but the general strategy consists of the Core Contract posting the emitterAddress (the contract which called publishMessage), sequenceNumber, and consistencyLevel into the blockchain logs. Once the desired consistencyLevel has elapsed and the message passes all of the Guardians' optional checks, the Guardian Network will produce the requested VAAs.
 
 Currently there are no fees to publish a message (with the exception of publishing on Solana) but this is not guaranteed to always be the case in the future.
 
----
+### Receiving
 
-Next, we have the 'receiving' side of the Core Contract.
+Below is the mechanism by which VAAs are received:
 
     parseAndVerifyVAA( byte[] VAA )
 
@@ -48,8 +48,10 @@ VAAs simply attest that "this contract on this chain said this thing." Therefore
 
 This multicast-by-default model is integral to the design. Having this multicast capacity makes it easy to synchronize state across the entire ecosystem, because a single blockchain can make its data available to every chain in a single action with low latency. This reduces the complexity of the n^2 problems encountered by routing data to a large number of blockchains.
 
-Use cases where the message has an intended recipient or is only meant to be consumed a single time must be handled in logic outside the Core Contract. There are standard practices for accomplishing these features  later on in the code examples, and some ecosystem contracts (namely Portal & the Relaying contract) handle this on behalf of downstream consumers.
+Use cases where the message has an intended recipient or is only meant to be consumed a single time must be handled in logic outside the Core Contract. There are standard practices for accomplishing these features later on in the code examples, and some ecosystem contracts (namely Token Bridge & the Relaying contract) handle this on behalf of downstream consumers.
 
 Lastly, because the VAA creation is separate from relaying, there is _no additional cost_ to the multicast model when a single chain is being targetted. If the data isn't needed on a certain blockchain, don't relay it there, and it won't cost anything.
+
+---
 
 In our next section, we'll dive into the technical specfications of the VAA.

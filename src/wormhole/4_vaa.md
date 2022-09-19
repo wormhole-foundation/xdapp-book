@@ -27,7 +27,7 @@ The Body is the relevant information for consumers and is handed back from parse
 
 VAAs are uniquely indexed by their emitterChain, emittedAddress and sequence. They can be obtained by querying a node in the Guardian Network with this information.
 
-Because baseline VAAs have no destination, they are effectively multicast. They will be verified as authentic by any Core Contract on any chain in the network, and it is entirely the responsibility of relayers to deliver VAAs to the appropriate place.
+Because baseline VAAs have no destination, they are effectively multicast. They will be verified as authentic by any Core Contract on any chain in the network. If a VAA has a specific destionation, it is entirely the responsibility of relayers to complete that delivery appropriately.
 
 ## Batch VAAs
 

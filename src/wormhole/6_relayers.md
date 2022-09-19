@@ -1,6 +1,12 @@
 # Relayers
 
-Relayers are a major part of the Wormhole Ecosystem. Where the Guardian Network is effectively the 'read' portion of interoperability, relayers are the 'write' portion.
+All simple cross-chain processes on Wormhole essentially boil down to a three step process:
+
+1. Perform an action on chain A.
+2. Retrieve the resulting VAA from the Guardian Network.
+3. Perform an action on chain B using the VAA.
+
+Relayers play a key role in the final step of the process -- they can be thought of as the 'write' portion of interoperability, complementing the 'read' portion that Guardians provide.
 
 The definition of a _Relayer_ in the context of Wormhole is: Any process which delivers VAAs to a destination.
 
@@ -18,29 +24,25 @@ Next, we'll go over a few of the most common relaying strategies.
 
 ## Client-side Relaying
 
-All simple processes on Wormhole essentially boil down to a three step process:
+Client-side relaying relies on the user-facing frontend, like a webpage or a wallet, to perform all three steps of the cross-chain process.
 
-    1. Perform an action on chain A.
-    2. Retrieve the resulting VAA from the Guardian Network.
-    3. Perform an action on chain B using the VAA.
-
-Considering that the first step of this process is almost always initiated from a user-facing frontend like a webpage or a wallet, it is possible to also perform steps 2 and 3 in the frontend as well. This is referred to as 'client-side relaying', and it has two major benefits:
+There are two major benefits of this approach:
 
 - Low cost. Users pay exactly the transaction fee for the second transaction.
 - No backend relaying infrastructure.
 
-That makes client-side relaying a tempting prospect, especially if you're just interested in getting an MVP running. However, client-side relaying also has two notable drawbacks:
+However, client-side relaying also has two notable drawbacks:
 
 - Users must sign all transactions required with their own wallet.
 - Users must have funds to pay the transaction fees on every chain involved.
 
-Overall, client-side relaying is a simple solution, but can make the user experience cumbersome. It's generally not recommended if your goal is a highly-polished user experience.
+Overall, client-side relaying is a simple solution, but can make the user experience cumbersome. It's generally not recommended if your goal is a highly-polished user experience but can be useful to getting an MVP up and running.
 
 ## Specialized Relayers
 
 Specialized relayers solve the UX problems of client-side relayers by adding a backend component which can handle steps 2 and 3 on behalf of the user.
 
-In this model, relayers either listen directly to the Guardian Network via a spy (This is called **Spy Relaying**), or will simply provide a REST endpoint to accept a VAA which should be relayed (called **REST Relaying**). Once a relayer has the VAA, it simply performs any necessary off-chain calculations and submits the VAA to the required destination.
+In this model, relayers either listen directly to the Guardian Network via a spy (called **Spy Relaying**), or will simply provide a REST endpoint to accept a VAA which should be relayed (called **REST Relaying**). Once a relayer has the VAA, it simply performs any necessary off-chain calculations and submits the VAA to the required destination.
 
 An important consideration when developing a specialized relayer is that the relayer is still considered untrusted. VAAs are public and can be submitted by anyone, so the off-chain relayer should not do any computation which is considered "trusted." However, doing things like deterministic data transforms, waiting for gas prices to drop, or various forms of 'batching' can be very useful cost-reduction strategies that do not impact security.
 

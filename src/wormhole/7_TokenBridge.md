@@ -1,8 +1,10 @@
-# Portal xAsset Bridge
+# xAsset Bridge
 
-Portal is a set of ecosystem contracts that provision Wormhole's xAsset layer. These contracts allow tokens to be bridged around the Wormhole Ecosystem in a **path-independent** fashion, and are easily composeable with other functions in the Wormhole ecosystem.
+There is a set of ecosystem contracts that provision Wormhole's xAsset layer which allow tokens to be bridged around the Wormhole Ecosystem in a **path-independent** fashion, and are easily composeable with other functions in the Wormhole ecosystem.
 
-This section provides a high-level overview of how to interact with the Portal contracts. If you're looking to interact with Portal directly from a typescript client or backend, you should start with the [Wormhole Typescript SDK](https://www.npmjs.com/package/@certusone/wormhole-sdk). If you'd prefer to look at code examples, they are provided in the **Portal Examples** section. 
+This section provides a high-level overview of how to interact with the xAsset contracts. 
+
+If you're looking to interact with the Token Bridge directly from a typescript client or backend, you should start with the [Wormhole Typescript SDK](https://www.npmjs.com/package/@certusone/wormhole-sdk). 
 
 ## Creating xAssets
 
@@ -39,15 +41,17 @@ These assets are all **fungible** with each other. This means the Wormhole-wrapp
 
 Initiating token transfers is a straightforward affair. Once the transfer is initiated, the Guardians will produce a transfer VAA when finality has been reached on the **source chain**. The VAA must then be relayed to the **target chain**.
 
-All tokens managed by Portal are backed by the origin asset, allowing tokens to be transferred in a path-independent fashion. Regardless of what chain the tokens are passed to, a 'double-wrapped' asset will never be created for a single backing asset. Additionally, there are no liquidity limitations.
+All tokens managed by the Token Bridge are backed by the origin asset, allowing tokens to be transferred in a path-independent fashion. Regardless of what chain the tokens are passed to, a 'double-wrapped' asset will never be created for a single backing asset. Additionally, there are no liquidity limitations.
 
 ## Contract-Controlled Transfers
 
 Basic transfers are intended to transfer tokens from one wallet to another, whereas Contract Controlled Transfers (CCTs) are meant to transfer tokens from one smart contract to another. If you're writing an xDapp, CCTs will likely be a large component.
 
-CCTs allow xDapp contracts to easily perform Portal transfers. Contract controlled transfers are quite similar to simple transfers, but have two additional features:
+CCTs allow xDapp contracts to easily perform simple Token Bridge transfers, but have two additional features:
 
 - An arbitrary byte array can be appended to the transfer and can be used to easily pass additional information to the recipient contract.
 - The CCT VAA redeem can only be performed by the recipient contract, as opposed to basic transfers, which can be performed by any caller. This ensures that any additional operations which the contract wants to perform as part of the redeem transaction must be executed.
+
+---
 
 In the next section, we'll discuss Wormchain and some of the upcoming features it will enable.
