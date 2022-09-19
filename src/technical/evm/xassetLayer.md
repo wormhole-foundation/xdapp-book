@@ -2,7 +2,7 @@
 
 This section will explain how to properly interact with the Wormhome Core Layer in an EVM ecosystem.
 
-# Configuring the interface
+## Configuring the interface
 
 [Here]() is the interface for applications to interact with Wormhole's xAsset layer.
 //TODO link to file in github so doesn't become stale
