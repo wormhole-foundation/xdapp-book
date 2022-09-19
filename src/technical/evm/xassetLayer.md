@@ -4,12 +4,10 @@ This section will explain how to properly interact with the Wormhome Core Layer 
 
 # Configuring the interface
 
-- Same as instantiating any other EVM interface / Core Layer / NFT Layer,
-
 [Here]() is the interface for applications to interact with Wormhole's xAsset layer.
 //TODO link to file in github so doesn't become stale
 
-Instantiating the interface will depend on your development ecosystem and blockchain. The Wormhole Core Layer contract address is usually stored in your contract address.
+Instantiating the interface will depend on your development ecosystem and blockchain. The Wormhole xAsset contract address is usually stored in your contract address.
 
 Below is an example line of code to instantiate the interface for mainnet Ethereum:
 
@@ -20,25 +18,13 @@ ITokenBridge token_bridge = ITokenBridge(wormhole_token_bridge_address);
 
 ## Registering New Tokens
 
-- Only needs to be done once globally ever
-- Reattesting will update metadata, can be done over and over
-- Generally not done by the xDapp contract, but instead by an off-chain process or by hand
-- Probably don't need code examples, as it's not advised to do this on chain for most usecases
-
 Attesting a token from EVM needs to happen once per token. If a token is not attested, it will not be claimable until so. However, there are no restrictions to reattesting a token; doing so will update the metadata.
 
-It is not advised to attest tokens on-chain for most usecases.
-
-To attest a token by an off-chain process, you can either do it by hand through one of the Token Bridge UIs (for example [Portal](https://www.portalbridge.com/#/transfer)) or using the JS SDK.
+It is not advised to attest tokens on-chain for most usecases. To attest a token by an off-chain process, you can either do it by hand through one of the Token Bridge UIs (for example [Portal](https://www.portalbridge.com/#/transfer)) or using the [JS SDK](https://www.npmjs.com/package/@certusone/wormhole-sdk).
 
 // If we want to show how to attest with JS SDK, have the example [here](https://book.wormhole.com/development/portal/evm/attestingToken.html)
 
 ## Basic Transfer
-
-- Code example for transferring an ERC-20, explain all the args, WORMHOLE ADDRESSES
-- Transferring native currency is a special case. Use transferETH for the native currency regardless of which EVM you are on.
-- Use this only if you are transferring to an end user wallet. If you're transferring to a smart contract (which you control), use transferWithPayload instead. Explain why
-- Mention public relayers, unwrapping conventions, fee schedule.
 
 Basic transfer should only be used if you are transferring messages to an end user wallet. If the end destination is a contract, you should only use Contract Controlled Transfers (described below). 
 
@@ -85,9 +71,6 @@ completeTransferAndUnwrapETH(VAA);
 ```
 
 ## Contract Controlled Transfer
-
-- Differences when compared to a basic transfer: has a payload, can only be redeemed if msg.sender == the recipient, doesn't have a relayer fee field because of the redemption restriction.
-- Always use this when the destination is a contract
 
 For any message transfers where the destination is a contract, you should always used Contract Controlled Transfers.
 
@@ -137,17 +120,3 @@ token_bridge.completeTransferWithPayload(VAA);
 // To complete transfer of native currency
 completeTransferAndUnwrapETHWithPayload(VAA);
 ```
-
-## Redemption
-
-### Basic Token Redemption
-
-- completeTransfer for everything
-- completeTransfer and unwrap Eth only for the case where unwrapping ETH is desired
-
-### Contract Controlled Transfer redemption
-
-- completeTransferWithPayload for everything,
-- completeTransferAndUnwrapETH as a QoL function. Unwraps the ETH before giving it to the contract.
-
-LUMPED THIS INTO PREVIOUS SECTIONS
