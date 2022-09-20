@@ -57,7 +57,13 @@ However, they also have a couple notable downsides
     - They add a backend relaying component which is responsible for liveness
     - They can complicate fee-modeling, as relayers are responsible for paying target chain fees.
 
-Due to specialized relayers being such a common solution, here is a reference implementation provided in the main Wormhole repository which stands up the infrastructure needed to provide a Spy interface, a REST interface and the ability to interact with each blockchain in the ecosystem. If you plan to develop a specialized relayer, consider starting from the reference implementation and add modifications as needed.
+Due to specialized relayers being such a common solution, an extensible relayer (called the plugin relayer) has been provided in the main Wormhole repository. The plugin relayer stands up most of the requisite infrastructure for relaying, so that you only need to implement the logic which is specific to your application.
+
+If you plan to develop a specialized relayer, consider starting from the plugin relayer [found here](https://github.com/wormhole-foundation/wormhole/tree/dev.v2/relayer).
+
+<!--
+TODO link to plugin relayer once it has been merged down
+-->
 
 Because relayers are responsible for liveness, they become another dependency component (similar to the frontend, blockchain nodes, blockchains, third party APIs, etc.) for the xDapp. If the relayers are all down, your application has an outage.
 
@@ -81,11 +87,11 @@ Generic relayers have the following benefits:
 And potential downsides:
 
     - They require all calculations to be done on-chain
-    - They have less gas efficiency
+    - They sometimes have less gas efficiency
     - They may not be supported on all chains
 
-Overall, Generic Relayers simply both the developer and user experience. It's generally recommend if your goal is a highly-polished user experience and increase decentralization of the xDapp.
+Overall, Generic Relayers simplify both the developer and user experience. They're a great choice if they cover all your usecases.
 
 ---
 
-In the next section, we'll discuss the Portal Ecosystem contracts that allow xAssets to be created and moved freely around the ecosystem.
+In the next section, we'll discuss the xAsset module, which allows xAssets to be created and moved freely around the ecosystem.
