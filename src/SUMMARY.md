@@ -61,8 +61,8 @@
 
 - [Relayers](./technical/relayer/overview.md)
 
-  - [Plugin Relayer](./technical/relayer/pluginRelayers.md)
-  - [Guardian Network](./technical/relayer/guardianNetwork.md)
+  - [Generic Relayers](./technical/relayer/genericRelayer.md)
+  - [Specialized Relayers](./technical/relayer/pluginRelayers.md)
 
 - [Wormhole Typescript SDK](./development/portal/overview.md)
   - [EVM]()

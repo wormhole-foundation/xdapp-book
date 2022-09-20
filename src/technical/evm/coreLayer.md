@@ -6,7 +6,7 @@ This section will explain how to properly interact with the Wormhome Core Layer 
 
 [Here](https://github.com/wormhole-foundation/wormhole/blob/dev.v2/ethereum/contracts/interfaces/IWormhole.sol) is the interface for applications to interact with Wormhole's Core Contract to publish messages or verify and parse a received message.
 
-Instantiating the interface will depend on your development ecosystem and blockchain. The Wormhole Core Layer contract address is usually stored in your contract address.
+Instantiating the interface will depend on the contract address of your development ecosystem and blockchain.
 
 Below is an example line of code to instantiate the interface for mainnet Ethereum:
 
@@ -45,11 +45,15 @@ For either message type, remember to collect gas fees associated with submitting
 To properly parse and verify a single VAA, always use `parseAndVerifyVM` which takes in one argument: `encodedVM` (bytes). This function will return three arguments:
 
 1. `vm` (VM): Structured data that reflects the content of the VAA.
-    - A breakdown of this message format is described in the [VAA](../../wormhole/4_vaa.md) section. It is up to the receving contracting to properly parse this data structure for the necessary information.
+   - A breakdown of this message format is described in the [VAA](../../wormhole/4_vaa.md) section. Aside from the header information, which can be considered 'trusted', it is up to the recipient contract to properly parse the remaining payload, as this contains the verbatim message sent from the emitting contract.
 2. `valid` (bool): Boolean that reflects whether or not the VAA was properly signed by the Guardian Network
 3. `reason` (string): Explanatory error message if a VAA is invalid, or an empty string if it is valid.
 
+<!--
+TODO
+everything about this
 **Batch VAA**
+
 
 To properly parse and verify a batch VAA, always use `parseAndVerifyBatchVM` which takes in two arguments: `encodedVM` (bytes) and `cache` (bool).
 
@@ -58,3 +62,5 @@ Batch VAAs are designed so that relayers can choose to submit any subset of the 
 ---
 
 Code recommendation, write the code which expects to receive a VAA to utilize parseAndVerifyVM(? unsure if this is the correct call). That way, your code will be able to handle either type 1 VAAs (single VAAs), or type 3 VAAs (headless VAAs). This allows it to utilize both single & batch VAAs and dramatically increases composeability. \*this only requires like two or three lines of code, so this would be a good candidate for a code example which shows how to properly use batch vaas without breaking composeability. Should note that the module code still ALWAYS needs to verify, but should do so with the 'single' message verifying and then expose that function publicly in order to enable composeability.
+
+-->

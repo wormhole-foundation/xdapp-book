@@ -4,10 +4,14 @@ This section will explain how to properly interact with the NFT Layer in an EVM 
 
 ## Configuring the interface
 
-[Here]() is the interface for applications to interact with Wormhole's NFT layer.
-//TODO link to file in github so doesn't become stale
+[Here](https://github.com/wormhole-foundation/wormhole/tree/dev.v2/ethereum/contracts/interfaces) is the interface for applications to interact with Wormhole's NFT layer.
 
-Instantiating the interface will depend on your development ecosystem and blockchain. The Wormhole xAsset contract address is usually stored in your contract address.
+<!---
+TODO
+merge down the interface PR and link to actual file
+-->
+
+Instantiating the interface will depend on the contract address of your development ecosystem and blockchain.
 
 Below is an example line of code to instantiate the interface for mainnet Ethereum:
 
@@ -18,21 +22,22 @@ INFTBridge NFT_bridge = INFTBridge(wormhole_nft_bridge_address);
 
 ## Transferring a NFT
 
-The Wormhole NFT Bridge only supports tokens that support the ERC-721 interface and will create a wrapped NFT with identical metadata. How this is implemented varies by ecosystem.
+The Wormhole NFT Bridge only supports tokens compliant with the ERC-721 interface, and functions by creating a 'wrapped NFT' with identical metadata. How this is implemented varies by ecosystem.
 
 **Note**: Unlike xAssets, there is no attestation required for bridging NFTs.
 
 To transfer a NFT, there are three steps:
 
 1. Initiate the NFT transfer
-    - This function call will return a `sequence` (uint64) that is used in the VAA retrieval step
+   - This function call will return a `sequence` (uint64) that is used in the VAA retrieval step
 
 ```
 transferNFT(tokenAddress, tokenID, recipientChain, recipient, nonce);
 ```
 
-2. Retrieve the emitted VAA.
-    - _Note: NFT Transfer VAAs are retrieved from the Guardian Network by the `emitterChainID`, `emitterAddress`, and `sequence`_
+2. Retrieve the emitted VAA from the Guardian Network. (Usually done by a relayer)
+   - _Note: NFT Transfer VAAs are retrieved from the Guardian Network by the `emitterChainID`, `emitterAddress`, and `sequence`_
+
 ```
 const emitterAddr = getEmitterAddressEth(network.NFTBridgeAddress);
 const seq = parseSequenceFromLogEth(tx, network.bridgeAddress);
@@ -45,12 +50,14 @@ while (!vaaBytes.vaaBytes) {
 }
 ```
 
-3.  Complete the NFT transfer
+3.  Complete the NFT transfer by submitting the resultant VAA to the target chain.
 
 ```
 completeTransfer(VAA);
 ```
 
-## Additional utility
+<!---
+TODO
 
-//TODO NFT verification and perhaps some other common usecases
+additional usecases, most specifically how to grab the origin address of the wrapped NFT
+-->

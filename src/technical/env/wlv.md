@@ -8,14 +8,15 @@
 
 Here's a succinct list of the pros and cons of the environment, so you can decide if it's the right fit for you.
 
-- Pros
+### Pros
 
-  - Lightweight, low system resource demand.
-  - Fast iteration times.
-  - Can be added into an existing blockchain development setup.
+- Lightweight, low system resource demand.
+- Fast iteration times.
+- Can be added into an existing blockchain development setup.
 
-- Cons
-  - You may end up reinventing the tilt/testnet environment as you add more components.
+### Cons
+
+- You may end up reinventing the tilt/testnet environment as you add more components.
 
 ## Setting up Wormhole Local Validator
 
