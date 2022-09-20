@@ -38,7 +38,7 @@ Hub and Spoke models can somewhat be thought of as the natural evolution of the 
 
 You can think of the data flow across a Hub-and-Spoke system as follows:
 
-1. The end user's wallet interacts with your (lightweight) remote contracts on remote chain.
+1. The end user's wallet interacts with your (lightweight) remote contracts.
 2. The remote contracts perform any necessary trusted computation.
 3. The remote contracts use Wormhole to generate a VAA, which is consumed by the hub contract.
 4. The hub contract performs all necessary operations.
