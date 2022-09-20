@@ -8,15 +8,15 @@ Topology describes how data flows through your application and defines the respo
 
 Ultra-light Clients are often the best option when designing an MVP for your xDapp. The defining feature of an Ultra-light Client is that you are able to support users from every chain in the Wormhole ecosystem while **only having smart contracts on a single chain (!!!)**.
 
-xDapps with this structure works by having a hub chain that all application contract logic is deployed on and entrypoints to receive and send Wormhole messages to remote chains. All of the Wormhole contracts deployed on other chains in the Wormhole ecosystem provide the rest of the heavy lifting to send messages across chains. 
+xDapps with this structure work by having a hub chain that all application contract logic is deployed to and entrypoints which receive and send Wormhole messages to remote chains. The network of Wormhole contracts deployed on other chains across the ecosystem provide the rest of the heavy lifting to send messages across chains.
 
 You can think of the data flow across a xDapp with a Ultra-light Client as follows:
 
-1. End User Wallet interacts with Wormhole contracts on remote chain.
-2. Wormhole contracts on remote chain generates VAA that is received by xDapp contract on hub chain.
-3. xDapp contract on hub chain performs all necessary operations.
-4. xDapp contract interacts with Wormhole contracts on hub chain.
-5. Wormhole contracts on hub chain generates VAA that is received by End User Wallet on remote chain.
+1. The end user's wallet interacts with Wormhole contracts on remote chain.
+2. The Wormhole contracts on remote chain generate a VAA which is received by your xDapp contract on the hub chain.
+3. Your xDapp contract on the hub chain performs all necessary operations.
+4. Your xDapp contract interacts with Wormhole contracts on the hub chain.
+5. The Wormhole contracts on hub chain generate a VAA which is sent back to the end user's wallet on the remote chain.
 
 **_Advantages:_**
 
@@ -36,17 +36,14 @@ You can think of the data flow across a xDapp with a Ultra-light Client as follo
 
 Hub and Spoke models can somewhat be thought of as the natural evolution of the ultra-light client. There is still a hub contract which handles all transactions, but there is now also a contract deployed to all the remote chains that is capable of performing some trusted computation.
 
-You can think of the data flow across a xDapp with a Ultra-light Client as follows:
+You can think of the data flow across a Hub-and-Spoke system as follows:
 
-1. End User Wallet interacts with xDapp contracts on remote chain.
-2. xDapp contracts on remote chain performs trusted computation.
-3. xDapp contract on remote chain interacts with Wormhole contracts on remote chain.
-4. Wormhole contract on remote chain generatesVAA that is received by xDapp contract on hub chain.
-5. xDapp contract on hub chain performs all necessary operations.
-6. xDapp contract interacts with Wormhole contracts on hub chain.
-7. Wormhole contracts on hub chain generates VAA that is received by xDapp contract on remote chain.
-8. xDapp contract on remote chain performs trusted computation.
-9. xDapp contract on remote chain interacts with End User Wallet.
+1. The end user's wallet interacts with your (lightweight) remote contracts on remote chain.
+2. The remote contracts perform any necessary trusted computation.
+3. The remote contracts use Wormhole to generate a VAA, which is consumed by the hub contract.
+4. The hub contract performs all necessary operations.
+5. The hub contract uses Wormhole to send a message back to the original remote contract.
+6. The remote contract takes whatever action is needed to finish the process.
 
 **_Advantages:_**
 
@@ -65,7 +62,7 @@ You can think of the data flow across a xDapp with a Ultra-light Client as follo
 
 Mesh topologies can somewhat be thought of as the next evolution of the Hub and Spoke model. There are now contracts capable of handling all transactions for an application are deployed on all supported chains. Each contract can be thought of as a peer of other contracts in the trusted network and can act autonomously.
 
-This approach of deploying significant application contracts on each supported chain is how many projects such as 0x has gone multi-chain.
+This is historically the most popular methodology for going cross-chain. It's very attractive in ecosystems like EVM or Cosmos, where a single smart contract can simply be deployed across many different blockchains.
 
 **_Advantages:_**
 
