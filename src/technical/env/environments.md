@@ -2,7 +2,7 @@
 
 The bare minimum Wormhole environment is just a blockchain linked up to a Guardian node. There are quite a few ways of accomplishing this, and if you're just looking to get your feet wet, you should try whichever sounds easiest.
 
-However, as you get deeper into cross-chain development you'll likely find you have a growing number of components, dependencies, and teammates in the picture making your development environment more complex. Here are some of the considerations you should have in mind when choosing a development environment which will be well suited for your xDapp.
+However, as you get deeper into cross-chain development, you'll likely find yourself with a growing number of components, dependencies, and teammates in the picture making your development environment more complex. Here are some of the considerations you should have in mind when choosing a development environment which will be well suited for your xDapp.
 
 ### What components do I need now? What components will I need in the future?
 
@@ -10,9 +10,9 @@ However, as you get deeper into cross-chain development you'll likely find you h
 
 ### What are my dependencies?
 
-- If your smart contracts have no dependencies, it may be possible for you to develop in a vacuum. However, if you're working on a fledgling blockchain and trying to integrate with other applications which are also in development, you may have no choice but to work in testnet alongside other development teams.
+- If your smart contracts have no dependencies, it may be possible for you to develop in a vacuum.
 
-- Just because you have dependencies doesn't mean you automatically have to develop in testnet or mainnet. Often times it's relatively trivial to redeploy your dependencies in Tilt, or to use something like [Foundry](https://github.com/foundry-rs/foundry) to create a development version of an existing testnet or mainnet.
+- If your smart contracts does have dependencies, there are several options that range from deploying your dependencies in Tilt or use something like [Foundry](https://github.com/foundry-rs/foundry) to simulate an existing testnet or mainnet in your local devnet to working to working directly in testnet alongside other teams.
 
 ### How am I going to collaborate?
 

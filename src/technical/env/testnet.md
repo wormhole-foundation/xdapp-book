@@ -2,7 +2,7 @@
 
 Wormhole testnet is spread across many of the most popular testnet blockchains.
 
-The primary reason to use Wormhole testnet is in order to simplify the management of your dependent contracts. This will vary from blockchain to blockchain.
+The primary reason to use Wormhole testnet is to simplify the management of your dependent contracts. This will vary from blockchain to blockchain.
 
 For example, some blockchain ecosystems have the standard that their contracts are closed-source, and there are no tools to fork mainnet. Other ecosystems, such as EVM, have tools like [foundry](https://github.com/foundry-rs/foundry), which allow you to hardfork the mainnet ecosystem into a local development node.
 

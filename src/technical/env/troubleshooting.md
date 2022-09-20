@@ -2,7 +2,7 @@
 
 Tilt, Kubernetes, and Docker may be new tools for developers entering the Wormhole ecosystem. This section is meant to provide some additional support when setting up the Wormhole Tilt environment.
 
-## macOS Install
+# macOS Install
 
 ## Prerequisites
 
@@ -14,13 +14,13 @@ Having `homebrew` on your system makes the installation really straightforward. 
 
 From there, all the other installs are one-liners.
 
-## Install Go
+### 1. Install Go
 
 ```sh
 brew install go
 ```
 
-## Install Docker
+### 2. Install Docker
 
 ```sh
 brew install docker
@@ -28,13 +28,13 @@ brew install docker
 
 After installation, go into Docker settings and switch ON `kubernetes`. Also configure Docker to have 4 CPUs and ~16GB of RAM.
 
-## Install Tilt
+### 3. Install Tilt
 
 ```sh
 brew install tilt
 ```
 
-## Clone Wormhole Repo and Start Tilt
+### 4. Clone Wormhole Repo and Start Tilt
 
 ```sh
 git clone --branch dev.v2 https://github.com/wormhole-foundation/wormhole.git
@@ -48,9 +48,9 @@ tilt up
 You'll be able to access the Tilt UI at
 `localhost:10350`
 
-## Linux & WSL Install
+# Linux & WSL Install
 
-### Setup Script
+## Script Setup
 
 If you're using a Debian distro, you should run the [dev-setup.sh](https://github.com/wormhole-foundation/wormhole/blob/dev.v2/scripts/dev-setup.sh) script. Even if you're not using Debian, this script still contains the main steps for setup.
 
@@ -71,11 +71,11 @@ Also, make absolutely sure that you set up Docker as a non-root user.
 
 [https://docs.docker.com/engine/install/ubuntu/#installation-methods](https://docs.docker.com/engine/install/ubuntu/#installation-methods)
 
-### 3. (Docker Desktop Install)
+### 3a. (Docker Desktop Install)
 
 Enable Kubernetes by going into Settings > Kubernetes
 
-### 3. (Non Docker Desktop)
+### 3b. (Non Docker Desktop)
 
 Install [`minikube`](https://minikube.sigs.k8s.io/docs/start/).
 
