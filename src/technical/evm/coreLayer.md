@@ -1,6 +1,6 @@
-# Core Layer
+# Core Message Layer
 
-This section will explain how to properly interact with the Wormhome Core Layer in an EVM ecosystem.
+This section will explain how to properly interact with the Wormhome Core Message Layer in an EVM ecosystem.
 
 ## Configuring the Interface
 

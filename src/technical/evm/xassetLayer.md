@@ -1,13 +1,13 @@
-# xAsset Layer
+# Token Bridge
 
-This section will explain how to properly interact with the Wormhome Core Layer in an EVM ecosystem.
+This section will explain how to properly interact with the Wormhome Token Bridge Module in an EVM ecosystem.
 
 ## Configuring the interface
 
-[Here]() is the interface for applications to interact with Wormhole's xAsset layer.
+[Here]() is the interface for applications to interact with Wormhole's Token Bridge.
 //TODO link to file in github so doesn't become stale
 
-Instantiating the interface will depend on your development ecosystem and blockchain. The Wormhole xAsset contract address is usually stored in your contract address.
+Instantiating the interface will depend on your development ecosystem and blockchain. The Wormhole Token Bridge contract address is usually stored in your contract address.
 
 Below is an example line of code to instantiate the interface for mainnet Ethereum:
 
@@ -22,11 +22,7 @@ Attesting a token from EVM needs to happen once per token. If a token is not att
 
 It is not advised to attest tokens on-chain for most usecases. To attest a token by an off-chain process, you can either do it by hand through one of the Token Bridge UIs (for example [Portal](https://www.portalbridge.com/#/register)) or using the [JS SDK](https://www.npmjs.com/package/@certusone/wormhole-sdk).
 
-<!--
-TODO link to this code example from later in the guide
-// If we want to show how to attest with JS SDK, have the example [here](https://book.wormhole.com/development/portal/evm/attestingToken.html)
-
--->
+_[Here](../../development/portal/evm/attestingToken.md) is an example of how to attest a token using the JS SDK._
 
 ## Basic Transfer
 
@@ -71,7 +67,6 @@ while (!vaaBytes.vaaBytes) {
 ```
 
 4. Complete the transfer using the VAA.
-   - \_Note: VAAs are retrieved from the
 
 ```
 // To complete transfer of normal ERC-20s
@@ -130,7 +125,6 @@ while (!vaaBytes.vaaBytes) {
 ```
 
 4. Complete the transfer using the VAA.
-   - \_Note: VAAs are retrieved from the
 
 ```
 // To complete transfer of normal ERC-20s

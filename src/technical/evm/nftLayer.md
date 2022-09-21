@@ -1,10 +1,10 @@
-# NFT Layer
+# NFT Bridge
 
-This section will explain how to properly interact with the NFT Layer in an EVM ecosystem.
+This section will explain how to properly interact with the NFT Bridge in an EVM ecosystem.
 
 ## Configuring the interface
 
-[Here](https://github.com/wormhole-foundation/wormhole/tree/dev.v2/ethereum/contracts/interfaces) is the interface for applications to interact with Wormhole's NFT layer.
+[Here](https://github.com/wormhole-foundation/wormhole/tree/dev.v2/ethereum/contracts/interfaces) is the interface for applications to interact with Wormhole's NFT Bridge.
 
 <!---
 TODO
