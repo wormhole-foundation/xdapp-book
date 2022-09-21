@@ -1,6 +1,6 @@
 # NFT Bridge
 
-This section will explain how to properly interact with the NFT Bridge in an EVM ecosystem.
+This section will explain how to properly interact with the NFT Bridge Module in an EVM ecosystem.
 
 ## Configuring the interface
 

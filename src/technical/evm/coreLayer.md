@@ -2,9 +2,11 @@
 
 This section will explain how to properly interact with the Wormhome Core Message Layer in an EVM ecosystem.
 
+Messages in Wormhole take the form of a Verified Action Approval (VAA) and both terms can be used interchangably. The rest of this section will only use the term VAA.
+
 ## Configuring the Interface
 
-[Here](https://github.com/wormhole-foundation/wormhole/blob/dev.v2/ethereum/contracts/interfaces/IWormhole.sol) is the interface for applications to interact with Wormhole's Core Contract to publish messages or verify and parse a received message.
+[Here](https://github.com/wormhole-foundation/wormhole/blob/dev.v2/ethereum/contracts/interfaces/IWormhole.sol) is the interface for applications to interact with Wormhole's Core Contract to publish VAAs or verify and parse a received VAAs.
 
 Instantiating the interface will depend on the contract address of your development ecosystem and blockchain.
 
@@ -17,14 +19,22 @@ IWormhole core_bridge = IWormhole(wormhole_core_bridge_address);
 
 ## Primary functions
 
-The Wormhole Core Layer effectively only has two important interactions -- (1) emit messages, and (2) parse and verify messages that originated from other chains.
+The Wormhole Core Layer effectively only has two important interactions -- (1) emit VAAs, and (2) parse and verify VAAs that originated from other chains.
 
-### Emitting a Message
+### Emitting a VAA
 
-To emit a message, always use `publishMessage` which takes in the following arguments:
+There are two forms that VAAs can be emitted within Wormhole:
+- Single VAA: this format should only be used for very simple transactions (i.e. sending tokens to a user's wallet)
+- Batch VAA: this format should be used for most transactions. Batch VAAs allow for easier compsability and better gas efficiency for transactions that contain multiple messages.
+
+To emit a VAA, always use `publishMessage` which takes in the following arguments:
 
 1.  `nonce` (uint32): a number assigned to each message
     - The `nonce` gives the receving contract a mechanism by which to make sure it does not double process messages
+<!--
+TODO confirm how we want to describe how Batch VAAs are created - MVP or full functionality?
+-->
+    - To emit 
     - Batch VAAs allow for easier compsability and better gas efficiency of multiple messages. To do this, messages emitted within the same transaction with the same nonce are bundled together into one aggregate message. Messages with a nonce of `0` will not be included in a Batch VAA and emitted individually.
 2.  `Consistency` (uint8): the number of blocks that Guardians will wait before signing a message
     - Each blockchain has different finality periods. In general, higher consistencies mean more security against blockchain reorgs.
@@ -34,11 +44,11 @@ To emit a message, always use `publishMessage` which takes in the following argu
 
 `publishMessage` will output a `sequence` (uint64) that is used in conjunction with `emitterChainID` and `emitterAddress` to retrive the generated VAA from the Guardian Network.
 
-### Parsing and Verifying a Message
+### Parsing and Verifying a VAA
 
-Parsing and Verifying a message will depend on the type of VAA that your application expects: a Single VAA or a Batch VAA.
+Parsing and Verifying a VAA will depend on the type of VAA that your application expects: a Single VAA or a Batch VAA.
 
-For either message type, remember to collect gas fees associated with submitting them on-chain after all VAAs have been verified.
+For either VAA type, remember to collect gas fees associated with submitting them on-chain after all VAAs have been verified.
 
 **Single VAA**
 
