@@ -32,9 +32,9 @@ contract Xmint is ERC20 {
     /**
         Registers it's sibling applications on other chains as the only ones that can send this instance messages    
     */
-    function registerApplicationContracts(uint16 chainId, bytes32 applicationAddr) public {
+    function registerApplicationContracts(uint16 chainId, bytes32 emitterAddr) public {
         require(msg.sender == owner, "Only owner can register new chains!");
-        _applicationContracts[chainId] = applicationAddr;
+        _applicationContracts[chainId] = emitterAddr;
     }
 
     /**
@@ -44,6 +44,8 @@ contract Xmint is ERC20 {
      */
     function submitForeignPurchase(bytes memory encodedVm) public returns (uint64) {
         // Complete transfer will give the Tokens to this Contract
+            // Unlike solana, we don't need to check that the emitter is a Portal contract as register_ scripts register all the Portal contracts
+            // and the completeTransfer function checks the emitter is a valid Portal contract on one of the chains it's registered with
         BridgeStructs.TransferWithPayload memory vaa = _decodePayload(token_bridge.completeTransferWithPayload(encodedVm));
         // Mint tokens to this contract
             //amt they paid is NATIVE

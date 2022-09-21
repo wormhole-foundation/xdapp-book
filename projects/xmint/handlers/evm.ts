@@ -56,6 +56,7 @@ export async function deploy(src: string){
             JSON.stringify({
                 address: deploymentAddress,
                 tokenAddress: deploymentAddress,
+                tokenReceipientAddress: deploymentAddress,
                 vaas: []
             }, null, 4)
         );
@@ -354,7 +355,7 @@ export async function buyToken(src:string, target: string, amount: number): Prom
 
     //For this project, 1 Native Token will always equal 100 Chain Tokens, no matter the source or target chains
     const ethToTransferAmt = ethers.utils.parseUnits((amount/100).toString(), "18"); //how much native you want to transfer to buy AMT worth of Tokens on target chain
-    const targetChainAddress = tryNativeToUint8Array(targetDeploymentInfo.address, targetNetwork.wormholeChainId);
+    const targetChainAddress = tryNativeToUint8Array(targetDeploymentInfo.tokenReceipientAddress, targetNetwork.wormholeChainId);
 
     //The payload is just the purchaser's public key
     // This is used to send a Payload 1 Transfer of Tokens back
@@ -378,7 +379,7 @@ export async function buyToken(src:string, target: string, amount: number): Prom
         ethToTransferAmt, 
         targetNetwork.wormholeChainId,
         targetChainAddress,
-        ethers.BigNumber.from(0),
+        0,
         {
             gasPrice: 2000000000
         },

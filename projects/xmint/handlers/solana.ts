@@ -14,18 +14,20 @@ import {
     parseSequenceFromLogSolana, 
     postVaaSolanaWithRetry, 
     setDefaultWasm, 
-    tryNativeToUint8Array 
+    tryNativeToUint8Array,
+    importCoreWasm 
 } from '@certusone/wormhole-sdk';
 import * as byteify from 'byteify';
 import {
     getAccount,
     getOrCreateAssociatedTokenAccount,
-    createMint
+    createMint,
+    TOKEN_PROGRAM_ID
 } from '@solana/spl-token'
 import {
     PROGRAM_ID as metaplexProgramID,
-    createCreateMetadataAccountV3Instruction
 } from '@metaplex-foundation/mpl-token-metadata';
+import keccak256 from "keccak256";
 
 const exec = promisify(require('child_process').exec);
 const config = JSON.parse(fs.readFileSync('./xdapp.config.json').toString());
@@ -62,9 +64,7 @@ export async function deploy(src: string){
             new anchor.Wallet(srcKey),
             {}));
     
-    const [configAcc, _] = findProgramAddressSync([
-        Buffer.from("config")
-    ], xmint.programId);
+    const [configAcc, _] = findProgramAddressSync([Buffer.from("config")], xmint.programId);
     
     // Deploy the SPL Token for Xmint
     const mintAuthorityPDA = findProgramAddressSync([Buffer.from("mint_authority")], xmint.programId)[0];
@@ -76,6 +76,7 @@ export async function deploy(src: string){
         mintAuthorityPDA, 
         9, // We are using 9 to match the CLI decimal default exactly
     );
+
     await new Promise((r) => setTimeout(r, 15000)) // wait for the chain to recognize the program
 
     const metadataAccount = findProgramAddressSync([
@@ -83,7 +84,17 @@ export async function deploy(src: string){
         metaplexProgramID.toBuffer(),
         mint.toBuffer()
     ], metaplexProgramID)[0]
-    console.log("Metadata Account: ", metadataAccount);
+
+    /*
+    const tokenReceipientAddress = getOrCreateAssociatedTokenAccount(
+        connection,
+        srcKey,
+        //WETH MINT\\,
+
+    )
+    */
+
+    const redeemerAcc = findProgramAddressSync([Buffer.from("redeemer")], xmint.programId)[0];
 
     // Initalize will also CPI into metaplex metadata program to setup metadata for the token
     await xmint.methods
@@ -101,14 +112,17 @@ export async function deploy(src: string){
                 rent: anchor.web3.SYSVAR_RENT_PUBKEY,
                 metadataAccount: metadataAccount,
                 metadataProgram: metaplexProgramID,
+                redeemer: redeemerAcc
             })
             .rpc();
 
     await new Promise((r) => setTimeout(r, 15000)) // wait for the chain to recognize the metadata
+
     // Store deploy info
     fs.writeFileSync(`./deployinfo/${src}.deploy.json`, JSON.stringify({
         address: CONTRACT_ADDRESS,
         tokenAddress: mint,
+        tokenReceipientAddress: redeemerAcc.toString(),
         vaas: []
     }, null, 4));
 }
@@ -231,9 +245,8 @@ export async function createWrapped(src:string, target:string, vaa:string){
     );
     tx.partialSign(srcKey);
     const txid = await connection.sendRawTransaction(tx.serialize());
-    console.log("TXID: ", txid);
 
-    await new Promise((r) => setTimeout(r, 15000)); // wait for blocks to advance before fetching new foreign address
+    await new Promise((r) => setTimeout(r, 25000)); // wait for blocks to advance before fetching new foreign address
     const foreignAddress = await getForeignAssetSolana(
         connection,
         srcNetwork.tokenBridgeAddress,
@@ -241,6 +254,8 @@ export async function createWrapped(src:string, target:string, vaa:string){
         tryNativeToUint8Array(targetDeployInfo.tokenAddress, targetNetwork.wormholeChainId)
     );
     console.log(`${src} Network has new PortalWrappedToken for ${target} network at ${foreignAddress}`);
+
+    //If the attestation is WETH, save the ATA for config of the WETH mint as recipient address
 }
 
 export async function debug(){
@@ -274,7 +289,7 @@ export async function registerApp(src:string, target:string){
     const srcKey = anchor.web3.Keypair.fromSecretKey(Uint8Array.from(JSON.parse((fs.readFileSync(`keypairs/${src}.key`).toString())
     )));
     const connection = new anchor.web3.Connection(srcNetwork.rpc);
-    let targetEmitter;
+    let targetEmitter:String;
     switch (targetNetwork.type){
         case 'evm': 
             targetEmitter = getEmitterAddressEth(targetDeployInfo.address);
@@ -301,11 +316,10 @@ export async function registerApp(src:string, target:string){
         Buffer.from("config")
     ], xmint.programId);
     
-
     const tx = await xmint.methods
                             .registerChain(
                                 targetNetwork.wormholeChainId,
-                                targetEmitter
+                                Buffer.from(targetEmitter, 'hex'),
                             )
                             .accounts({
                                 config: configAcc,
@@ -328,10 +342,6 @@ export async function registerApp(src:string, target:string){
     }
     console.log(`Attested ${target} token on ${src}`);
 }
-
-export async function submitForeignPurchase(src:string, target:string, vaa:string){}
-export async function submitForeignSale(src:string, target:string, vaa:string){}
-export async function sellToken(src:string, target:string, amount:number){}
 
 export async function balance(src: string, target: string) : Promise<string>{
     const srcNetwork = config.networks[src];
@@ -372,5 +382,154 @@ export async function balance(src: string, target: string) : Promise<string>{
 }
 
 export async function buyToken(src:string, target: string, amount:number){
+    // Buy token on target chain with SOL on SRC chain
+        // Create p3 that pays SOL, reciepient address is 
+}
 
+export async function submitForeignPurchase(src:string, target:string, vaa:string){
+    const srcNetwork = config.networks[src];
+    const targetNetwork = config.networks[target];
+    const srcDeployInfo = JSON.parse(fs.readFileSync(`./deployinfo/${src}.deploy.json`).toString());
+    const targetDeployInfo = JSON.parse(fs.readFileSync(`./deployinfo/${target}.deploy.json`).toString());
+    const srcKey = anchor.web3.Keypair.fromSecretKey(Uint8Array.from(JSON.parse((fs.readFileSync(`keypairs/${src}.key`).toString())
+    )));
+    const connection = new anchor.web3.Connection(srcNetwork.rpc);
+
+    setDefaultWasm("node");
+    // Post the VAA to Solana Chain for signature verification
+    await postVaaSolanaWithRetry(
+        connection,
+        async (tx) => {
+            tx.partialSign(srcKey);
+            return tx;
+        },
+        srcNetwork.bridgeAddress,
+        srcKey.publicKey.toString(),
+        Buffer.from(vaa, "base64"),
+        10
+    );
+
+    const xmint = new anchor.Program<SolanaTypes>(
+        IDL,
+        CONTRACT_ADDRESS,
+        new anchor.AnchorProvider(
+            connection,
+            new anchor.Wallet(srcKey),
+            {}));
+    const { parse_vaa } = await importCoreWasm(); //this function can only be imported from the WASM right now, not directly
+    const parsed_vaa = parse_vaa(Buffer.from(vaa, 'base64'));
+    const vaaHash = getVaaHash(parsed_vaa); //await getSignedVAAHash(Buffer.from(vaa, "base64"));
+
+    // Account that we stored the registered foreign emitter
+    let emitterAddressAcc = findProgramAddressSync([
+        byteify.serializeUint16(parsed_vaa.emitter_chain),
+        Buffer.from(parsed_vaa.emitter_address, 'hex')
+    ], new anchor.web3.PublicKey(srcNetwork.tokenBridgeAddress))[0];
+
+    // A blank account we're creating just to keep track of already processed messages
+    let targetEmitterAddress;
+    switch (targetNetwork.type) {
+        case "evm":
+            targetEmitterAddress = getEmitterAddressEth(targetNetwork.tokenBridgeAddress);
+            break;
+        case "solana":
+            targetEmitterAddress = await getEmitterAddressSolana(targetNetwork.tokenBridgeAddress);
+    }
+    let processedVaaKey = findProgramAddressSync([
+        Buffer.from(targetEmitterAddress, "hex"),
+        byteify.serializeUint16(parsed_vaa.emitter_chain),
+        byteify.serializeUint64(parsed_vaa.sequence)
+    ], xmint.programId)[0];
+
+    // Account where the core bridge stored the vaa after the signatures checked out
+    const tokenBridgePubKey = new anchor.web3.PublicKey(srcNetwork.tokenBridgeAddress);
+    const coreBridgePubKey = new anchor.web3.PublicKey(srcNetwork.bridgeAddress);
+    let coreBridgeVaaKey = findProgramAddressSync([
+        Buffer.from("PostedVAA"),
+        Buffer.from(vaaHash, 'hex')
+    ], coreBridgePubKey)[0]
+    const [configAcc, _] = findProgramAddressSync([Buffer.from("config")], xmint.programId);
+
+    // Accounts for Completing P3
+    const tokenBridgeConfigAcc = findProgramAddressSync([Buffer.from("config")], tokenBridgePubKey)[0];
+    const tokenBridgeClaimAcc = findProgramAddressSync([
+        Buffer.from(targetEmitterAddress, "hex"),
+        byteify.serializeUint16(parsed_vaa.emitter_chain),
+        byteify.serializeUint64(parsed_vaa.sequence)
+    ], tokenBridgePubKey)[0];
+
+
+    // WETH is being transferred in, so we need the WETH Portal Mint on Solana
+    const wethMint = new anchor.web3.PublicKey(await getForeignAssetSolana(
+        connection,
+        srcNetwork.tokenBridgeAddress,
+        targetNetwork.wormholeChainId,
+        tryNativeToUint8Array(targetNetwork.wrappedNativeAddress, targetNetwork.wormholeChainId)
+    ));
+
+    const wethWrappedMeta = findProgramAddressSync([
+        Buffer.from("meta"),
+        wethMint.toBuffer()
+    ], tokenBridgePubKey)[0];
+
+    const mintAuthorityWrapped = findProgramAddressSync([
+        Buffer.from("mint_signer")
+    ], tokenBridgePubKey)[0];
+
+    const redeemerAcc = findProgramAddressSync([Buffer.from("redeemer")], xmint.programId)[0];
+    const wethAtaAcc = await getOrCreateAssociatedTokenAccount(
+        connection,
+        srcKey,
+        wethMint,
+        redeemerAcc,
+        true // Allow off curve because the owner of the mintATA acc is a PDA
+    );
+
+    const tx = await xmint.methods 
+        .submitForeignPurchase()
+        .accounts({
+            payer: srcKey.publicKey,
+            systemProgram: anchor.web3.SystemProgram.programId,
+            config: configAcc,
+            coreBridgeVaa: coreBridgeVaaKey,
+            processedVaa: processedVaaKey,
+            emitterAcc: emitterAddressAcc,
+            tokenBridgeConfig: tokenBridgeConfigAcc,
+            tokenBridgeClaimKey: tokenBridgeClaimAcc,
+            wethAtaAccount: wethAtaAcc.address,
+            feeRecipient: wethAtaAcc.address,
+            wethMint: wethMint,
+            wethMintWrappedMeta: wethWrappedMeta,
+            mintAuthorityWrapped: mintAuthorityWrapped,
+            rentAccount: anchor.web3.SYSVAR_RENT_PUBKEY,
+            tokenBridgeProgram: tokenBridgePubKey,
+            splProgram: TOKEN_PROGRAM_ID,
+            redeemer:redeemerAcc,
+        })
+        .preInstructions([
+            anchor.web3.ComputeBudgetProgram.requestUnits({
+                units: 1400000,
+                additionalFee: 0,
+            })
+        ])
+        .rpc();
+
+    }
+
+
+export async function sellToken(src:string, target:string, amount:number){}
+export async function submitForeignSale(src:string, target:string, vaa:string){}
+
+function getVaaHash(parsed_vaa){
+    //Create VAA Hash to use in core bridge key
+    let buffer_array = []
+    buffer_array.push(byteify.serializeUint32(parsed_vaa.timestamp));
+    buffer_array.push(byteify.serializeUint32(parsed_vaa.nonce));
+    buffer_array.push(byteify.serializeUint16(parsed_vaa.emitter_chain));
+    buffer_array.push(Uint8Array.from(parsed_vaa.emitter_address));
+    buffer_array.push(byteify.serializeUint64(parsed_vaa.sequence));
+    buffer_array.push(byteify.serializeUint8(parsed_vaa.consistency_level));
+    buffer_array.push(Uint8Array.from(parsed_vaa.payload));
+    const hash = keccak256(Buffer.concat(buffer_array));
+    return hash.toString("hex");
 }
