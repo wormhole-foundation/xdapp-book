@@ -13,11 +13,3 @@ Thus, a more fitting depiction of xDapps might be to see them as **Distributed D
 ---
 
 In the next section, we'll summarize the concrete advantages which xDapps built on Wormhole have over traditional Dapps today.
-
----
-
-## Branded Terms
-
-In some instances, Wormhole uses general terms for decentralized, cross-chain elements as branded verbiage. In most cases, the definition of the general term does not greatly differ from Wormhole definition, though Wormhole's definitions may be more narrow than general interpretations. 
-
-**xDapp** - Wormhole defines xDapps as a "decentralized application that enables users to create and/or use xData." The Wormhole definition of xDapp presents it as a branded element of xChain.

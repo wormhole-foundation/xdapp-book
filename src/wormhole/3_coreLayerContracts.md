@@ -22,7 +22,7 @@ Below is the mechanism by which Wormhole messages (aka Verified ACtion Approval,
 
 - **consistencyLevel** - The number of blocks which the Guardians should wait prior to emitting a VAA for this message. This number is usually either 1 or equal to the chain's finality period. This is a defense against transactions being orphaned.
 
-- **nonce** -  If multiple messages in the same transaction have the same nonce, a batch VAA will be produced alongside the individual VAAs on chains that allow them. This reduces gas costs and simplifies composability.
+- **nonce** -  An index number for the message that is used to produce Batch VAAs. How this is generated is elaborated in the [CoreLayer](../technical/evm/coreLayer.md) section.
 
 - **sequenceNumber** - A unique index number for the message. When combined with the emitter contract address and emitter chain ID, the corresponding VAA can be retrieved from a guardian network node.
 
