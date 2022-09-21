@@ -52,6 +52,7 @@
     - [xAsset Module](./technical/evm/xassetLayer.md)
     - [NFT Module](./technical/evm/nftLayer.md)
     - [Relayer Module](./technical/evm/relayer.md)
+    - [Best Practices](./technical/evm/bestPractices.md)
   - [Solana]()
   - [Cosmos]()
   - [Algorand]()
