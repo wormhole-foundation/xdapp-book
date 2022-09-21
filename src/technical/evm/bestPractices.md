@@ -1,6 +1,6 @@
 # Best Practices
 
-The Wormhole contracts were designed in a manner such that composeability is the default, but maximizing composeability requires that xDapp developers follow certain conventions around the sending and receiving of messages.
+The Wormhole contracts were designed in a manner such that composability is the default, but maximizing composability requires that xDapp developers follow certain conventions around the sending and receiving of messages.
 
 # Sending Messages
 
@@ -14,7 +14,7 @@ When sending messages, you should follow the same paradigm as is used by the Wor
 
 ```solidity
 // This function defines a super simple Wormhole 'module'.
-// A module is just a piece of code which knows how to emit a composeable message
+// A module is just a piece of code which knows how to emit a composable message
 // which can be utilized by other contracts.
 function emitMyMessage(address intendedRecipient, uint32 nonce)
         public returns (uint64 sequence) {
@@ -22,7 +22,7 @@ function emitMyMessage(address intendedRecipient, uint32 nonce)
     // Nonce is passed though to the core bridge.
     // This allows other contracts to utilize it for batching or processing.
 
-    // intendedRecipient is key for composeability!
+    // intendedRecipient is key for composability!
     // This field will allow the destination contract to enforce
     // that the correct contract is submitting this VAA.
 
@@ -48,14 +48,14 @@ function sendMyMessage() private {
     // However, another contract could call emitMyMessage in a different transaction
     // using their own address as the recipient.
 
-    // This allows for composeability of the module logic while still being secure!
+    // This allows for composability of the module logic while still being secure!
 
     emitMyMessage(MY_OTHER_CONTRACT, 0);
 
     // Suppose I also want to send tokens to my contract on the OTHER_CHAIN
-    // Because transferTokensWithPayload is a composeable message, I can include it.
+    // Because transferTokensWithPayload is a composable message, I can include it.
     // Because the nonce of both these messages is 0, they will be combined into a batch VAA.
-    // NOTE: transferTokens (the basic transfer) is NOT considered a composeable message
+    // NOTE: transferTokens (the basic transfer) is NOT considered a composable message
 
     token_bridge.transferTokensWithPayload(SOME_TOKEN, SOME_AMOUNT, OTHER_CHAIN, MY_OTHER_CONTRACT,
     0, null);
@@ -67,16 +67,16 @@ function sendMyMessage() private {
 
 # Receiving Messages
 
-The best practices for receiving messages employ similar concepts. You should keep in mind that other contracts might want to integrate with your specific logic. As such, don't tie your verification logic into the delivery of the VAA.
+The best practices for receiving messages employ similar concepts. You should keep in mind that other contracts might want to integrate with your specific logic. As such, you shouldn't tie your verification logic to the delivery mechanism of your VAAs, and you should also give external integrators a safe way to compose with your module.
 
 ### **_Critical!_**
 
-- Always verify that the emitterAddress of the VAA comes from a contract you trust
+- Always verify that the emitterAddress of the VAA comes from a contract you trust.
 
 - If the message should not be allowed to be 'replayed', immediately mark its hash as processed.
-- If your VAAs aren't replayable, you almost always want to include and enforce an intended recipient! Otherwise anyone can call your verify function directly with the single VAA, which will make life much harder for you and your integrators who want to process multiple VAAs at once.
+- If your VAAs aren't replayable, you almost always want to include and enforce an intended recipient. Otherwise anyone can call your verify function directly with the single VAA, which will make life much harder for you and your integrators who want to process multiple VAAs at once. This is referred to as a 'scoop' exploit.
 
-### Composeability
+### Composability
 
 - When processing a VAA, always treat the messages as single VAAs. Destructuring batch VAAs is the responsibility of the integrator.
 - Once you have the function written to verify your message, pretend you are an external integrator.
@@ -86,7 +86,7 @@ The best practices for receiving messages employ similar concepts. You should ke
 ```
 // Verification accepts a single VAA, and is publicly callable.
 function processMyMessage(bytes32 memory VAA) public {
-
+    // This call accepts single VAAs and headless VAAs
     (IWormhole.VM memory vm, bool valid, string memory reason) =
         core_bridge.parseAndVerifyVM(VAA);
 
