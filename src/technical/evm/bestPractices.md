@@ -67,14 +67,14 @@ function sendMyMessage() private {
 
 # Receiving Messages
 
-The best practices for receiving messages employ similar concepts. You should keep in mind that other contracts might want to integrate with your specific logic. As such, don't tie your verification logic into the delivery of the VAA.
+The best practices for receiving messages employ similar concepts. You should keep in mind that other contracts might want to integrate with your specific logic. As such, you shouldn't tie your verification logic to the delivery mechanism of your VAAs, and you should also give external integrators a safe way to compose with your module.
 
 ### **_Critical!_**
 
-- Always verify that the emitterAddress of the VAA comes from a contract you trust
+- Always verify that the emitterAddress of the VAA comes from a contract you trust.
 
 - If the message should not be allowed to be 'replayed', immediately mark its hash as processed.
-- If your VAAs aren't replayable, you almost always want to include and enforce an intended recipient! Otherwise anyone can call your verify function directly with the single VAA, which will make life much harder for you and your integrators who want to process multiple VAAs at once.
+- If your VAAs aren't replayable, you almost always want to include and enforce an intended recipient. Otherwise anyone can call your verify function directly with the single VAA, which will make life much harder for you and your integrators who want to process multiple VAAs at once. This is referred to as a 'scoop' exploit.
 
 ### Composeability
 
