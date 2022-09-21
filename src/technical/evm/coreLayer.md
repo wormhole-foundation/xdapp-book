@@ -24,18 +24,14 @@ The Wormhole Core Layer effectively only has two important interactions -- (1) e
 ### Emitting a VAA
 
 There are two forms that VAAs can be emitted within Wormhole:
-- Single VAA: this format should only be used for very simple transactions (i.e. sending tokens to a user's wallet)
-- Batch VAA: this format should be used for most transactions. Batch VAAs allow for easier compsability and better gas efficiency for transactions that contain multiple messages.
+- Single VAA: all messages will be emitted in this format
+- Batch VAA: messages that are generated from the same transaction will be emitted in this format. This feature was developed to provide an easier paradigm for composability and better gas efficiency for more involved cross-chain activity. 
 
 To emit a VAA, always use `publishMessage` which takes in the following arguments:
 
 1.  `nonce` (uint32): a number assigned to each message
-    - The `nonce` gives the receving contract a mechanism by which to make sure it does not double process messages
-<!--
-TODO confirm how we want to describe how Batch VAAs are created - MVP or full functionality?
--->
-    - To emit 
-    - Batch VAAs allow for easier compsability and better gas efficiency of multiple messages. To do this, messages emitted within the same transaction with the same nonce are bundled together into one aggregate message. Messages with a nonce of `0` will not be included in a Batch VAA and emitted individually.
+    - The `nonce` provides a mechanism by which to group messages together within a Batch VAA.
+    - How Batch VAAs are generated based on a message's `nonce` is described below.
 2.  `Consistency` (uint8): the number of blocks that Guardians will wait before signing a message
     - Each blockchain has different finality periods. In general, higher consistencies mean more security against blockchain reorgs.
     - [Here]() are the consistency levels by blockchain that are used by the xAsset layer to have a high level of guarantee against reorgs.
@@ -43,6 +39,32 @@ TODO confirm how we want to describe how Batch VAAs are created - MVP or full fu
     - It is up to the emitting contract to properly define this arbitrary set of bytes.
 
 `publishMessage` will output a `sequence` (uint64) that is used in conjunction with `emitterChainID` and `emitterAddress` to retrive the generated VAA from the Guardian Network.
+
+> How Batch VAAs are generated
+> 
+> There are two mechanisms that allow messages to be Batched together that represent a base and more advanced level of compsability.
+> 
+> 1. All messages originating from the same transaction will be batched together.
+> 2. Messages that originate from the same transaction and are assigned the same nonce are additionally batched together.
+>
+> _Note: Single VAAs will always be emitted for each message within a transaction, regardless of if a message is included in a batch or not._
+>
+> Here is an example of how messages generated from the same transaction may be batched together:
+> 
+> A transaction X that generates 6 messages [A, B, C, D, E, F] that are assigned `nonce` [1, 2, 2, 3, 3, 4] respectively will generate the following VAAs:
+> - (1) full transaction batch VAA
+>   - [A, B, C, D, E, F]
+> - (2) smaller batch VAA
+>   - [B, C]
+>   - [D, E]
+> - (6) single VAA
+>   - [A]
+>   - [B]
+>   - [C]
+>   - [D]
+>   - [E]
+>   - [F]
+
 
 ### Parsing and Verifying a VAA
 
@@ -71,6 +93,6 @@ Batch VAAs are designed so that relayers can choose to submit any subset of the 
 
 ---
 
-Code recommendation, write the code which expects to receive a VAA to utilize parseAndVerifyVM(? unsure if this is the correct call). That way, your code will be able to handle either type 1 VAAs (single VAAs), or type 3 VAAs (headless VAAs). This allows it to utilize both single & batch VAAs and dramatically increases composeability. \*this only requires like two or three lines of code, so this would be a good candidate for a code example which shows how to properly use batch vaas without breaking composeability. Should note that the module code still ALWAYS needs to verify, but should do so with the 'single' message verifying and then expose that function publicly in order to enable composeability.
+Code recommendation, write the code which expects to receive a VAA to utilize parseAndVerifyVM(? unsure if this is the correct call). That way, your code will be able to handle either type 1 VAAs (single VAAs), or type 3 VAAs (headless VAAs). This allows it to utilize both single & batch VAAs and dramatically increases composability. \*this only requires like two or three lines of code, so this would be a good candidate for a code example which shows how to properly use batch vaas without breaking composability. Should note that the module code still ALWAYS needs to verify, but should do so with the 'single' message verifying and then expose that function publicly in order to enable composability.
 
 -->
