@@ -22,7 +22,7 @@
   - [VAA: Verified Action Approval](./wormhole/4_vaa.md)
   - [Guardian Network](./wormhole/5_guardianNetwork.md)
   - [Relayers](./wormhole/6_relayers.md)
-  - [xAsset Bridge](./wormhole/7_TokenBridge.md)
+  - [xAsset Bridge](./wormhole/7_xAssetBridge.md)
   - [Wormchain](./wormhole/8_wormchain.md)
 
 - [xDapp Design](./dapps/architecture/0_dappDesign.md)
@@ -50,7 +50,7 @@
   - [EVM](./technical/evm/overview.md)
     - [Core Layer](./technical/evm/coreLayer.md)
     - [Token Bridge Module](./technical/evm/tokenLayer.md)
-    - [NFT Module](./technical/evm/nftLayer.md)
+    - [NFT Bridge Module](./technical/evm/nftLayer.md)
     - [Best Practices](./technical/evm/bestPractices.md)
     <!-- - [Relayer Module](./technical/evm/relayer.md) -->
   - [Solana](./technical/solana/overview.md)
@@ -68,14 +68,13 @@
 - [Wormhole Typescript SDK](./technical/typescript/overview.md)
   - [Token Registration](./technical/typescript/attestingToken.md)
   - [Token Transfer Basics](./technical/typescript/tokenTransfer.md)
-  - [Cross-Ecosystem Transfer](./technical/typescript/evm-solana-transfer.md)
-  - [Using Relayers](./technical/typescript/polygon-oasis-relayer.md)
+  - [Cross-Ecosystem Transfer](./technical/typescript/cross-ecosystem-transfer.md)
+  - [Using Relayers](./technical/typescript/using-relayer.md)
 
 ---
 
 - [Other Resources](./reference/overview.md)
   - [Glossary](./reference/glossary.md)
-  - [Tools](./reference/tools.md)
-  - [Github](./reference/github.md)
+  - [Useful Links](./reference/usefulLinks.md)
   - [Deployed Contracts](./reference/contracts.md)
   - [RPC Nodes](./reference/rpcnodes.md)
