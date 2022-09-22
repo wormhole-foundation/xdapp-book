@@ -35,7 +35,7 @@ To emit a VAA, always use `publishMessage` which takes in the following argument
     - How Batch VAAs are generated based on a message's `nonce` is described below.
 2.  `Consistency` (uint8): the number of blocks that Guardians will wait before signing a message
     - Each blockchain has different finality periods. In general, higher consistencies mean more security against blockchain reorgs.
-    - [Here](../../reference/finality.md) are the consistency levels by blockchain that are used by the xAsset layer to have a high level of guarantee against reorgs.
+    - [Here](../../reference/contracts.md) are the consistency levels by blockchain that are used by the xAsset layer to have a high level of guarantee against reorgs.
 3.  `Payload` (bytes[]): raw bytes to emit
     - It is up to the emitting contract to properly define this arbitrary set of bytes.
 
