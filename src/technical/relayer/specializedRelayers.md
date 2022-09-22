@@ -23,3 +23,5 @@ link to spydk. Use this to tie directly into the guardian network and receive ev
 VAAs can also be pulled directly from any public node on the guardian network using REST endpoints. This is a really simple way to grab known VAAs.
 
 - provide the REST endpoints for this
+
+`${config.wormhole.restAddress}/v1/signed_vaa/${network.wormholeChainId}/${emitterAddr}/${seq}

@@ -45,9 +45,9 @@
   - [Testnet](./technical/env/testnet.md)
   - [Tooling](./technical/env/tooling.md)
 
-- [Contract Development]()
+- [Contract Development](./technical/overview.md)
 
-  - [EVM](./technical/evm//overview.md)
+  - [EVM](./technical/evm/overview.md)
     - [Core Layer](./technical/evm/coreLayer.md)
     - [xAsset Module](./technical/evm/xassetLayer.md)
     - [NFT Module](./technical/evm/nftLayer.md)
@@ -75,10 +75,9 @@
 
 ---
 
-# Other Resources
-
-- [Glossary](./reference/glossary.md)
-- [Tools](./reference/tools.md)
-- [Github & Useful Links](./reference/github.md)
-- [Deployed Contracts](./reference/contracts.md)
-- [RPC Nodes](./reference/rpcnodes.md)
+- [Other Resources](./reference/overview.md)
+  - [Glossary](./reference/glossary.md)
+  - [Tools](./reference/tools.md)
+  - [Github](./reference/github.md)
+  - [Deployed Contracts](./reference/contracts.md)
+  - [RPC Nodes](./reference/rpcnodes.md)
