@@ -38,7 +38,7 @@ transferNFT(tokenAddress, tokenID, recipientChain, recipient, nonce);
 2. Retrieve the emitted VAA from the Guardian Network. (Usually done by a relayer)
    - _Note: NFT Transfer VAAs are retrieved from the Guardian Network by the `emitterChainID`, `emitterAddress`, and `sequence`_
 
-```
+```js
 const emitterAddr = getEmitterAddressEth(network.NFTBridgeAddress);
 const seq = parseSequenceFromLogEth(tx, network.bridgeAddress);
 const vaaURL = `${config.wormhole.restAddress}/v1/signed_vaa/${network.wormholeChainId}/${emitterAddr}/${seq}`;
