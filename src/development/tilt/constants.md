@@ -1,7 +1,5 @@
 # Contracts and Accounts
-The devnet environment deploys the Wormhole and Portal contracts to each of the chains at the same addresses every time. 
-
-It also funds specific wallets with funds. 
+The devnet environment deploys the Wormhole and Portal contracts to each of the chains at the same addresses every time. It also provides specific wallets with funds. 
 
 ## Tilt
 ## Guardian

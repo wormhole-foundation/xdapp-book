@@ -5,8 +5,8 @@ You'll need to have `homebrew` on your system if you don't already. You can grab
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
-## Install Go
 
+## Install Go
 ```sh
 brew install go
 ```
@@ -24,7 +24,6 @@ brew install tilt
 ```
 
 ## Clone Wormhole Repo and Start Tilt
-
 ```sh
 git clone --branch dev.v2 https://github.com/certusone/wormhole.git
 ```

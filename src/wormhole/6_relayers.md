@@ -1,6 +1,12 @@
 # Relayers
 
-Relayers are a major part of the Wormhole Ecosystem. Where the Guardian Network is effectively the 'read' portion of interoperability, relayers are the 'write' portion.
+All simple cross-chain processes on Wormhole essentially boil down to a three step process:
+
+1. Perform an action on chain A.
+2. Retrieve the resulting VAA from the Guardian Network.
+3. Perform an action on chain B using the VAA.
+
+Relayers play a key role in the final step of the process -- they can be thought of as the 'write' portion of interoperability, complementing the 'read' portion that Guardians provide.
 
 The definition of a _Relayer_ in the context of Wormhole is: Any process which delivers VAAs to a destination.
 
@@ -18,31 +24,27 @@ Next, we'll go over a few of the most common relaying strategies.
 
 ## Client-side Relaying
 
-All simple processes on Wormhole essentially boil down to a three step process:
+Client-side relaying relies on the user-facing frontend, like a webpage or a wallet, to perform all three steps of the cross-chain process.
 
-    1. Perform an action on chain A.
-    2. Retrieve the resulting VAA from the Guardian Network.
-    3. Perform an action on chain B using the VAA.
-
-Considering that the first step of this process is almost always initiated from a user-facing frontend like a webpage or a wallet, it is possible to also perform steps 2 and 3 in the frontend as well. This is referred to as 'client-side relaying', and it has two major benefits:
+There are two major benefits of this approach:
 
 - Low cost. Users pay exactly the transaction fee for the second transaction.
 - No backend relaying infrastructure.
 
-That makes client-side relaying a tempting prospect, especially if you're just interested in getting an MVP running. However, client-side relaying also has two notable drawbacks:
+However, client-side relaying also has two notable drawbacks:
 
 - Users must sign all transactions required with their own wallet.
 - Users must have funds to pay the transaction fees on every chain involved.
 
-Overall, client-side relaying is a simple solution, but can make the user experience cumbersome. It's generally not recommended if your goal is a highly-polished user experience.
+Overall, client-side relaying is a simple solution, but can make the user experience cumbersome. It's generally not recommended if your goal is a highly-polished user experience but can be useful to getting an MVP up and running.
 
 ## Specialized Relayers
 
 Specialized relayers solve the UX problems of client-side relayers by adding a backend component which can handle steps 2 and 3 on behalf of the user.
 
-In this model, relayers either listen directly to the Guardian Network via a spy (This is called **Spy Relaying**), or will simply provide a REST endpoint to accept a VAA which should be relayed (called **REST Relaying**). Once a relayer has the VAA, it simply performs any necessary off-chain calculations and submits the VAA to the required destination.
+In this model, relayers either listen directly to the Guardian Network via a spy (called **Spy Relaying**), or will simply provide a REST endpoint to accept a VAA which should be relayed (called **REST Relaying**). Once a relayer has the VAA, it simply performs any necessary off-chain calculations and submits the VAA to the required destination.
 
-An important consideration when developing a specialized relayer is that the relayer is still considered untrusted. VAAs are public and can be submitted by anyone, so the off-chain relayer should not do any computation which is considered "trusted." However, doing things like deterministic data transforms, waiting for gas prices to drop, or various forms of 'batching' can be very useful cost-reduction strategies that do not impact security.
+An important consideration when developing a specialized relayer is that the relayer is still considered untrusted. VAAs are public and can be submitted by anyone, so developers should not rely on off-chain relayers to perform any computation which is considered "trusted." However, things that do not impact security like deterministic data transforms, waiting for gas prices to drop, or various forms of 'batching' can be very useful cost-reduction strategies.
 
 Specialized Relayers have the following advantages:
 
@@ -55,11 +57,19 @@ However, they also have a couple notable downsides
     - They add a backend relaying component which is responsible for liveness
     - They can complicate fee-modeling, as relayers are responsible for paying target chain fees.
 
-Because relayers are responsible for liveness, they become another dependency component for the xDapp. If the relayers are all down, your application has an outage. This is similar to how dependencies like the frontend, blockchain nodes, blockchains, third party APIs, etc, can also cause outages.
+Due to specialized relayers being such a common solution, an extensible relayer (called the plugin relayer) has been provided in the main Wormhole repository. The plugin relayer stands up most of the requisite infrastructure for relaying, so that you only need to implement the logic which is specific to your application.
 
-To mitigate this, multiple relayers can be run in order to provide redundancy. It's also possible to design specialized relaying solutions which are entirely decentralized, such that there are a network of relayers which run based off economic incentives. However, creating a robust model for decentralized relaying is generally application-specific and complex.
+If you plan to develop a specialized relayer, consider starting from the plugin relayer [found here](https://github.com/wormhole-foundation/wormhole/tree/dev.v2/relayer).
 
-Due to specialized relayers being such a common solution, there is a reference implementation provided in the main Wormhole repository which stands up the infrastructure needed to provide a Spy interface, a REST interface and the ability to interact with each blockchain in the ecosystem. If you plan to develop a specialized relayer, consider starting from the reference implementation and add modifications as needed.
+<!--
+TODO link to plugin relayer once it has been merged down
+-->
+
+Because relayers are responsible for liveness, they become another dependency component (similar to the frontend, blockchain nodes, blockchains, third party APIs, etc.) for the xDapp. If the relayers are all down, your application has an outage.
+
+To mitigate this, multiple relayers can be run in order to provide redundancy either by (1) the xDapp team or (2) a decentralized network based off economic incentives. _However, creating a robust model for decentralized relaying is generally application-specific and complex._
+
+Overall, Specialized Relayers add a backend component that is responsible for liveness, but can simplify the user experience. It's generally recommend if your goal is a highly-polished user experience and you want to have better control over message delivery.
 
 # Generic Relayers
 
@@ -77,9 +87,11 @@ Generic relayers have the following benefits:
 And potential downsides:
 
     - They require all calculations to be done on-chain
-    - They have less gas efficiency
+    - They sometimes have less gas efficiency
     - They may not be supported on all chains
+
+Overall, Generic Relayers simplify both the developer and user experience. They're a great choice if they cover all your usecases.
 
 ---
 
-In the next section, we'll discuss the Portal Ecosystem contracts that allow xAssets to be created and moved freely around the ecosystem.
+In the next section, we'll discuss the xAsset module, which allows xAssets to be created and moved freely around the ecosystem.

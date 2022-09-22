@@ -20,4 +20,6 @@ Two notable limitations are that blockchains have no access to off-chain data an
 
 Blockchain developers are now aiming to solve these interoperability problems to create a unified ecosystem. In this new cross-chain ecosystem, people can move beyond being users of individual blockchains and take advantage of Web3 on a broader scale.
 
+---
+
 In the next section, we'll discuss the history and challenges of cross-chain interoperability, as well as introduce the role Wormhole plays in the future of this space.

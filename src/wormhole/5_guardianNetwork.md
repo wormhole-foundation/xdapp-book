@@ -58,4 +58,6 @@ However, once all the full nodes are running, the actual computation and network
 
 Over time, the Guardian Set can be expanded beyond 19 with the use of threshold signatures. A variety of relaying models will emerge, each with their own strengths and weaknesses. ZKPs can be used on chains where they are well supported. The xDapp ecosystem will grow, and xDapps will become increasingly intermingled with eachother. There are very few APIs in Wormhole, and most items are implementation details from the perspective of an integrator. This creates a clear pathway towards a fully trustlessness interoperability layer which spans the entirety of decentralized computing.
 
+---
+
 In the next section, we will talk about the role and responsbilities of relayers in the Wormhole ecosystem.
