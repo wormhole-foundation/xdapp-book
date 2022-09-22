@@ -1,8 +1,8 @@
-# EVM to Solana Token Transfer
+# Cross-Ecosystem Token Transfer
 
 A defining feature of cross chain apps (xDapps) is the ability to move tokens from one chain to another, even if those blockchains have radically different virtual machine models.
 
-To demonstrate, let’s do a simple programmatic transfer from Eth to Solana.
+To demonstrate, let’s do a simple programmatic transfer from Ethereum to Solana.
 
 First, determine the address on Solana where we're sending the tokens. Unlike EVM chains where the wallet address is used, we need to send the tokens to the recipient's associated token account for that token. We'll use a couple helper functions from the Wormhole Typescript SDK to make this easier.
 
