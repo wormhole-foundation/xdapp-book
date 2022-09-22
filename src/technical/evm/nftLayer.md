@@ -24,7 +24,7 @@ INFTBridge NFT_bridge = INFTBridge(wormhole_nft_bridge_address);
 
 The Wormhole NFT Bridge only supports tokens compliant with the ERC-721 interface, and functions by creating a 'wrapped NFT' with identical metadata. How this is implemented varies by ecosystem.
 
-**Note**: Unlike xAssets, there is no attestation required for bridging NFTs.
+**Note**: Unlike tokens, there is no attestation required for bridging NFTs.
 
 To transfer a NFT, there are three steps:
 
