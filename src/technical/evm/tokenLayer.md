@@ -4,8 +4,7 @@ This section will explain how to properly interact with the Wormhome Token Bridg
 
 ## Configuring the interface
 
-[Here]() is the interface for applications to interact with Wormhole's Token Bridge.
-//TODO link to file in github so doesn't become stale
+[Here](https://github.com/wormhole-foundation/wormhole/tree/wonge97/evm-interface/ethereum/contracts/bridge/interfaces) is the interface for applications to interact with Wormhole's Token Bridge.
 
 Instantiating the interface will depend on your development ecosystem and blockchain. The Wormhole Token Bridge contract address is usually stored in your contract address.
 

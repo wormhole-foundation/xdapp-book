@@ -4,7 +4,7 @@ This section will explain how to properly interact with the NFT Bridge Module in
 
 ## Configuring the interface
 
-[Here](https://github.com/wormhole-foundation/wormhole/tree/dev.v2/ethereum/contracts/interfaces) is the interface for applications to interact with Wormhole's NFT Bridge.
+[Here](https://github.com/wormhole-foundation/wormhole/tree/wonge97/evm-interface/ethereum/contracts/nft/interfaces) is the interface for applications to interact with Wormhole's NFT Bridge.
 
 <!---
 TODO
