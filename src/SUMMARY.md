@@ -8,8 +8,8 @@
 
 - [xDapps](./dapps/0_xdappOverview.md)
 
-  - [Dapp Ecosystem Basics](./dapps/1_defiBasics.md)
-  - [Cross-Chain Interoperability](./dapps/2_crossChainInteroperability.md)
+  - [Ecosystem Basics](./dapps/1_defiBasics.md)
+  - [Blockchain Interoperability](./dapps/2_crossChainInteroperability.md)
   - [xData & xAssets](./dapps/3_xdataxassets.md)
   - [What is an xDapp?](./dapps/4_whatIsanXdapp.md)
   - [Advantages of xDapps](./dapps/5_advantages.md)
@@ -68,8 +68,8 @@
 - [Wormhole Typescript SDK](./technical/typescript/overview.md)
   - [Token Registration](./technical/typescript/attestingToken.md)
   - [Token Transfer Basics](./technical/typescript/tokenTransfer.md)
-  - [EVM to Solana Transfer](./technical/typescript/evm-solana-transfer.md)
-  - [Polygon to Oasis with Relayers](./technical/typescript/polygon-oasis-relayer.md)
+  - [Cross-Ecosystem Transfer](./technical/typescript/evm-solana-transfer.md)
+  - [Using Relayers](./technical/typescript/polygon-oasis-relayer.md)
 
 ---
 

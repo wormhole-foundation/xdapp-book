@@ -1,6 +1,6 @@
-# Polygon to Oasis with Relayers
+# Using Relayers
 
-In this example, we’ll utilize the token bridge relayer network to complete our token transfer.
+In this example, we’ll utilize the token bridge relayer network to complete a token transfer. We'll start on Polygon and send tokens to Oasis.
 
 This code is written for a browser environment. If you're working in node, consider using node-fetch:
 

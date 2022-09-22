@@ -10,12 +10,12 @@ In short, testnet tends to be the correct choice only when you have contract dep
 
 If you elect to use testnet, the Wormhole contracts addresses can be found in the [Reference](../../reference/contracts.md) section.
 
-Pros:
+### Pros:
 
 - Many other projects deploy their contracts to testnet.
 - In ecosystems without extensive local tooling, this may be the preferred development environment.
 
-Cons:
+### Cons:
 
 - Many testnets are somewhat unstable and have outages or partitioning events.
 - Wormhole Testnet sometimes misses VAAs due to testnet instabilities.
