@@ -65,13 +65,11 @@
   - [Generic Relayers](./technical/relayer/genericRelayer.md)
   - [Specialized Relayers](./technical/relayer/pluginRelayers.md)
 
-- [Wormhole Typescript SDK](./development/portal/overview.md)
-  - [EVM]()
-    - [Attesting](./development/portal/evm/attestingToken.md)
-    - [Transfer Tokens](./development/portal/evm/tokenTransfer.md)
-  - [Portal JS SDK](./development/portal/sdkjs/overview.md)
-    - [EVM to Solana Transfer](./development/portal/sdkjs/evm-solana-transfer.md)
-    - [Polygon to Oasis with Relayers](./development/portal/sdkjs/polygon-oasis-relayer.md)
+- [Wormhole Typescript SDK](./technical/typescript/overview.md)
+  - [Token Registration](./technical/typescript/attestingToken.md)
+  - [Token Transfer Basics](./technical/typescript/tokenTransfer.md)
+  - [EVM to Solana Transfer](./technical/typescript/evm-solana-transfer.md)
+  - [Polygon to Oasis with Relayers](./technical/typescript/polygon-oasis-relayer.md)
 
 ---
 

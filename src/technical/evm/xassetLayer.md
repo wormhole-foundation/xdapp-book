@@ -20,9 +20,9 @@ ITokenBridge token_bridge = ITokenBridge(wormhole_token_bridge_address);
 
 Attesting a token from EVM needs to happen once per token. If a token is not attested, it will not be claimable until so. However, there are no restrictions to reattesting a token; doing so will update the metadata.
 
-It is not advised to attest tokens on-chain for most usecases. To attest a token by an off-chain process, you can either do it by hand through one of the Token Bridge UIs (for example [Portal](https://www.portalbridge.com/#/register)) or using the [JS SDK](https://www.npmjs.com/package/@certusone/wormhole-sdk).
+It is not advised to attest tokens on-chain for most usecases. To attest a token by an off-chain process, you can either do it by hand through one of the Token Bridge UIs (for example [Portal](https://www.portalbridge.com/#/register)) or using the [Typescript SDK](https://www.npmjs.com/package/@certusone/wormhole-sdk).
 
-_[Here](../../development/portal/evm/attestingToken.md) is an example of how to attest a token using the JS SDK._
+_[Here](../../development/portal/evm/attestingToken.md) is an example of how to attest a token using the Typescript SDK._
 
 ## Basic Transfer
 
