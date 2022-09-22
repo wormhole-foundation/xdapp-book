@@ -24,8 +24,9 @@ The Wormhole Core Layer effectively only has two important interactions -- (1) e
 ### Emitting a VAA
 
 There are two forms that VAAs can be emitted within Wormhole:
+
 - Single VAA: all messages will be emitted in this format
-- Batch VAA: messages that are generated from the same transaction will be emitted in this format. This feature was developed to provide an easier paradigm for composability and better gas efficiency for more involved cross-chain activity. 
+- Batch VAA: messages that are generated from the same transaction will be emitted in this format. This feature was developed to provide an easier paradigm for composability and better gas efficiency for more involved cross-chain activity.
 
 To emit a VAA, always use `publishMessage` which takes in the following arguments:
 
@@ -41,17 +42,18 @@ To emit a VAA, always use `publishMessage` which takes in the following argument
 `publishMessage` will output a `sequence` (uint64) that is used in conjunction with `emitterChainID` and `emitterAddress` to retrive the generated VAA from the Guardian Network.
 
 > How Batch VAAs are generated
-> 
-> There are two mechanisms that allow messages to be Batched together that represent a base and more advanced level of compsability.
-> 
+>
+> There are two mechanisms that allow messages to be Batched together that represent a base and more advanced level of composability.
+>
 > 1. All messages originating from the same transaction will be batched together.
 > 2. Messages that originate from the same transaction and are assigned the same nonce are additionally batched together.
 >
 > _Note: Single VAAs will always be emitted for each message within a transaction, regardless of if a message is included in a batch or not._
 >
 > Here is an example of how messages generated from the same transaction may be batched together:
-> 
+>
 > A transaction X that generates 6 messages [A, B, C, D, E, F] that are assigned `nonce` [1, 2, 2, 3, 3, 4] respectively will generate the following VAAs:
+>
 > - (1) full transaction batch VAA
 >   - [A, B, C, D, E, F]
 > - (2) smaller batch VAA
@@ -64,7 +66,6 @@ To emit a VAA, always use `publishMessage` which takes in the following argument
 >   - [D]
 >   - [E]
 >   - [F]
-
 
 ### Parsing and Verifying a VAA
 
@@ -81,18 +82,9 @@ To properly parse and verify a single VAA, always use `parseAndVerifyVM` which t
 2. `valid` (bool): Boolean that reflects whether or not the VAA was properly signed by the Guardian Network
 3. `reason` (string): Explanatory error message if a VAA is invalid, or an empty string if it is valid.
 
-<!--
-TODO
-everything about this
 **Batch VAA**
-
-
 To properly parse and verify a batch VAA, always use `parseAndVerifyBatchVM` which takes in two arguments: `encodedVM` (bytes) and `cache` (bool).
 
-Batch VAAs are designed so that relayers can choose to submit any subset of the observations batched together. It is the receiving contract's responsiblity to verify that all VAAs contained in a batch are submitted.
+In most scenarios, you'll want to set `cache` equal to true.
 
----
-
-Code recommendation, write the code which expects to receive a VAA to utilize parseAndVerifyVM(? unsure if this is the correct call). That way, your code will be able to handle either type 1 VAAs (single VAAs), or type 3 VAAs (headless VAAs). This allows it to utilize both single & batch VAAs and dramatically increases composability. \*this only requires like two or three lines of code, so this would be a good candidate for a code example which shows how to properly use batch vaas without breaking composability. Should note that the module code still ALWAYS needs to verify, but should do so with the 'single' message verifying and then expose that function publicly in order to enable composability.
-
--->
+This will return a VM2 object, containing all the 'headless' VAAs contained inside the batch VAA. These headless VAAs can be verified by `parseAndVerifyVM`, which means that modules which verify messages can be agnostic as to if the message was original part of a batch VAA or a single VAA. This is gone into in more depth in the [Best Practices](./bestPractices.md) section.
