@@ -81,3 +81,4 @@
   - [Github](./reference/github.md)
   - [Deployed Contracts](./reference/contracts.md)
   - [RPC Nodes](./reference/rpcnodes.md)
+  - [Blockchain Finality Recommendation](./reference/finality.md)
