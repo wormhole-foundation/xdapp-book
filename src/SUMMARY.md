@@ -49,10 +49,10 @@
 
   - [EVM](./technical/evm/overview.md)
     - [Core Layer](./technical/evm/coreLayer.md)
-    - [xAsset Module](./technical/evm/xassetLayer.md)
+    - [Token Bridge Module](./technical/evm/tokenLayer.md)
     - [NFT Module](./technical/evm/nftLayer.md)
-    <!-- - [Relayer Module](./technical/evm/relayer.md) -->
     - [Best Practices](./technical/evm/bestPractices.md)
+    <!-- - [Relayer Module](./technical/evm/relayer.md) -->
   - [Solana](./technical/solana/overview.md)
   - [Cosmos](./technical/cosmos/overview.md)
   - [Algorand](./technical/algorand/overview.md)
@@ -63,7 +63,7 @@
 - [Relayers](./technical/relayer/overview.md)
 
   - [Generic Relayers](./technical/relayer/genericRelayer.md)
-  - [Specialized Relayers](./technical/relayer/pluginRelayers.md)
+  - [Specialized Relayers](./technical/relayer/specializedRelayers.md)
 
 - [Wormhole Typescript SDK](./technical/typescript/overview.md)
   - [Token Registration](./technical/typescript/attestingToken.md)
