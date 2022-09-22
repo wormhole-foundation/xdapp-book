@@ -127,3 +127,40 @@ The [constants](https://github.com/wormhole-foundation/wormhole/blob/dev.v2/sdk/
 | Acala                   | 12                | 787        | 0x96f1335e0AcAB3cfd9899B30b2374e25a2148a6E   |
 | Klaytn                  | 13                | 1001       | 0x94c994fC51c13101062958b567e743f1a04432dE   |
 | Celo                    | 14                | 44787      | 0xaCD8190F647a31E56A656748bC30F69259f245Db   |
+
+
+## Devnet / Tilt
+
+### Core Bridge
+| Chain Name              | Wormhole Chain ID | Network ID | Address                                                          |
+| :---------------------- | :---------------- | :--------- | :--------------------------------------------------------------- |
+| Solana                  | 1                 |            | Bridge1p5gheXUvJ6jGWGeCsgPKgnE3YgdGKRVCMY9o                      |
+| Ethereum                | 2                 |            | 0xC89Ce4735882C9F0f0FE26686c53074E09B0D550                       |
+| Terra                   | 3                 |            | terra18vd8fpwxzck93qlwghaj6arh4p7c5n896xzem5                     |
+| Binance Smart Chain     | 4                 |            | 0xC89Ce4735882C9F0f0FE26686c53074E09B0D550                       |
+| Algorand                | 8                 |            | 4                                                                |
+| NEAR                    | 15                |            | wormhole.test.near                                               |
+| Terra2                  | 18                |            | terra14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9ssrc8au |
+| Wormholechain           | 3104              |            | wormhole1ap5vgur5zlgys8whugfegnn43emka567dtq0jl                  |
+
+### Token Bridge
+
+| Chain Name              | Wormhole Chain ID | Network ID | Address                                                          |
+| :---------------------- | :---------------- | :--------- | :--------------------------------------------------------------- |
+| Solana                  | 1                 |            | B6RHG3mfcckmrYN1UhmJzyS1XX3fZKbkeUcpJe9Sy3FE                     |
+| Ethereum                | 2                 |            | 0x0290FB167208Af455bB137780163b7B7a9a10C16                       |
+| Terra                   | 3                 |            | terra10pyejy66429refv3g35g2t7am0was7ya7kz2a4                     |
+| Binance Smart Chain     | 4                 |            | 0x0290FB167208Af455bB137780163b7B7a9a10C16                       |
+| Algorand                | 8                 |            | 6                                                                |
+| NEAR                    | 15                |            | token.test.near                                                  |
+| Terra2                  | 18                |            | terra1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrquka9l6 |
+| Wormholechain           | 3104              |            | wormhole1zugu6cajc4z7ue29g9wnes9a5ep9cs7yu7rn3z                  |
+
+### NFT Bridge
+
+| Chain Name              | Wormhole Chain ID | Network ID | Address                                                          |
+| :---------------------- | :---------------- | :--------- | :--------------------------------------------------------------- |
+| Solana                  | 1                 |            | NFTWqJR8YnRVqPDvTJrYuLrQDitTG5AScqbeghi4zSA                      |
+| Ethereum                | 2                 |            | 0x26b4afb60d6c903165150c6f0aa14f8016be4aec                       |
+| Terra                   | 3                 |            | terra1plju286nnfj3z54wgcggd4enwaa9fgf5kgrgzl                     |
+| Binance Smart Chain     | 4                 |            | 0x26b4afb60d6c903165150c6f0aa14f8016be4aec                       |
