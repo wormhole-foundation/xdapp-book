@@ -18,6 +18,7 @@ import {
     importCoreWasm 
 } from '@certusone/wormhole-sdk';
 import * as byteify from 'byteify';
+import keccak256 from "keccak256";
 import {
     getAccount,
     getOrCreateAssociatedTokenAccount,
@@ -27,7 +28,6 @@ import {
 import {
     PROGRAM_ID as metaplexProgramID,
 } from '@metaplex-foundation/mpl-token-metadata';
-import keccak256 from "keccak256";
 
 const exec = promisify(require('child_process').exec);
 const config = JSON.parse(fs.readFileSync('./xdapp.config.json').toString());
