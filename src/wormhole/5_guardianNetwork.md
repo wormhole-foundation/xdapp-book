@@ -48,7 +48,7 @@ Wormhole can expand to new ecosystems as quickly as a Core Contract can be devel
 
 ## Scalability
 
-Wormhole scales well, as demonstrated by Portal's ability to handle huge TVL and transaction volume--even during tumultuous events.
+Wormhole scales well, as demonstrated by its ability to handle huge TVL and transaction volume--even during tumultuous events.
 
 The requirements for running a Guardian are relatively heavy, as they need to run a full node for every single blockchain in the ecosystem. This is another reason why a limited number of robust validator companies are beneficial for this design.
 
@@ -57,5 +57,7 @@ However, once all the full nodes are running, the actual computation and network
 ## Upgradability
 
 Over time, the Guardian Set can be expanded beyond 19 with the use of threshold signatures. A variety of relaying models will emerge, each with their own strengths and weaknesses. ZKPs can be used on chains where they are well supported. The xDapp ecosystem will grow, and xDapps will become increasingly intermingled with eachother. There are very few APIs in Wormhole, and most items are implementation details from the perspective of an integrator. This creates a clear pathway towards a fully trustlessness interoperability layer which spans the entirety of decentralized computing.
+
+---
 
 In the next section, we will talk about the role and responsbilities of relayers in the Wormhole ecosystem.

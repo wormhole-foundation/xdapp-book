@@ -56,6 +56,7 @@ export async function deploy(src: string){
             JSON.stringify({
                 address: deploymentAddress,
                 tokenAddress: deploymentAddress,
+                tokenReceipientAddress: deploymentAddress,
                 vaas: []
             }, null, 4)
         );
@@ -166,7 +167,7 @@ export async function attest(src: string, target: string, address:string = null)
     // in this context the target is network we're attesting *from* so it's the network the vaa comes from (hence being placed as the 'source')
     // The emitter for this is PORTAL, not our contract, so we set portal=true in fetchVaa
     const attestVaa = await fetchVaa(src, tx, true);
-
+    console.log(`Creating wrapped on ${target}`);
     switch(targetNetwork.type){
         case "evm":
             await createWrapped(target, src, attestVaa)
@@ -199,7 +200,7 @@ export async function createWrapped(src:string, target: string, vaa:string){
         srcNetwork.tokenBridgeAddress,
         signer,
         targetNetwork.wormholeChainId,
-        tryNativeToUint8Array(targetDeployInfo.address, targetNetwork.wormholeChainId)
+        tryNativeToUint8Array(targetDeployInfo.tokenAddress, targetNetwork.wormholeChainId)
     );
     console.log(`${src} Network has new PortalWrappedToken for ${target} network at ${foreignAddress}`);
 }
@@ -354,7 +355,7 @@ export async function buyToken(src:string, target: string, amount: number): Prom
 
     //For this project, 1 Native Token will always equal 100 Chain Tokens, no matter the source or target chains
     const ethToTransferAmt = ethers.utils.parseUnits((amount/100).toString(), "18"); //how much native you want to transfer to buy AMT worth of Tokens on target chain
-    const targetChainAddress = tryNativeToUint8Array(targetDeploymentInfo.address, targetNetwork.wormholeChainId);
+    const targetChainAddress = tryNativeToUint8Array(targetDeploymentInfo.tokenReceipientAddress, targetNetwork.wormholeChainId);
 
     //The payload is just the purchaser's public key
     // This is used to send a Payload 1 Transfer of Tokens back
@@ -378,7 +379,7 @@ export async function buyToken(src:string, target: string, amount: number): Prom
         ethToTransferAmt, 
         targetNetwork.wormholeChainId,
         targetChainAddress,
-        ethers.BigNumber.from(0),
+        0,
         {
             gasPrice: 2000000000
         },
@@ -432,7 +433,7 @@ export async function balance(src:string, target: string) : Promise<string> {
         srcNetwork.tokenBridgeAddress,
         signer,
         targetNetwork.wormholeChainId,
-        tryNativeToUint8Array(targetDeploymentInfo.address, targetNetwork.wormholeChainId)
+        tryNativeToUint8Array(targetDeploymentInfo.tokenAddress, targetNetwork.wormholeChainId)
     );
 
     const TKN = new ethers.Contract(

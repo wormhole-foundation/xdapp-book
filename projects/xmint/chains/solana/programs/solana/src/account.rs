@@ -9,10 +9,18 @@ pub struct Config {
 #[account]
 #[derive(Default)]
 pub struct EmitterAddrAccount{
-    pub chain_id: u16,
-    pub emitter_addr: String
+    pub emitter_chain: u16,
+    pub emitter_address: [u8; 32],
 }
 
 //Empty account, we just need to check that it *exists*
 #[account]
 pub struct ProcessedVAA {}
+
+#[account]
+pub struct Redeemer {}
+
+#[account]
+pub struct MintInfo {
+    pub mint: Pubkey
+}

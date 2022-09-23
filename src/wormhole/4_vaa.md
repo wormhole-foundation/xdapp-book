@@ -27,13 +27,31 @@ The Body is the relevant information for consumers and is handed back from parse
 
 VAAs are uniquely indexed by their emitterChain, emittedAddress and sequence. They can be obtained by querying a node in the Guardian Network with this information.
 
-Because baseline VAAs have no destination, they are effectively multicast. They will be verified as authentic by any Core Contract on any chain in the network, and it is entirely the responsibility of relayers to deliver VAAs to the appropriate place.
+Because baseline VAAs have no destination, they are effectively multicast. They will be verified as authentic by any Core Contract on any chain in the network. If a VAA has a specific destionation, it is entirely the responsibility of relayers to complete that delivery appropriately.
 
 ## Batch VAAs
 
-Certain blockchains support version 2 VAAs, also referred to as **Batch VAAs**. When multiple messages with the same nonce are emitted in the same transaction, a batch VAA will be created in addition to the individual VAAs. The Batch VAA contains the body of each individual VAA, but only has a single header. This reduces the gas cost of verifying the VAA, and simplifies the process of relaying and consuming multiple VAAs.
+Certain blockchains support version 2 VAAs, also referred to as **Batch VAAs** which are designed to provide an easier paradigm for composability and better gas efficiency when multiple cross-chain actions are involved in a single transaction.
 
-Batch VAAs are not currently live on mainnet, but will have initial support on all EVM chains when they launch.
+Batch VAAs are designed to be automatically generated for all messages that come from a single transaction. 
+
+In an extreme composability scenario or advanced integration, there may be some messages in a transaction that may not be relevant to one another. To control the create of additional batches, some messages can be created with the same `nonce` to _additionally_ group them.
+
+It is of note that Single VAAs will always be emitted for each message generated, regardless of it they are contained in a Batch VAA or not.
+
+Go [here](../technical/evm/coreLayer.md) for a more detailed description of how Batch VAAs are generated.
+
+_Note: Batch VAAs are not currently live on mainnet, but will have initial support on all EVM chains when they launch._
+
+> How to leverage Batch VAAs 
+> 
+> Imagine a transaction generates three messages (A, B, C) that a consuming contract needs to know about.
+> 
+> If each message is independent of each other, the consuming contract can handle and validate each of these VAAs individually like [A], [B], [C].
+>
+> If all of the messages are related to each other, the consuming contract can handle and validate the Batch VAA of the entire transaction that is automatically generated like [A, B, C].
+>
+> If only two of the messages are related to each other, say A and C, the same `nonce` can be used for those two messages to generate an additional Batch VAA and the consuming contract can then handle and validate two sets of VAAs like [A, C] and [B].
 
 ---
 

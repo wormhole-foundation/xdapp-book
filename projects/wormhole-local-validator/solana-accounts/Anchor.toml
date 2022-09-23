@@ -32,4 +32,9 @@ filename = "./token/emitter_eth.json"
 address = "BmRvjCA2cQ1qUNAMVAnPgmjATSBPa2pxE3Q7bRoSGFED"
 filename = "./token/emitter_bsc.json"
 
+# METAPLEX Metadata Account
+[[test.genesis]]
+address = "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
+filename = "./thirdparty/mpl_token_metadata.so"
+
 # NFT BRIDGE

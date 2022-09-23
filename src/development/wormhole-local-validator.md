@@ -29,4 +29,4 @@ Simply run `npm run wormhole`, which will pull and run the Wormhole Guardian doc
 ### FAQ & Common Problems
 
 - Anvil isn't working  
-  While we recommend Foundry's Forge tool for compiling and deploying code elsewhere in these docs, we _do not_ at this time recommend using anvil for guardiand; this is because guardiand is spec'd against go-ethereum, and anvil is out of spec for how it reports block headers (non left padding to normalize length), which means go-ethereum reacts abnormally and can't read anvil headers.
+  While we recommend Foundry's Forge tool for compiling and deploying code elsewhere in these docs, we do not at this time recommend using anvil for guardiand; this is because guardiand is spec'd against go-ethereum, and anvil is out of spec for how it reports block headers (non left padding to normalize length), which means go-ethereum reacts abnormally and can't read anvil headers.

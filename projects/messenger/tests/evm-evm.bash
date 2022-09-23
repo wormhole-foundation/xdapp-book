@@ -1,3 +1,7 @@
+# Install Deps
+yarn
+#cd chains/evm && forge install --no-git --no-commit && cd ../../
+
 # Deploy evm0 and evm1
 ts-node orchestrator.ts deploy evm0
 ts-node orchestrator.ts deploy evm1

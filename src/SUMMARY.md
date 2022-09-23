@@ -8,8 +8,8 @@
 
 - [xDapps](./dapps/0_xdappOverview.md)
 
-  - [Dapp Ecosystem Basics](./dapps/1_defiBasics.md)
-  - [Cross-Chain Interoperability](./dapps/2_crossChainInteroperability.md)
+  - [Ecosystem Basics](./dapps/1_defiBasics.md)
+  - [Blockchain Interoperability](./dapps/2_crossChainInteroperability.md)
   - [xData & xAssets](./dapps/3_xdataxassets.md)
   - [What is an xDapp?](./dapps/4_whatIsanXdapp.md)
   - [Advantages of xDapps](./dapps/5_advantages.md)
@@ -22,7 +22,7 @@
   - [VAA: Verified Action Approval](./wormhole/4_vaa.md)
   - [Guardian Network](./wormhole/5_guardianNetwork.md)
   - [Relayers](./wormhole/6_relayers.md)
-  - [Portal xAsset Bridge](./wormhole/7_portalTokenBridge.md)
+  - [xAsset Bridge](./wormhole/7_xAssetBridge.md)
   - [Wormchain](./wormhole/8_wormchain.md)
 
 - [xDapp Design](./dapps/architecture/0_dappDesign.md)
@@ -35,52 +35,45 @@
 
 ---
 
-# xDapp Development
+# Developing xDapps
 
-- [Before You Start](./development/overview.md)
-- [Wormhole Local Validator](./development/wormhole-local-validator.md)
-- [Tilt Installation](./development/tilt/overview.md)
-  - [MacOS](./development/tilt/mac.md)
-  - [Linux](./development/tilt/linux.md)
-  - [Constants](./development/tilt/constants.md)
-- [Project Scaffold](./development/scaffold/overview.md)
-- [Sending Messages](./development/messages/sending/overview.md)
-  - [EVM](./development/messages/sending/evm.md)
-- [Registering xDapps](./development/messages/registration/overview.md)
-  - [EVM](./development/messages/registration/evm.md)
-- [Relaying Messages](./development/messages/relaying/overview.md)
-  - [Manual Relays]()
-  - [REST & Spy Relayer]()
-  - [Generic Relayers]()
-- [Receving Messages](./development/messages/receiving/overview.md)
-  - [EVM](./development/messages/receiving/evm.md)
-- [Projects](./projects/summary.md)
-  - [EVM Messenger](./projects/evm-messenger/overview.md)
-    - [Solidity](./projects/evm-messenger/messenger.md)
-    - [JS Client](./projects/evm-messenger/client.md)
-  - [Messenger](./projects/messenger/introduction.md)
-    - [Prerequistes]()
-      - [EVM]()
+- [Environment Setup](./technical/env/environments.md)
 
----
+  - [Tilt (Devnet)](./technical/env/tilt.md)
+    - [Troubleshooting](./technical/env/troubleshooting.md)
+  - [Wormhole Local Validator](./technical/env/wlv.md)
+  - [Testnet](./technical/env/testnet.md)
+  - [Tooling](./technical/env/tooling.md)
 
-# Portal Token Bridge
+- [Contract Development](./technical/overview.md)
 
-- [Portal](./development/portal/overview.md)
-  - [EVM]()
-    - [Attesting](./development/portal/evm/attestingToken.md)
-    - [Transfer Tokens](./development/portal/evm/tokenTransfer.md)
-  - [Portal JS SDK](./development/portal/sdkjs/overview.md)
-    - [EVM to Solana Transfer](./development/portal/sdkjs/evm-solana-transfer.md)
-    - [Polygon to Oasis with Relayers](./development/portal/sdkjs/polygon-oasis-relayer.md)
-- [Portal Payloads]()
+  - [EVM](./technical/evm/overview.md)
+    - [Core Layer](./technical/evm/coreLayer.md)
+    - [Token Bridge Module](./technical/evm/tokenLayer.md)
+    - [NFT Bridge Module](./technical/evm/nftLayer.md)
+    - [Relayer Module](./technical/evm/relayer.md)
+    - [Best Practices](./technical/evm/bestPractices.md)
+  - [Solana](./technical/solana/overview.md)
+  - [Cosmos](./technical/cosmos/overview.md)
+  - [Algorand](./technical/algorand/overview.md)
+  - [Near](./technical/near/overview.md)
+  - [Aptos](./technical/aptos/overview.md)
+
+- [Relayers](./technical/relayer/overview.md)
+
+  - [Generic Relayers](./technical/relayer/genericRelayer.md)
+  - [Specialized Relayers](./technical/relayer/specializedRelayers.md)
+
+- [Wormhole Typescript SDK](./technical/typescript/overview.md)
+  - [Token Registration](./technical/typescript/attestingToken.md)
+  - [Token Transfer Basics](./technical/typescript/tokenTransfer.md)
+  - [Cross-Ecosystem Transfer](./technical/typescript/cross-ecosystem-transfer.md)
+  - [Using Relayers](./technical/typescript/using-relayer.md)
 
 ---
 
-# Other Resources
-
-- [Reference]()
-  - [Tools](./reference/tools.md)
-  - [Github & Useful Links](./reference/github.md)
+- [Other Resources](./reference/overview.md)
+  - [Glossary](./reference/glossary.md)
+  - [Useful Links](./reference/usefulLinks.md)
   - [Deployed Contracts](./reference/contracts.md)
   - [RPC Nodes](./reference/rpcnodes.md)

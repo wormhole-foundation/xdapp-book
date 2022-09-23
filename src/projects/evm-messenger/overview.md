@@ -12,9 +12,11 @@ The `chains/` folder contains the source code that's actually being deployed to 
 
 The IWormhole file is the Wormhole Core Bridge interface, and is required if your app wants to talk to the Wormhole Core Bridge. It outlines the functions and return values you can expect from the Wormhole contract.
 
-The second file, Messenger, is covered in our breakdown of the EVM code [here](./messenger.md).
+The second file, Messenger, is covered in our breakdown of the EVM code at [./messenger.md](./messenger.md).
 
 ### Tests
+
+We have a very simple test script written in bash, but it's less of a test script and more of a happy path walkthrough. It makes uses of Orchestrator.js (see below) to call the functions on our EVM contract in order.
 
 We have a very simple test script written in bash, but it's less of a test script and more of a happy path walkthrough. It makes uses of Orchestrator.js (see below) to call the functions on our EVM contract in order.
 
@@ -22,7 +24,7 @@ To start, deploy the code, register the applications on each chain and then send
 
 ### Orchestrator
 
-Orchestrator is a js client that takes arguments from the command line to call various functions on our contract. We'll break down everything orchestator does [here](./client.md).
+Orchestrator is a js client that takes arguments from the command line to call various functions on our contract. We'll break down everything Orchestator does at [./client.md](./client.md).
 
 ### xdapp.config.json
 

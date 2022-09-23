@@ -1,7 +1,7 @@
 # Messenger.sol
-Messenger.sol is an application contract on EVM capable of communicating with the Wormhole core bridge. 
+Messenger.sol is an application contract on EVM capable of communicating with the Wormhole Core Bridge. 
 
-Start by hard coding the Wormhole core bridge address, and creating a interfaced link to it. 
+Start by hard coding the Wormhole core bridge address and creating an interfaced link to it. 
 
 ```solidity
 //SPDX-License-Identifier: Unlicense
@@ -26,7 +26,7 @@ contract Messenger {
 ```
 
 ## Constructor
-This sets the owner of the contract to the deployer. The owner is used later to register sibling contracts on foreign chains.
+This sets the owner of the contract to the deployer. The owner is used later to register sibling contracts on other chains.
 
 ```solidity
 
@@ -39,10 +39,10 @@ constructor(){
 ## SendMsg
 This takes in a bytes payload and calls the Wormhole Core Bridge to publish the bytes as a message. 
 
-The `publishMessage()` function of the core_bridge take three arguements: 
-- Nonce: a number to uniquely identify this message, used to make sure that the target chain doesn't double process the same message
-- Payload: the bytes payload
-- Confirmations: the number of blocks the guardians should wait before signing this VAA. For low security applications, this number can be low, but if you're on a chain that often reorgs a high number of blocks (like Polygon) you might want to set this number high enough to ensure your transaction from the source chain doesn't get lost after the guardians sign it.
+The `publishMessage()` function of the core_bridge takes three arguments: 
+- Nonce: A number to uniquely identify this message, used to make sure that the target chain doesn't double process the same message
+- Payload: The bytes payload
+- Confirmations: The number of blocks the Guardians should wait before signing this VAA. For low security applications, this number can be low, but if you're on a chain that often reorgs a high number of blocks (like Polygon) you might want to set this number high enough to ensure your transaction from the source chain doesn't get lost after the Guardians sign it.
 
 ```solidity
 function sendMsg(bytes memory str) public returns (uint64 sequence) {
@@ -52,7 +52,7 @@ function sendMsg(bytes memory str) public returns (uint64 sequence) {
 ```
 
 ## ReceiveEncodedMsg
-The receive encoded message takes in a VAA as bytes. Then it calls the Core Bridge to verify the signatures match those of the gaurdians, check that it's from a contract on a foreign chain that we actually want to listen to and that the message hasn't been processed already. If all those checks pass, we can decode the payload (in this case we know it's a string) and set the current_msg for the contract to that payload.
+The receive encoded message takes in a VAA as bytes. Then it calls the Core Bridge to verify the signatures match those of the Guardians, check that it's from a contract on a foreign chain that we actually want to listen to and that the message hasn't been processed already. If all those checks pass, we can decode the payload (in this case we know it's a string) and set the current_msg for the contract to that payload.
 
 ```solidity
 
