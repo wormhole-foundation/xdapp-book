@@ -180,7 +180,7 @@ However, these are just suggestions and developers are free to define their own 
 | Chain Name          | Wormhole Chain ID | Suggested Number of Block Confirmations   |
 | :------------------ | :---------------- | :---------------------------------------- |
 | Solana              | 1                 | 32                                        |
-| Ethereum            | 2                 | 1                                         |
+| Ethereum            | 2                 | 15                                        |
 | Terra Classic       | 3                 | Instant                                   |
 | Binance Smart Chain | 4                 | 15                                        |
 | Polygon             | 5                 | 512                                       |
@@ -192,5 +192,4 @@ However, these are just suggestions and developers are free to define their own 
 | Acala               | 12                | 1                                         |
 | Klaytn              | 13                | 1                                         |
 | Celo                | 14                | 1                                         |
-| NEAR                | 15                |                                           |
 | Terra               | 18                | Instant                                   |
