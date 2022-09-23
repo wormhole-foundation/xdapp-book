@@ -27,7 +27,7 @@ function emitMyMessage(address intendedRecipient, uint32 nonce)
     // that the correct contract is submitting this VAA.
 
     // 1 is the consistency level,
-    // this message will be emitted after only 1 confirmation
+    // this message will be emitted after only 1 block
     sequence = core_bridge.publishMessage(nonce, "My Message to " + intendedRecipient, 1);
 
     // The sequence is passed back to the caller, which can be useful relay information.
