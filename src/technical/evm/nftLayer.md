@@ -4,7 +4,7 @@ This section will explain how to properly interact with the NFT Bridge Module in
 
 ## Configuring the interface
 
-[Here](https://github.com/wormhole-foundation/wormhole/tree/dev.v2/ethereum/contracts/interfaces) is the interface for applications to interact with Wormhole's NFT Bridge.
+[Here](https://github.com/wormhole-foundation/wormhole/tree/wonge97/evm-interface/ethereum/contracts/nft/interfaces) is the interface for applications to interact with Wormhole's NFT Bridge.
 
 <!---
 TODO
@@ -24,7 +24,7 @@ INFTBridge NFT_bridge = INFTBridge(wormhole_nft_bridge_address);
 
 The Wormhole NFT Bridge only supports tokens compliant with the ERC-721 interface, and functions by creating a 'wrapped NFT' with identical metadata. How this is implemented varies by ecosystem.
 
-**Note**: Unlike xAssets, there is no attestation required for bridging NFTs.
+**Note**: Unlike tokens, there is no attestation required for bridging NFTs.
 
 To transfer a NFT, there are three steps:
 
@@ -38,7 +38,7 @@ transferNFT(tokenAddress, tokenID, recipientChain, recipient, nonce);
 2. Retrieve the emitted VAA from the Guardian Network. (Usually done by a relayer)
    - _Note: NFT Transfer VAAs are retrieved from the Guardian Network by the `emitterChainID`, `emitterAddress`, and `sequence`_
 
-```
+```js
 const emitterAddr = getEmitterAddressEth(network.NFTBridgeAddress);
 const seq = parseSequenceFromLogEth(tx, network.bridgeAddress);
 const vaaURL = `${config.wormhole.restAddress}/v1/signed_vaa/${network.wormholeChainId}/${emitterAddr}/${seq}`;

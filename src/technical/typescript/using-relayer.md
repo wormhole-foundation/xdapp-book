@@ -1,16 +1,12 @@
-# Polygon to Oasis with Relayers
+# Using Relayers
 
-In this example, we’ll fetch the fee schedule and attach a relayer fee onto our transaction. This is a non-trivial example as we’ll also use Polygon as a source chain, which has some quirks when it comes to gas estimation.
+In this example, we’ll utilize the token bridge relayer network to complete a token transfer. We'll start on Polygon and send tokens to Oasis.
 
-NOTE: We're working on streamlining this process, so check back in the future for a much simpler version of this example.
-
-To start, we’ll need a couple of packages:
+This code is written for a browser environment. If you're working in node, consider using node-fetch:
 
 ```bash
 npm i --save @certusone/wormhole-sdk ethers node-fetch
 ```
-
-Then, get started writing some code:
 
 ```ts
 import { BigNumber, ethers } from "ethers";
@@ -45,11 +41,9 @@ const PolygonWallet = new ethers.Wallet(
 
 ### Fetch the fee schedule
 
-Fetch the fee schedule for the token bridge relayers. This fee schedule outlines the minimum fee for each recipient chain that the relayer will accept. As long as we attach at least that fee in the relayer fee, we can be fairly confident that the relayer will pick up the transaction and relay it to the recipient chain. The fee will cover the gas cost for the relayer along with a little extra to make it worth their time to run the relayer service.
+Fetch the fee schedule for the token bridge relayers. This fee schedule outlines the minimum fee for each recipient chain that relayers will accept. As long as we attach at least that fee in the relayer fee, we can expect a relayer pick up the transaction and relay it to the recipient chain. The fee will cover the gas cost for the relayer along with a little extra to make it worth their time to run the relayer service.
 
 We will also define the transfer amount in this step. The fee schedule will either return a flat fee in USD for the recipient chain, or a percentage fee (usually only for Ethereum). Either way, we’ll need to calculate the fee in in BigNumber format (no decimals).
-
-For example, 1 MATIC on Polygon is 1e18 wei, or 1000000000000000000 wei. Because EVM has a hard time with floating point math, we have to do all our transactions in this small unit, to avoid decimal numbers.
 
 ```ts
 const transferAmount = BigNumber.from("1000000000000000000"); // We are sending 1 MATIC over the wall to Oasis
@@ -110,9 +104,9 @@ if (relayerFeeSchedule.feeSchedule[CHAIN_ID_OASIS].type == "flat") {
 }
 ```
 
-### Add override for gas estimation for Polygon
+### Overrides & Quirks
 
-When the source chain is Polygon, there's an additional step to overestimate the gas. This is because Ethers library has some problems with fee estimation after EIP-1559.
+Dependent on the specific blockchains you are working with, you may need to perform special actions when submitting this transaction. Because we're dealing with Polygon in this example, there's an additional step to overestimate the gas. This is because Ethers library has some problems with fee estimation after EIP-1559.
 
 ```ts
 let overrides;

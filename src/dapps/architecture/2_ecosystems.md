@@ -1,6 +1,6 @@
 # Ecosystems
 
-At present, there are 3 ecosystems supported by Wormhole, though the number of supported ecosystems is always growing.
+At present, there are 6 ecosystems supported by Wormhole, though the number of supported ecosystems is always growing.
 
 ### EVM
 
@@ -26,6 +26,18 @@ Solana is characterized by its high transaction throughput, increased computatio
 ### Cosmos
 
 Cosmos is a network of blockchains that share a common ecosystem. Cosmos is a general purpose environment, but excels in certain areas like application-specific blockchains and the use of Cosmos-wide standards via its sdk 'modules.' It uses CosmWasm for its smart contract runtime, which is based in Rust.
+
+### Algorand
+
+Algorand is a leading blockchain on the state proof front and repesents the bleeding edge of trustlessness. These contracts are written in Python.
+
+### Aptos
+
+Aptos is characterized by its optimisitic approach to computation parallelization to bring increased performance. These contracts are written in Move.
+
+### NEAR
+
+NEAR is characterized by its sharding technology that may allow for greater transaction capacity and security. These contracts are written in Rust.
 
 ### Read-Only Chains
 

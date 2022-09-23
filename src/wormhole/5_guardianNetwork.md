@@ -48,7 +48,7 @@ Wormhole can expand to new ecosystems as quickly as a Core Contract can be devel
 
 ## Scalability
 
-Wormhole scales well, as demonstrated by Portal's ability to handle huge TVL and transaction volume--even during tumultuous events.
+Wormhole scales well, as demonstrated by its ability to handle huge TVL and transaction volume--even during tumultuous events.
 
 The requirements for running a Guardian are relatively heavy, as they need to run a full node for every single blockchain in the ecosystem. This is another reason why a limited number of robust validator companies are beneficial for this design.
 

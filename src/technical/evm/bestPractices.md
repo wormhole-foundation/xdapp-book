@@ -120,14 +120,18 @@ function receiveVAA(bytes32 memory batchVAA) public {
     // Headless VAAs are verifiable by parseAndVerifyVM.
 
     (IWormhole.VM2 memory vm2, bool valid, string memory reason) =
-        core_bridge.parseAndVerifyBatchVM(batchVAA, true)
+        core_bridge.parseAndVerifyBatchVM(batchVAA, true);
 
     // I know from sendMyMessage that the first VAA is a token bridge VAA,
     // so let's hand that off to the token bridge module.
-    bytes vaaData = token_bridge.completeTransferWithPayload(vm2.payloads[0])
+    bytes vaaData = token_bridge.completeTransferWithPayload(vm2.payloads[0]);
 
     // The second VAA is my message, let's hand that off to my module.
-    processMyMessage(vm2.payloads[1])
+    processMyMessage(vm2.payloads[1]);
+
+    // Lastly, uncache the headless VAAs from the core bridge.
+    // This refunds a significant amount of gas.
+    core_bridge.clearBatchCache(vm2.hashes);
 }
 ```
 

@@ -4,17 +4,17 @@
 
 [Wormhole Local Validator](https://github.com/wormhole-foundation/xdapp-book/tree/main/projects/wormhole-local-validator) is meant to be the simplest custom environment. It consists only of a dockerized Guardian image, and some utility tooling to aid with contract management. This allows you to set it up with any blockchain you'd like.
 
-## Is WLV Right for You?
+### Is WLV Right for You?
 
 Here's a succinct list of the pros and cons of the environment, so you can decide if it's the right fit for you.
 
-### Pros
+**Pros**
 
 - Lightweight, low system resource demand.
 - Fast iteration times.
 - Can be added into an existing blockchain development setup.
 
-### Cons
+**Cons**
 
 - You may end up reinventing the tilt/testnet environment as you add more components.
 
@@ -30,4 +30,4 @@ Further information can be found in the project's [README](https://github.com/wo
 
 Q: Anvil isn't working
 
-- While Foundry's 'forge' tool is the generally recommended tool for EVM contract compilation, anvil isn't currently compatible with guardiand. Anvil reports block headers in a way which is non-compliant with go-ethereum, which means the guardian node can't correctly read anvil headers.
+- While Foundry's 'forge' tool is the generally recommended tool for EVM contract compilation, Anvil isn't currently compatible with guardiand. Anvil reports block headers in a way which is non-compliant with go-ethereum, which means the guardian node can't correctly read anvil headers.

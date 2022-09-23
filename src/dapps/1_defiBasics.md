@@ -1,4 +1,4 @@
-# Dapp Basics
+# Ecosystem Basics
 
 Since the launch of Bitcoin in 2009, the cryptocurrency and decentralized computing ecosystem has rapidly evolved and expanded. The ecosystem now includes hundreds of blockchains, often also referred to as **Layer 1s**.
 

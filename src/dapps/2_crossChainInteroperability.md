@@ -1,8 +1,8 @@
-# Cross-Chain Interoperability
+# Blockchain Interoperability
 
 Because blockchains are siloed by nature, individual cryptocurrencies being bound to their own chains has been a longtime limitation of blockchain technology. The first attempt at solving this problem was the creation of cryptocurrency exchanges like Coinbase and Binance. Today these are refered to as centralized exchanges (CEXs).
 
-Centralized exchanges play an important role in cryptocurrency, but they are not a complete solution for cross-chain interoperability for two primary reasons: (1) they're centralized, which is counterproductive to creating a decentralized platform, and (2) they deal only with tokens. 
+Centralized exchanges play an important role in cryptocurrency, but they are not a complete solution for blockchain interoperability for two primary reasons: (1) they're centralized, which is counterproductive to creating a decentralized platform, and (2) they deal only with tokens.
 
 To solve the centralization problems with CEXs, decentralized exchanges (DEXs) were created. A DEX operates inside a smart contract runtime and can be as decentralized as the blockchain it runs on. Unfortunately, a DEX is only able to utilize the tokens on its native blockchain. In order to obtain a token which is not native to that chain, the DEX must be used in combination with a **bridge**.
 

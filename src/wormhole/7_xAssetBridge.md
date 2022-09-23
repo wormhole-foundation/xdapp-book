@@ -2,9 +2,9 @@
 
 There is a set of ecosystem contracts that provision Wormhole's xAsset layer which allow tokens to be bridged around the Wormhole Ecosystem in a **path-independent** fashion, and are easily composable with other functions in the Wormhole ecosystem.
 
-This section provides a high-level overview of how to interact with two smart contract modules that implement xAssets: (1) Token Bridge module and (2) NFT Bridge Module. 
+This section provides a high-level overview of how to interact with two smart contract modules that implement xAssets: (1) Token Bridge module and (2) NFT Bridge Module.
 
-If you're looking to interact with the Token Bridge directly from a typescript client or backend, you should start with the [Wormhole Typescript SDK](https://www.npmjs.com/package/@certusone/wormhole-sdk). 
+If you're looking to interact with the Token Bridge directly from a typescript client or backend, you should start with the [Wormhole Typescript SDK](https://www.npmjs.com/package/@certusone/wormhole-sdk).
 
 ## Creating xAssets
 
@@ -14,7 +14,7 @@ xAssets are all **fungible** with each other. This means the Wormhole-wrapped as
 
 **Tokens**
 
-To convert tokens into an xAsset, an **attestation** must first be created. To create an attestation, simply call the **attest** function on the Portal contract of the origin chain.
+To convert tokens into an xAsset, an **attestation** must first be created. To create an attestation, simply call the **attest** function on the token bridge contract of the origin chain.
 
     function attestToken(
         address tokenAddress,
@@ -33,7 +33,7 @@ Calling this function will deploy a new contract for the token on the foreign ch
 
 **NFTs**
 
-NFTs do not need need to be attested before they can be created into a xAsset. 
+NFTs do not need need to be attested before they can be created into a xAsset.
 
 ## Transferring xAssets
 
@@ -54,16 +54,16 @@ All tokens managed by the Token Bridge are backed by the origin asset, allowing 
 ```
 
 **NFTs**
+
 ```
 function transferNFT(
     address token,
-    uint256 tokenID, 
-    uint16 recipientChain, 
-    bytes32 recipient, 
+    uint256 tokenID,
+    uint16 recipientChain,
+    bytes32 recipient,
     uint32 nonce) returns (uint64 sequence)
 )
 ```
-
 
 ## Contract-Controlled Transfers
 
