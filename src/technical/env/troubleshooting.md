@@ -6,7 +6,9 @@ Tilt, Kubernetes, and Docker may be new tools for developers entering the Wormho
 
 ## Prerequisites
 
-Having `homebrew` on your system makes the installation really straightforward. You can grab it with:
+Install [Homebrew](https://brew.sh) if you don't already have it.
+
+You can grab it with:
 
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -38,9 +40,6 @@ brew install tilt
 
 ```sh
 git clone --branch dev.v2 https://github.com/wormhole-foundation/wormhole.git
-```
-
-```sh
 cd wormhole/
 tilt up
 ```
