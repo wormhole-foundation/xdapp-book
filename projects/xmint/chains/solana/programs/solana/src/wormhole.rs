@@ -5,8 +5,7 @@ use std::{
 };
 
 
-pub type Address = [u8; 32];
-pub type ChainID = u16;
+
 
 #[derive(AnchorDeserialize, AnchorSerialize)]
 pub struct PostMessageData {
@@ -89,10 +88,10 @@ pub struct MessageData {
     pub sequence: u64,
 
     /// Emitter of the message
-    pub emitter_chain: ChainID,
+    pub emitter_chain: u16,
 
     /// Emitter of the message
-    pub emitter_address: Address,
+    pub emitter_address: [u8; 32],
 
     /// Message payload
     pub payload: Vec<u8>,

@@ -204,15 +204,92 @@ pub struct SubmitForeignPurchase<'info> {
 
 
     // Mint SOL#T SPL tokens to Contract PDA
+    #[account(mut)]
     pub xmint_token_mint: Account<'info, Mint>,
     #[account(
         seeds=[b"mint_authority"],
         bump,
     )]
     pub xmint_authority: Account<'info, MintInfo>,
+    /// CHECK: TODO: Check if owned by SPL program 
     #[account(mut)]
     pub xmint_ata_account: AccountInfo<'info>,
 
 
-    // P1 Portal Transfer to Receipient
+    // P1 Portal Transfer to Recepient 
+    #[account(
+        seeds = [
+            b"mint",
+        ],
+        bump,
+        seeds::program = Pubkey::from_str(TOKEN_BRIDGE_ADDRESS).unwrap(),
+        mut
+    )]
+    /// CHECK: The seeds constraint should check validity
+    pub token_bridge_mint_custody: AccountInfo<'info>,
+    #[account(
+        seeds = [
+            b"authority_signer",
+        ],
+        bump,
+        seeds::program = Pubkey::from_str(TOKEN_BRIDGE_ADDRESS).unwrap(),
+    )]
+    /// CHECK: The seeds constraint should check validity
+    pub token_bridge_authority_signer: AccountInfo<'info>,
+    #[account(
+        seeds = [
+            b"custody_signer",
+        ],
+        bump,
+        seeds::program = Pubkey::from_str(TOKEN_BRIDGE_ADDRESS).unwrap(),
+    )]
+    /// CHECK: The seeds constraint should check validity
+    pub token_bridge_custody_signer: AccountInfo<'info>,
+    #[account(
+        seeds = [
+            b"Bridge",
+        ],
+        bump,
+        seeds::program = Pubkey::from_str(CORE_BRIDGE_ADDRESS).unwrap(),
+        mut,
+    )]
+    /// CHECK: The seeds constraint should check validity
+    pub core_bridge_config: AccountInfo<'info>,
+    pub xmint_transfer_msg_key: Signer<'info>,
+    #[account(
+        seeds=[
+            b"emitter",
+        ],
+        bump,
+        seeds::program = Pubkey::from_str(TOKEN_BRIDGE_ADDRESS).unwrap(),
+    )]
+    /// CHECK: The seeds constraint should check validity
+    pub token_bridge_emitter: AccountInfo<'info>,
+    #[account(
+        seeds=[
+            b"Sequence",
+            token_bridge_emitter.key().as_ref()
+        ],
+        bump,
+        seeds::program = Pubkey::from_str(CORE_BRIDGE_ADDRESS).unwrap(),
+        mut
+    )]
+    /// CHECK: The seeds constraint should check validity
+    pub token_bridge_sequence_key: AccountInfo<'info>,
+    #[account(
+        seeds = [
+            b"fee_collector".as_ref()
+        ],
+        bump,
+        seeds::program = Pubkey::from_str(CORE_BRIDGE_ADDRESS).unwrap(),
+        mut
+    )]
+    /// CHECK: If someone passes in the wrong account, Guardians won't read the message
+    pub core_bridge_fee_collector: AccountInfo<'info>,
+    pub clock: Sysvar<'info, Clock>,
+    /// CHECK: Core Bridge matches constant address
+    #[account(
+        constraint = core_bridge.key() == Pubkey::from_str(CORE_BRIDGE_ADDRESS).unwrap()
+    )]
+    pub core_bridge: AccountInfo<'info>,
 }
