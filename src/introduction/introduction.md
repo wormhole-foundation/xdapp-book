@@ -12,6 +12,4 @@ Ready to step _into the wormhole_?
 
 ---
 
-Check out this project's [github repository](https://www.github.com/wormhole-foundation/xdapp-book) to find the accompanying code examples.
-
-For additional references, see the **Reference** section.
+For additional resources, see the **Reference** section.

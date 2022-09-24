@@ -26,6 +26,17 @@ The [constants](https://github.com/wormhole-foundation/wormhole/blob/dev.v2/sdk/
 | NEAR                | 15                |              | contract.wormhole_crypto.near                                   |
 | Terra               | 18                | phoenix-1    | terra12mrnzvhx3rpej6843uge2yyfppfyd3u9c3uq223q8sl48huz9juqffcnh |
 
+
+#### Core Bridge - Read Only
+These chains can *verify* Wormhole messages submitted to them, but cannot *emit* messages for other chains.
+
+| Chain Name            | Wormhole Chain ID | Network ID   | Address |
+| :-------------------- | :---------------- | :----------- | :------ | 
+| Arbitrum              | 23                | 42161        | 0xa5f208e072434bC67592E4C49C1B991BA79BCA46  |
+| Optimism              | 24                | 10           | 0xEe91C335eab126dF5fDB3797EA9d6aD93aeC9722  |
+| Gnosis                | 25                | 100          | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E  |
+| Moonbeam              | 16                | 1284         | 0xC8e2b0cD52Cf01b0Ce87d389Daa3d414d4cE29f3  |
+
 ### Token Bridge
 
 | Chain Name          | Wormhole Chain ID | Network ID   | Address                                                          |

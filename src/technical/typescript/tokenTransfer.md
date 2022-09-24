@@ -2,9 +2,11 @@
 
 <!-- //TODO this information should be captured elsewhere One challenge that arises for new EVM developers is that, because EVM uses unsigned integers, there's no concept of decimals. Therefore, tokens usually have up to 18 zeros behind them to denote up to 18 decimal places. Wormhole normalizes this to *eight* zeros, with transfer amounts rounded down to the nearest 8th decimal.  -->
 
-Before transferring tokens, you should ensure that the token is [Registered](./attestingToken.md) on the chain you are transferring to, and that any necessary prerequisite steps (such as sending token approvals or creating associated token accounts) have already been done.
+Before transferring tokens, you should ensure that the token is [registered](./attestingToken.md) on the chain you are transferring to, and that any necessary prerequisite steps (such as sending token approvals or creating associated token accounts) have already been done.
 
-For example, you'll likely need to do a standard ERC-20 token approval prior to performing a bridge action if you're in the EVM ecosystem.
+There are four steps to transferring a token:
+
+1. If not already done, complete a standard ERC-20 token approval prior to performing a bridge action if you're in the EVM ecosystem.
 
 ```js
 // Here we are approving and transfering 50 tokens. The ERC20 token we are transfering has 18 decimal places.
@@ -15,7 +17,9 @@ await treasury.approveTokenBridge(bridgeAmt, {
 });
 ```
 
-Once any prerequisite steps have been handled, simply call `transfer` on the token bridge module to initiate a transfer and create a transfer VAA. Note that the target receipient is a Wormhole-format address (referred to as 'hex' format in the Typescript SDK).
+2. Initate a transfer by calling `transfer` on the token bridge module which will create a transfer VAA. 
+
+_Note that the target receipient is a Wormhole-format address (referred to as 'hex' format in the Typescript SDK)._
 
 ```js
 const targetRecepient = Buffer.from(
@@ -32,9 +36,7 @@ const tx = await (
 ).wait();
 ```
 
-If you're not using a relayer, you'll have to submit the target chain transaction yourself. [This section](./polygon-oasis-relayer.md) outlines how to use relayers.
-
-This code shows how to retrieve the VAA. (It's the same code as shown in the previous section.)
+3. Retrieve the VAA with the `emitterAddress` of the Token Bridge and the `sequence` from the logs of the transaction receipt. (This is the same code as shown in the previous section.)
 
 ```js
 const emitterAddr = getEmitterAddressEth(network.tokenBridgeAddress);
@@ -48,7 +50,9 @@ while (!vaaBytes.vaaBytes) {
 }
 ```
 
-After we've fetched the VAA, we can call the `completeTransfer()` function on the target chain.
+4. Submit the VAA to the target chain by calling `completeTransfer()`.
+
+If you're not using a relayer, you'll have to submit the target chain transaction yourself. [This section](./polygon-oasis-relayer.md) outlines how to use relayers.
 
 ```js
 const completeTransferTx = await targetTokenBridge.completeTransfer(

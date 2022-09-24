@@ -2,7 +2,7 @@
 
 **Disclaimer**: This section is written as a guide for how to use Wormhole for experienced EVM developers. If you are new to using the EVM ecosystem, it's recommended for you to get started with a tutorial like [this](https://ethereum.org/en/developers/docs/intro-to-ethereum/).
 
-For our purposes, EVM refers to any blockchain in the Wormhole ecosystem that utilizes EVM contracts of Wormhole -- this includes blockchains beyond Ethereum such as Polygon or Avalanche, as well as EVM+ environments such as Acala.
+Within the Wormhole ecosystem, EVM refers to any blockchain that utilizes EVM contracts of Wormhole -- this includes blockchains beyond Ethereum such as Polygon or Avalanche, as well as EVM+ environments such as Acala.
 
 At certain points, it may be easiest to integrate simply by referencing the implementation of the Wormhole contracts. The official implementation for the Wormhole contracts can be found [here](https://github.com/wormhole-foundation/wormhole/tree/dev.v2/ethereum).
 

@@ -1,10 +1,12 @@
 # Registering Tokens
 
-Registering tokens with the token bridge can be done from any supported blockchain, and only needs to be done once - globally - per token. This is is typically done via a UI (such as the [Portal UI](portalbridge.com)) rather than done on-chain.
+Registering tokens with the token bridge can be done from any supported blockchain, and only needs to be done once - globally - per token. This is is typically done via a UI (such as [Portal](portalbridge.com)) rather than done on-chain.
 
-If you need to do it programmatically, you can also use the Typescript SDK to attest a token:
+If you need to do it programmatically, you can also use the Typescript SDK to attest a token.
 
-The first step is to create an AttestMeta VAA. We do this by calling `attest()` function from the SDK and passing in the Token Bridge address, and the address of the Token we want to attest.
+There are three steps to registerring a token:
+
+1. Create an AttestMeta VAA by calling `attest()` function from the SDK and passing in the Token Bridge address, and the address of the Token we want to attest.
 
 For example, here is the code to produce an attestation VAA using ethers:
 
@@ -18,7 +20,7 @@ const networkTokenAttestation = await attestFromEth(
 
 The attestation transaction will produce a signed VAA. This signed VAA is necessary in order to register the tokens on other chains.
 
-In order to retrieve the VAA, you will need the `emitterAddress` of the Token Bridge and the `sequence` from the logs of the transaction receipt.
+2. Retrieve the VAA with the `emitterAddress` of the Token Bridge and the `sequence` from the logs of the transaction receipt.
 
 With those, you can fetch the VAA from any Guardian REST endpoint. It could take a moment (up to 30 seconds) for the Guardian to see and sign the VAA, so it's a good idea to poll the Guardian every few seconds until the VAA is found.
 
@@ -40,7 +42,7 @@ while (!vaaBytes.vaaBytes) {
 }
 ```
 
-Lastly, we submit the VAA onto the target chain to create a wrapped version of the token. This is accomplished by calling `createWrapped()`.
+3. Submit the VAA onto the target chain to create a wrapped version of the token by calling `createWrapped()`.
 
 You can get the new wrapped token address by calling the `wrappedAsset()` function of the TokenBridge.
 

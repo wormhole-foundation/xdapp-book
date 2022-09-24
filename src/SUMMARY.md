@@ -1,6 +1,6 @@
 # Summary
 
-- [Introduction](./introduction/introduction.md)
+[Introduction](./introduction/introduction.md)
 
 ---
 
@@ -51,14 +51,13 @@
     - [Core Layer](./technical/evm/coreLayer.md)
     - [Token Bridge Module](./technical/evm/tokenLayer.md)
     - [NFT Bridge Module](./technical/evm/nftLayer.md)
+    - [Relayer Module](./technical/evm/relayer.md)
     - [Best Practices](./technical/evm/bestPractices.md)
-    <!-- - [Relayer Module](./technical/evm/relayer.md) -->
   - [Solana](./technical/solana/overview.md)
   - [Cosmos](./technical/cosmos/overview.md)
   - [Algorand](./technical/algorand/overview.md)
   - [Near](./technical/near/overview.md)
   - [Aptos](./technical/aptos/overview.md)
-  - [Sui]()
 
 - [Relayers](./technical/relayer/overview.md)
 
@@ -72,6 +71,8 @@
   - [Using Relayers](./technical/typescript/using-relayer.md)
 
 ---
+
+# Reference
 
 - [Other Resources](./reference/overview.md)
   - [Glossary](./reference/glossary.md)

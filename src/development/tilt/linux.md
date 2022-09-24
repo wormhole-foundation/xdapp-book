@@ -1,6 +1,7 @@
 # Linux Devnet Setup
 
 ### Experimental Setup Script
+
 There's an experimental single command setup script that should install dependencies for you on Linux and configure everything properly. This is only recommended if you're running headless Linux and unable to use Docker Desktop, as you can enable Kubernetes from Docker.
 
 ```sh
@@ -20,9 +21,9 @@ rm -rf /usr/local/go && tar -C /usr/local -xzf go1.18.1.linux-amd64.tar.gz
 
 ### 2. Install Docker
 
-If you're using Linux with a window manager, consider getting Docker Desktop instead of the following command. It comes with Kubernetes built in and you won't need to download `minikube`. It's recommended to have at least 4 CPUs and 16GB RAM dedicated to Docker. 
+If you're using Linux with a window manager, consider getting Docker Desktop instead of the following command. It comes with Kubernetes built in and you won't need to download `minikube`. It's recommended to have at least 4 CPUs and 16GB RAM dedicated to Docker.
 
-Also, make absolutely sure that you set up Docker as a non-root user. 
+Also, make absolutely sure that you set up Docker as a non-root user.
 
 [https://docs.docker.com/engine/install/ubuntu/#installation-methods](https://docs.docker.com/engine/install/ubuntu/#installation-methods)
 
@@ -53,7 +54,7 @@ curl -fsSL https://raw.githubusercontent.com/tilt-dev/tilt/master/scripts/instal
 ### 5. Clone the Wormhole Repo and start Tilt
 
 ```sh
-git clone --branch dev.v2 https://github.com/certusone/wormhole.git
+git clone --branch dev.v2 https://github.com/wormhole-foundation/wormhole.git
 ```
 
 If you're running Tilt on your machine:
@@ -63,13 +64,13 @@ cd wormhole/
 tilt up
 ```
 
-If you're running Tilt in a VM, you'll need to pass in some extra flags to enable Tilt to listen to incoming traffic from external addresses: 
+If you're running Tilt in a VM, you'll need to pass in some extra flags to enable Tilt to listen to incoming traffic from external addresses:
 
 ```sh
 cd wormhole
 tilt up --host=0.0.0.0 -- --webHost=0.0.0.0
 ```
 
-You can now access the Tilt UI at either your `localhost:10350` or `vm_external_ip:10350`. 
+You can now access the Tilt UI at either your `localhost:10350` or `vm_external_ip:10350`.
 
 If the VM's external IP doesn't work, check firewall and port settings to make sure your VM allows incoming traffic.

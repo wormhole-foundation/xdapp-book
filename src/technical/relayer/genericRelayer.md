@@ -2,12 +2,16 @@
 
 The defining characteristic of generic relayers is that they do not have any off-chain components for the xDapp developer. All aspects of this integration are on chain.
 
-The implementation details vary by blockchain, and you should reference the `relayer module` documentation for each ecosystem. The general strategy is the same however.
+The implementation details vary by blockchain so you should reference the `relayer module` documentation for each ecosystem. However, the general workflow is the same.
 
 Developers are responsible for implementing a standardized interface which is part of the API agreement with the generic relayer network. This interface generally looks something like
 
 ```
-receiveVAA(byte[] batchVAA)
+wormholeReceiver(
+    bytes[] batchVAA,
+    sourceChain
+    sourceAddress
+    payload)
 ```
 
 This is the entrypoint on your contract which will be called by the relayer.

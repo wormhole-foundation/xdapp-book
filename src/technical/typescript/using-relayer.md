@@ -1,6 +1,6 @@
 # Using Relayers
 
-In this example, we’ll utilize the token bridge relayer network to complete a token transfer. We'll start on Polygon and send tokens to Oasis.
+In this example, we’ll utilize the token bridge relayer network to complete a token transfer from Polygon and to Oasis.
 
 This code is written for a browser environment. If you're working in node, consider using node-fetch:
 
@@ -43,7 +43,7 @@ const PolygonWallet = new ethers.Wallet(
 
 Fetch the fee schedule for the token bridge relayers. This fee schedule outlines the minimum fee for each recipient chain that relayers will accept. As long as we attach at least that fee in the relayer fee, we can expect a relayer pick up the transaction and relay it to the recipient chain. The fee will cover the gas cost for the relayer along with a little extra to make it worth their time to run the relayer service.
 
-We will also define the transfer amount in this step. The fee schedule will either return a flat fee in USD for the recipient chain, or a percentage fee (usually only for Ethereum). Either way, we’ll need to calculate the fee in in BigNumber format (no decimals).
+We will also define the transfer amount in this step. The fee schedule will either return a flat fee in USD for the recipient chain, or a percentage fee (usually only for Ethereum). Either way, we’ll need to calculate the fee in BigNumber format (no decimals).
 
 ```ts
 const transferAmount = BigNumber.from("1000000000000000000"); // We are sending 1 MATIC over the wall to Oasis
@@ -147,7 +147,7 @@ console.log("EmitterAddress: ", emitterAddress);
 
 Let’s walk through each of the arguments of this function and what they mean.
 
-`POLYGON_TOKEN_BRIDGE` is the address of the token bridge module on the Polygon network. You can find it and other addresses on the Deployment Info page.
+`POLYGON_TOKEN_BRIDGE` is the address of the token bridge module on the Polygon network. You can find it and other addresses on the [contracts](../../reference/contracts.md) page.
 
 `PolygonWallet` is a signer you get from the Ethers library that holds a private key that can sign transactions.
 

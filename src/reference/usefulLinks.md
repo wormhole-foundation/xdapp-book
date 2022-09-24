@@ -1,30 +1,32 @@
-# Useful Links
+# Tools and Useful Links
 
-Below are a variety of useful links to tools and information in the Wormhole ecosystem that can help you develop xDapps.
+Below are a variety of tools and information in the Wormhole ecosystem that can help you develop xDapps.
 
-### Design Documents
+### [Design Documents](https://github.com/certusone/wormhole/tree/dev.v2/whitepapers)
 
-Wormhole's component design specifications can be found [here](https://github.com/certusone/wormhole/tree/dev.v2/whitepapers). These outline the reasoning behind design decisions with added technical depth.
+Wormhole's component design specifications outline the reasoning behind design decisions with added technical depth.
 
 ### Testnet
 
-Wormhole has deployed Core Bridge, Token Bridge and NFT Bridge contracts on various testnets of the chains connected by Wormhole. You can see the deployed addresses [here](./contracts.md). There's only a single Guardian that oversees the testnets, so you might get a higher rate of missed VAAs than you would on mainnet.
+Wormhole has deployed Core Bridge, Token Bridge and NFT Bridge contracts on various testnets of the chains connected by Wormhole. You can see the deployed addresses [here](./contracts.md). 
 
-### Testnet Bridge UI
+_Note: There's only a single Guardian that oversees the testnets, so you might experience a higher rate of missed VAAs than you would on mainnet._
 
-If you'd like to try out bridging tokens on testnet, there's a UI you can use to attest and transfer tokens for testnet, hosted [here](https://wormhole-foundation.github.io/example-token-bridge-ui/#/transfer).
+### [Testnet Bridge UI](https://wormhole-foundation.github.io/example-token-bridge-ui/#/transfer)
+
+An example UI provided to test out attesting and bridging tokens on testnet.
 
 ### Tilt
 
-Tilt is a Kubernetes-based tool that runs a copy of every chain along side a Guardian node to create a simulated testing environment. To set it up and test against it, start [here](../development/tilt/overview.md).
+Tilt is a Kubernetes-based tool that runs a copy of every chain along side a Guardian node to create a simulated testing environment. Details on how to set it up and test against it is [here](../development/tilt/overview.md).
 
 ### Wormhole Core Repository
 
 The Wormhole core repository can be found at [https://github.com/wormhole-foundation/wormhole](https://github.com/wormhole-foundation/wormhole).
 
-### Wormhole Explorer
+### [Wormhole Explorer](https://wormholenetwork.com/en/explorer)
 
-[Wormhole Explorer](https://wormholenetwork.com/en/explorer) is a tool that will help you parse VAAs after they've been picked up the Guardian network.
+Tool to observe all Wormhole activity and can help you parse VAAs after they've been picked up the Guardian network.
 
 ### Wormhole SDK
 

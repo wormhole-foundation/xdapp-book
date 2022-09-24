@@ -19,11 +19,11 @@ IWormhole core_bridge = IWormhole(wormhole_core_bridge_address);
 
 ## Primary functions
 
-The Wormhole Core Layer effectively only has two important interactions -- (1) emit VAAs, and (2) parse and verify VAAs that originated from other chains.
+The Wormhole Core Layer has two important interactions -- (1) emit VAAs, and (2) parse and verify VAAs that originated from other chains.
 
 ### Emitting a VAA
 
-There are two forms that VAAs can be emitted within Wormhole:
+There are two forms of VAAs that can be emitted:
 
 - Single VAA: all messages will be emitted in this format
 - Batch VAA: messages that are generated from the same transaction will be emitted in this format. This feature was developed to provide an easier paradigm for composability and better gas efficiency for more involved cross-chain activity.
@@ -31,11 +31,9 @@ There are two forms that VAAs can be emitted within Wormhole:
 To emit a VAA, always use `publishMessage` which takes in the following arguments:
 
 1.  `nonce` (uint32): a number assigned to each message
-    - The `nonce` provides a mechanism by which to group messages together within a Batch VAA.
-    - How Batch VAAs are generated based on a message's `nonce` is described below.
+    - The `nonce` provides a mechanism by which to group messages together within a Batch VAA. How the `nonce` is used is described below.
 2.  `Consistency` (uint8): the number of blocks that Guardians will wait before signing a message
-    - Each blockchain has different finality periods. In general, higher consistencies mean more security against blockchain reorgs.
-    - [Here](../../reference/contracts.md) are the consistency levels by blockchain that are used by the xAsset layer to have a high level of guarantee against reorgs.
+    - Each blockchain has different finality periods based on the consensus mechanism. In general, higher consistency values provides more security against blockchain reorgs. [Here](../../reference/contracts.md) are the consistency levels by blockchain that are used by the xAsset layer to have a high level of guarantee against reorgs.
 3.  `Payload` (bytes[]): raw bytes to emit
     - It is up to the emitting contract to properly define this arbitrary set of bytes.
 
@@ -83,8 +81,11 @@ To properly parse and verify a single VAA, always use `parseAndVerifyVM` which t
 3. `reason` (string): Explanatory error message if a VAA is invalid, or an empty string if it is valid.
 
 **Batch VAA**
+
 To properly parse and verify a batch VAA, always use `parseAndVerifyBatchVM` which takes in two arguments: `encodedVM` (bytes) and `cache` (bool).
 
 In most scenarios, you'll want to set `cache` equal to true.
 
-This will return a VM2 object, containing all the 'headless' VAAs contained inside the batch VAA. These headless VAAs can be verified by `parseAndVerifyVM`, which means that modules which verify messages can be agnostic as to if the message was original part of a batch VAA or a single VAA. This is gone into in more depth in the [Best Practices](./bestPractices.md) section.
+This will return a VM2 object, containing all the 'headless' VAAs contained inside the batch VAA. These headless VAAs can be verified by `parseAndVerifyVM`, which means that modules which verify messages in an xDapp can be agnostic as to whether a message came from a batch VAA or a single VAA. 
+
+The [Best Practices](./bestPractices.md) section goes into more depth of how to interact with the coreLayer.

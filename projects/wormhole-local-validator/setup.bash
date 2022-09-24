@@ -4,5 +4,5 @@
 # If it doesn't then clone
 if [ ! -d "./wormhole" ] 
 then
-    git clone https://github.com/certusone/wormhole
+    git clone https://github.com/wormhole-foundation/wormhole
 fi
