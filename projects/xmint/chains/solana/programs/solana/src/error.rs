@@ -9,4 +9,7 @@ pub enum XmintError {
 
     #[msg("Posted VAA Emitter Chain ID or Address Mismatch")]
     VAAEmitterMismatch,
+
+    #[msg("Receipt already claimed!")]
+    ReceiptClaimed,
 }
