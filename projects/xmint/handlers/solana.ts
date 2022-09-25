@@ -85,15 +85,6 @@ export async function deploy(src: string){
         mint.toBuffer()
     ], metaplexProgramID)[0]
 
-    /*
-    const tokenReceipientAddress = getOrCreateAssociatedTokenAccount(
-        connection,
-        srcKey,
-        //WETH MINT\\,
-
-    )
-    */
-
     const redeemerAcc = findProgramAddressSync([Buffer.from("redeemer")], xmint.programId)[0];
 
     // Initalize will also CPI into metaplex metadata program to setup metadata for the token
@@ -482,10 +473,38 @@ export async function submitForeignPurchase(src:string, target:string, vaa:strin
         srcKey,
         wethMint,
         redeemerAcc,
-        true // Allow off curve because the owner of the mintATA acc is a PDA
+        true // Allow off curve because the owner of the ATA acc is a PDA
     );
 
-    const tx = await xmint.methods 
+    // MINT SOL#T Tokens to Contract PDA Accounts
+    const xmintTokenMint = new anchor.web3.PublicKey(srcDeployInfo.tokenAddress);
+    const xmintAuthority = findProgramAddressSync([Buffer.from("mint_authority")], xmint.programId)[0];
+    const xmintAtaAccount = await getOrCreateAssociatedTokenAccount(
+        connection,
+        srcKey,
+        xmintTokenMint,
+        xmintAuthority,
+        true // Allow off curve because the owner of the ATA acc is a PDA
+    );
+
+    // P1 Portal Transfer back to Recepient Accounts
+    const tokenBridgeMintCustody = findProgramAddressSync([xmintTokenMint.toBuffer()], tokenBridgePubKey)[0];
+    const tokenBridgeAuthoritySigner = findProgramAddressSync([Buffer.from("authority_signer")], tokenBridgePubKey)[0];
+    const tokenBridgeCustodySigner = findProgramAddressSync([Buffer.from("custody_signer")], tokenBridgePubKey)[0];
+    const coreBridgeConfig = findProgramAddressSync([Buffer.from("Bridge")], coreBridgePubKey)[0];
+    const transferMsgKey = new anchor.web3.Keypair();
+    const tokenBridgeEmitter = findProgramAddressSync([Buffer.from("emitter")], tokenBridgePubKey)[0];
+    const tokenBridgeSequenceKey = findProgramAddressSync([
+        Buffer.from("Sequence"),
+        tokenBridgeEmitter.toBuffer()
+    ], coreBridgePubKey)[0];
+    const coreBridgeFeeCollector = findProgramAddressSync([Buffer.from("fee_collector")], coreBridgePubKey)[0];
+
+    // need to split the following into two because Solana account limit
+    const receiptAcc = findProgramAddressSync([ Buffer.from(vaaHash, "hex") ], xmint.programId)[0];
+
+    // Submit Foreign Purchase
+    const submitTx = await xmint.methods 
         .submitForeignPurchase()
         .accounts({
             payer: srcKey.publicKey,
@@ -494,17 +513,21 @@ export async function submitForeignPurchase(src:string, target:string, vaa:strin
             coreBridgeVaa: coreBridgeVaaKey,
             processedVaa: processedVaaKey,
             emitterAcc: emitterAddressAcc,
+            receipt: receiptAcc,
+
             tokenBridgeConfig: tokenBridgeConfigAcc,
             tokenBridgeClaimKey: tokenBridgeClaimAcc,
             wethAtaAccount: wethAtaAcc.address,
+            redeemer:redeemerAcc,
             feeRecipient: wethAtaAcc.address,
             wethMint: wethMint,
             wethMintWrappedMeta: wethWrappedMeta,
             mintAuthorityWrapped: mintAuthorityWrapped,
             rentAccount: anchor.web3.SYSVAR_RENT_PUBKEY,
-            tokenBridgeProgram: tokenBridgePubKey,
+            coreBridge: coreBridgePubKey,
             splProgram: TOKEN_PROGRAM_ID,
-            redeemer:redeemerAcc,
+
+            tokenBridge: tokenBridgePubKey
         })
         .preInstructions([
             anchor.web3.ComputeBudgetProgram.requestUnits({
@@ -514,7 +537,51 @@ export async function submitForeignPurchase(src:string, target:string, vaa:strin
         ])
         .rpc();
 
-    }
+    await new Promise((r) => setTimeout(r, 16000)); //wait for accounts to finialize
+
+    // Claim Foreign Purchase
+    const claimTx = await xmint.methods 
+        .claimForeignPurchase()
+        .accounts({
+            payer: srcKey.publicKey,
+            systemProgram: anchor.web3.SystemProgram.programId,
+            config: configAcc,
+            receipt: receiptAcc,
+
+            rentAccount: anchor.web3.SYSVAR_RENT_PUBKEY,
+            tokenBridgeConfig: tokenBridgeConfigAcc,
+            splProgram: TOKEN_PROGRAM_ID,
+
+            xmintTokenMint: xmintTokenMint,
+            xmintAuthority: xmintAuthority,
+            xmintAtaAccount: xmintAtaAccount.address,
+            
+            tokenBridgeMintCustody: tokenBridgeMintCustody,
+            tokenBridgeAuthoritySigner: tokenBridgeAuthoritySigner,
+            tokenBridgeCustodySigner: tokenBridgeCustodySigner,
+            coreBridgeConfig: coreBridgeConfig,
+            xmintTransferMsgKey: transferMsgKey.publicKey,
+            tokenBridgeEmitter: tokenBridgeEmitter,
+            tokenBridgeSequenceKey: tokenBridgeSequenceKey,
+            coreBridgeFeeCollector: coreBridgeFeeCollector,
+            clock: anchor.web3.SYSVAR_CLOCK_PUBKEY,
+            coreBridge: coreBridgePubKey,
+
+            tokenBridge: tokenBridgePubKey
+        })
+        .preInstructions([
+            anchor.web3.ComputeBudgetProgram.requestUnits({
+                units: 1400000,
+                additionalFee: 0,
+            })
+        ])
+        .signers([transferMsgKey])
+        .rpc();
+
+    const sfpVaa = await fetchVaa(src, claimTx, true);
+    console.log(sfpVaa);
+    return sfpVaa;
+}
 
 
 export async function sellToken(src:string, target:string, amount:number){}
