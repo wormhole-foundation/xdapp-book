@@ -51,3 +51,10 @@ token_app_id=`$GOAL app create --creator $ADMIN \
         --app-arg "str:$core_app_addr" | grep 'Created app' |awk '{print $6}' | tr -d '\r'`
 
 echo "Created token bridge app at id: $token_app_id"
+
+
+while true
+do
+    curl localhost:4001/v2/status --fail-with-body -H "X-Algo-API-Token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    sleep 5
+done
