@@ -18,7 +18,10 @@ ts-node orchestrator.ts balance sol0 sol0
 ts-node orchestrator.ts balance sol0 evm0
 
 # Buy SOL0-TOKEN with eth 
-ts-node orchestrator.ts buy-token evm0 sol0 100
+#ts-node orchestrator.ts buy-token evm0 sol0 100
+
+# Buy EVM0-TOKEN with SOL 
+ts-node orchestrator.ts buy-token sol0 evm0 100
 
 # Print Balances for EVM0 and SOL0 Keypairs
 ts-node orchestrator.ts balance evm0 evm0
