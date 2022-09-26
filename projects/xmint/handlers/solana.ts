@@ -15,7 +15,9 @@ import {
     postVaaSolanaWithRetry, 
     setDefaultWasm, 
     tryNativeToUint8Array,
-    importCoreWasm 
+    importCoreWasm, 
+    transferFromSolana,
+    redeemOnSolana
 } from '@certusone/wormhole-sdk';
 import * as byteify from 'byteify';
 import keccak256 from "keccak256";
@@ -23,11 +25,15 @@ import {
     getAccount,
     getOrCreateAssociatedTokenAccount,
     createMint,
-    TOKEN_PROGRAM_ID
+    TOKEN_PROGRAM_ID,
+    approve,
+    createWrappedNativeAccount,
+    closeAccount
 } from '@solana/spl-token'
 import {
     PROGRAM_ID as metaplexProgramID,
 } from '@metaplex-foundation/mpl-token-metadata';
+import { parseUnits } from 'ethers/lib/utils';
 
 const exec = promisify(require('child_process').exec);
 const config = JSON.parse(fs.readFileSync('./xdapp.config.json').toString());
@@ -249,29 +255,6 @@ export async function createWrapped(src:string, target:string, vaa:string){
     //If the attestation is WETH, save the ATA for config of the WETH mint as recipient address
 }
 
-export async function debug(){
-    const src = "sol0";
-    const target = 'evm0';
-    const srcNetwork = config.networks[src];
-    const targetNetwork = config.networks[target];
-    const srcDeployInfo = JSON.parse(fs.readFileSync(`./deployinfo/${src}.deploy.json`).toString());
-    const targetDeployInfo = JSON.parse(fs.readFileSync(`./deployinfo/${target}.deploy.json`).toString());
-    const srcKey = anchor.web3.Keypair.fromSecretKey(Uint8Array.from(JSON.parse((fs.readFileSync(`keypairs/${src}.key`).toString())
-    )));
-    const connection = new anchor.web3.Connection(srcNetwork.rpc);
-
-    setDefaultWasm("node");
-    await new Promise((r) => setTimeout(r, 20000)); // wait for blocks to advance before fetching new foreign address
-    const foreignAddress = await getForeignAssetSolana(
-        connection,
-        srcNetwork.tokenBridgeAddress,
-        targetNetwork.wormholeChainId,
-        tryNativeToUint8Array(targetDeployInfo.tokenAddress, targetNetwork.wormholeChainId)
-    );
-    console.log(`${src} Network has new PortalWrappedToken for ${target} network at ${foreignAddress}`);
-}
-
-
 export async function registerApp(src:string, target:string){
     const srcNetwork = config.networks[src];
     const targetNetwork = config.networks[target];
@@ -374,7 +357,132 @@ export async function balance(src: string, target: string) : Promise<string>{
 
 export async function buyToken(src:string, target: string, amount:number){
     // Buy token on target chain with SOL on SRC chain
-        // Create p3 that pays SOL, reciepient address is 
+        // Create p3 that pays SOL
+    
+    const srcNetwork = config.networks[src];
+    const targetNetwork = config.networks[target];
+    const srcDeployInfo = JSON.parse(fs.readFileSync(`./deployinfo/${src}.deploy.json`).toString());
+    const targetDeployInfo = JSON.parse(fs.readFileSync(`./deployinfo/${target}.deploy.json`).toString());
+    const srcKey = anchor.web3.Keypair.fromSecretKey(Uint8Array.from(JSON.parse((fs.readFileSync(`keypairs/${src}.key`).toString())
+    )));
+    const connection = new anchor.web3.Connection(srcNetwork.rpc);
+
+    // For this project, 1 Native Token (1 SOL) will always equal 100 Chain tokens, no matter the source or target chains
+    const solToTransfer = parseUnits((amount/100).toString(), "9");
+    const targetChainAddress = tryNativeToUint8Array(targetDeployInfo.tokenReceipientAddress, targetNetwork.wormholeChainId);
+    setDefaultWasm("node");
+
+    // Recieve tokens into the ATA for payer for wrapped ETH0 Tokens
+        // Requires getting wrapped mint data
+    const wrappedTokenAddress = await getForeignAssetSolana(
+        connection,
+        srcNetwork.tokenBridgeAddress,
+        targetNetwork.wormholeChainId,
+        tryNativeToUint8Array(targetDeployInfo.tokenAddress, targetNetwork.wormholeChainId)
+    );
+
+    const targetTokenATA = await getOrCreateAssociatedTokenAccount(
+        connection,
+        srcKey,
+        new anchor.web3.PublicKey(wrappedTokenAddress),
+        srcKey.publicKey
+    );
+
+    const purchaseOrderPayload = tryNativeToUint8Array(targetTokenATA.address.toString(), srcNetwork.wormholeChainId);
+    
+    // Tokenbridge Authority Signer holds delegate authority to mutate the wSOL ATA account
+    const tokenBridgePubKey = new anchor.web3.PublicKey(srcNetwork.tokenBridgeAddress);
+    const tokenBridgeAuthoritySigner = findProgramAddressSync([Buffer.from("authority_signer")], tokenBridgePubKey)[0];
+
+    // wSOL ATA Account
+    const wSOLATAAcc =  await createWrappedNativeAccount(
+        connection,
+        srcKey,
+        srcKey.publicKey,
+        solToTransfer.toNumber(),
+        new anchor.web3.Keypair(),
+    )
+
+    //wSOL Approve
+    await approve(
+        connection,
+        srcKey,
+        wSOLATAAcc,
+        tokenBridgeAuthoritySigner,
+        srcKey,
+        solToTransfer.toBigInt()
+    );
+
+    console.log("Approved wSOL Transfer");
+    await new Promise((r) => setTimeout(r, 16000)); //wait for accounts to finialize
+    //p3 Generation
+    const tx = await transferFromSolana(
+        connection,
+        srcNetwork.bridgeAddress,
+        srcNetwork.tokenBridgeAddress,
+        srcKey.publicKey.toString(),
+        wSOLATAAcc.toString(),
+        srcNetwork.wrappedNativeAddress,
+        solToTransfer.toBigInt(),
+        targetChainAddress,
+        targetNetwork.wormholeChainId,
+        tryNativeToUint8Array(wSOLATAAcc.toString(), srcNetwork.wormholeChainId),
+        srcNetwork.wormholeChainId,
+        srcKey.publicKey.toString(),
+        BigInt(0),
+        purchaseOrderPayload        
+    );
+
+    tx.partialSign(srcKey);
+    const txid = await connection.sendRawTransaction(tx.serialize());
+    console.log("SOL transferred: ", txid);
+    const vaa = await fetchVaa(src, txid, true);
+
+    /*
+    await closeAccount(
+        connection,
+        srcKey,
+        wSOLATAAcc,
+        srcKey.publicKey,
+        srcKey.publicKey
+    );
+    */
+
+    return vaa;
+}
+
+export async function claimTokens(src:string, vaa:string){
+    const srcNetwork = config.networks[src];
+    const srcKey = anchor.web3.Keypair.fromSecretKey(Uint8Array.from(JSON.parse((fs.readFileSync(`keypairs/${src}.key`).toString())
+    )));
+    const connection = new anchor.web3.Connection(srcNetwork.rpc);
+
+    //Post VAA before trying to claim it
+    setDefaultWasm("node");
+    await postVaaSolanaWithRetry(
+        connection,
+        async (tx) => {
+            tx.partialSign(srcKey);
+            return tx;
+        },
+        srcNetwork.bridgeAddress,
+        srcKey.publicKey.toString(),
+        Buffer.from(vaa, "base64"),
+        10
+    );
+    
+    await new Promise((r) => setTimeout(r, 16000)); //wait for accounts to finialize
+
+    const tx = await redeemOnSolana(
+        connection,
+        srcNetwork.bridgeAddress,
+        srcNetwork.tokenBridgeAddress,
+        srcKey.publicKey.toString(),
+        Buffer.from(vaa, 'base64'),
+    );
+    tx.partialSign(srcKey);
+    const txid = await connection.sendRawTransaction(tx.serialize());
+    console.log("Claimed tokens on Solana: ", txid);
 }
 
 export async function submitForeignPurchase(src:string, target:string, vaa:string){
@@ -531,7 +639,7 @@ export async function submitForeignPurchase(src:string, target:string, vaa:strin
         })
         .preInstructions([
             anchor.web3.ComputeBudgetProgram.requestUnits({
-                units: 1400000,
+                units: 300000,
                 additionalFee: 0,
             })
         ])
@@ -571,7 +679,7 @@ export async function submitForeignPurchase(src:string, target:string, vaa:strin
         })
         .preInstructions([
             anchor.web3.ComputeBudgetProgram.requestUnits({
-                units: 1400000,
+                units: 300000,
                 additionalFee: 0,
             })
         ])

@@ -165,10 +165,5 @@ xmint
         console.log(`Balance of ${src} key for ${target} tokens is ${balance}`);
     })
 
-xmint
-    .command("debug")
-    .action(async () => {
-        await solana.debug();
-    })
 
 xmint.parse();

@@ -230,6 +230,7 @@ async function fetchVaa(src:string, tx:ethers.ethers.ContractReceipt, portal:boo
     return vaaBytes.vaaBytes;
 }
 
+/*
 function writeVaa(src:string, vaa:string){
     const srcDeploymentInfo = JSON.parse(fs.readFileSync(`./deployinfo/${src}.deploy.json`).toString());
     if(!srcDeploymentInfo['vaas']){
@@ -242,6 +243,7 @@ function writeVaa(src:string, vaa:string){
         JSON.stringify(srcDeploymentInfo, null, 4)
     );
 }
+*/
 
 /**
  * Submits target Purchase VAA onto src network
@@ -390,7 +392,6 @@ export async function buyToken(src:string, target: string, amount: number): Prom
     // The buy order will be written to the SRC chain's vaa list
     // Needs to be submitted to target chain with `submitForeignPurchase`
     const vaa = await fetchVaa(src, tx, true);
-    writeVaa(src, vaa);
     return vaa;
 }
 
