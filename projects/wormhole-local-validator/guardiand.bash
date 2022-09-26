@@ -46,8 +46,8 @@ docker run --rm --name guardiand $DOCKER_FLAGS --hostname guardian-0 --cap-add=I
     --pythnetContract Bridge1p5gheXUvJ6jGWGeCsgPKgnE3YgdGKRVCMY9o \
     --solanaWS ws://$HOST:8900 \
     --solanaRPC http://$HOST:8899 \
-    --algorandIndexerRPC ws://$HOST:8545 \
+    --algorandIndexerRPC https://$HOST:8090 \
     --algorandIndexerToken "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" \
-    --algorandAlgodToken "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" \
     --algorandAlgodRPC https://$HOST:4001 \
+    --algorandAlgodToken "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" \
     --algorandAppID "4"
