@@ -1,0 +1,18 @@
+export ALGOD_CHANNEL="stable"
+export ALGOD_URL=""
+export ALGOD_BRANCH=""
+export ALGOD_SHA=""
+export NETWORK=""
+export NETWORK_TEMPLATE="images/algod/DevModeNetwork.json"
+export NETWORK_BOOTSTRAP_URL=""
+export NETWORK_GENESIS_FILE=""
+export NETWORK_NUM_ROUNDS=30000
+export INDEXER_URL="https://github.com/algorand/indexer"
+export INDEXER_BRANCH="master"
+export INDEXER_SHA=""
+export INDEXER_DISABLED=""
+export INDEXER_ENABLE_ALL_PARAMETERS="false"
+
+export ALGOD_CONTAINER="wormhole-local-algod"
+export INDEXER_CONTAINER="wormhole-local-algorand-indexer"
+export POSTGRES_CONTAINER="wormhole-local-postgres"
