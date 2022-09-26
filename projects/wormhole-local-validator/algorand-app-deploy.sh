@@ -36,7 +36,7 @@ core_app_id=`$GOAL app create --creator $ADMIN \
 core_app_addr=`$GOAL app info --app-id=$core_app_id | grep 'Application account:' | awk '{print $3}' | tr -d '\r'`
 echo "Created core app at id: $core_app_id with address $core_app_addr"
 
-echo -n $core_app_id > .algorand_app_id
+echo -n $core_app_id > $ALGORAND_ARTIFACTS/.algorand_app_id
 
 # Create token bridge 
 token_app_id=`$GOAL app create --creator $ADMIN \

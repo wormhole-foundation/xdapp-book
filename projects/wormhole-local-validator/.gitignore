@@ -2,6 +2,8 @@ test-ledger/
 wormhole/
 node_modules/
 
+# sandbox
 algorand-local/
+# config/staging for contracts
 algorand-artifacts/*.teal
-.algorand_app_id
+algorand-artifacts/.algorand_app_id
