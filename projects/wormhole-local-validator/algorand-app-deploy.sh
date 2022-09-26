@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# clean up any existing container
+$SANDBOX clean > /dev/null || true
+
 echo "Starting algorand docker containers"
 $SANDBOX up dev
 
@@ -19,6 +22,9 @@ cp ./wormhole/algorand/teal/$TOKEN_CLEAR_NAME $ALGORAND_ARTIFACTS
 # Copy token bridge into algorand docker container
 $SANDBOX copyTo $ALGORAND_ARTIFACTS/$TOKEN_APPROVAL_NAME 
 $SANDBOX copyTo $ALGORAND_ARTIFACTS/$TOKEN_CLEAR_NAME
+
+
+ADMIN=`$GOAL account list | awk '{print $2}' | head -n 1 | tr -d '\r'`
 
 echo "Creating apps"
 
@@ -53,8 +59,14 @@ token_app_id=`$GOAL app create --creator $ADMIN \
 echo "Created token bridge app at id: $token_app_id"
 
 
+trap "$SANDBOX down" SIGINT
+
 while true
 do
-    curl localhost:4001/v2/status --fail-with-body -H "X-Algo-API-Token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    HTTP_CODE=`curl -s -o /dev/null -w "%{http_code}" localhost:4001/v2/status -H "X-Algo-API-Token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"`
+    if [ "$HTTP_CODE" != "200" ];  then
+        exit 1
+    fi
     sleep 5
 done
+

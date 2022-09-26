@@ -13,9 +13,6 @@ export TOKEN_CLEAR_NAME=token_clear.teal
 export SANDBOX="$ALGORAND_SANDBOX/sandbox"
 export GOAL="$SANDBOX goal"
 
-# TODO:
-export ADMIN=IBORJJKUKHXDPDGIVIRUXTTQT53KEPERB5CPFXU4H4QLYXSK3JVOP62DD4
-
 # Check if algorand-local/ directory exists.
 # If it doesn't then clone
 if [ ! -d "./algorand-local" ] 
@@ -25,4 +22,5 @@ then
 fi
 
 
+npx pm2 delete algorand 2> /dev/null || true
 npx pm2 start "bash algorand-app-deploy.sh" --name algorand
