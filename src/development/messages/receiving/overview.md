@@ -1,6 +1,6 @@
-# Overview of Receving Messages
+# Overview of Receiving Messages
 
-Receving messages requires you (or a relayer) to submit the VAA to your application contract. This contract then calls the Core Bridge on the receving chain to check the message signatures against the stored Guardian set signatures. 
+Receiving messages requires you (or a relayer) to submit the VAA to your application contract. This contract then calls the Core Bridge on the receiving chain to check the message signatures against the stored Guardian set signatures. 
 
 If those checks pass, then the application can see if it's a message that's already been processed by checking its sequence number against a store list of processed message sequence numbers. 
 

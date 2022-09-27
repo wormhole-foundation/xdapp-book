@@ -1,8 +1,8 @@
 # Core Message Layer
 
-This section will explain how to properly interact with the Wormhome Core Message Layer in an EVM ecosystem.
+This section will explain how to properly interact with the Wormhole Core Message Layer in an EVM ecosystem.
 
-Messages in Wormhole take the form of a Verified Action Approval (VAA) and both terms can be used interchangably. The rest of this section will only use the term VAA.
+Messages in Wormhole take the form of a Verified Action Approval (VAA) and both terms can be used interchangeably. The rest of this section will only use the term VAA.
 
 ## Configuring the Interface
 
@@ -42,7 +42,7 @@ To emit a VAA, always use `publishMessage` which takes in the following argument
 3.  `Payload` (bytes[]): raw bytes to emit
     - It is up to the emitting contract to properly define this arbitrary set of bytes.
 
-`publishMessage` will output a `sequence` (uint64) that is used in conjunction with `emitterChainID` and `emitterAddress` to retrive the generated VAA from the Guardian Network.
+`publishMessage` will output a `sequence` (uint64) that is used in conjunction with `emitterChainID` and `emitterAddress` to retrieve the generated VAA from the Guardian Network.
 
 > How Batch VAAs are generated
 >

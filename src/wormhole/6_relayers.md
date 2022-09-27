@@ -16,7 +16,7 @@ In most designs there is a dedicated relaying mechanism which operates inside th
 
 In Wormhole, relayers are neither trusted nor privileged. This means relayers **cannot jeopardize security, only liveness**. Because Wormhole is designed to have a firm trust boundary at the level of the VAA, relayers have exactly the same capabilities as any regular, untrusted blockchain user.
 
-From this perspective, relayers are just delivery trucks that deliver VAAs to their destination, and have no capacity to tamper with the delivery outcome. VAAs either get delivered or don't, which makes relayers analagous to the off-chain 'crank turners' of traditional Dapps.
+From this perspective, relayers are just delivery trucks that deliver VAAs to their destination, and have no capacity to tamper with the delivery outcome. VAAs either get delivered or don't, which makes relayers analogous to the off-chain 'crank turners' of traditional Dapps.
 
 As a result, Wormhole is able to facilitate a variety of heterogeneous relaying mechanisms, and the developer is able to choose whatever best suit their needs.
 
@@ -77,7 +77,7 @@ _Note: this feature is not yet available in mainnet_
 
 Because relaying is such an integral component to xDapps, Wormhole has built a protocol which allows developers to utilize a decentralized network of untrusted relayers to deliver their messages, removing the specialized relayer as an infrastructure responsibility.
 
-In order to utilize the generic relayer network, developers must request delivery from the Wormhole Relay Ecosystem Contract and must also implement a "receiveRelay" function in their contracts, which will be called by the relayer. Once a delivery has been requested, the VAA is guaranteed to be delivered within a certain timeframe. The specifics of this vary by blockchain and smart contract runtime.
+In order to utilize the generic relayer network, developers must request delivery from the Wormhole Relay Ecosystem Contract and must also implement a "receiveRelay" function in their contracts, which will be called by the relayer. Once a delivery has been requested, the VAA is guaranteed to be delivered within a certain time frame. The specifics of this vary by blockchain and smart contract runtime.
 
 Generic relayers have the following benefits:
 
@@ -90,7 +90,7 @@ And potential downsides:
     - They sometimes have less gas efficiency
     - They may not be supported on all chains
 
-Overall, Generic Relayers simplify both the developer and user experience. They're a great choice if they cover all your usecases.
+Overall, Generic Relayers simplify both the developer and user experience. They're a great choice if they cover all your use cases.
 
 ---
 

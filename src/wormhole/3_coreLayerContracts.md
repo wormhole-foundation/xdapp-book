@@ -73,8 +73,8 @@ This multicast-by-default model is integral to the design. Having this multicast
 
 Use cases where the message has an intended recipient or is only meant to be consumed a single time must be handled in logic outside the Core Contract. There are standard practices for accomplishing these features later on in the code examples, and some ecosystem contracts (namely Token Bridge & the Relaying contract) handle this on behalf of downstream consumers.
 
-Lastly, because the VAA creation is separate from relaying, there is _no additional cost_ to the multicast model when a single chain is being targetted. If the data isn't needed on a certain blockchain, don't relay it there, and it won't cost anything.
+Lastly, because the VAA creation is separate from relaying, there is _no additional cost_ to the multicast model when a single chain is being targeted. If the data isn't needed on a certain blockchain, don't relay it there, and it won't cost anything.
 
 ---
 
-In our next section, we'll dive into the technical specfications of the VAA.
+In our next section, we'll dive into the technical specifications of the VAA.

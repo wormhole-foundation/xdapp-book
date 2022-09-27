@@ -9,7 +9,7 @@ There are four steps to transferring a token:
 1. If not already done, complete a standard ERC-20 token approval prior to performing a bridge action if you're in the EVM ecosystem.
 
 ```js
-// Here we are approving and transfering 50 tokens. The ERC20 token we are transfering has 18 decimal places.
+// Here we are approving and transferring 50 tokens. The ERC20 token we are transferring has 18 decimal places.
 const bridgeAmt = ethers.utils.parseUnits("50", "18");
 
 await treasury.approveTokenBridge(bridgeAmt, {
