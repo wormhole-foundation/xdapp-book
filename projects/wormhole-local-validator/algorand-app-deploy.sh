@@ -24,6 +24,7 @@ $SANDBOX copyTo $ALGORAND_ARTIFACTS/$TOKEN_APPROVAL_NAME
 $SANDBOX copyTo $ALGORAND_ARTIFACTS/$TOKEN_CLEAR_NAME
 
 
+# Takes the first account listed in the sandbox KMD and uses it to deploy
 ADMIN=`$GOAL account list | awk '{print $2}' | head -n 1 | tr -d '\r'`
 
 echo "Creating apps"
@@ -38,8 +39,6 @@ core_app_id=`$GOAL app create --creator $ADMIN \
         --local-ints 0 \
         --local-byteslices 16  | grep 'Created app' |awk '{print $6}' | tr -d '\r'`
 
-
-core_app_addr=`$GOAL app info --app-id=$core_app_id | grep 'Application account:' | awk '{print $3}' | tr -d '\r'`
 echo "Created core app at id: $core_app_id with address $core_app_addr"
 
 echo -n $core_app_id > $ALGORAND_ARTIFACTS/.algorand_app_id
@@ -59,14 +58,16 @@ token_app_id=`$GOAL app create --creator $ADMIN \
 echo "Created token bridge app at id: $token_app_id"
 
 
+# TODO: add (hardcoded?) account so we have at least 1 reliably funded known account
+
 trap "$SANDBOX down" SIGINT
 
 while true
 do
     HTTP_CODE=`curl -s -o /dev/null -w "%{http_code}" localhost:4001/v2/status -H "X-Algo-API-Token: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"`
     if [ "$HTTP_CODE" != "200" ];  then
+        echo "Algorand container failed"
         exit 1
     fi
     sleep 5
 done
-

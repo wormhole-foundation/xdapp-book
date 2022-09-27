@@ -6,8 +6,6 @@ set -euo pipefail
 # dev.v2 for now (until we make a release)
 DOCKER_IMAGE="ghcr.io/certusone/guardiand:dev.v2"
 
-ALGORAND_CORE_APP_ID=`cat .algorand_app_id`
-
 DOCKER_FLAGS=
 HOST=
 TERRAD_HOST=
@@ -52,4 +50,4 @@ docker run --rm --name guardiand $DOCKER_FLAGS --hostname guardian-0 --cap-add=I
     --algorandIndexerToken "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" \
     --algorandAlgodRPC https://$HOST:4001 \
     --algorandAlgodToken "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" \
-    --algorandAppID algorand-artifacts/$ALGORAND_CORE_APP_ID 
+    --algorandAppID  "1"

@@ -6,4 +6,3 @@ node_modules/
 algorand-local/
 # config/staging for contracts
 algorand-artifacts/*.teal
-algorand-artifacts/.algorand_app_id
