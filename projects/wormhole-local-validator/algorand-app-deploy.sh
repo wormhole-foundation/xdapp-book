@@ -24,8 +24,13 @@ $SANDBOX copyTo $ALGORAND_ARTIFACTS/$TOKEN_APPROVAL_NAME
 $SANDBOX copyTo $ALGORAND_ARTIFACTS/$TOKEN_CLEAR_NAME
 
 
-# Takes the first account listed in the sandbox KMD and uses it to deploy
-ADMIN=`$GOAL account list | awk '{print $2}' | head -n 1 | tr -d '\r'`
+# Takes the first account listed in the sandbox KMD and uses it for funding 
+FAUCET=`$GOAL account list | awk '{print $2}' | head -n 1 | tr -d '\r'`
+echo "Funding admin account"
+
+$GOAL account import -m "$ADMIN_MN"
+$GOAL clerk send -a 1000000000000000 -f $FAUCET -t $ADMIN
+
 
 echo "Creating apps"
 
@@ -39,9 +44,8 @@ core_app_id=`$GOAL app create --creator $ADMIN \
         --local-ints 0 \
         --local-byteslices 16  | grep 'Created app' |awk '{print $6}' | tr -d '\r'`
 
+core_app_addr=`$GOAL app info --app-id=$core_app_id | grep 'Application account:' | awk '{print $3}' | tr -d '\r'`
 echo "Created core app at id: $core_app_id with address $core_app_addr"
-
-echo -n $core_app_id > $ALGORAND_ARTIFACTS/.algorand_app_id
 
 # Create token bridge 
 token_app_id=`$GOAL app create --creator $ADMIN \
@@ -58,8 +62,8 @@ token_app_id=`$GOAL app create --creator $ADMIN \
 echo "Created token bridge app at id: $token_app_id"
 
 
-# TODO: add (hardcoded?) account so we have at least 1 reliably funded known account
-
+# Trap the sigint from pm2 and run `./sandbox down` to 
+# shut down the docker container 
 trap "$SANDBOX down" SIGINT
 
 while true
