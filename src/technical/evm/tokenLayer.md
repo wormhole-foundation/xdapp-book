@@ -1,6 +1,6 @@
 # Token Bridge
 
-This section will explain how to properly interact with the Wormhome Token Bridge Module in an EVM ecosystem.
+This section will explain how to properly interact with the Wormhole Token Bridge Module in an EVM ecosystem.
 
 ## Configuring the interface
 
@@ -19,7 +19,7 @@ ITokenBridge token_bridge = ITokenBridge(wormhole_token_bridge_address);
 
 Attesting a token from EVM needs to happen once per token as it will not be claimable until so. However, there are no restrictions to reattesting a token; repeat attestations will update the metadata.
 
-It is not advised to attest tokens on-chain for most usecases. To attest a token by an off-chain process, you can either do it by hand through one of the Token Bridge UIs (for example [Portal](https://www.portalbridge.com/#/register)) or using the [Typescript SDK](https://www.npmjs.com/package/@certusone/wormhole-sdk).
+It is not advised to attest tokens on-chain for most use cases. To attest a token by an off-chain process, you can either do it by hand through one of the Token Bridge UIs (for example [Portal](https://www.portalbridge.com/#/register)) or using the [Typescript SDK](https://www.npmjs.com/package/@certusone/wormhole-sdk).
 
 _[Here](../../development/portal/evm/attestingToken.md) is an example of how to attest a token using the Typescript SDK._
 
@@ -98,11 +98,11 @@ contractAddress.approve(token_bridge_address, amt);
 
 2. Transfer the token to create the transfer VAA.
    - This function call will return a `sequence` (uint64) that is used in the VAA retrieval step.
-   - _Note: For the recipient addres, Wormhole addresses are 32 bytes for standardization across the different blockchains within the Wormhole ecosystem._
+   - _Note: For the recipient address, Wormhole addresses are 32 bytes for standardization across the different blockchains within the Wormhole ecosystem._
 
 ```
 // To initiate transfer of normal ERC-20s
-token_bridge.transferTokesWithPayload(tokenAddress, amount, recipientChain, recipient, nonce, payload);
+token_bridge.transferTokensWithPayload(tokenAddress, amount, recipientChain, recipient, nonce, payload);
 
 // To initiate transfer of native currency
 token_bridge.wrapAndTransferETHWithPayload(recipientChain, recipient, nonce, payload);

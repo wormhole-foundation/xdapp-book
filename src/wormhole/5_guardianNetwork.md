@@ -7,7 +7,7 @@ To understand not just _how_ the Guardian Network works, but _why_ it works the 
 1. **Decentralization** - Control of the network needs to be distributed amongst many parties.
 2. **Modularity** - Disparate parts of the ecosystem such as the oracle, relayer, applications, etc, should be kept as separate and modular as possible so they can be designed, modified and upgraded independently.
 3. **Chain Agnosticism** - Wormhole should be able to support not only EVM, but also chains like Solana, Algorand, Cosmos, and even platforms that haven't been created yet. It also should not have any one chain as a single point of failure.
-4. **Scalablity** - Wormhole should be able to secure a large amount of value immediately and be able to handle the large transaction volume.
+4. **Scalability** - Wormhole should be able to secure a large amount of value immediately and be able to handle the large transaction volume.
 5. **Upgradeability** - As the decentralized computing ecosystem evolves, Wormhole will need to be able to change the implementation of its existing modules without breaking integrators.
 
 Next, let's go into how Wormhole achieves these one at a time.
@@ -56,8 +56,8 @@ However, once all the full nodes are running, the actual computation and network
 
 ## Upgradability
 
-Over time, the Guardian Set can be expanded beyond 19 with the use of threshold signatures. A variety of relaying models will emerge, each with their own strengths and weaknesses. ZKPs can be used on chains where they are well supported. The xDapp ecosystem will grow, and xDapps will become increasingly intermingled with eachother. There are very few APIs in Wormhole, and most items are implementation details from the perspective of an integrator. This creates a clear pathway towards a fully trustlessness interoperability layer which spans the entirety of decentralized computing.
+Over time, the Guardian Set can be expanded beyond 19 with the use of threshold signatures. A variety of relaying models will emerge, each with their own strengths and weaknesses. ZKPs can be used on chains where they are well supported. The xDapp ecosystem will grow, and xDapps will become increasingly intermingled with each other. There are very few APIs in Wormhole, and most items are implementation details from the perspective of an integrator. This creates a clear pathway towards a fully trustlessness interoperability layer which spans the entirety of decentralized computing.
 
 ---
 
-In the next section, we will talk about the role and responsbilities of relayers in the Wormhole ecosystem.
+In the next section, we will talk about the role and responsibilities of relayers in the Wormhole ecosystem.

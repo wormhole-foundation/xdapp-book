@@ -1,4 +1,4 @@
-# Receving Messages on EVM
+# Receiving Messages on EVM
 
 To receive messages in EVM, first we need to implement a function `receiveMsg`. The name of this function is arbitrary, so any function name will work as long as your relayer knows what to call on the application contract when submitting messages. 
 
