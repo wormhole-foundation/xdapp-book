@@ -54,4 +54,4 @@ Lastly, because the VAA creation is separate from relaying, there is _no additio
 
 ---
 
-In our next section, we'll dive into the technical specfications of the VAA.
+In our next section, we'll dive into the technical specifications of the VAA.
