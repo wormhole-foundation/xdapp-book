@@ -20,13 +20,6 @@
             "rpc": "http://localhost:8899",
             "privateKey": "J2D4pwDred8P9ioyPEZVLPht885AeYpifsFGUyuzVmiKQosAvmZP4EegaKFrSprBC5vVP1xTvu61vYDWsxBNsYx",
             "bridgeAddress": "Bridge1p5gheXUvJ6jGWGeCsgPKgnE3YgdGKRVCMY9o"
-        },
-        "algo0": {
-            "type": "algorand",
-            "wormholeChainId": 8,
-            "rpc": "http://localhost:4001",
-            "privateKey": "",
-            "bridgeAddress": ""
         }
     },
     "wormhole": {
