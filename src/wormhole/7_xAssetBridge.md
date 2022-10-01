@@ -33,7 +33,7 @@ Calling this function will deploy a new contract for the token on the foreign ch
 
 **NFTs**
 
-NFTs do not need need to be attested before they can be created into a xAsset.
+NFTs do not need to be attested before they can be created into a xAsset.
 
 ## Transferring xAssets
 
@@ -76,4 +76,4 @@ CCTs allow xDapp contracts to easily perform simple xAsset transfers, but have t
 
 ---
 
-In the next section, we'll discuss Wormchain and some of the upcoming features it will enable.
+In the next section, we'll discuss Wormchain and some upcoming features it will enable.
