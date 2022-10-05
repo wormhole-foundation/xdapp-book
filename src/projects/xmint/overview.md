@@ -34,4 +34,4 @@ Orchestrator is a ts client that takes arguments from the command line to call v
 
 ### xdapp.config.json
 
-This maintains some constants about the chains RPC endpoints, private keys used to deploy code, etc. It also includes the Wormhole RPC endpoint.
+This maintains some constants about the chains RPC endpoints, private keys used to deploy code, deployed contract addresses, etc. It also includes the Wormhole RPC endpoint.
