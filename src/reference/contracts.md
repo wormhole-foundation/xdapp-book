@@ -96,6 +96,7 @@ These chains can *verify* Wormhole messages submitted to them, but cannot *emit*
 | Klaytn                  | 13                | 1001       | 0x1830CC6eE66c84D2F177B94D544967c774E624cA                         |
 | Celo                    | 14                | 44787      | 0x88505117CA88e7dd2eC6EA1E13f0948db2D50D56                         |
 | NEAR                    | 15                |            | wormhole.wormhole.testnet                                          |
+| Moonbase alpha          | 16                | 1287        | 0xa5B7D85a8f27dd7907dc8FdC21FA5657D5E2F901                        | 
 | Terra                   | 18                | pisco-1    | terra19nv3xr5lrmmr7egvrk2kqgw4kcn43xrtd5g0mpgwwvhetusk4k7s66jyv0   |
 | Injective               | 19                | testnet    | inj1xx3aupmgv3ce537c0yce8zzd3sz567syuyedpg                         |
 | Aptos                   | 22                |            | 0x1b1752e26b65fc24971ee5ec9718d2ccdd36bf20486a10b2973ea6dedc6cd197 |
@@ -120,6 +121,7 @@ These chains can *verify* Wormhole messages submitted to them, but cannot *emit*
 | Klaytn                  | 13                | 1001       | 0xC7A13BE098720840dEa132D860fDfa030884b09A                         |
 | Celo                    | 14                | 44787      | 0x05ca6037eC51F8b712eD2E6Fa72219FEaE74E153                         |
 | Near                    | 15                |            | token.wormhole.testnet                                             |
+| Moonbase alpha          | 16                | 1287       | 0xbc976D4b9D57E57c3cA52e1Fd136C45FF7955A96                         | 
 | Injective               | 19                | testnet    | inj1q0e70vhrv063eah90mu97sazhywmeegp7myvnh                         |
 | Aptos                   | 22                |            | 0xdd0a2618dc5564ccf38d0eca7877198fef51157fea74a6bc2e5e40b52c2a0a08 |
 
@@ -140,6 +142,7 @@ These chains can *verify* Wormhole messages submitted to them, but cannot *emit*
 | Acala                   | 12                | 787        | 0x96f1335e0AcAB3cfd9899B30b2374e25a2148a6E   |
 | Klaytn                  | 13                | 1001       | 0x94c994fC51c13101062958b567e743f1a04432dE   |
 | Celo                    | 14                | 44787      | 0xaCD8190F647a31E56A656748bC30F69259f245Db   |
+| Moonbase alpha          | 16                | 1287       | 0x98A0F4B96972b32Fcb3BD03cAeB66A44a6aB9Edb   | 
 
 
 ## Devnet / Tilt
