@@ -5,7 +5,7 @@ A Wormhole Typescript SDK provided for applications that only need to interact w
 It can be installed using npm:
 
 ```sh
-npm i @certusone/wormholesdk
+npm i @certusone/wormhole-sdk
 ```
 
 The following sections will explain and provide examples of how to perform key functions with Wormhole using the Typescript SDK.
