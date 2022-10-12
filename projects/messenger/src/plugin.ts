@@ -39,7 +39,7 @@ export interface XDappConfig {
   networks: Record<
     Network,
     {
-      type: "evm";
+      type: string;
       wormholeChainId: whSdk.ChainId;
       rpc: string;
       privateKey: string;
