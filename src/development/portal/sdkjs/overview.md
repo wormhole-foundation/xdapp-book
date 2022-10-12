@@ -5,5 +5,5 @@ For applications that only need to interact with the Core and Token Bridge contr
 It can be installed using npm:
 
 ```sh
-npm i @certusone/wormholesdk
+npm i @certusone/wormhole-sdk
 ```
