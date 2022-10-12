@@ -3,9 +3,6 @@
 
 set -euo pipefail
 
-# dev.v2 for now (until we make a release)
-DOCKER_IMAGE="ghcr.io/certusone/guardiand:dev.v2"
-
 HOST=
 if [ "$(uname -m)" = "arm64" ]; then
    HOST="host.docker.internal"
