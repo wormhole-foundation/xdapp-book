@@ -1,12 +1,5 @@
 import { readdirSync, readFileSync } from "fs";
-import {
-  CommonEnv,
-  ExecutorEnv,
-  getLogger,
-  initLogger,
-  Mode,
-  run,
-} from "relayer-engine";
+import * as relayerEngine from "relayer-engine";
 import { EnvType } from "relayer-plugin-interface";
 import { MessengerRelayerPlugin, XDappConfig } from "./plugin";
 
@@ -28,12 +21,8 @@ async function main() {
     });
 
   const relayerConfig = {
-    logLevel: "debug",
-    redisHost: "localhost",
-    redisPort: 6379,
-    pluginURIs: [],
     envType: EnvType.LOCALHOST,
-    mode: Mode.BOTH,
+    mode: relayerEngine.Mode.BOTH,
     supportedChains: Object.entries(xDappConfig.networks).map(
       ([networkName, network]) => {
         return {
@@ -46,13 +35,14 @@ async function main() {
       }
     ),
   };
-  await initLogger(relayerConfig.logLevel);
+
   const plugin = new MessengerRelayerPlugin(
     relayerConfig,
     { registeredContracts, xDappConfig, messengerABI },
-    getLogger()
+    relayerEngine.getLogger()
   );
-  await run({
+
+  await relayerEngine.run({
     plugins: [plugin],
     configs: {
       executorEnv: {
@@ -64,10 +54,10 @@ async function main() {
         ),
       },
       listenerEnv: { spyServiceHost: "localhost:7073" },
-      commonEnv: relayerConfig as CommonEnv,
+      commonEnv: relayerConfig as relayerEngine.CommonEnv,
     },
-    mode: Mode.BOTH,
-    envType: EnvType.LOCALHOST,
+    mode: relayerConfig.mode,
+    envType: relayerConfig.envType,
   });
 }
 
