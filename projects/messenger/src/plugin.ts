@@ -13,6 +13,7 @@ import { Logger } from "winston";
 import { ethers } from "ethers";
 import { Connection as SolanaConnection } from "@solana/web3.js";
 import { BaseVAA } from "./utils";
+import { TextDecoder } from "util";
 
 // todo: do we need this in the plugin or just the relayer??
 whSdk.setDefaultWasm("node");
@@ -70,26 +71,12 @@ export class MessengerRelayerPlugin implements Plugin<VAA> {
   }
 
   async consumeEvent(
-    vaa: Uint8Array,
+    vaa: Buffer,
     stagingArea: { counter?: number }
   ): Promise<{ workflowData?: VAA; nextStagingArea: StagingArea }> {
-    this.logger.debug("Parsing VAA...");
-    const parsed = await this.parseVAA(vaa);
-    const isVAAFromRegisteredContract =
-      this.pluginConfig.registeredContracts.some(
-        (rc) =>
-          rc.chainId === parsed.emitter_chain &&
-          rc.contractAddress ===
-            whSdk.tryUint8ArrayToNative(
-              parsed.emitter_address,
-              parsed.emitter_chain
-            )
-      );
-    if (!isVAAFromRegisteredContract) {
-      return { nextStagingArea: stagingArea };
-    }
+    this.logger.info("Got VAA");
     return {
-      workflowData: Buffer.from(vaa).toString("base64"),
+      workflowData: vaa.toString("base64"),
       nextStagingArea: {
         counter: stagingArea?.counter ? stagingArea.counter + 1 : 0,
       },
@@ -101,10 +88,16 @@ export class MessengerRelayerPlugin implements Plugin<VAA> {
     providers: Providers,
     execute: ActionExecutor
   ): Promise<void> {
+    this.logger.info("Handling workflow...");
     const vaa = Buffer.from(workflow.data, "base64");
     const parsed = await this.parseVAA(vaa);
+    this.logger.info("Got message: " + Buffer.from(parsed.payload).toString("utf-8"));
     await Promise.all(
       this.pluginConfig.registeredContracts.map(async (registeredContract) => {
+        if (registeredContract.chainId === parsed.emitter_chain) {
+          // do not submit to emitting chain
+          return;
+        }
         if (whSdk.isEVMChain(registeredContract.chainId)) {
           await this.submitOnEVM(
             vaa,
@@ -126,6 +119,7 @@ export class MessengerRelayerPlugin implements Plugin<VAA> {
         }
       })
     );
+    this.logger.info("Message submitted to all chains!!");
   }
 
   async submitOnEVM(
@@ -148,7 +142,8 @@ export class MessengerRelayerPlugin implements Plugin<VAA> {
     });
     await tx.wait();
 
-    const message = messenger.getCurrentMsg();
+    const message = await messenger.getCurrentMsg();
+    this.logger.info(`Current message now '${message}' on chain ${chainId}`);
   }
 
   async submitOnSolana(
@@ -168,7 +163,7 @@ export class MessengerRelayerPlugin implements Plugin<VAA> {
     }));
   }
 
-  async parseVAA(vaa: number[] | Uint8Array): Promise<BaseVAA> {
+  async parseVAA(vaa: Buffer | Uint8Array): Promise<BaseVAA> {
     try {
       const { parse_vaa } = await whSdk.importCoreWasm();
       return parse_vaa(new Uint8Array(vaa)) as BaseVAA;
@@ -183,6 +178,5 @@ const factory: PluginFactory = {
   create,
   pluginName: MessengerRelayerPlugin.pluginName,
 };
-console.log(factory.pluginName);
 
 export default factory;

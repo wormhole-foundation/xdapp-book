@@ -1,18 +1,22 @@
 import { readdirSync, readFileSync } from "fs";
-import { getLogger, initLogger, Mode, run } from "relayer-engine";
+import {
+  CommonEnv,
+  ExecutorEnv,
+  getLogger,
+  initLogger,
+  Mode,
+  run,
+} from "relayer-engine";
 import { EnvType } from "relayer-plugin-interface";
 import { MessengerRelayerPlugin, XDappConfig } from "./plugin";
 
 async function main() {
-  const relayerConfig = JSON.parse(
-    readFileSync("./relayer-config/executor.json").toString()
-  );
   const xDappConfig: XDappConfig = JSON.parse(
     readFileSync("./xdapp.config.json").toString()
   );
-  const messengerABI = readFileSync(
-    "./chains/evm/out/Messenger.sol/Messenger.json"
-  ).toString();
+  const messengerABI = JSON.parse(
+    readFileSync("./chains/evm/out/Messenger.sol/Messenger.json").toString()
+  ).abi;
 
   const registeredContracts = readdirSync("./deployinfo")
     .filter((fname) => fname.split(".").length === 3)
@@ -23,7 +27,26 @@ async function main() {
       return { chainId, contractAddress: file.address };
     });
 
-  await initLogger(relayerConfig.logDir, relayerConfig.logLevel);
+  const relayerConfig = {
+    logLevel: "debug",
+    redisHost: "localhost",
+    redisPort: 6379,
+    pluginURIs: [],
+    envType: EnvType.LOCALHOST,
+    mode: Mode.BOTH,
+    supportedChains: Object.entries(xDappConfig.networks).map(
+      ([networkName, network]) => {
+        return {
+          chainId: network.wormholeChainId,
+          chainName: networkName,
+          nodeUrl: network.rpc,
+          nativeCurrencySymbol: network.wormholeChainId === 1 ? "SOL" : "ETH",
+          bridgeAddress: network.bridgeAddress,
+        };
+      }
+    ),
+  };
+  await initLogger(relayerConfig.logLevel);
   const plugin = new MessengerRelayerPlugin(
     relayerConfig,
     { registeredContracts, xDappConfig, messengerABI },
@@ -31,7 +54,18 @@ async function main() {
   );
   await run({
     plugins: [plugin],
-    configs: "./relayer-config",
+    configs: {
+      executorEnv: {
+        // @ts-ignore
+        privateKeys: Object.fromEntries(
+          Object.values(xDappConfig.networks).map((network) => {
+            return [network.wormholeChainId, [network.privateKey]];
+          })
+        ),
+      },
+      listenerEnv: { spyServiceHost: "localhost:7073" },
+      commonEnv: relayerConfig as CommonEnv,
+    },
     mode: Mode.BOTH,
     envType: EnvType.LOCALHOST,
   });
