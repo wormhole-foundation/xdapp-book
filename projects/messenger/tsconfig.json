@@ -1,7 +1,23 @@
 {
     "compilerOptions": {
-        "types": ["node"],
+        "types": [
+            "node"
+        ],
         "moduleResolution": "node",
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "outDir": "lib",
+        "target": "esnext",
+        "module": "CommonJS",
+        "lib": [
+            "es2019"
+        ],
+        "skipLibCheck": true,
+        "noImplicitAny": false,
+        "declaration": true,
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+        "resolveJsonModule": true,
+        "downlevelIteration": true,
+        "sourceMap": true
     }
 }

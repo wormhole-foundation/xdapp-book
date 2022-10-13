@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Run Guardiand
+# Run Spy
 
 set -euo pipefail
 
