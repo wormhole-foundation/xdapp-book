@@ -32,8 +32,11 @@ To emit a VAA, always use `publishMessage` which takes in the following argument
 
 1.  `nonce` (uint32): a number assigned to each message
     - The `nonce` provides a mechanism by which to group messages together within a Batch VAA. How the `nonce` is used is described below.
-2.  `Consistency` (uint8): the number of blocks that Guardians will wait before signing a message
-    - Each blockchain has different finality periods based on the consensus mechanism. In general, higher consistency values provides more security against blockchain reorgs. [Here](../../reference/contracts.md) are the consistency levels by blockchain that are used by the xAsset layer to have a high level of guarantee against reorgs.
+2.  `Consistency` (uint8): the level of finality the guardians will reach before signing the message
+    - Consistency should be considered an enum, not an integer.
+    - On all EVM chains, 200 will result in an instant message, while all other values will wait for finality.
+    - On BSC, the consistency denotes how many block confirmations will be waited before producing the message.
+    - More information about finality can be found [Here](../../reference/contracts.md)
 3.  `Payload` (bytes[]): raw bytes to emit
     - It is up to the emitting contract to properly define this arbitrary set of bytes.
 
@@ -86,6 +89,6 @@ To properly parse and verify a batch VAA, always use `parseAndVerifyBatchVM` whi
 
 In most scenarios, you'll want to set `cache` equal to true.
 
-This will return a VM2 object, containing all the 'headless' VAAs contained inside the batch VAA. These headless VAAs can be verified by `parseAndVerifyVM`, which means that modules which verify messages in an xDapp can be agnostic as to whether a message came from a batch VAA or a single VAA. 
+This will return a VM2 object, containing all the 'headless' VAAs contained inside the batch VAA. These headless VAAs can be verified by `parseAndVerifyVM`, which means that modules which verify messages in an xDapp can be agnostic as to whether a message came from a batch VAA or a single VAA.
 
 The [Best Practices](./bestPractices.md) section goes into more depth of how to interact with the coreLayer.

@@ -20,7 +20,7 @@ The Header is used by the Core Contract to determine the authenticity of the VAA
     u16         emitter_chain             (Wormhole ChainId of emitter contract)
     [32]byte    emitter_address           (Emitter contract address, in Wormhole format)
     u64         sequence                  (Strictly increasing sequence, tied to emitter address & chain)
-    u8          consistency_level         (How many blocks were waited before emitting this VAA)
+    u8          consistency_level         (What finality level was reached before emitting this message)
     []byte      payload                   (VAA message content)
 
 The Body is the relevant information for consumers and is handed back from parseAndVerifyVAA. Because the emitterAddress is included as part of the Body, the developer is able to tell if this VAA originated from a trusted contract.
@@ -33,7 +33,7 @@ Because baseline VAAs have no destination, they are effectively multicast. They 
 
 Certain blockchains support version 2 VAAs, also referred to as **Batch VAAs** which are designed to provide an easier paradigm for composability and better gas efficiency when multiple cross-chain actions are involved in a single transaction.
 
-Batch VAAs are designed to be automatically generated for all messages that come from a single transaction. 
+Batch VAAs are designed to be automatically generated for all messages that come from a single transaction.
 
 In an extreme composability scenario or advanced integration, there may be some messages in a transaction that may not be relevant to one another. To control the create of additional batches, some messages can be created with the same `nonce` to _additionally_ group them.
 
@@ -43,10 +43,10 @@ Go [here](../technical/evm/coreLayer.md) for a more detailed description of how 
 
 _Note: Batch VAAs are not currently live on mainnet, but will have initial support on all EVM chains when they launch._
 
-> How to leverage Batch VAAs 
-> 
+> How to leverage Batch VAAs
+>
 > Imagine a transaction generates three messages (A, B, C) that a consuming contract needs to know about.
-> 
+>
 > If each message is independent of each other, the consuming contract can handle and validate each of these VAAs individually like [A], [B], [C].
 >
 > If all of the messages are related to each other, the consuming contract can handle and validate the Batch VAA of the entire transaction that is automatically generated like [A, B, C].

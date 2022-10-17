@@ -61,7 +61,7 @@ struct DeliveryParameters {
 - `relayParameters`: information required to relay to the target env. Contains compute budget
 - `chainPayload`: information used for computation efficiency when relaying to other ecosystems
 - `nonce` (_optional_): If included, only messages with this nonce will be relayed
-- `consistencyLevel`: how long to wait before emitting the relay request
+- `consistencyLevel`: what level of consistency / finality to reach before emitting the message
 - `msg.value`: payment in native currency to relayer that must cover the compute budget specified in the relayer parameters
 
 ## Compute Budget

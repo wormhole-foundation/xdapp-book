@@ -17,7 +17,7 @@ When sending messages, you should follow the same paradigm as is used by the Wor
 // A module is just a piece of code which knows how to emit a composable message
 // which can be utilized by other contracts.
 function emitMyMessage(address intendedRecipient, uint32 nonce)
-        public returns (uint64 sequence) {
+        public payable returns (uint64 sequence) {
 
     // Nonce is passed though to the core bridge.
     // This allows other contracts to utilize it for batching or processing.
@@ -26,9 +26,8 @@ function emitMyMessage(address intendedRecipient, uint32 nonce)
     // This field will allow the destination contract to enforce
     // that the correct contract is submitting this VAA.
 
-    // 1 is the consistency level,
-    // this message will be emitted after only 1 block
-    sequence = core_bridge.publishMessage(nonce, "My Message to " + intendedRecipient, 1);
+    // consistency level 200 means instant emission
+    sequence = core_bridge.publishMessage(nonce, "My Message to " + intendedRecipient, 200);
 
     // The sequence is passed back to the caller, which can be useful relay information.
     // Relaying is not done here, because it would 'lock' others into the same relay mechanism.
