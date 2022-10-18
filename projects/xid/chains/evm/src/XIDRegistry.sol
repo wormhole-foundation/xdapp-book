@@ -36,6 +36,20 @@ contract XIDRegistry is XID {
     }
 
     /**
+     * @dev Returns the address that owns the specified node.
+     * @param node The specified node.
+     * @return address of the owner.
+     */
+    function owner(bytes32 node) public virtual override view returns (address) {
+        address addr = records[node].owner;
+        if (addr == address(this)) {
+            return address(0x0);
+        }
+
+        return addr;
+    }
+
+    /**
      * @dev Transfers ownership of a node to a new address. May only be called by the current owner of the node.
      * @param node The node to transfer ownership of.
      * @param owner The address of the new owner.
