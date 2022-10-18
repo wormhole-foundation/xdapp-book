@@ -1,0 +1,11 @@
+{
+  "name": "xid",
+  "version": "1.0.0",
+  "description": "A cross chain identity program",
+  "main": "orchestrator.ts",
+  "author": "spacemandev",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^18.11.0"
+  }
+}

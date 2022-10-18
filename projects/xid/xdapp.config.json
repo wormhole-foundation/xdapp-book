@@ -1,0 +1,18 @@
+{
+    "networks": {
+        "eth": {
+            "type": "evm",
+            "wormholeChainId": 2,
+            "rpc": "http://localhost:8545",
+            "bridgeAddress": "0xC89Ce4735882C9F0f0FE26686c53074E09B0D550"   
+        },
+        "solana": {
+            "type": "solana",
+            "wormholeChainId": 1,
+            "bridgeAddress": "Bridge1p5gheXUvJ6jGWGeCsgPKgnE3YgdGKRVCMY9o"
+        }   
+    },
+    "wormhole": {
+        "restAddress": "http://localhost:7071"
+    }
+}
