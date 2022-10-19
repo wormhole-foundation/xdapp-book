@@ -49,5 +49,5 @@ docker run --rm --name guardiand $DOCKER_FLAGS --hostname guardian-0 --cap-add=I
     --algorandIndexerRPC ws://$HOST:8545 \
     --algorandIndexerToken "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" \
     --algorandAlgodToken "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" \
-    --algorandAlgodRPC https://$HOST:4001 \
+    --algorandAlgodRPC http://$HOST:4001 \
     --algorandAppID "4"
