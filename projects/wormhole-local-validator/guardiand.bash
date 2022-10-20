@@ -9,7 +9,8 @@ DOCKER_IMAGE="ghcr.io/certusone/guardiand:dev.v2"
 DOCKER_FLAGS=
 HOST=
 TERRAD_HOST=
-if [ "$(uname -m)" = "arm64" ]; then
+machine=$(uname -m)
+if [ $machine = "arm64" ] || [ $machine = "x86_64" ]; then
    DOCKER_FLAGS="-p 7070:7070 -p 7071:7071 -p 6060:6060 -p 8999:8999/udp --platform linux/amd64"
    HOST="host.docker.internal"
    TERRAD_HOST="host.docker.internal"
