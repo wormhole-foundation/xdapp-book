@@ -39,6 +39,6 @@ echo '{}' > wormhole/algorandcnNftMetadata.json
 
 cd wormhole/algorand
 $PythonCmd -m pip install -r requirements.txt 
-$PythonCmd admin.py --devnet  --boot --mnemonic "$ACCOUNT_MNEMONIC"
+$PythonCmd admin.py --devnet  --boot --mnemonic "$ACCOUNT_MNEMONIC" --env=../../signers.env
 
 
