@@ -8,24 +8,25 @@ The [constants](https://github.com/wormhole-foundation/wormhole/blob/dev.v2/sdk/
 
 ### Core Bridge
 
-| Chain Name          | Wormhole Chain ID | Network ID   | Address                                                         |
-| :------------------ | :---------------- | :----------- | :-------------------------------------------------------------- |
-| Solana              | 1                 | mainnet-beta | worm2ZoG2kUd4vFXhvjh93UUH596ayRfgQ2MgjNMTth                     |
-| Ethereum            | 2                 | 1            | 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B                      |
-| Terra Classic       | 3                 | columbus-5   | terra1dq03ugtd40zu9hcgdzrsq6z2z4hwhc9tqk2uy5                    |
-| Binance Smart Chain | 4                 | 56           | 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B                      |
-| Polygon             | 5                 | 137          | 0x7A4B5a56256163F07b2C80A7cA55aBE66c4ec4d7                      |
-| Avalanche (C-Chain) | 6                 | 43114        | 0x54a8e5f9c4CbA08F9943965859F6c34eAF03E26c                      |
-| Oasis (Emerald)     | 7                 | 4262         | 0xfE8cD454b4A1CA468B57D79c0cc77Ef5B6f64585                      |
-| Aurora              | 9                 | 1313161554   | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E                      |
-| Fantom              | 10                | 250          | 0x126783A6Cb203a3E35344528B26ca3a0489a1485                      |
-| Karura              | 11                | 686          | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E                      |
-| Acala               | 12                | 787          | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E                      |
-| Klaytn              | 13                | 8217         | 0x0C21603c4f3a6387e241c0091A7EA39E43E90bb7                      |
-| Celo                | 14                | 42220        | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E                      |
-| NEAR                | 15                |              | contract.wormhole_crypto.near                                   |
-| Moonbeam            | 16                | 1284         | 0xC8e2b0cD52Cf01b0Ce87d389Daa3d414d4cE29f3                      |
-| Terra               | 18                | phoenix-1    | terra12mrnzvhx3rpej6843uge2yyfppfyd3u9c3uq223q8sl48huz9juqffcnh |
+| Chain Name          | Wormhole Chain ID | Network ID   | Address                                                            |
+| :------------------ | :---------------- | :----------- | :------------------------------------------------------------------|
+| Solana              | 1                 | mainnet-beta | worm2ZoG2kUd4vFXhvjh93UUH596ayRfgQ2MgjNMTth                        |
+| Ethereum            | 2                 | 1            | 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B                         |
+| Terra Classic       | 3                 | columbus-5   | terra1dq03ugtd40zu9hcgdzrsq6z2z4hwhc9tqk2uy5                       |
+| Binance Smart Chain | 4                 | 56           | 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B                         |
+| Polygon             | 5                 | 137          | 0x7A4B5a56256163F07b2C80A7cA55aBE66c4ec4d7                         |
+| Avalanche (C-Chain) | 6                 | 43114        | 0x54a8e5f9c4CbA08F9943965859F6c34eAF03E26c                         |
+| Oasis (Emerald)     | 7                 | 4262         | 0xfE8cD454b4A1CA468B57D79c0cc77Ef5B6f64585                         |
+| Aurora              | 9                 | 1313161554   | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E                         |
+| Fantom              | 10                | 250          | 0x126783A6Cb203a3E35344528B26ca3a0489a1485                         |
+| Karura              | 11                | 686          | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E                         |
+| Acala               | 12                | 787          | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E                         |
+| Klaytn              | 13                | 8217         | 0x0C21603c4f3a6387e241c0091A7EA39E43E90bb7                         |
+| Celo                | 14                | 42220        | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E                         |
+| NEAR                | 15                |              | contract.wormhole_crypto.near                                      |
+| Moonbeam            | 16                | 1284         | 0xC8e2b0cD52Cf01b0Ce87d389Daa3d414d4cE29f3                         |
+| Terra               | 18                | phoenix-1    | terra12mrnzvhx3rpej6843uge2yyfppfyd3u9c3uq223q8sl48huz9juqffcnh    |
+| Aptos               | 22                |              | 0x5bc11445584a763c1fa7ed39081f1b920954da14e04b32440cba863d03e19625 |
 
 #### Core Bridge - Read Only
 
@@ -39,24 +40,25 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 
 ### Token Bridge
 
-| Chain Name          | Wormhole Chain ID | Network ID   | Address                                                          |
-| :------------------ | :---------------- | :----------- | :--------------------------------------------------------------- |
-| Solana              | 1                 | mainnet-beta | wormDTUJ6AWPNvk59vGQbDvGJmqbDTdgWgAqcLBCgUb                      |
-| Ethereum            | 2                 | 1            | 0x3ee18B2214AFF97000D974cf647E7C347E8fa585                       |
-| Terra               | 3                 | columbus-5   | terra10nmmwe8r3g99a9newtqa7a75xfgs2e8z87r2sf                     |
-| Binance Smart Chain | 4                 | 56           | 0xB6F6D86a8f9879A9c87f643768d9efc38c1Da6E7                       |
-| Polygon             | 5                 | 137          | 0x5a58505a96D1dbf8dF91cB21B54419FC36e93fdE                       |
-| Avalanche (C-Chain) | 6                 | 43114        | 0x0e082F06FF657D94310cB8cE8B0D9a04541d8052                       |
-| Oasis (Emerald)     | 7                 | 4262         | 0xfE8cD454b4A1CA468B57D79c0cc77Ef5B6f64585                       |
-| Aurora              | 9                 | 1313161554   | 0x51b5123a7b0F9b2bA265f9c4C8de7D78D52f510F                       |
-| Fantom              | 10                | 250          | 0x7C9Fc5741288cDFdD83CeB07f3ea7e22618D79D2                       |
-| Karura              | 11                | 686          | 0xae9d7fe007b3327AA64A32824Aaac52C42a6E624                       |
-| Acala               | 12                | 787          | 0xae9d7fe007b3327AA64A32824Aaac52C42a6E624                       |
-| Klaytn              | 13                | 8217         | 0x5b08ac39EAED75c0439FC750d9FE7E1F9dD0193F                       |
-| Celo                | 14                | 42220        | 0x796Dff6D74F3E27060B71255Fe517BFb23C93eed                       |
-| NEAR                | 15                |              | contract.portalbridge.near                                       |
-| Moonbeam            | 16                | 1284         | 0xb1731c586ca89a23809861c6103f0b96b3f57d92                       |
-| Terra               | 18                | phoenix-1    | terra153366q50k7t8nn7gec00hg66crnhkdggpgdtaxltaq6xrutkkz3s992fw9 |
+| Chain Name          | Wormhole Chain ID | Network ID   | Address                                                            |
+| :------------------ | :---------------- | :----------- | :------------------------------------------------------------------|
+| Solana              | 1                 | mainnet-beta | wormDTUJ6AWPNvk59vGQbDvGJmqbDTdgWgAqcLBCgUb                        |
+| Ethereum            | 2                 | 1            | 0x3ee18B2214AFF97000D974cf647E7C347E8fa585                         |
+| Terra               | 3                 | columbus-5   | terra10nmmwe8r3g99a9newtqa7a75xfgs2e8z87r2sf                       |
+| Binance Smart Chain | 4                 | 56           | 0xB6F6D86a8f9879A9c87f643768d9efc38c1Da6E7                         |
+| Polygon             | 5                 | 137          | 0x5a58505a96D1dbf8dF91cB21B54419FC36e93fdE                         |
+| Avalanche (C-Chain) | 6                 | 43114        | 0x0e082F06FF657D94310cB8cE8B0D9a04541d8052                         |
+| Oasis (Emerald)     | 7                 | 4262         | 0xfE8cD454b4A1CA468B57D79c0cc77Ef5B6f64585                         |
+| Aurora              | 9                 | 1313161554   | 0x51b5123a7b0F9b2bA265f9c4C8de7D78D52f510F                         |
+| Fantom              | 10                | 250          | 0x7C9Fc5741288cDFdD83CeB07f3ea7e22618D79D2                         |
+| Karura              | 11                | 686          | 0xae9d7fe007b3327AA64A32824Aaac52C42a6E624                         |
+| Acala               | 12                | 787          | 0xae9d7fe007b3327AA64A32824Aaac52C42a6E624                         |
+| Klaytn              | 13                | 8217         | 0x5b08ac39EAED75c0439FC750d9FE7E1F9dD0193F                         |
+| Celo                | 14                | 42220        | 0x796Dff6D74F3E27060B71255Fe517BFb23C93eed                         |
+| NEAR                | 15                |              | contract.portalbridge.near                                         |
+| Moonbeam            | 16                | 1284         | 0xb1731c586ca89a23809861c6103f0b96b3f57d92                         |
+| Terra               | 18                | phoenix-1    | terra153366q50k7t8nn7gec00hg66crnhkdggpgdtaxltaq6xrutkkz3s992fw9   |
+| Aptos               | 22                |              | 0x576410486a2da45eee6c949c995670112ddf2fbeedab20350d506328eefc9d4f |
 
 ### NFT Bridge
 
@@ -101,7 +103,7 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | Moonbase alpha          | 16                | 1287       | 0xa5B7D85a8f27dd7907dc8FdC21FA5657D5E2F901                         |
 | Terra                   | 18                | pisco-1    | terra19nv3xr5lrmmr7egvrk2kqgw4kcn43xrtd5g0mpgwwvhetusk4k7s66jyv0   |
 | Injective               | 19                | testnet    | inj1xx3aupmgv3ce537c0yce8zzd3sz567syuyedpg                         |
-| Aptos                   | 22                |            | 0x1b1752e26b65fc24971ee5ec9718d2ccdd36bf20486a10b2973ea6dedc6cd197 |
+| Aptos                   | 22                |            | 0x5bc11445584a763c1fa7ed39081f1b920954da14e04b32440cba863d03e19625 |
 
 ### Token Bridge
 
@@ -125,7 +127,7 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | Near                    | 15                |            | token.wormhole.testnet                                             |
 | Moonbase alpha          | 16                | 1287       | 0xbc976D4b9D57E57c3cA52e1Fd136C45FF7955A96                         |
 | Injective               | 19                | testnet    | inj1q0e70vhrv063eah90mu97sazhywmeegp7myvnh                         |
-| Aptos                   | 22                |            | 0xdd0a2618dc5564ccf38d0eca7877198fef51157fea74a6bc2e5e40b52c2a0a08 |
+| Aptos                   | 22                |            | 0x576410486a2da45eee6c949c995670112ddf2fbeedab20350d506328eefc9d4f |
 
 ### NFT Bridge
 
@@ -150,31 +152,31 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 
 ### Core Bridge
 
-| Chain Name          | Wormhole Chain ID | Network ID | Address                                                          |
-| :------------------ | :---------------- | :--------- | :--------------------------------------------------------------- |
-| Solana              | 1                 |            | Bridge1p5gheXUvJ6jGWGeCsgPKgnE3YgdGKRVCMY9o                      |
-| Ethereum            | 2                 |            | 0xC89Ce4735882C9F0f0FE26686c53074E09B0D550                       |
-| Terra               | 3                 |            | terra18vd8fpwxzck93qlwghaj6arh4p7c5n896xzem5                     |
-| Binance Smart Chain | 4                 |            | 0xC89Ce4735882C9F0f0FE26686c53074E09B0D550                       |
-| Algorand            | 8                 |            | 4                                                                |
-| NEAR                | 15                |            | wormhole.test.near                                               |
-| Terra2              | 18                |            | terra14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9ssrc8au |
-| Aptos               | 22                |            |                                                                  |
-| Wormholechain       | 3104              |            | wormhole1ap5vgur5zlgys8whugfegnn43emka567dtq0jl                  |
+| Chain Name          | Wormhole Chain ID | Network ID | Address                                                             |
+| :------------------ | :---------------- | :--------- | :-------------------------------------------------------------------|
+| Solana              | 1                 |            | Bridge1p5gheXUvJ6jGWGeCsgPKgnE3YgdGKRVCMY9o                         |
+| Ethereum            | 2                 |            | 0xC89Ce4735882C9F0f0FE26686c53074E09B0D550                          |
+| Terra               | 3                 |            | terra18vd8fpwxzck93qlwghaj6arh4p7c5n896xzem5                        |
+| Binance Smart Chain | 4                 |            | 0xC89Ce4735882C9F0f0FE26686c53074E09B0D550                          |
+| Algorand            | 8                 |            | 4                                                                   |
+| NEAR                | 15                |            | wormhole.test.near                                                  |
+| Terra2              | 18                |            | terra14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9ssrc8au    |
+| Aptos               | 22                |            | 0xde0036a9600559e295d5f6802ef6f3f802f510366e0c23912b0655d972166017  |
+| Wormholechain       | 3104              |            | wormhole1ap5vgur5zlgys8whugfegnn43emka567dtq0jl                     |
 
 ### Token Bridge
 
-| Chain Name          | Wormhole Chain ID | Network ID | Address                                                          |
-| :------------------ | :---------------- | :--------- | :--------------------------------------------------------------- |
-| Solana              | 1                 |            | B6RHG3mfcckmrYN1UhmJzyS1XX3fZKbkeUcpJe9Sy3FE                     |
-| Ethereum            | 2                 |            | 0x0290FB167208Af455bB137780163b7B7a9a10C16                       |
-| Terra               | 3                 |            | terra10pyejy66429refv3g35g2t7am0was7ya7kz2a4                     |
-| Binance Smart Chain | 4                 |            | 0x0290FB167208Af455bB137780163b7B7a9a10C16                       |
-| Algorand            | 8                 |            | 6                                                                |
-| NEAR                | 15                |            | token.test.near                                                  |
-| Terra2              | 18                |            | terra1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrquka9l6 |
-| Aptos               | 22                |            |                                                                  |
-| Wormholechain       | 3104              |            | wormhole1zugu6cajc4z7ue29g9wnes9a5ep9cs7yu7rn3z                  |
+| Chain Name          | Wormhole Chain ID | Network ID | Address                                                             |
+| :------------------ | :---------------- | :--------- | :-------------------------------------------------------------------|
+| Solana              | 1                 |            | B6RHG3mfcckmrYN1UhmJzyS1XX3fZKbkeUcpJe9Sy3FE                        |
+| Ethereum            | 2                 |            | 0x0290FB167208Af455bB137780163b7B7a9a10C16                          |
+| Terra               | 3                 |            | terra10pyejy66429refv3g35g2t7am0was7ya7kz2a4                        |
+| Binance Smart Chain | 4                 |            | 0x0290FB167208Af455bB137780163b7B7a9a10C16                          |
+| Algorand            | 8                 |            | 6                                                                   |
+| NEAR                | 15                |            | token.test.near                                                     |
+| Terra2              | 18                |            | terra1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrquka9l6    |
+| Aptos               | 22                |            | 0x84a5f374d29fc77e370014dce4fd6a55b58ad608de8074b0be5571701724da31  |
+| Wormholechain       | 3104              |            | wormhole1zugu6cajc4z7ue29g9wnes9a5ep9cs7yu7rn3z                     |
 
 ### NFT Bridge
 
