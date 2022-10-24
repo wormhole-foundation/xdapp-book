@@ -4,7 +4,7 @@ The Core Contracts are the mechanism by which all Wormhole messages are emitted.
 
 The Wormhole Core Contracts are one of the most pivotal pieces of the Wormhole ecosystem. They serve as a great place to start when learning about how data flows through the ecosystem.
 
-In general, Core Contracts are simple and can be broekn down to a **sending** and **receiving** side, which we'll define next.
+In general, Core Contracts are simple and can be broken down to a **sending** and **receiving** side, which we'll define next.
 
 ### Sending
 

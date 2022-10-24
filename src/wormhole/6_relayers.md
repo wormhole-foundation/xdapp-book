@@ -1,6 +1,6 @@
 # Relayers
 
-All simple cross-chain processes on Wormhole essentially boil down to a three step process:
+All simple cross-chain processes on Wormhole essentially boil down to a three-step process:
 
 1. Perform an action on chain A.
 2. Retrieve the resulting VAA from the Guardian Network.
@@ -18,7 +18,7 @@ In Wormhole, relayers are neither trusted nor privileged. This means relayers **
 
 From this perspective, relayers are just delivery trucks that deliver VAAs to their destination, and have no capacity to tamper with the delivery outcome. VAAs either get delivered or don't, which makes relayers analagous to the off-chain 'crank turners' of traditional Dapps.
 
-As a result, Wormhole is able to facilitate a variety of heterogenous relaying mechanisms, and the developer is able to choose whatever best suit their needs.
+As a result, Wormhole is able to facilitate a variety of heterogeneous relaying mechanisms, and the developer is able to choose whatever best suit their needs.
 
 Next, we'll go over a few of the most common relaying strategies.
 
@@ -69,7 +69,7 @@ Because relayers are responsible for liveness, they become another dependency co
 
 To mitigate this, multiple relayers can be run in order to provide redundancy either by (1) the xDapp team or (2) a decentralized network based off economic incentives. _However, creating a robust model for decentralized relaying is generally application-specific and complex._
 
-Overall, Specialized Relayers add a backend component that is responsible for liveness, but can simplify the user experience. It's generally recommend if your goal is a highly-polished user experience and you want to have better control over message delivery.
+Overall, Specialized Relayers add a backend component that is responsible for liveness, but can simplify the user experience. It's generally recommend if your goal is a highly-polished user experience, and you want to have better control over message delivery.
 
 # Generic Relayers
 

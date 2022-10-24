@@ -16,9 +16,9 @@ Next, let's go into how Wormhole achieves these one at a time.
 
 Decentralization is the biggest concern. Previous interoperability solutions have largely been entirely centralized, and even newer solutions utilizing things like adversarial relayers still tend to have single points of failure or collusion thresholds as low as 1 or 2.
 
-When designing a decentralized oracle network, the first option to consider is likely a Proof-of-Stake (PoS) system--but this turns out to be a suboptimal solution. PoS is designed for blockchain consensus in smart-contract enabled environments, so it's less suitable when the network is verifying the output of many blockchains and not supporting its own smart contracts. While it looks appealing from a decentralization perspective, the network security remains unclear, and it can makes some of the other outlined goals more difficult to achieve. Let's explore other options.
+When designing a decentralized oracle network, the first option to consider is likely a Proof-of-Stake (PoS) system-but this turns out to be a suboptimal solution. PoS is designed for blockchain consensus in smart-contract enabled environments, so it's less suitable when the network is verifying the output of many blockchains and not supporting its own smart contracts. While it looks appealing from a decentralization perspective, the network security remains unclear, and it can make some other outlined goals more difficult to achieve. Let's explore other options.
 
-The next option would be to rush straight for the finish line and use zero-knowledge proofs to secure the network. This would be the a good solution from a decentralization perspective, as it's literally trustless. However, zero-knowledge proofs are still a nascent technology and it's not really feasible to verify them on-chain, especially on chains with limited computational environments. That means a form of multisig will be needed to secure the network.
+The next option would be to rush straight for the finish line and use zero-knowledge proofs to secure the network. This would be a good solution from a decentralization perspective, as it's literally trustless. However, zero-knowledge proofs are still a nascent technology and it's not really feasible to verify them on-chain, especially on chains with limited computational environments. That means a form of multisig will be needed to secure the network.
 
 If we step back and look at the current De-Fi landscape, most of the top blockchains are secured by the same handful of validator companies. Currently, there are a limited number of companies in the world with the skills and capital to run top-notch validator companies.
 
@@ -36,7 +36,7 @@ With our perspective on Decentralization laid out, the remaining elements fall i
 
 ## Modularity
 
-The Guardian Network is robust and trustworthy by itself, so there'ss no need for components like the relayer to contribute to the security model. That makes Wormhole able to have simple components that are very good at the one thing they do. That way, Guardians only need to verify on-chain activity and produce VAAs while Relayers only need to interact with blockchains and deliver messages.
+The Guardian Network is robust and trustworthy by itself, so there's no need for components like the relayer to contribute to the security model. That makes Wormhole able to have simple components that are very good at the one thing they do. That way, Guardians only need to verify on-chain activity and produce VAAs while Relayers only need to interact with blockchains and deliver messages.
 
 The signing scheme of the VAAs can be changed without affecting downstream users, and multiple relay mechanisms can exist independently. xAssets can be implemented purely at the application layer and xDapps can utilize whatever components suit them.
 
