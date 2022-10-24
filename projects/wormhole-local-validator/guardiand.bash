@@ -6,19 +6,10 @@ set -euo pipefail
 # dev.v2 for now (until we make a release)
 DOCKER_IMAGE="ghcr.io/certusone/guardiand:dev.v2"
 
-DOCKER_FLAGS=
-HOST=
-TERRAD_HOST=
-machine=$(uname -m)
-if [ $machine = "arm64" ] || [ $machine = "x86_64" ]; then
-   DOCKER_FLAGS="-p 7070:7070 -p 7071:7071 -p 6060:6060 -p 8999:8999/udp --platform linux/amd64"
-   HOST="host.docker.internal"
-   TERRAD_HOST="host.docker.internal"
-else
-   DOCKER_FLAGS="--network host"
-   TERRAD_HOST="terra-terrad"
-   HOST="localhost"
-fi
+DOCKER_FLAGS="-p 7070:7070 -p 7071:7071 -p 6060:6060 -p 8999:8999/udp --add-host=host.docker.internal:host-gateway --platform linux/amd64"
+HOST="host.docker.internal"
+TERRAD_HOST="host.docker.internal"
+
 
 docker run --rm --name guardiand $DOCKER_FLAGS --hostname guardian-0 --cap-add=IPC_LOCK "$DOCKER_IMAGE" node \
     --unsafeDevMode --guardianKey /bridge.key --publicRPC "[::]:7070" --publicWeb "[::]:7071" --adminSocket /admin.sock --dataDir /data \
