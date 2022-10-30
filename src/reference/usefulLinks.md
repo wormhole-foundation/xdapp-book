@@ -24,7 +24,7 @@ Tilt is a Kubernetes-based tool that runs a copy of every chain along side a Gua
 
 The Wormhole core repository can be found at [https://github.com/wormhole-foundation/wormhole](https://github.com/wormhole-foundation/wormhole).
 
-### [Wormhole Explorer](https://wormholenetwork.com/en/explorer)
+### [Wormhole Explorer](https://wormholenetwork.com/explorer)
 
 Tool to observe all Wormhole activity and can help you parse VAAs after they've been picked up the Guardian network.
 
