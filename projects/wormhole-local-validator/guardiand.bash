@@ -4,7 +4,7 @@
 set -euo pipefail
 
 # dev.v2 for now (until we make a release)
-DOCKER_IMAGE="ghcr.io/certusone/guardiand:dev.v2"
+DOCKER_IMAGE="ghcr.io/certusone/guardiand:main"
 
 DOCKER_FLAGS="-p 7070:7070 -p 7071:7071 -p 6060:6060 -p 8999:8999/udp --add-host=host.docker.internal:host-gateway --platform linux/amd64"
 HOST="host.docker.internal"
@@ -43,3 +43,6 @@ docker run --rm --name guardiand $DOCKER_FLAGS --hostname guardian-0 --cap-add=I
     --algorandAlgodToken "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" \
     --algorandAlgodRPC https://$HOST:4001 \
     --algorandAppID "4"
+    --aptosRPC http://$HOST:8080
+    --aptosAccount "277fa055b6a73c42c0662d5236c65c864ccbf2d4abd21f174a30c8b786eab84b"
+    --aptosHandle "0x277fa055b6a73c42c0662d5236c65c864ccbf2d4abd21f174a30c8b786eab84b::state::WormholeMessageHandle"
