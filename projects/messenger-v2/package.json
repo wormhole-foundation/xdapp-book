@@ -1,0 +1,14 @@
+{
+  "name": "messenger-v2",
+  "version": "1.0.0",
+  "description": "Upgraded version of Messenger code base using Relayer",
+  "main": "client.ts",
+  "license": "MIT",
+  "author": "Dev Bharel",
+  "dependencies": {
+    "@certusone/wormhole-sdk": "^0.9.4",
+    "@types/node": "^18.11.10",
+    "aptos": "^1.4.0",
+    "commander": "^9.4.1"
+  }
+}

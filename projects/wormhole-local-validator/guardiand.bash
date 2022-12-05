@@ -4,7 +4,7 @@
 set -euo pipefail
 
 # dev.v2 for now (until we make a release)
-DOCKER_IMAGE="ghcr.io/certusone/guardiand:main"
+DOCKER_IMAGE="ghcr.io/wormhole-foundation/guardiand:latest"
 
 DOCKER_FLAGS="-p 7070:7070 -p 7071:7071 -p 6060:6060 -p 8999:8999/udp --add-host=host.docker.internal:host-gateway --platform linux/amd64"
 HOST="host.docker.internal"
@@ -12,13 +12,16 @@ TERRAD_HOST="host.docker.internal"
 
 
 docker run --rm --name guardiand $DOCKER_FLAGS --hostname guardian-0 --cap-add=IPC_LOCK "$DOCKER_IMAGE" node \
-    --unsafeDevMode --guardianKey /bridge.key --publicRPC "[::]:7070" --publicWeb "[::]:7071" --adminSocket /admin.sock --dataDir /data \
+    --unsafeDevMode --guardianKey /bridge.key --publicRPC "[::]:7070" --publicWeb "[::]:7071" --publicGRPCSocket /publicGRPC.sock --adminSocket /admin.sock --dataDir /data \
     --ethRPC ws://$HOST:8545 \
     --ethContract "0xC89Ce4735882C9F0f0FE26686c53074E09B0D550" \
     --bscRPC ws://$HOST:8546 \
     --bscContract "0xC89Ce4735882C9F0f0FE26686c53074E09B0D550" \
     --polygonRPC ws://$HOST:8545 \
     --avalancheRPC ws://$HOST:8545 \
+    --arbitrumRPC ws://$HOST:8545 \
+    --optimismContract "" \
+    --optimismRPC ws://$HOST:8545 \
     --auroraRPC ws://$HOST:8545 \
     --fantomRPC ws://$HOST:8545 \
     --oasisRPC ws://$HOST:8545 \
@@ -36,7 +39,6 @@ docker run --rm --name guardiand $DOCKER_FLAGS --hostname guardian-0 --cap-add=I
     --terra2Contract terra18vd8fpwxzck93qlwghaj6arh4p7c5n896xzem5 \
     --solanaContract Bridge1p5gheXUvJ6jGWGeCsgPKgnE3YgdGKRVCMY9o \
     --pythnetContract Bridge1p5gheXUvJ6jGWGeCsgPKgnE3YgdGKRVCMY9o \
-    --solanaWS ws://$HOST:8900 \
     --solanaRPC http://$HOST:8899 \
     --algorandIndexerRPC ws://$HOST:8545 \
     --algorandIndexerToken "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" \

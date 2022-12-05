@@ -1,0 +1,35 @@
+{
+    "networks": {
+        "evm0": {
+            "type": "evm",
+            "wormholeChainId": 2,
+            "rpc": "http://localhost:8545",
+            "privateKey": "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d",
+            "bridgeAddress": "0xC89Ce4735882C9F0f0FE26686c53074E09B0D550"
+        },
+        "evm1": {
+            "type": "evm",
+            "wormholeChainId": 4,
+            "rpc": "http://localhost:8546",
+            "privateKey": "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d",
+            "bridgeAddress": "0xC89Ce4735882C9F0f0FE26686c53074E09B0D550"
+        },
+        "sol0": {
+            "type": "solana",
+            "wormholeChainId": 1,
+            "rpc": "http://localhost:8899",
+            "privateKey": "J2D4pwDred8P9ioyPEZVLPht885AeYpifsFGUyuzVmiKQosAvmZP4EegaKFrSprBC5vVP1xTvu61vYDWsxBNsYx",
+            "bridgeAddress": "Bridge1p5gheXUvJ6jGWGeCsgPKgnE3YgdGKRVCMY9o"
+        },
+        "aptos": {
+            "type": "aptos",
+            "wormholeChainId": 22,
+            "rpc": "http://localhost:8080",
+            "privateKey": "537c1f91e56891445b491068f519b705f8c0f1a1e66111816dd5d4aa85b8113d",
+            "bridgeAddress": "0xde0036a9600559e295d5f6802ef6f3f802f510366e0c23912b0655d972166017"
+        }
+    },
+    "wormhole": {
+        "restAddress": "http://localhost:7071"
+    }
+}
