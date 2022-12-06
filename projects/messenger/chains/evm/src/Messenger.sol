@@ -5,16 +5,18 @@ import "./Wormhole/IWormhole.sol";
 
 contract Messenger {
     string private current_msg;
-    address private wormhole_core_bridge_address = address(0xC89Ce4735882C9F0f0FE26686c53074E09B0D550);
-    IWormhole core_bridge = IWormhole(wormhole_core_bridge_address);
+    address private wormhole_core_bridge_address;
     uint32 nonce = 0;
     mapping(uint16 => bytes32) _applicationContracts;
     address owner;
     mapping(bytes32 => bool) _completedMessages;
 
-    constructor(){
+    constructor(address _core_bridge_address){
         owner = msg.sender;
+        wormhole_core_bridge_address = _core_bridge_address;
     }
+
+    IWormhole core_bridge = IWormhole(wormhole_core_bridge_address);
 
     function sendMsg(bytes memory str) public returns (uint64 sequence) {
         sequence = core_bridge.publishMessage(nonce, str, 1);

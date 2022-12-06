@@ -4,7 +4,7 @@ Simple messeger project that sends a "hellom, world!" message between EVM, Solan
 ### Dependencies
 This project uses Foundry to compile and deploy EVM contracts. You can find install instructions at [https://getfoundry.sh](https://getfoundry.sh)
 
-<br><br>
+<br>
 
 The javascript dependencies can be installed via npm install in this folder.
 
