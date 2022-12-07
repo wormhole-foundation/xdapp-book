@@ -82,7 +82,7 @@ The best practices for receiving messages employ similar concepts. You should ke
 
 ### Good Example
 
-```
+```solidity
 // Verification accepts a single VAA, and is publicly callable.
 function processMyMessage(bytes32 memory VAA) public {
     // This call accepts single VAAs and headless VAAs
