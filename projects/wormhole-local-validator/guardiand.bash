@@ -44,7 +44,7 @@ docker run --rm --name guardiand $DOCKER_FLAGS --hostname guardian-0 --cap-add=I
     --algorandIndexerToken "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" \
     --algorandAlgodToken "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" \
     --algorandAlgodRPC https://$HOST:4001 \
-    --algorandAppID "4"
-    --aptosRPC http://$HOST:8080
-    --aptosAccount "277fa055b6a73c42c0662d5236c65c864ccbf2d4abd21f174a30c8b786eab84b"
-    --aptosHandle "0x277fa055b6a73c42c0662d5236c65c864ccbf2d4abd21f174a30c8b786eab84b::state::WormholeMessageHandle"
+    --algorandAppID "4" \
+    --aptosRPC http://$HOST:8080 \
+    --aptosAccount "277fa055b6a73c42c0662d5236c65c864ccbf2d4abd21f174a30c8b786eab84b" \
+    --aptosHandle "0x277fa055b6a73c42c0662d5236c65c864ccbf2d4abd21f174a30c8b786eab84b::state::WormholeMessageHandle" \
