@@ -102,7 +102,7 @@ contractAddress.approve(token_bridge_address, amt);
 
 ```
 // To initiate transfer of normal ERC-20s
-token_bridge.transferTokesWithPayload(tokenAddress, amount, recipientChain, recipient, nonce, payload);
+token_bridge.transferTokensWithPayload(tokenAddress, amount, recipientChain, recipient, nonce, payload);
 
 // To initiate transfer of native currency
 token_bridge.wrapAndTransferETHWithPayload(recipientChain, recipient, nonce, payload);
