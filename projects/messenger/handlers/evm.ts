@@ -1,17 +1,19 @@
 import * as fs from 'fs';
 import { exec } from "child_process";
-import { getEmitterAddressEth, getEmitterAddressSolana, parseSequenceFromLogEth, setDefaultWasm } from '@certusone/wormhole-sdk';
+import { getEmitterAddressEth, getEmitterAddressSolana, parseSequenceFromLogEth } from '@certusone/wormhole-sdk';
 import * as ethers from 'ethers';
 import fetch from 'node-fetch';
+import {getEmitterAddress as getEmitterAddressAptos} from './aptos';
 
 const config = JSON.parse(fs.readFileSync('./xdapp.config.json').toString());
 
 export async function deploy(chain: string){
     const rpc = config.networks[chain]['rpc'];
     const privateKey = config.networks[chain]['privateKey'];
- 
+    const bridgeAddress = config.networks[chain]['bridgeAddress'];
+
     exec(
-        `cd chains/evm && forge build && forge create --legacy --rpc-url ${rpc} --private-key ${privateKey} src/Messenger.sol:Messenger && exit`,
+        `cd chains/evm && forge build && forge create --legacy --rpc-url ${rpc} --private-key ${privateKey} src/Messenger.sol:Messenger --constructor-args ${bridgeAddress} && exit`,
         (err, out, errStr) => {
             if (err) {
                 throw new Error(err.message);
@@ -61,8 +63,10 @@ export async function registerApp(src:string, target:string){
             targetEmitter = getEmitterAddressEth(targetDeploymentInfo['address']);
             break;
         case 'solana':
-            setDefaultWasm("node"); // *sigh*
             targetEmitter = await getEmitterAddressSolana(targetDeploymentInfo['address']);
+            break;
+        case 'aptos':
+            targetEmitter = await getEmitterAddressAptos(targetNetwork.rpc, targetDeploymentInfo['address']);
             break;
     }
 
@@ -110,8 +114,8 @@ export async function sendMsg(src:string, msg:string){
         ).abi,
         signer
     );
-
-    const tx = await (await messenger.sendMsg(Buffer.from(msg))).wait();
+    
+    const tx = await (await messenger.sendMsg(Buffer.from(msg), {gasLimit: 150000})).wait();
     const seq = parseSequenceFromLogEth(tx, srcNetwork['bridgeAddress']);
     const emitterAddr = getEmitterAddressEth(srcDeploymentInfo['address']);
     

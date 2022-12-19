@@ -7,5 +7,7 @@ then
     git clone https://github.com/wormhole-foundation/wormhole
     cd wormhole/clients/js
     make install
-    cd ../../../
+    cd ../../scripts
+    bash guardian-set-init.sh
+    cd ../../
 fi

@@ -5,11 +5,10 @@ import fetch from 'node-fetch';
 import { 
     getEmitterAddressEth,
     getEmitterAddressSolana, 
-    importCoreWasm, 
     parseSequenceFromLogSolana, 
     postVaaSolanaWithRetry, 
-    setDefaultWasm,
-    getSignedVAAHash, 
+    getSignedVAAHash,
+    parseVaa, 
 } from '@certusone/wormhole-sdk';
 import * as anchor from '@project-serum/anchor';
 import { findProgramAddressSync } from '@project-serum/anchor/dist/cjs/utils/pubkey';
@@ -190,7 +189,6 @@ export async function sendMsg(src:string, msg:string){
                             .rpc();
 
     const seq = parseSequenceFromLogSolana(await messenger.provider.connection.getTransaction(tx))
-    setDefaultWasm("node"); // *sigh*
     const emitterAddr = await getEmitterAddressSolana(messenger.programId.toString()); //same as whDerivedEmitter
     
     await new Promise((r) => setTimeout(r, 5000)); // Wait for guardian to pick up message
@@ -222,7 +220,6 @@ export async function sendMsg(src:string, msg:string){
 }
 
 export async function submitVaa(src:string, target:string, idx:string){
-    setDefaultWasm("node"); //WASM will be removed very soon, but until then, all the solana functions rely on it
 
     const srcNetwork = config.networks[src];
     let srcDeploymentInfo;
@@ -270,23 +267,21 @@ export async function submitVaa(src:string, target:string, idx:string){
     // Then we submit to our program to go through the program's checks
     await new Promise((r) => setTimeout(r, 5000));
     
-    const { parse_vaa } = await importCoreWasm(); //this function can only be imported from the WASM right now, not directly
-
-    const parsed_vaa = parse_vaa(Buffer.from(vaa, 'base64'));
+    const parsed_vaa = parseVaa(Buffer.from(vaa, 'base64'));
     const vaaHash = getVaaHash(parsed_vaa); //await getSignedVAAHash(Buffer.from(vaa, "base64"));
     //console.log("Hash: ", vaaHash, await getSignedVAAHash(Buffer.from(vaa, "base64")));
 
     // Account that we stored the registered foreign emitter
     let emitterAddressAcc = findProgramAddressSync([
         Buffer.from("EmitterAddress"),
-        byteify.serializeUint16(parsed_vaa.emitter_chain)
+        byteify.serializeUint16(parsed_vaa.emitterChain)
     ], messenger.programId)[0];
 
     // A blank account we're creating just to keep track of already processed messages
     let processedVaaKey = findProgramAddressSync([
         Buffer.from(getEmitterAddressEth(targetDeploymentInfo.address), "hex"),
-        byteify.serializeUint16(parsed_vaa.emitter_chain),
-        byteify.serializeUint64(parsed_vaa.sequence)
+        byteify.serializeUint16(parsed_vaa.emitterChain),
+        byteify.serializeUint64(Number(parsed_vaa.sequence))
     ], messenger.programId)[0];
 
     // Account where the core bridge stored the vaa after the signatures checked out

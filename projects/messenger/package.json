@@ -6,10 +6,11 @@
   "author": "Dev Bharel",
   "license": "MIT",
   "dependencies": {
-    "@certusone/wormhole-sdk": "^0.6.0",
+    "@certusone/wormhole-sdk": "^0.9.6",
     "@project-serum/anchor": "^0.25.0",
     "@solana/web3.js": "^1.64.0",
     "@types/node-fetch": "^2.6.2",
+    "aptos": "^1.4.0",
     "byteify": "^2.0.10",
     "commander": "^9.4.0",
     "ethers": "^5.6.9",

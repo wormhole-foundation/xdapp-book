@@ -14,9 +14,9 @@ import { ethers } from "ethers";
 import { Connection as SolanaConnection } from "@solana/web3.js";
 import { BaseVAA } from "./utils";
 import { TextDecoder } from "util";
+import { parseVaa } from "@certusone/wormhole-sdk";
 
 // todo: do we need this in the plugin or just the relayer??
-whSdk.setDefaultWasm("node");
 
 function create(
   commonConfig: CommonPluginEnv,
@@ -165,8 +165,7 @@ export class MessengerRelayerPlugin implements Plugin<VAA> {
 
   async parseVAA(vaa: Buffer | Uint8Array): Promise<BaseVAA> {
     try {
-      const { parse_vaa } = await whSdk.importCoreWasm();
-      return parse_vaa(new Uint8Array(vaa)) as BaseVAA;
+      return parseVaa(new Uint8Array(vaa)) as any as BaseVAA;
     } catch (e) {
       this.logger.error("Failed to parse vaa");
       throw e;

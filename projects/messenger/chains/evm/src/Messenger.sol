@@ -5,7 +5,7 @@ import "./Wormhole/IWormhole.sol";
 
 contract Messenger {
     string private current_msg;
-    address private wormhole_core_bridge_address;
+    IWormhole core_bridge;
     uint32 nonce = 0;
     mapping(uint16 => bytes32) _applicationContracts;
     address owner;
@@ -13,10 +13,9 @@ contract Messenger {
 
     constructor(address _core_bridge_address){
         owner = msg.sender;
-        wormhole_core_bridge_address = _core_bridge_address;
+        core_bridge = IWormhole(_core_bridge_address);
     }
 
-    IWormhole core_bridge = IWormhole(wormhole_core_bridge_address);
 
     function sendMsg(bytes memory str) public returns (uint64 sequence) {
         sequence = core_bridge.publishMessage(nonce, str, 1);

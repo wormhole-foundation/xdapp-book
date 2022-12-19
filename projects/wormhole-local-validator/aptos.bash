@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+ #!/usr/bin/env bash
 
 set -euo pipefail
 
@@ -6,5 +6,4 @@ set -euo pipefail
 npx pm2 delete aptos 2> /dev/null || true
 npx pm2 start 'aptos node run-local-testnet --with-faucet --force-restart --assume-yes' --name aptos
 sleep 15
-cd wormhole/aptos/scripts && bash deploy devnet && cd ../../../
-
+cd wormhole/aptos/scripts && bash deploy devnet && worm aptos faucet && bash register_devnet && cd ../../../

@@ -2,6 +2,7 @@
   "_format": "ethers-rs-sol-cache-3",
   "paths": {
     "artifacts": "out",
+    "build_infos": "out/build-info",
     "sources": "src",
     "tests": "test",
     "scripts": "script",
@@ -11,8 +12,8 @@
   },
   "files": {
     "src/Messenger.sol": {
-      "lastModificationDate": 1659683988145,
-      "contentHash": "b21dd2ab010d42c4abc588eed32658bd",
+      "lastModificationDate": 1671431118697,
+      "contentHash": "17b03174437201be7b7f56e2bd0d92e4",
       "sourceName": "src/Messenger.sol",
       "solcConfig": {
         "settings": {
@@ -32,7 +33,8 @@
                 "abi",
                 "evm.bytecode",
                 "evm.deployedBytecode",
-                "evm.methodIdentifiers"
+                "evm.methodIdentifiers",
+                "metadata"
               ]
             }
           },
@@ -52,7 +54,7 @@
       }
     },
     "src/Wormhole/IWormhole.sol": {
-      "lastModificationDate": 1659683988146,
+      "lastModificationDate": 1665515840999,
       "contentHash": "7c930d4b68538e731af28a8d1979f44e",
       "sourceName": "src/Wormhole/IWormhole.sol",
       "solcConfig": {
@@ -73,7 +75,8 @@
                 "abi",
                 "evm.bytecode",
                 "evm.deployedBytecode",
-                "evm.methodIdentifiers"
+                "evm.methodIdentifiers",
+                "metadata"
               ]
             }
           },
@@ -92,7 +95,7 @@
       }
     },
     "src/Wormhole/Structs.sol": {
-      "lastModificationDate": 1659683988147,
+      "lastModificationDate": 1665515841000,
       "contentHash": "4e824cc204959f4fcab06c4e806448c4",
       "sourceName": "src/Wormhole/Structs.sol",
       "solcConfig": {
@@ -113,7 +116,8 @@
                 "abi",
                 "evm.bytecode",
                 "evm.deployedBytecode",
-                "evm.methodIdentifiers"
+                "evm.methodIdentifiers",
+                "metadata"
               ]
             }
           },

@@ -8,7 +8,10 @@
   "dependencies": {
     "@certusone/wormhole-sdk": "^0.9.4",
     "@types/node": "^18.11.10",
+    "@types/node-fetch": "^2.6.2",
     "aptos": "^1.4.0",
-    "commander": "^9.4.1"
+    "commander": "^9.4.1",
+    "ethers": "^5.7.2",
+    "node-fetch": "2"
   }
 }

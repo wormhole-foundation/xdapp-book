@@ -2,6 +2,7 @@ import { Command } from 'commander';
 import * as fs from 'fs';
 import * as evm from './handlers/evm';
 import * as solana from './handlers/solana';
+import * as aptos from './handlers/aptos';
 
 const config = JSON.parse(fs.readFileSync('./xdapp.config.json').toString())
 
@@ -28,6 +29,9 @@ program
                 break;
             case "solana":
                 await solana.deploy(network);
+                break;
+            case 'aptos':
+                await aptos.deploy(network);
                 break;
         }
 
@@ -56,6 +60,10 @@ program
                     break;
                 case "solana":
                     await solana.registerApp(src, target);
+                    break;
+                case "aptos":
+                    await aptos.registerApp(src, target);
+                    break;
             }
 
             console.log(`Foreign Network ${target} registered on ${src}`);
@@ -81,6 +89,9 @@ program
                     break;
                 case "solana":
                     await solana.sendMsg(src, msg);
+                    break;
+                case "aptos":
+                    await aptos.sendMsg(src, msg);
                     break;
             }
             console.log(`Emitted VAA on ${src} network. Submit it using \`submit-vaa\` command on a target network.`)
@@ -113,6 +124,9 @@ program
                 case "solana":
                     await solana.submitVaa(src,target,idx);
                     break;
+                case "aptos":
+                    await aptos.submitVaa(src, target, idx);
+                    break;
             }
 
             console.log(`Submitted VAA #${idx} from ${target} to chain ${src}`);
@@ -139,6 +153,9 @@ program
                     break;
                 case "solana":
                     msg = await solana.getCurrentMsg(src);
+                    break;
+                case "aptos":
+                    msg = await aptos.getCurrentMsg(src);
                     break;
             }
 
