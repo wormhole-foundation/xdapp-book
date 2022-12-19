@@ -8,6 +8,6 @@ then
     cd wormhole/clients/js
     make install
     cd ../../scripts
-    bash guardian-set-init.sh
+    bash guardian-set-init.sh 1
     cd ../../
 fi
