@@ -8,5 +8,6 @@ multilingual = false
 src = "src"
 
 [output.html]
-default-theme= "ayu"
 git-repository-url="https://github.com/wormhole-foundation/xdapp-book"
+default-theme= "ayu"
+additional-js = ["src/static/solidity.min.js"]
