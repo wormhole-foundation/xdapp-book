@@ -192,21 +192,17 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | Terra               | 3                 |            | terra1plju286nnfj3z54wgcggd4enwaa9fgf5kgrgzl |
 | Binance Smart Chain | 4                 |            | 0x26b4afb60d6c903165150c6f0aa14f8016be4aec   |
 
-## Blockchain Finality Recommendations
+## Blockchain Finality Times
 
 The goal of Wormhole is to provide high confidence that only _finalized_ messages are observed and attested. Different chains use different consensus mechanisms and so there are different finality assumptions with each one.
 
-Below is a table of suggested finality recommendations for each of the chains supported by the Wormhole ecosystem to have the highest confidence of finality.
-
-However, these are just suggestions and developers are free to define their own finality windows for their applications. Ultimately, the tradeoff is between speed and security.
-
 | Chain Name          | Wormhole Chain ID | Suggested Number of Block Confirmations |
 | :------------------ | :---------------- | :-------------------------------------- |
-| Solana              | 1                 | 32                                      |
-| Ethereum            | 2                 | 15                                      |
+| Solana              | 1                 | 32 (Slots)                              |
+| Ethereum            | 2                 | 2 epochs                                |
 | Terra Classic       | 3                 | Instant                                 |
 | Binance Smart Chain | 4                 | 15                                      |
-| Polygon             | 5                 | 512                                     |
+| Polygon             | 5                 | 1 Heimdal Checkpoint                    |
 | Avalanche (C-Chain) | 6                 | 1                                       |
 | Oasis (Emerald)     | 7                 | 1                                       |
 | Aurora              | 9                 | 1                                       |
