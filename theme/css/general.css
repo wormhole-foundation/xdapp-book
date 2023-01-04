@@ -1,0 +1,303 @@
+/* Base styles and content styles */
+
+@import 'variables.css';
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@300;400;700&display=swap');
+
+:root {
+    /* Browser default font-size is 16px, this way 1 rem = 10px */
+    font-size: 62.5%;
+}
+
+html {
+    font-family: "IBM Plex Sans", sans-serif;
+    color: var(--fg);
+    background-color: var(--bg);
+    text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTI2NyIgaGVpZ2h0PSIxNTUyIiB2aWV3Qm94PSIwIDAgMTI2NyAxNTUyIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZyBvcGFjaXR5PSIwLjgiPgo8cGF0aCBvcGFjaXR5PSIwLjI1IiBkPSJNNzg2LjUgMTU3MkMxMjIwLjMyIDE1NzIgMTU3MiAxMjIwLjMyIDE1NzIgNzg2LjVDMTU3MiAzNTIuNjggMTIyMC4zMiAxIDc4Ni41IDFDMzUyLjY4IDEgMSAzNTIuNjggMSA3ODYuNUMxIDEyMjAuMzIgMzUyLjY4IDE1NzIgNzg2LjUgMTU3MloiIHN0cm9rZT0idXJsKCNwYWludDBfbGluZWFyXzk0NDJfNDQ5MCkiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIvPgo8cGF0aCBvcGFjaXR5PSIwLjI1IiBkPSJNODQ0LjU4OSAxMzI0LjI1QzExOTAuOTcgMTMyNC4yNSAxNDcxLjc3IDEwNDMuNDUgMTQ3MS43NyA2OTcuMDYxQzE0NzEuNzcgMzUwLjY3NiAxMTkwLjk3IDY5Ljg3NTQgODQ0LjU4OSA2OS44NzU0QzQ5OC4yMDMgNjkuODc1NCAyMTcuNDAzIDM1MC42NzYgMjE3LjQwMyA2OTcuMDYxQzIxNy40MDMgMTA0My40NSA0OTguMjAzIDEzMjQuMjUgODQ0LjU4OSAxMzI0LjI1WiIgc3Ryb2tlPSJ1cmwoI3BhaW50MV9saW5lYXJfOTQ0Ml80NDkwKSIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIi8+CjxwYXRoIG9wYWNpdHk9IjAuMjUiIGQ9Ik05MTAuMjc3IDEwODYuMjRDMTE2OS4yMyAxMDg2LjI0IDEzNzkuMTUgODc2LjMyMSAxMzc5LjE1IDYxNy4zN0MxMzc5LjE1IDM1OC40MTkgMTE2OS4yMyAxNDguNDk4IDkxMC4yNzcgMTQ4LjQ5OEM2NTEuMzI2IDE0OC40OTggNDQxLjQwNSAzNTguNDE5IDQ0MS40MDUgNjE3LjM3QzQ0MS40MDUgODc2LjMyMSA2NTEuMzI2IDEwODYuMjQgOTEwLjI3NyAxMDg2LjI0WiIgc3Ryb2tlPSJ1cmwoI3BhaW50Ml9saW5lYXJfOTQ0Ml80NDkwKSIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIi8+CjxwYXRoIG9wYWNpdHk9IjAuMjUiIGQ9Ik05NjUuMzAzIDIzMC45NTJDNzc5Ljg4OCAyMjkuNDY5IDYyOC4zNzcgMzc4LjU3NSA2MjYuODk0IDU2My45OUM2MjUuNDEgNzQ5LjQwNSA3NzQuNTE2IDkwMC45MTYgOTU5LjkzMSA5MDIuMzk5QzExNDUuMzUgOTAzLjg4MiAxMjk2Ljg2IDc1NC43NzYgMTI5OC4zNCA1NjkuMzYxQzEyOTkuODIgMzgzLjk0NiAxMTUwLjcyIDIzMi40MzUgOTY1LjMwMyAyMzAuOTUyWiIgc3Ryb2tlPSJ1cmwoI3BhaW50M19saW5lYXJfOTQ0Ml80NDkwKSIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIi8+CjwvZz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQwX2xpbmVhcl85NDQyXzQ0OTAiIHgxPSIxMjIyLjk1IiB5MT0iNTIuMjc4OSIgeDI9IjY3NC42MTkiIHkyPSIxMTE1LjczIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IndoaXRlIi8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0id2hpdGUiIHN0b3Atb3BhY2l0eT0iMCIvPgo8L2xpbmVhckdyYWRpZW50Pgo8bGluZWFyR3JhZGllbnQgaWQ9InBhaW50MV9saW5lYXJfOTQ0Ml80NDkwIiB4MT0iMTIwNy4yMiIgeTE9IjE2NS41MzciIHgyPSI3ODAuMDkzIiB5Mj0iMTEzOS44NCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSJ3aGl0ZSIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IndoaXRlIiBzdG9wLW9wYWNpdHk9IjAiLz4KPC9saW5lYXJHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDJfbGluZWFyXzk0NDJfNDQ5MCIgeDE9IjE0MzUuNjUiIHkxPSI0LjQ5NTkzIiB4Mj0iNzIwLjY1MyIgeTI9IjEwODYuMDIiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KPHN0b3Agc3RvcC1jb2xvcj0id2hpdGUiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSJ3aGl0ZSIgc3RvcC1vcGFjaXR5PSIwIi8+CjwvbGluZWFyR3JhZGllbnQ+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQzX2xpbmVhcl85NDQyXzQ0OTAiIHgxPSIxMzA4LjYxIiB5MT0iNjguNTkzOCIgeDI9Ijc2MS40NDQiIHkyPSI5NjguMzA2IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IndoaXRlIi8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0id2hpdGUiIHN0b3Atb3BhY2l0eT0iMCIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+Cjwvc3ZnPgo=");
+    background-repeat: no-repeat;
+    background-position: right top 60px;
+}
+
+body {
+    margin: 0;
+    font-size: 1.6em;
+    line-height: 1.71;
+    font-weight: 300;
+    overflow-x: hidden;
+}
+
+code {
+    font-family: "IBM Plex Mono", Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace, monospace !important;
+    font-size: 0.875em;
+    /* please adjust the ace font size accordingly in editor.js */
+}
+
+/* make long words/inline code not x overflow */
+main {
+    overflow-wrap: break-word;
+}
+
+/* make wide tables scroll if they overflow */
+.table-wrapper {
+    overflow-x: auto;
+}
+
+/* Don't change font size in headers. */
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+    font-size: unset;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.boring {
+    opacity: 0.6;
+}
+
+.hide-boring .boring {
+    display: none;
+}
+
+.hidden {
+    display: none !important;
+}
+
+h1 {
+    font-family: 'Chakra petch';
+    font-weight: 300;
+}
+
+h2,
+h3 {
+    margin-top: 2.5em;
+    font-family: 'Chakra petch';
+    font-weight: 300;
+}
+
+h4,
+h5 {
+    margin-top: 2em;
+    font-family: 'Chakra petch';
+    font-weight: 300;
+}
+
+.header+.header h3,
+.header+.header h4,
+.header+.header h5 {
+    margin-top: 1em;
+}
+
+h1:target::before,
+h2:target::before,
+h3:target::before,
+h4:target::before,
+h5:target::before,
+h6:target::before {
+    display: inline-block;
+    content: "»";
+    margin-left: -30px;
+    width: 30px;
+}
+
+/* This is broken on Safari as of version 14, but is fixed
+   in Safari Technology Preview 117 which I think will be Safari 14.2.
+   https://bugs.webkit.org/show_bug.cgi?id=218076
+*/
+:target {
+    scroll-margin-top: calc(var(--menu-bar-height) + 0.5em);
+}
+
+.page {
+    outline: 0;
+    padding: 0 var(--page-padding);
+    margin-top: calc(0px - var(--menu-bar-height));
+    /* Compensate for the #menu-bar-hover-placeholder */
+}
+
+.page-wrapper {
+    box-sizing: border-box;
+}
+
+.js:not(.sidebar-resizing) .page-wrapper {
+    transition: margin-left 0.3s ease, transform 0.3s ease;
+    /* Animation: slide away */
+}
+
+.content {
+    overflow-y: auto;
+    padding: 0 5px 50px 5px;
+}
+
+.content main {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--content-max-width);
+}
+
+.content p {
+    line-height: 1.45em;
+}
+
+.content ol {
+    line-height: 1.45em;
+}
+
+.content ul {
+    line-height: 1.45em;
+}
+
+.content a {
+    text-decoration: none;
+}
+
+.content a:hover {
+    text-decoration: underline;
+}
+
+.content img,
+.content video {
+    max-width: 100%;
+}
+
+.content .header:link,
+.content .header:visited {
+    color: var(--fg);
+}
+
+.content .header:link,
+.content .header:visited:hover {
+    text-decoration: none;
+}
+
+.content .header:hover {
+    text-decoration: none;
+    color: var(--sidebar-active);
+}
+
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+table td {
+    padding: 3px 20px;
+    border: 1px var(--table-border-color) solid;
+}
+
+table thead {
+    background: var(--table-header-bg);
+}
+
+table thead td {
+    font-weight: 700;
+    border: none;
+}
+
+table thead th {
+    padding: 3px 20px;
+}
+
+table thead tr {
+    border: 1px var(--table-header-bg) solid;
+}
+
+/* Alternate background colors for rows */
+table tbody tr:nth-child(2n) {
+    background: var(--table-alternate-bg);
+}
+
+
+blockquote {
+    margin: 20px 0;
+    padding: 0 20px;
+    color: var(--fg);
+    background-color: var(--quote-bg);
+    border-top: .1em solid var(--quote-border);
+    border-bottom: .1em solid var(--quote-border);
+}
+
+
+:not(.footnote-definition)+.footnote-definition,
+.footnote-definition+ :not(.footnote-definition) {
+    margin-top: 2em;
+}
+
+.footnote-definition {
+    font-size: 0.9em;
+    margin: 0.5em 0;
+}
+
+.footnote-definition p {
+    display: inline;
+}
+
+.tooltiptext {
+    position: absolute;
+    visibility: hidden;
+    color: #fff;
+    background-color: #333;
+    transform: translateX(-50%);
+    /* Center by moving tooltip 50% of its width left */
+    left: -8px;
+    /* Half of the width of the icon */
+    top: -35px;
+    font-size: 0.8em;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 8px;
+    margin: 5px;
+    z-index: 1000;
+}
+
+.tooltipped .tooltiptext {
+    visibility: visible;
+}
+
+.chapter>li.expanded:first-of-type,
+.chapter li.part-title {
+    color: var(--sidebar-fg);
+    margin: 5px 0px;
+    padding-left: 0;
+    font-weight: bold;
+    font-family: 'Chakra Petch';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18.66px;
+    line-height: 24px;
+}
+
+.chapter ol {
+    font-weight: 300;
+}
+
+.chapter>li.expanded {
+    padding-left: 10px;
+}
+
+
+
+.chapter .chapter-item {
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 300;
+
+}
+
+.chapter>li.chapter-item:empty {
+    border: 0;
+}
+
+.result-no-output {
+    font-style: italic;
+}
