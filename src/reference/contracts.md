@@ -2,7 +2,7 @@
 
 Here you can find the addresses for the deployed contracts on all the chains that Wormhole supports, including testnet.
 
-The [constants](https://github.com/wormhole-foundation/wormhole/blob/dev.v2/sdk/js/src/utils/consts.ts) of the Wormhole SDK always has the most up-to-date contract addresses, along with additional useful constants. Check there if something you're looking for isn't found here.
+The [constants](https://github.com/wormhole-foundation/wormhole/blob/main/sdk/js/src/utils/consts.ts) of the Wormhole SDK always has the most up-to-date contract addresses, along with additional useful constants. Check there if something you're looking for isn't found here.
 
 ## Mainnet
 
@@ -26,8 +26,10 @@ The [constants](https://github.com/wormhole-foundation/wormhole/blob/dev.v2/sdk/
 | NEAR                | 15                |              | contract.wormhole_crypto.near                                      |
 | Moonbeam            | 16                | 1284         | 0xC8e2b0cD52Cf01b0Ce87d389Daa3d414d4cE29f3                         |
 | Terra               | 18                | phoenix-1    | terra12mrnzvhx3rpej6843uge2yyfppfyd3u9c3uq223q8sl48huz9juqffcnh    |
+| Injective           | 19                |              | inj17p9rzwnnfxcjp32un9ug7yhhzgtkhvl9l2q74d                         |
 | Aptos               | 22                |              | 0x5bc11445584a763c1fa7ed39081f1b920954da14e04b32440cba863d03e19625 |
-| Arbitrum            | 23                | 42161        | 0xa5f208e072434bC67592E4C49C1B991BA79BCA46                         |
+| Arbitrum            | 23                |              | 0xa5f208e072434bC67592E4C49C1B991BA79BCA46                         |
+| XPLA                | 28                |              | xpla1jn8qmdda5m6f6fqu9qv46rt7ajhklg40ukpqchkejcvy8x7w26cqxamv3w    |
 
 #### Core Bridge - Read Only
 
@@ -48,7 +50,7 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | Binance Smart Chain | 4                 | 56           | 0xB6F6D86a8f9879A9c87f643768d9efc38c1Da6E7                         |
 | Polygon             | 5                 | 137          | 0x5a58505a96D1dbf8dF91cB21B54419FC36e93fdE                         |
 | Avalanche (C-Chain) | 6                 | 43114        | 0x0e082F06FF657D94310cB8cE8B0D9a04541d8052                         |
-| Oasis (Emerald)     | 7                 | 4262         | 0xfE8cD454b4A1CA468B57D79c0cc77Ef5B6f64585                         |
+| Oasis (Emerald)     | 7                 | 4262         | 0x5848C791e09901b40A9Ef749f2a6735b418d7564                         |
 | Aurora              | 9                 | 1313161554   | 0x51b5123a7b0F9b2bA265f9c4C8de7D78D52f510F                         |
 | Fantom              | 10                | 250          | 0x7C9Fc5741288cDFdD83CeB07f3ea7e22618D79D2                         |
 | Karura              | 11                | 686          | 0xae9d7fe007b3327AA64A32824Aaac52C42a6E624                         |
@@ -58,8 +60,11 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | NEAR                | 15                |              | contract.portalbridge.near                                         |
 | Moonbeam            | 16                | 1284         | 0xb1731c586ca89a23809861c6103f0b96b3f57d92                         |
 | Terra               | 18                | phoenix-1    | terra153366q50k7t8nn7gec00hg66crnhkdggpgdtaxltaq6xrutkkz3s992fw9   |
+| Injective           | 19                |              | inj1ghd753shjuwexxywmgs4xz7x2q732vcnxxynfn                         |
 | Aptos               | 22                |              | 0x576410486a2da45eee6c949c995670112ddf2fbeedab20350d506328eefc9d4f |
-| Arbitrum            | 23                | 42161        | 0x0b2402144Bb366A632D14B83F244D2e0e21bD39c                         |
+| Arbitrum            | 23                |              | 0x0b2402144Bb366A632D14B83F244D2e0e21bD39c                         |
+| Optimism            | 24                | 10           | 0x1D68124e65faFC907325e3EDbF8c4d84499DAa8b                         |
+| XPLA                | 28                |              | xpla137w0wfch2dfmz7jl2ap8pcmswasj8kg06ay4dtjzw7tzkn77ufxqfw7acv    |
 
 ### NFT Bridge
 
@@ -79,6 +84,7 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | Celo                | 14                | 42220        | 0xA6A377d75ca5c9052c9a77ED1e865Cc25Bd97bf3  |
 | Moonbeam            | 16                | 1284         | 0x453cfbe096c0f8d763e8c5f24b441097d577bde2  |
 | Arbitrum            | 23                | 42161        | 0x453cfbe096c0f8d763e8c5f24b441097d577bde2  |
+| Optimism            | 24                | 10           | 0xfE8cD454b4A1CA468B57D79c0cc77Ef5B6f64585  |
 
 ## Testnet
 
@@ -108,6 +114,12 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | Aptos                   | 22                |            | 0x5bc11445584a763c1fa7ed39081f1b920954da14e04b32440cba863d03e19625 |
 | Arbitrum                | 23                | 421613     | 0xC7A204bDBFe983FCD8d8E61D02b475D4073fF97e                         |
 
+These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_ messages for other chains.
+
+| Chain Name | Wormhole Chain ID | Network ID | Address                                    |
+| :--------- | :---------------- | :--------- | :----------------------------------------- |
+| Optimism   | 24                | 10         | 0x6b9C8671cdDC8dEab9c719bB87cBd3e782bA6a35 |
+
 ### Token Bridge
 
 | Chain Name              | Wormhole Chain ID | Network ID | Address                                                            |
@@ -132,6 +144,24 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | Injective               | 19                | testnet    | inj1q0e70vhrv063eah90mu97sazhywmeegp7myvnh                         |
 | Aptos                   | 22                |            | 0x576410486a2da45eee6c949c995670112ddf2fbeedab20350d506328eefc9d4f |
 | Arbitrum                | 23                | 421613     | 0x23908A62110e21C04F3A4e011d24F901F911744A                         |
+
+### Relayer Contracts
+
+| Chain Name          | Wormhole Chain ID | Network ID | Address                                    |
+| :------------------ | :---------------- | :--------- | :----------------------------------------- |
+| Binance Smart Chain | 4                 | 97         | 0x8bCce102F34C6DbF53655958586d7Bc196dCB3c5 |
+| Polygon (Mumbai)    | 5                 | 80001      | 0x128eE477E3DEC6b97978E7EC41a95C5cBE111c44 |
+| Avalanche (Fuji)    | 6                 | 43113      | 0x74D59cBFEBAf363769C78E2e2165503228F2b92F |
+| Celo                | 14                | 44787      | 0x22baa6Ff6454C1B5f514CfE09DFDc77f44a6be56 |
+
+### Default Relay Providers
+
+| Chain Name          | Wormhole Chain ID | Network ID | Address                                    |
+| :------------------ | :---------------- | :--------- | :----------------------------------------- |
+| Binance Smart Chain | 4                 | 97         | 0x128eE477E3DEC6b97978E7EC41a95C5cBE111c44 |
+| Polygon (Mumbai)    | 5                 | 80001      | 0xde609ED85F6EaaD58AA422Fd95Fea213cDA83650 |
+| Avalanche (Fuji)    | 6                 | 43113      | 0xb19eBF87f3b957B6e99d8bACC994c987805C74E2 |
+| Celo                | 14                | 44787      | 0xb4e6BcD5dBbD502443bb4480aA5213DfCC9F1fC8 |
 
 ### NFT Bridge
 

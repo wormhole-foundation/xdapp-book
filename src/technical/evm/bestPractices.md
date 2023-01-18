@@ -26,20 +26,24 @@ function emitMyMessage(address intendedRecipient, uint32 nonce)
     // This field will allow the destination contract to enforce
     // that the correct contract is submitting this VAA.
 
+    // Here we encode the payload into our wire format.
+    // There's basically always a corresponding decode/parse function as well.
+    bytes myMessage = abi.encode("My Message to " + intendedRecipient);
+
     // consistency level 200 means instant emission
-    sequence = core_bridge.publishMessage(nonce, "My Message to " + intendedRecipient, 200);
+    sequence = core_bridge.publishMessage(nonce, myMessage, 200);
 
     // The sequence is passed back to the caller, which can be useful relay information.
     // Relaying is not done here, because it would 'lock' others into the same relay mechanism.
 }
 
-// This portion of the code which deals with composition and delivery.
+// This is the portion of the code which deals with composition and delivery.
 // Its job is to string together multiple modules, and ensure they get relayed
-// This code can be private or public, because it's tightly coupled to application.
+// This code can be private or public, because it's tightly coupled to your application.
 // Do whatever you need to here.
-function sendMyMessage() private {
+function sendMyMessage() public payable {
 
-    // First, emit a message intended for MY_OTHER_CONTRACT with nonce zero.
+    // First, emit a message intended for MY_OTHER_CONTRACT with nonce 1.
     // Because processMyMessage enforces that msg.sender must equal the intendedRecipient,
     // no one but MY_OTHER_CONTRACT will be able to call processMyMessage
     // with the message emitted from this transaction.
@@ -49,18 +53,28 @@ function sendMyMessage() private {
 
     // This allows for composability of the module logic while still being secure!
 
-    emitMyMessage(MY_OTHER_CONTRACT, 0);
+    emitMyMessage(MY_OTHER_CONTRACT, 1);
 
     // Suppose I also want to send tokens to my contract on the OTHER_CHAIN
     // Because transferTokensWithPayload is a composable message, I can include it.
-    // Because the nonce of both these messages is 0, they will be combined into a batch VAA.
+    // Because the nonce of both these messages is 1, they will be combined into a batch VAA.
     // NOTE: transferTokens (the basic transfer) is NOT considered a composable message
 
     token_bridge.transferTokensWithPayload(SOME_TOKEN, SOME_AMOUNT, OTHER_CHAIN, MY_OTHER_CONTRACT,
-    0, null);
+    1, null);
 
-    // Lastly, I request that the batch for nonce 0 be delivered to MY_OTHER_CONTRACT
-    relayer_contract.requestDelivery(OTHER_CHAIN, MY_OTHER_CONTRACT, 0, getRelayerFeeAmount());
+    // Lastly, I request that the batch for nonce 1 be delivered to MY_OTHER_CONTRACT
+    ICoreRelayer.DeliveryRequest memory request = ICoreRelayer.DeliveryRequest(
+        OTHER_CHAIN, //targetChain
+        MY_OTHER_CONTRACT, //targetAddress
+        MY_OTHER_CONTRACT_CONTRACT, //refundAddress
+        msg.value, //computeBudget
+        0, //applicationBudget
+        relayer_contract.getDefaultRelayParams() //relayerParams
+    );
+    relayer.requestDelivery{value: msg.value}(
+        request, 1, relayer.getDefaultRelayProvider()
+    );
 }
 ```
 
@@ -68,7 +82,7 @@ function sendMyMessage() private {
 
 The best practices for receiving messages employ similar concepts. You should keep in mind that other contracts might want to integrate with your specific logic. As such, you shouldn't tie your verification logic to the delivery mechanism of your VAAs, and you should also give external integrators a safe way to compose with your module.
 
-### **_Critical!_**
+### **_Critical_**
 
 - Always verify that the emitterAddress of the VAA comes from a contract you trust.
 
@@ -82,7 +96,7 @@ The best practices for receiving messages employ similar concepts. You should ke
 
 ### Good Example
 
-```
+```solidity
 // Verification accepts a single VAA, and is publicly callable.
 function processMyMessage(bytes32 memory VAA) public {
     // This call accepts single VAAs and headless VAAs
@@ -105,32 +119,28 @@ function processMyMessage(bytes32 memory VAA) public {
     require(parseIntendedRecipient(vm.payload) == msg.sender);
 
     // Add the VAA to processed messages so it can't be replayed
+    // you can alternatively rely on the replay protection
+    // of something like transferWithPayload from the Token Bridge module
     processedMessages[vm.hash] = true
 
     // The message content can now be trusted.
     doBusinessLogic(vm.payload)
 }
 
-//This is the function which would receive the the VAA from the relayer
-function receiveVAA(bytes32 memory batchVAA) public {
-    // First, call the core bridge to verify the batchVAA
-    // All the individual VAAs inside the batchVAA will be cached,
-    // and you will receive headless VAAs inside the VM2 object.
-    // Headless VAAs are verifiable by parseAndVerifyVM.
-
-    (IWormhole.VM2 memory vm2, bool valid, string memory reason) =
-        core_bridge.parseAndVerifyBatchVM(batchVAA, true);
-
-    // I know from sendMyMessage that the first VAA is a token bridge VAA,
+//This is the function which receives the the VAA from the CoreRelayer contract
+function receiveWormholeMessages(bytes[] memory whMessages, bytes[] memory otherData)
+        public payable override onlyRelayerContract {
+    // I know from sendMyMessage that the first VAA should be a token bridge VAA,
     // so let's hand that off to the token bridge module.
-    bytes vaaData = token_bridge.completeTransferWithPayload(vm2.payloads[0]);
+    bytes vaaData = token_bridge.completeTransferWithPayload(whMessages[0]);
 
     // The second VAA is my message, let's hand that off to my module.
     processMyMessage(vm2.payloads[1]);
+}
 
-    // Lastly, uncache the headless VAAs from the core bridge.
-    // This refunds a significant amount of gas.
-    core_bridge.clearBatchCache(vm2.hashes);
+modifier onlyRelayerContract() {
+    require(msg.sender == CORE_RELAYER_CONTRACT_ADDRESS, "msg.sender is not CoreRelayer contract.");
+    _;
 }
 ```
 
