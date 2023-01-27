@@ -25,6 +25,8 @@
   - [xAsset Bridge](./wormhole/7_xAssetBridge.md)
   - [Wormchain](./wormhole/8_wormchain.md)
 
+- [Security](./wormhole/12_security.md)
+
 - [xDapp Design](./dapps/architecture/0_dappDesign.md)
 
   - [Key Considerations](./dapps/architecture/1_keyConsiderations.md)
