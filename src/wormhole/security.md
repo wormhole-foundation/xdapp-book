@@ -23,9 +23,9 @@ Let's take a moment to pause and spell out the most important security elements 
 >
 > - **Core integrators aren't exposed to risk from chains and contracts they don't integrate with**.
 >
-> - You only trust the message signing process and the Core Contracts of the chains you're on.
+> - By default, you only trust Wormhole's signing process and the Core Contracts of the chains you're on.
 >
-> - Don't accept messages from chains you don't trust, and always be careful when adding new smart contract dependencies.
+> - You can expand your contract and chain dependencies as you see fit.
 
 ---
 
@@ -68,7 +68,7 @@ Wormchain is a Cosmos based blockchain which runs internally to the Guardian net
 This enables two additional protections for the Wormhole Asset Layer in addition to the core assumptions:
 
 - **Governor:** The Governor tracks inflows and outflows of all blockchains and delays suspicious transfers which may be indicative of a exploit. [More Info](https://github.com/wormhole-foundation/wormhole/blob/dev.v2/whitepapers/0007_governor.md)
-- **Global Accountant:** The accountant tracks the total circulating supply of all Wormhole assets across all chains and prevents any blockchain from bridging assets which would violate the supply invariant. [More Info]()
+- **Global Accountant:** The accountant tracks the total circulating supply of all Wormhole assets across all chains and prevents any blockchain from bridging assets which would violate the supply invariant.
 
 </br>
 
@@ -81,3 +81,9 @@ Lastly, Wormhole builds in the open and is always open source.
 - [Wormhole Foundation Github Organization](https://github.com/wormhole-foundation)
 
 - [Wormhole Contract Deployments](../reference/contracts.md)
+
+</br>
+
+## Learn More
+
+- The [SECURITY.md](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md) from the official repository has the latest security policies and updates.
