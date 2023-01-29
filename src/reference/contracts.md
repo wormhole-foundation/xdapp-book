@@ -149,19 +149,21 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 
 | Chain Name          | Wormhole Chain ID | Network ID | Address                                    |
 | :------------------ | :---------------- | :--------- | :----------------------------------------- |
-| Binance Smart Chain | 4                 | 97         | 0x8bCce102F34C6DbF53655958586d7Bc196dCB3c5 |
-| Polygon (Mumbai)    | 5                 | 80001      | 0x128eE477E3DEC6b97978E7EC41a95C5cBE111c44 |
-| Avalanche (Fuji)    | 6                 | 43113      | 0x74D59cBFEBAf363769C78E2e2165503228F2b92F |
-| Celo                | 14                | 44787      | 0x22baa6Ff6454C1B5f514CfE09DFDc77f44a6be56 |
+| Binance Smart Chain | 4                 | 97         | 0xaC9EF19ab4F9a3a265809df0C4eB1E821f43391A |
+| Polygon (Mumbai)    | 5                 | 80001      | 0xEf06AE191B42ac59883815c4cFaCC9164f1d50eE |
+| Avalanche (Fuji)    | 6                 | 43113      | 0x9Dfd308e2450b26290d926Beea2Bb4F0B8553729 |
+| Celo                | 14                | 44787      | 0x49181C4fE76E0F28DB04084935d81DaBb26ac26d |
+| Moonbase            | 16                | 1287       | 0x414De856795ecA8F0207D83d69C372Df799Ee377 |
 
 ### Default Relay Providers
 
 | Chain Name          | Wormhole Chain ID | Network ID | Address                                    |
 | :------------------ | :---------------- | :--------- | :----------------------------------------- |
-| Binance Smart Chain | 4                 | 97         | 0x128eE477E3DEC6b97978E7EC41a95C5cBE111c44 |
-| Polygon (Mumbai)    | 5                 | 80001      | 0xde609ED85F6EaaD58AA422Fd95Fea213cDA83650 |
-| Avalanche (Fuji)    | 6                 | 43113      | 0xb19eBF87f3b957B6e99d8bACC994c987805C74E2 |
-| Celo                | 14                | 44787      | 0xb4e6BcD5dBbD502443bb4480aA5213DfCC9F1fC8 |
+| Binance Smart Chain | 4                 | 97         | 0xEf06AE191B42ac59883815c4cFaCC9164f1d50eE |
+| Polygon (Mumbai)    | 5                 | 80001      | 0x0a7F4f38a60f48688D9aa99b240b15ddb66e45e8 |
+| Avalanche (Fuji)    | 6                 | 43113      | 0x7903B8CE0FF4480e1c2496123b6623858be738e0 |
+| Celo                | 14                | 44787      | 0x26dBc4eC46b03410a8B64bc962b83FAf1B84DA5d |
+| Moonbase            | 16                | 1287       | 0x55e1411d2d5AF8d9378460b486A9D84619149B5b |
 
 ### NFT Bridge
 
