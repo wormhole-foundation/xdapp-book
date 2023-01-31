@@ -1,6 +1,6 @@
 # Blockchain Interoperability
 
-Because blockchains are siloed by nature, individual cryptocurrencies being bound to their own chains has been a longtime limitation of blockchain technology. The first attempt at solving this problem was the creation of cryptocurrency exchanges like Coinbase and Binance. Today these are refered to as centralized exchanges (CEXs).
+Because blockchains are siloed by nature, individual cryptocurrencies being bound to their own chains has been a longtime limitation of blockchain technology. The first attempt at solving this problem was the creation of cryptocurrency exchanges like Coinbase and Binance. Today these are referred to as centralized exchanges (CEXs).
 
 Centralized exchanges play an important role in cryptocurrency, but they are not a complete solution for blockchain interoperability for two primary reasons: (1) they're centralized, which is counterproductive to creating a decentralized platform, and (2) they deal only with tokens.
 
@@ -12,7 +12,7 @@ There are some other essential things you should know about bridges before going
 
 - Bridges are capable of being decentralized in theory, but are often quite centralized in practice.
 - Bridges are currently the only way to hold a token on a chain other than its 'native' chain. If you're holding ETH on a chain other than Ethereum, it is, by definition, a wrapped token.
-- Bridges are all mutually incompatible with eachother. Using multiple bridges just makes 'double wrapped' tokens.
+- Bridges are all mutually incompatible with each other. Using multiple bridges just makes 'double wrapped' tokens.
 - If tokens have become double wrapped after traversing multiple bridges or blockchains, there can be a complex unwrapping process to get back to the original token.
 
 This explains how the ecosystem arrived at its current state -- CEXs are a solution to siloed blockchains, DEXs are a simple response to CEXs, and DEXs have created a demand for bridges. Each solution in this timeline is an ad-hoc patch to the previous problem, and the current landscape of fractured liquidity, double wrapped tokens, isolated userbases and wallet incompatibilities is the result.
