@@ -60,4 +60,4 @@ Over time, the Guardian Set can be expanded beyond 19 with the use of threshold 
 
 ---
 
-In the next section, we will talk about the role and responsbilities of relayers in the Wormhole ecosystem.
+In the next section, we will talk about the role and responsibilities of relayers in the Wormhole ecosystem.
