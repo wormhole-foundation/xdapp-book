@@ -18,7 +18,7 @@ Wormhole is a complex ecosystem with several noteworthy components. Before we go
 
   - **Gas Oracle** - _in development\*_ - Oracle for recommended fair gas prices across the ecosystem.
 
-  - **Worm Router Contracts** - _in development\*_ - Contracts that allow developers to make their Dapp an xDapp that users on any Wormhole supported chain can interac with purely through clientside code.
+  - **Worm Router Contracts** - _in development\*_ - Contracts that allow developers to make their Dapp an xDapp that users on any Wormhole supported chain can interact with purely through clientside code.
 
 ### Off-Chain Components
 
