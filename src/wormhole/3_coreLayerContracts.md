@@ -40,6 +40,29 @@ When passed a VAA, this function will either return the payload and associated m
 
 ---
 
+## Consistency Levels
+
+The goal of Wormhole is to provide high confidence that, by default, only finalized messages are observed and attested. Different chains use different consensus mechanisms and so there are different finality assumptions with each one. Some advanced integrators may want to get messages _before_ finality, which is where the `consistencyLevel` field offers chain-specific flexibility.
+
+| Chain Name          | Wormhole Chain ID | Instant         | Safe                                                                  | Finalized                                                                                                               |
+| :------------------ | :---------------- | :-------------- | :-------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------- |
+| Solana              | 1                 | 0 (`confirmed`) |                                                                       | 1 (`finalized`)                                                                                                         |
+| Ethereum            | 2                 | 200             | 201 (`safe`)                                                          | 1 (`finalized`)                                                                                                         |
+| Binance Smart Chain | 4                 | 200             |                                                                       | 15 (recommended blocks)                                                                                                 |
+| Polygon             | 5                 | 200             |                                                                       | 1 ([checkpoint](https://wiki.polygon.technology/docs/pos/heimdall/checkpoint/))                                         |
+| Avalanche (C-Chain) | 6                 | 200             |                                                                       | 1 (instant finality)                                                                                                    |
+| Oasis (Emerald)     | 7                 | 200             |                                                                       | 1 (instant finality)                                                                                                    |
+| Fantom              | 10                | 200             |                                                                       | 1 (instant finality)                                                                                                    |
+| Karura              | 11                | 200             |                                                                       | 1 (safe mode)                                                                                                           |
+| Acala               | 12                | 200             |                                                                       | 1 (safe mode)                                                                                                           |
+| Klaytn              | 13                | 200             |                                                                       | 1 (instant finality)                                                                                                    |
+| Celo                | 14                | 200             |                                                                       | 1 (instant finality)                                                                                                    |
+| Moonbeam            | 16                | 200             |                                                                       | 1 ([`moon_isBlockFinalized`](https://docs.moonbeam.network/builders/build/moonbeam-custom-api/#finality-rpc-endpoints)) |
+| Arbitrum            | 23                | 200             |                                                                       | 1 (L1 block `finalized`)                                                                                                |
+| Optimism            | 24                | 200             | [coming soon](https://community.optimism.io/docs/developers/bedrock/) | 1 (L1 block `finalized`)                                                                                                |
+
+---
+
 ## Multicasting
 
 Let's take a moment to point out that there is no destination address or chain in these functions.

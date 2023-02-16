@@ -34,9 +34,11 @@ To emit a VAA, always use `publishMessage` which takes in the following argument
     - The `nonce` provides a mechanism by which to group messages together within a Batch VAA. How the `nonce` is used is described below.
 2.  `Consistency` (uint8): the level of finality the guardians will reach before signing the message
     - Consistency should be considered an enum, not an integer.
-    - On all EVM chains, 200 will result in an instant message, while all other values will wait for finality.
+    - On all EVM chains, `200` will result in an instant message
+    - On Ethereum, `201` will wait until the block the transaction is in is `safe`
     - On BSC, the consistency denotes how many block confirmations will be waited before producing the message.
-    - More information about finality can be found [Here](../../reference/contracts.md)
+    - On the remaining EVM chains, all other values will wait for finality, but using `1` is recommended.
+    - More information about finality can be found [here](/wormhole/3_coreLayerContracts.md#consistency-levels)
 3.  `Payload` (bytes[]): raw bytes to emit
     - It is up to the emitting contract to properly define this arbitrary set of bytes.
 
