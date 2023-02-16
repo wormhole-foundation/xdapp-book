@@ -69,7 +69,7 @@ Because relayers are responsible for liveness, they become another dependency co
 
 To mitigate this, multiple relayers can be run in order to provide redundancy either by (1) the xDapp team or (2) a decentralized network based off economic incentives. _However, creating a robust model for decentralized relaying is generally application-specific and complex._
 
-Overall, Specialized Relayers add a backend component that is responsible for liveness, but can simplify the user experience. It's generally recommend if your goal is a highly-polished user experience, and you want to have better control over message delivery.
+Overall, Specialized Relayers add a backend component that is responsible for liveness, but can simplify the user experience. It's generally recommended if your goal is a highly-polished user experience, and you want to have better control over message delivery.
 
 # Generic Relayers
 
