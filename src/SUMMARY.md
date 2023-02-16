@@ -55,6 +55,7 @@
     - [NFT Bridge Module](./technical/evm/nftLayer.md)
     - [Relayer Module](./technical/evm/relayer.md)
     - [Best Practices](./technical/evm/bestPractices.md)
+    - [Composable Verification](./technical/evm/composableVerification.md)
   - [Solana](./technical/solana/overview.md)
   - [Cosmos](./technical/cosmos/overview.md)
   - [Algorand](./technical/algorand/overview.md)

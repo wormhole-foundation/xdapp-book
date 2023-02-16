@@ -59,5 +59,5 @@ completeTransfer(VAA);
 <!---
 TODO
 
-additional usecases, most specifically how to grab the origin address of the wrapped NFT
+additional use cases, most specifically how to grab the origin address of the wrapped NFT
 -->

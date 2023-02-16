@@ -4,7 +4,7 @@ Registering tokens with the token bridge can be done from any supported blockcha
 
 If you need to do it programmatically, you can also use the Typescript SDK to attest a token.
 
-There are three steps to registerring a token:
+There are three steps to registering a token:
 
 1. Create an AttestMeta VAA by calling `attest()` function from the SDK and passing in the Token Bridge address, and the address of the Token we want to attest.
 
@@ -55,7 +55,7 @@ await targetTokenBridge.createWrapped(
     gasLimit: 2000000,
   }
 );
-await new Promise((r) => setTimeout(r, 5000)); //Time out to let block propogate
+await new Promise((r) => setTimeout(r, 5000)); //Time out to let block propagate
 const wrappedTokenAddress = await targetTokenBridge.wrappedAsset(
   network.wormholeChainId,
   Buffer.from(tryNativeToHexString(network.testToken, "ethereum"), "hex")

@@ -4,7 +4,7 @@ Relaying Messages can be done one of three ways:
 
 **_Manual Relaying_**
     
-Manual relaying is usally done on the front end.  Manual relaying requires the front end to fetch the VAA it just created and then submit on the target chain. This means the user ends up paying for the gas fee and has to go through the additional step to submit the tx on the target chain. 
+Manual relaying is usually done on the front end.  Manual relaying requires the front end to fetch the VAA it just created and then submit on the target chain. This means the user ends up paying for the gas fee and has to go through the additional step to submit the tx on the target chain. 
 
 **_Protocol-Specific Relayers_**
 
