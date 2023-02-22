@@ -1,6 +1,6 @@
 # Specialized Relayers
 
-Rather than home-rolling a relayer, it's recommended that integrators start from the existing [Spy Relayer](https://github.com/wormhole-foundation/wormhole/tree/dev.v2/relayer/spy_relayer) provided in the Wormhole Core Repository.
+Rather than home-rolling a relayer, it's recommended that integrators start from the existing [Spy Relayer](https://github.com/wormhole-foundation/wormhole/tree/main/relayer/spy_relayer) provided in the Wormhole Core Repository.
 
 Additionally there's an extensible relayer (called the [Plugin Relayer](https://github.com/wormhole-foundation/wormhole/tree/feat/plugin_relayer/relayer/plugin_relayer)) currently in development.
 

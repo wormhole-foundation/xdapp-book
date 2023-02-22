@@ -59,7 +59,7 @@ However, they also have a couple notable downsides
 
 Due to specialized relayers being such a common solution, an extensible relayer (called the plugin relayer) has been provided in the main Wormhole repository. The plugin relayer stands up most of the requisite infrastructure for relaying, so that you only need to implement the logic which is specific to your application.
 
-If you plan to develop a specialized relayer, consider starting from the plugin relayer [found here](https://github.com/wormhole-foundation/wormhole/tree/dev.v2/relayer).
+If you plan to develop a specialized relayer, consider starting from the plugin relayer [found here](https://github.com/wormhole-foundation/wormhole/tree/main/relayer).
 
 <!--
 TODO link to plugin relayer once it has been merged down
