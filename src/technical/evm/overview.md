@@ -4,7 +4,7 @@
 
 Within the Wormhole ecosystem, EVM refers to any blockchain that utilizes EVM contracts of Wormhole -- this includes blockchains beyond Ethereum such as Polygon or Avalanche, as well as EVM+ environments such as Acala.
 
-At certain points, it may be easiest to integrate simply by referencing the implementation of the Wormhole contracts. The official implementation for the Wormhole contracts can be found [here](https://github.com/wormhole-foundation/wormhole/tree/dev.v2/ethereum).
+At certain points, it may be easiest to integrate simply by referencing the implementation of the Wormhole contracts. The official implementation for the Wormhole contracts can be found [here](https://github.com/wormhole-foundation/wormhole/tree/main/ethereum).
 
 ### Recommended Tooling for EVM
 

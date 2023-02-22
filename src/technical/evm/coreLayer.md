@@ -6,7 +6,7 @@ Messages in Wormhole take the form of a Verified Action Approval (VAA) and both 
 
 ## Configuring the Interface
 
-[Here](https://github.com/wormhole-foundation/wormhole/blob/dev.v2/ethereum/contracts/interfaces) is the interface for applications to interact with Wormhole's Core Contract to publish VAAs or verify and parse a received VAAs.
+[Here](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/interfaces) is the interface for applications to interact with Wormhole's Core Contract to publish VAAs or verify and parse a received VAAs.
 
 Instantiating the interface will depend on the contract address of your development ecosystem and blockchain.
 

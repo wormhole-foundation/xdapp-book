@@ -2,11 +2,11 @@
 
 Regardless of the development environment that you use, there are a few wormhole-specific tools you should know about.
 
-### [Wormhole Core Repository](https://github.com/wormhole-foundation/wormhole/tree/dev.v2/)
+### [Wormhole Core Repository](https://github.com/wormhole-foundation/wormhole/tree/main/)
 
 - Most developers find it useful to clone the Wormhole Core repository. This repository provides the Devnet Tilt environment, plenty of useful code examples and tests, along with some utilities which do not have an official release package.
 
-### [Worm CLI tool](https://github.com/wormhole-foundation/wormhole/tree/dev.v2/clients/js)
+### [Worm CLI tool](https://github.com/wormhole-foundation/wormhole/tree/main/clients/js)
 
 - Swiss-Army Knife Utility CLI tool. Excellent for creating one-off VAAs, parsing VAAs, reading Wormhole contract configurations, and more.
 
@@ -14,7 +14,7 @@ Regardless of the development environment that you use, there are a few wormhole
 
 - Small WIP tool which comes as part of the [Wormhole Local Validator](./wlv.md) environment. Used to quickly deploy and redeploy multiple smart contracts. Will eventually become part of a larger deployment management tool.
 
-### [Wormhole SDKs](https://github.com/wormhole-foundation/wormhole/tree/dev.v2/sdk)
+### [Wormhole SDKs](https://github.com/wormhole-foundation/wormhole/tree/main/sdk)
 
 - Libraries in various languages to help with interacting with Wormhole contracts.
 
@@ -22,7 +22,7 @@ Regardless of the development environment that you use, there are a few wormhole
 
 - Typescript SDK destributed on npm. Can greatly aid in writing frontend code for xDapps and utilizing the Wormhole Token Bridge directly.
 
-### [Wormhole Spy SDK](https://github.com/wormhole-foundation/wormhole/tree/dev.v2/spydk/js)
+### [Wormhole Spy SDK](https://github.com/wormhole-foundation/wormhole/tree/main/spydk/js)
 
 - The Wormhole Spy SDK allows you to listen to all of the activity on the Guardian Network.
 

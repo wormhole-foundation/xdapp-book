@@ -54,7 +54,7 @@ curl -fsSL https://raw.githubusercontent.com/tilt-dev/tilt/master/scripts/instal
 ### 5. Clone the Wormhole Repo and start Tilt
 
 ```sh
-git clone --branch dev.v2 https://github.com/wormhole-foundation/wormhole.git
+git clone --branch main https://github.com/wormhole-foundation/wormhole.git
 ```
 
 If you're running Tilt on your machine:
