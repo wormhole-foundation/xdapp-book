@@ -121,7 +121,7 @@ Wormchain is a Cosmos based blockchain which runs internally to the Guardian net
 
 This enables two additional protections for the Wormhole Asset Layer in addition to the core assumptions:
 
-- **Governor:** The Governor tracks inflows and outflows of all blockchains and delays suspicious transfers which may be indicative of a exploit. [More Info](https://github.com/wormhole-foundation/wormhole/blob/dev.v2/whitepapers/0007_governor.md)
+- **Governor:** The Governor tracks inflows and outflows of all blockchains and delays suspicious transfers which may be indicative of a exploit. [More Info](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0007_governor.md)
 - **Global Accountant:** The accountant tracks the total circulating supply of all Wormhole assets across all chains and prevents any blockchain from bridging assets which would violate the supply invariant.
 
 </br>

@@ -2,7 +2,7 @@
 
 Below are a variety of tools and information in the Wormhole ecosystem that can help you develop xDapps.
 
-### [Design Documents](https://github.com/certusone/wormhole/tree/dev.v2/whitepapers)
+### [Design Documents](https://github.com/certusone/wormhole/tree/main/whitepapers)
 
 Wormhole's component design specifications outline the reasoning behind design decisions with added technical depth.
 

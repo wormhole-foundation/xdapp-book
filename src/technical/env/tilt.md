@@ -42,14 +42,14 @@ In order to run the Tilt environment, make sure you have [Tilt](https://docs.til
 Once you've installed these two dependencies, just clone the Wormhole Core Repository and start Tilt.
 
 ```
-git clone --branch dev.v2 https://github.com/wormhole-foundation/wormhole.git
+git clone --branch main https://github.com/wormhole-foundation/wormhole.git
 
 cd wormhole
 
 tilt up
 ```
 
-Be sure to check out the [**Tiltfile**](https://github.com/wormhole-foundation/wormhole/blob/dev.v2/Tiltfile), which has much of the configuration and arguments for the development environment. It's relatively straightforward to enable and disable components. 
+Be sure to check out the [**Tiltfile**](https://github.com/wormhole-foundation/wormhole/blob/main/Tiltfile), which has much of the configuration and arguments for the development environment. It's relatively straightforward to enable and disable components. 
 
 For example, you can disable blockchains by setting them to false at startup
 
@@ -65,7 +65,7 @@ If you've followed the standard setup, all your resources will be bound to vario
 
 All the deployed contract addresses can be found under the 'Devnet / Tilt' section of [contracts](../../reference/contracts.md).
 
-Useful information pertaining to funded wallets & private keys can also be found in the [devnet.md](https://github.com/wormhole-foundation/wormhole/blob/dev.v2/docs/devnet.md) file of the docs.
+Useful information pertaining to funded wallets & private keys can also be found in the [devnet.md](https://github.com/wormhole-foundation/wormhole/blob/main/docs/devnet.md) file of the docs.
 
 Additional helpful resources can be found in the [Tooling](./tooling.md) page.
 

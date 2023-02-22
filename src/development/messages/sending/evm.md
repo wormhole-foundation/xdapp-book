@@ -2,7 +2,7 @@
 
 To send messages from EVM, first we have to download the Core Bridge interfaces.
 
-We need two interfaces, [IWormhole.sol](https://github.com/wormhole-foundation/wormhole/raw/dev.v2/ethereum/contracts/interfaces/IWormhole.sol) and [Structs.sol](https://github.com/wormhole-foundation/wormhole/raw/dev.v2/ethereum/contracts/Structs.sol)
+We need two interfaces, [IWormhole.sol](https://github.com/wormhole-foundation/wormhole/raw/main/ethereum/contracts/interfaces/IWormhole.sol) and [Structs.sol](https://github.com/wormhole-foundation/wormhole/raw/main/ethereum/contracts/Structs.sol)
 
 In your xdapp-starter, place those files in
 

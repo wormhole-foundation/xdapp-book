@@ -39,7 +39,7 @@ brew install tilt
 ### 4. Clone Wormhole Repo and Start Tilt
 
 ```sh
-git clone --branch dev.v2 https://github.com/wormhole-foundation/wormhole.git
+git clone --branch main https://github.com/wormhole-foundation/wormhole.git
 cd wormhole/
 tilt up
 ```
@@ -51,7 +51,7 @@ You'll be able to access the Tilt UI at
 
 ## Script Setup
 
-If you're using a Debian distro, you should run the [dev-setup.sh](https://github.com/wormhole-foundation/wormhole/blob/dev.v2/scripts/dev-setup.sh) script. Even if you're not using Debian, this script still contains the main steps for setup.
+If you're using a Debian distro, you should run the [dev-setup.sh](https://github.com/wormhole-foundation/wormhole/blob/main/scripts/dev-setup.sh) script. Even if you're not using Debian, this script still contains the main steps for setup.
 
 ## Regular Setup
 
@@ -97,7 +97,7 @@ curl -fsSL https://raw.githubusercontent.com/tilt-dev/tilt/master/scripts/instal
 ### 5. Clone the Wormhole Repo and start Tilt
 
 ```sh
-git clone --branch dev.v2 https://github.com/wormhole-foundation/wormhole.git
+git clone --branch main https://github.com/wormhole-foundation/wormhole.git
 ```
 
 If you're running Tilt on your machine:

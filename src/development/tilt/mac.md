@@ -31,7 +31,7 @@ brew install tilt
 ## Clone Wormhole Repo and Start Tilt
 
 ```sh
-git clone --branch dev.v2 https://github.com/wormhole-foundation/wormhole.git
+git clone --branch main https://github.com/wormhole-foundation/wormhole.git
 ```
 
 ```sh
