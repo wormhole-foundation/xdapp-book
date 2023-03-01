@@ -2,14 +2,14 @@
 
 **_Disclaimer: This module is only available in testnet._**
 
-The Wormhole Relayer module allows developers to deliver their VAAs via an untrusted **RelayProvider**, rather than needing to develop and host their own relay infrastructure.
+The WormholeRelayer module allows developers to deliver their VAAs via an untrusted **RelayProvider**, rather than needing to develop and host their own relay infrastructure.
 
 <br/>
 <br/>
 
 ## Interacting with the Module
 
-There are four relevant interfaces to discuss when utilizing the Wormhole Relayer module:
+There are four relevant interfaces to discuss when utilizing the WormholeRelayer module:
 
 - [IWormholeRelayer](https://github.com/wormhole-foundation/trustless-generic-relayer/blob/main/ethereum/contracts/interfaces/IWormholeRelayer.sol) - the primary interface by which you interact with the module. It allows you to request deliveries from a given RelayProvider.
 - [IRelayProvider](https://github.com/wormhole-foundation/trustless-generic-relayer/blob/main/ethereum/contracts/interfaces/IRelayProvider.sol) - this interface represents the delivery pricing information for a given relayer network.
@@ -35,7 +35,7 @@ contract HelloWorld is IWormholeReceiver {
     }
 
     modifier onlyRelayerContract() {
-        require(msg.sender == WORMHOLE_RELAYER_CONTRACT_ADDRESS, "msg.sender is not Wormhole Relayer contract.");
+        require(msg.sender == WORMHOLE_RELAYER_CONTRACT_ADDRESS, "msg.sender is not WormholeRelayer contract.");
         _;
     }
 }
@@ -72,7 +72,7 @@ function sendHelloWorldMessage() public payable {
         gasLimit,
         relayer.getDefaultRelayProvider());
 
-    //calculate cost to cover application budget of 100 wei on the targetChain.
+    //calculate cost to cover receiver value of 100 wei on the targetChain.
     //if you don't need 'receiver value', feel free to skip this and just pass 0 to the send
     uint256 receiverValue = relayer.quoteReceiverValue(
         targetChain,
@@ -100,7 +100,7 @@ Let's break down all the things happening in this code.
 - `relayProvider` - The relayer network which will deliver the request. Here we use the default provider.
 - `targetChain` - Wormhole chainId where the messages should be sent. This is not the same as the EVM Network ID!
 - `targetContract` - Contract address on targetChain where the messages should be sent. This is in the 32-byte Wormhole address format.
-- `refundAddress` - Address (in Wormhole format) on **targetChain** where any remaining computeBudget should be sent once execution of receiveWormholeMessages is complete.
+- `refundAddress` - Address (in Wormhole format) on **targetChain** where any remaining maxTransactionFee should be sent once execution of receiveWormholeMessages is complete.
 - `maxTransactionFee` - this specifies the maximum amount of funds (in sourceChain wei) that should be utilized to execute receiveWormholeMessages on the targetChain. If the maxTransactionFee is exceeded during contract execution you will enter a **delivery failure** state. Any unused budget is sent to the refundAddress.
 - `receiverValue` - this amount (in sourceChain wei) is converted to targetChain native funds at the rate specified by the RelayProvider and passed to `receiveWormholeMessages` on the target chain when the delivery happens. This is useful for covering small fees encountered during execution on the target chain.
 
@@ -133,7 +133,7 @@ modifier onlyRelayerContract() {
 
 Breaking down everything happening in this code snippet:
 
-- `receiveWormholeMessages` - this is the function which will be invoked by the CoreRelayer contract when the RelayProvider completes the delivery. It will be executed with a gas limit equal to the amount which was covered by the `computeBudget` that was specified in the deliveryRequest.
+- `receiveWormholeMessages` - this is the function which will be invoked by the WormholeRelayer contract when the RelayProvider completes the delivery. It will be executed with a gas limit equal to the amount which was covered by the `maxTransactionFee` that was specified in the deliveryRequest.
 
 - `whMessages` - These are all the messages that were requested for delivery, in the order they were emitted. This includes the deliveryVAA used by the WormholeRelayer, which should generally be ignored.
 - `otherData` - Non-Wormhole data which was requested for delivery. Currently not used, but included for future compatibility.
@@ -143,7 +143,7 @@ Here are a few other important points to note:
 
 - `receiveWormholeMessages` function should generally not throw an exception or revert during execution. If an exception is thrown, or a 'require' statement is violated, you will enter a delivery failure. When a delivery failure occurs, the execution of `receiveWormholeMessages` is reverted, but the entire transaction is not.
 
-- `receiveWormholeMessages` will only be called with as much gas as was specified by the compute budget specified when the message delivery was requested. If you exceed this gas amount, you will enter a delivery failure. Ther are more details on compute budget in a later section.
+- `receiveWormholeMessages` will only be called with as much gas as was specified by the maxTransactionFee specified when the message delivery was requested. If you exceed this gas amount, you will enter a delivery failure. Ther are more details on maxTransactionFee in a later section.
 
 - `whMessages` is the array of VAAs which were requested for delivery, in the order they were emitted during the requesting transaction. These VAAs are not verified, and should not be considered trusted until you call `core_bridge.parseAndVerifyVM` or otherwise verify them against the Core Contract! (More on this in [Best Practices](./bestPractices.md))
 
@@ -170,7 +170,7 @@ Relay providers should set their prices such that they turn a profit on average,
 
 ### Delivery Failures
 
-All deliveries should result in one of following four outcomes prior to the delivery timeframe of the relay provider. These outcomes are emitted as EVM events from the CoreRelayer contract when they occur.
+All deliveries should result in one of following four outcomes prior to the delivery timeframe of the relay provider. These outcomes are emitted as EVM events from the WormholeRelayer contract when they occur.
 
 - Delivery Success
 - Delivery Failure
@@ -224,7 +224,7 @@ function redeliveryExample() public payable {
         targetChain,
         newMaxTransactionFee, //newMaxTransactionFee
         receiverValue, //newReceiverValue
-        source.coreRelayer.getDefaultRelayParams() //newRelayParams
+        relayer.getDefaultRelayParams() //newRelayParams
     );
 
     relayer.resend{value: newMaxTransactionFee + receiverValue}(
@@ -250,7 +250,7 @@ When you request delivery to an EVM chain, there are effectively three factors w
 - A predetermined rate at which gas can be pre-purchased on the target chain.
 - An exchange rate for `receiverValue`.
 
-On every delivery there is a `refundAddress` specified on the `targetChain`. If the entire `computeBudget` is not exhausted during the execution of `receiveWormholeMessages`, the remaining unused budget will be sent to the `refundAddress`.
+On every delivery there is a `refundAddress` specified on the `targetChain`. If the entire `maxTransactionFee` is not exhausted during the execution of `receiveWormholeMessages`, the remaining unused budget will be sent to the `refundAddress`.
 
 For example, let's say that the `maxTransactionFee` for a 500k gas execution on FooChain is equal to 13 fooCoins. If the `deliveryOverhead` is 3 fooCoins, and `receiveWormholeMessages` only uses 250k gas during its execution, then we can expect 5 fooCoins to be sent to the `refundAddress`.
 
@@ -267,7 +267,7 @@ Contrary to `maxTransactionFee`, when specifying a `receiverValue` the RelayProv
 
 So far we've discussed how to perform a simple delivery from chain A to chain B. However, a fairly common scenario that you may encounter is that you may want to perform a multi-hop delivery from chain A to B to C, or to round-trip a delivery back to the source chain. Forwarding is a feature specifically designed to suit these usecases.
 
-Forwarding is quite similar to a normal requestDelivery action, however it has a couple special traits.
+Forwarding is quite similar to a normal 'send' action, however it has a couple special traits.
 
 - Instead of calling `send`, you should call `forward`.
 - `forward` can only be called while a delivery is being executed (I.E, during execution of receiveWormholMessages), and can only be called by the contract which is receiving the delivery.
@@ -290,7 +290,7 @@ The array of `whMessages` which is passed to `receiveWormholeMessages` are non-v
 
 - Relayers are not trusted with message content! If they were to modify the content of a VAA during delivery, it would invalidate the signatures and fail to be verified by the Core Contract. This means relayers are only trusted for **liveness**.
 
-- There are also very few trust assumptions placed on the CoreRelayer contract. The CoreRelayer contract only enforces a few protections, such as that refunds are correctly paid out, and that non Batch-VAAs are not handed into the contract.
+- There are also very few trust assumptions placed on the WormholeRelayer contract. The WormholeRelayer contract only enforces a few protections, such as that refunds are correctly paid out, and that non Batch-VAAs are not handed into the contract.
 
 However, as always with smart contract development, there are some things you should be aware of:
 
@@ -319,7 +319,7 @@ A very common scenario for Hub-and-Spoke style applications is to want to round-
 
 ### Bridging Multiple Tokens
 
-Because the CoreRelayer can handle delivery of multiple messages, you can call the Token Bridge module multiple times in the same transaction using the same nonce and all the VAAs will be included in the delivery array. This is great for scenarios where an action results in tokens being sent to two different locations, or multiple tokens needing to be sent atomically.
+Because the WormholeRelayer can handle delivery of multiple messages, you can call the Token Bridge module multiple times in the same transaction using the same nonce and all the VAAs will be included in the delivery array. This is great for scenarios where an action results in tokens being sent to two different locations, or multiple tokens needing to be sent atomically.
 
 ### Broadcasting and Multidelivery
 
@@ -327,7 +327,7 @@ You can request delivery to many chains at once by calling `multichainSend` or `
 
 ### Faster-than-finality transfers
 
-One of the primary features of the CoreRelayer protocol is that messages can be delivered faster than finality so long as the RelayProvider supports it. Normally the Token Bridge module can only transfer tokens once finality has been reached on a chain. However, with the CoreRelayer protocol, you could potentially initiate two transfers in the same transaction.
+One of the primary features of the WormholeRelayer protocol is that messages can be delivered faster than finality so long as the RelayProvider supports it. Normally the Token Bridge module can only transfer tokens once finality has been reached on a chain. However, with the WormholeRelayer protocol, you could potentially initiate two transfers in the same transaction.
 
 - The first transfer sends funds instantly from a liqudity source, so that the end user receives their funds quickly.
 - The second transfer sends funds via the Token Bridge to reimburse the liquidity source on the `targetChain`
