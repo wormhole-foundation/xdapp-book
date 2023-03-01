@@ -11,7 +11,7 @@ The Wormhole Relayer module allows developers to deliver their VAAs via an untru
 
 There are four relevant interfaces to discuss when utilizing the Wormhole Relayer module:
 
-- [ICoreRelayer](https://github.com/wormhole-foundation/trustless-generic-relayer/blob/main/ethereum/contracts/interfaces/ICoreRelayer.sol) - the primary interface by which you interact with the module. It allows you to request deliveries from a given RelayProvider.
+- [IWormholeRelayer](https://github.com/wormhole-foundation/trustless-generic-relayer/blob/main/ethereum/contracts/interfaces/IWormholeRelayer.sol) - the primary interface by which you interact with the module. It allows you to request deliveries from a given RelayProvider.
 - [IRelayProvider](https://github.com/wormhole-foundation/trustless-generic-relayer/blob/main/ethereum/contracts/interfaces/IRelayProvider.sol) - this interface represents the delivery pricing information for a given relayer network.
 - [IWormholeReceiver](https://github.com/wormhole-foundation/trustless-generic-relayer/blob/main/ethereum/contracts/interfaces/IWormholeReceiver.sol) - this is the interface you are responsible for implementing. It allows the selected RelayProvider to deliver messages to your contract.
 - [IWormhole](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/interfaces/IWormhole.sol) - this is simply the Wormhole Core Messaging interface, used for emitting and verifying VAAs.
@@ -21,13 +21,13 @@ Check the [deployed contracts page](../../reference/contracts.md) for contract a
 A minimal setup looks something like this:
 
 ```solidity
-import "../ICoreRelayer.sol";
+import "../IWormholeRelayer.sol";
 import "../IRelayProvider.sol";
 import "../IWormholeReceiver.sol";
 import "../IWormhole.sol";
 
 contract HelloWorld is IWormholeReceiver {
-    ICoreRelayer relayer = ICoreRelayer(CORE_RELAYER_CONTRACT_ADDRESS);
+    IWormholeRelayer relayer = IWormholeRelayer(WORMHOLE_RELAYER_CONTRACT_ADDRESS);
     IWormhole wormhole = IWormhole(WORMHOLE_CORE_CONTRACT_ADDRESS);
 
     function receiveWormholeMessages(bytes[] memory whMessages, bytes[] memory otherData)
@@ -35,7 +35,7 @@ contract HelloWorld is IWormholeReceiver {
     }
 
     modifier onlyRelayerContract() {
-        require(msg.sender == CORE_RELAYER_CONTRACT_ADDRESS, "msg.sender is not CoreRelayer contract.");
+        require(msg.sender == WORMHOLE_RELAYER_CONTRACT_ADDRESS, "msg.sender is not Wormhole Relayer contract.");
         _;
     }
 }
@@ -48,11 +48,11 @@ contract HelloWorld is IWormholeReceiver {
 
 # Sending Messages
 
-The CoreRelay contract does not directly send messages. Rather, the CoreRelayer contract allows you to deliver **any or all messages which originate from the current transaction**, including those which don't originate directly from the current contract.
+The WormholeRelayer contract does not directly send messages. Rather, the WormholeRelayer contract allows you to deliver **any or all messages which originate from the current transaction**, including those which don't originate directly from the current contract.
 
 This allows you to easily combine basic messaging along with other modules of the Wormhole ecosystem, such as the Token Bridge or NFT modules. It even allows for other Wormhole integrators to easily compose with your application! (See [best practices](./bestPractices.md) for more info.)
 
-We'll discuss more complex useage later. For now let's just cover how to send a "Hello World" message. The basic mechanism to request delivery of your VAAs is to call the `requestDelivery` function on the CoreRelayer contract. Here's its basic usage:
+We'll discuss more complex useage later. For now let's just cover how to send a "Hello World" message. The basic mechanism to request delivery of your VAAs is to call the `send` function on the IWormholeRelayer interface. Here's its basic usage:
 
 ```solidity
 function sendHelloWorldMessage() public payable {
@@ -67,31 +67,23 @@ function sendHelloWorldMessage() public payable {
     wormhole.publishMessage{value: wormhole.messageFee()}(nonce, helloWorld, consistencyLevel);
 
     //calculate cost to deliver this message
-    uint256 deliveryCost = relayer.quoteGasDeliveryFee(
+    uint256 maxTransactionFee = relayer.quoteGas(
         TARGET_CHAIN,
         gasLimit,
         relayer.getDefaultRelayProvider());
 
     //calculate cost to cover application budget of 100 wei on the targetChain.
-    //if you don't need an application budget, feel free to skip this and just pass 0 to the request
-    uint256 applicationBudget = relayer.quoteApplicationBudgetFee(
+    //if you don't need 'receiver value', feel free to skip this and just pass 0 to the send
+    uint256 receiverValue = relayer.quoteReceiverValue(
         targetChain,
         100,
         relayer.getDefaultRelayProvider());
 
-    //create delivery request object
-    ICoreRelayer.DeliveryRequest memory request = ICoreRelayer.DeliveryRequest(
-        TARGET_CHAIN, //targetChain
-        TARGET_CONTRACT, //targetAddress
-        TARGET_CONTRACT, //refundAddress
-        deliveryCost, //computeBudget
-        applicationBudget,
-        relayer.getDefaultRelayParams() //relayerParams
-    );
-
-    //publish delivery request
-    relayer.requestDelivery{value: deliveryCost + applicationBudget}(
-        request, nonce, relayer.getDefaultRelayProvider()
+    // publish delivery request
+    // the fields, in order, are:
+    // targetChain, targetAddress, refundAddress, maxTransactionFee, receiverValue, nonce
+    relayer.send{value: deliveryCost + receiverValue}(
+        TARGET_CHAIN, TARGET_CONTRACT, TARGET_CONTRACT, maxTransactionFee, receiverValue, nonce
     );
 }
 ```
@@ -109,9 +101,8 @@ Let's break down all the things happening in this code.
 - `targetChain` - Wormhole chainId where the messages should be sent. This is not the same as the EVM Network ID!
 - `targetContract` - Contract address on targetChain where the messages should be sent. This is in the 32-byte Wormhole address format.
 - `refundAddress` - Address (in Wormhole format) on **targetChain** where any remaining computeBudget should be sent once execution of receiveWormholeMessages is complete.
-- `computeBudget` - this specifies the maximum amount of funds (in sourceChain wei) that should be utilized to execute receiveWormholeMessages on the targetChain. If the computeBudget is exceeded during contract execution you will enter a **delivery failure** state. Any unused budget is sent to the refundAddress.
-- `applicationBudget` - this amount (in sourceChain wei) is converted to targetChain native funds at the rate specified by the RelayProvider and passed to `receiveWormholeMessages` on the target chain when the delivery happens. This is useful for covering small fees encountered during execution on the target chain.
-- `relayParams`: this is effectively an 'overrides' field. It's currently not used, but is important for future compability with non-EVM blockchains.
+- `maxTransactionFee` - this specifies the maximum amount of funds (in sourceChain wei) that should be utilized to execute receiveWormholeMessages on the targetChain. If the maxTransactionFee is exceeded during contract execution you will enter a **delivery failure** state. Any unused budget is sent to the refundAddress.
+- `receiverValue` - this amount (in sourceChain wei) is converted to targetChain native funds at the rate specified by the RelayProvider and passed to `receiveWormholeMessages` on the target chain when the delivery happens. This is useful for covering small fees encountered during execution on the target chain.
 
 <br/>
 <br/>
@@ -135,7 +126,7 @@ function receiveWormholeMessages(bytes[] memory whMessages, bytes[] memory other
 }
 
 modifier onlyRelayerContract() {
-    require(msg.sender == CORE_RELAYER_ADDRESS, "msg.sender is not CoreRelayer contract.");
+    require(msg.sender == WORMHOLE_RELAYER_ADDRESS, "msg.sender is not WormholeRelayer contract.");
     _;
 }
 ```
@@ -144,9 +135,9 @@ Breaking down everything happening in this code snippet:
 
 - `receiveWormholeMessages` - this is the function which will be invoked by the CoreRelayer contract when the RelayProvider completes the delivery. It will be executed with a gas limit equal to the amount which was covered by the `computeBudget` that was specified in the deliveryRequest.
 
-- `whMessages` - These are all the messages that were requested for delivery, in the order they were emitted. This includes the deliveryVAA used by the CoreRelayer, which should generally be ignored.
+- `whMessages` - These are all the messages that were requested for delivery, in the order they were emitted. This includes the deliveryVAA used by the WormholeRelayer, which should generally be ignored.
 - `otherData` - Non-Wormhole data which was requested for delivery. Currently not used, but included for future compatibility.
-- `onlyRelayerContract` - this prevents contracts other than the CoreRelayer contract from calling this entrypoint. The CoreRelayer contract handles the invocation of `receiveWormholeMessages`, and ensures that relayers can't improperly call it.
+- `onlyRelayerContract` - this prevents contracts other than the WormholeRelayer contract from calling this entrypoint. The WormholeRelayer contract handles the invocation of `receiveWormholeMessages`, and ensures that relayers can't improperly call it.
 
 Here are a few other important points to note:
 
@@ -165,7 +156,7 @@ Here are a few other important points to note:
 
 # Delivery Guarantees & Delivery Failures
 
-The CoreRelayer protocol is intended to create a service interface whereby mutually distrustful integrators and RelayProviders can work together to provide a seamless Dapp experience. You don't trust the relay providers with your data, and the relay providers don't trust your smart contract. The primary agreement which is made between integrators and relayers is that:
+The WormholeRelayer protocol is intended to create a service interface whereby mutually distrustful integrators and RelayProviders can work together to provide a seamless Dapp experience. You don't trust the relay providers with your data, and the relay providers don't trust your smart contract. The primary agreement which is made between integrators and relayers is that:
 
 **When a delivery is requested, the relay provider will attempt to deliver the VAA within the provider's stated delivery timeframe.**
 
@@ -190,7 +181,7 @@ Delivery Failures are not a nebulous 'something went wrong' term in the Wormhole
 
 - the target contract does not implement the `IWormholeReceiver` interface
 - the target contract threw an exception or reverted during execution of `receiveWormholeMessages`
-- the target contract exceeded the specified `computeBudget` while executing `receiveWormholeMessages`
+- the target contract exceeded the specified `maxTransactionFee` while executing `receiveWormholeMessages`
 
 All three of these scenarios should generally be avoidable by the integrator, and thus it is up to integrator to resolve them.
 
@@ -213,30 +204,30 @@ function redeliveryExample() public payable {
     uint16 nonce = SOURCE_NONCE
     uint32 gasLimit = 1000000
 
-    //Note, call quoteGasRedeliveryFee instead of quoteGasDeliveryFee.
+    //Note, call quoteGasResend instead of quoteGas.
     //The overheads for the two processes differ, so the quotes differ as well.
-    const redeliveryBudget = relayer.quoteGasReeliveryFee(
+    const newMaxTransactionFee = relayer.quoteGasResend(
         TARGET_CHAIN,
         gasLimit,
         relayer.getDefaultRelayProvider());
 
-    //Application budget calculations do not differ
-    const applicationBudget = relayer.quoteApplicationBudgetFee(
+    //Receiver value calculations do not differ
+    const receiverValue = relayer.quoteReceiverValue(
         targetChain,
         0,
         relayer.getDefaultRelayProvider());
 
-    ICoreRelayer.RedeliveryByTxHashRequest memory redeliveryRequest = ICoreRelayer.RedeliveryByTxHashRequest(
+    IWormholeRelayer.ResendByTx memory redeliveryRequest = IWormholeRelayer.ResendByTx(
         sourceChain,
         deliveryTxHash,
         nonce, //sourceNonce
         targetChain,
-        redeliveryBudget, //newComputeBudget
-        applicationBudget, //newApplicationBudget
+        newMaxTransactionFee, //newMaxTransactionFee
+        receiverValue, //newReceiverValue
         source.coreRelayer.getDefaultRelayParams() //newRelayParams
     );
 
-    relayer.requestRedelivery{value: redeliveryBudget + applicationBudget}(
+    relayer.resend{value: newMaxTransactionFee + receiverValue}(
         redeliveryRequest, nonce, relayer.getDefaultRelayProvider()
     );
 }
@@ -251,21 +242,21 @@ Any delivery or forwarding request can be requested for redelivery, potentially 
 <br/>
 <br/>
 
-## Compute Budget and Refunds
+## Max Transaction Fee and Refunds
 
 When you request delivery to an EVM chain, there are effectively three factors which go into the delivery fee.
 
 - A fixed `deliveryOverhead` provided by the RelayProvider, which covers the overhead fees associated with any delivery.
 - A predetermined rate at which gas can be pre-purchased on the target chain.
-- An exchange rate for `applicationBudget`.
+- An exchange rate for `receiverValue`.
 
 On every delivery there is a `refundAddress` specified on the `targetChain`. If the entire `computeBudget` is not exhausted during the execution of `receiveWormholeMessages`, the remaining unused budget will be sent to the `refundAddress`.
 
-For example, let's say that the `computeBudget` for a 500k gas execution on FooChain is equal to 13 fooCoins. If the `deliveryOverhead` is 3 fooCoins, and `receiveWormholeMessages` only uses 250k gas during its execution, then we can expect 5 fooCoins to be sent to the `refundAddress`.
+For example, let's say that the `maxTransactionFee` for a 500k gas execution on FooChain is equal to 13 fooCoins. If the `deliveryOverhead` is 3 fooCoins, and `receiveWormholeMessages` only uses 250k gas during its execution, then we can expect 5 fooCoins to be sent to the `refundAddress`.
 
-Notably, this means that there is not a penalty for specifying a `computeBudget` which is too large, so long as the RelayProvider has reasonably accurate price quotes. You should generally err on the side of caution when specifying a `computeBudget`, as undershooting results in a Delivery Failure, whereas overshooting just results in a larger refund.
+Notably, this means that there is not a penalty for specifying a `maxTransactionFee` which is too large, so long as the RelayProvider has reasonably accurate price quotes. You should generally err on the side of caution when specifying a `maxTransactionFee`, as undershooting results in a Delivery Failure, whereas overshooting just results in a larger refund.
 
-Contrary to `computeBudget`, when specifying an `applicationBudget` the RelayProvider will take a percentage of the exchange as specified by the provider. RelayProviders also specify a maximum budget that they will support.
+Contrary to `maxTransactionFee`, when specifying a `receiverValue` the RelayProvider will take a percentage of the exchange as specified by the provider. RelayProviders also specify a maximum budget that they will support.
 
 <br/>
 <br/>
@@ -278,9 +269,9 @@ So far we've discussed how to perform a simple delivery from chain A to chain B.
 
 Forwarding is quite similar to a normal requestDelivery action, however it has a couple special traits.
 
-- Instead of calling `requestDelivery`, you should call `requestForward`.
-- `requestForward` can only be called while a delivery is being executed (I.E, during execution of receiveWormholMessages), and can only be called by the contract which is receiving the delivery.
-- When a forward is requested, the `refundAddress` of the delivery is ignored, and the refund is instead used to pay for the `computeBudget` and `applicationBudget` of the next delivery.
+- Instead of calling `send`, you should call `forward`.
+- `forward` can only be called while a delivery is being executed (I.E, during execution of receiveWormholMessages), and can only be called by the contract which is receiving the delivery.
+- When a forward is requested, the `refundAddress` of the delivery is ignored, and the refund is instead used to pay for the `maxTransactionFee` and `receiverValue` of the next delivery.
 - You can add supplemental funds to cover the forwarding costs by passing additional tokens in msg.value.
 - If the refund amount + supplemental funds do not cover the cost of the delivery, you will encounter a Forward Failure.
 - Forward Failures do not revert the previous delivery, but the next delivery is not guaranteed to be performed.
@@ -320,11 +311,11 @@ However, as always with smart contract development, there are some things you sh
 
 ### Drop a user off with native gas
 
-The most common way to accomplish this is to simply specify a large `computeBudget` with the user's wallet as the `refundAddress`. This can also be done via the `applicationBudget`, however the `applicationBudget` rates are always equal to or worse than the `computeBudget` rates.
+The most common way to accomplish this is to simply specify a large `maxTransactionFee` with the user's wallet as the `refundAddress`. This can also be done via the `receiverValue`, however the `receiverValue` rates are always equal to or worse than the `maxTransactionFee` rates.
 
 ### Safe Round-Trips
 
-A very common scenario for Hub-and-Spoke style applications is to want to round-trip a delivery from a Spoke chain to the Hub chain and then back. In this case, it's generally a good idea to capture a large `computeBudget` and then perform a `forward` from the Hub chain with the end-user's wallet set to the `refundAddress`. Thus the end user is ultimately returned all unused funds.
+A very common scenario for Hub-and-Spoke style applications is to want to round-trip a delivery from a Spoke chain to the Hub chain and then back. In this case, it's generally a good idea to capture a large `maxTransactionFee` and then perform a `forward` from the Hub chain with the end-user's wallet set to the `refundAddress`. Thus the end user is ultimately returned all unused funds.
 
 ### Bridging Multiple Tokens
 
@@ -332,7 +323,7 @@ Because the CoreRelayer can handle delivery of multiple messages, you can call t
 
 ### Broadcasting and Multidelivery
 
-You can request delivery to many chains at once by calling `requestMultisend` or `requestMultiforward`. This is great for accomplishing actions like the delivery of a governance event or any other piece of data which has to be sent to all your contracts. This also allows you to send tokens to multiple addresses on multiple chains from a single transaction.
+You can request delivery to many chains at once by calling `multichainSend` or `multichainForward`. This is great for accomplishing actions like the delivery of a governance event or any other piece of data which has to be sent to all your contracts. This also allows you to send tokens to multiple addresses on multiple chains from a single transaction.
 
 ### Faster-than-finality transfers
 
@@ -350,7 +341,7 @@ Beware, the second transfer may never arrive if there is a rollback on the `sour
 
 ## Examples
 
-Checkout this [Hello World contract](https://github.com/wormhole-foundation/trustless-generic-relayer/blob/main/ethereum/contracts/mock/MockRelayerIntegration.sol), as well as this [Cross-Chain Minting contract](https://github.com/wormhole-foundation/trustless-generic-relayer/tree/main/ethereum/contracts/example_integrations/xMint).
+Checkout this [Hello World contract](https://github.com/wormhole-foundation/trustless-generic-relayer/blob/main/ethereum/contracts/mock/MockRelayerIntegration.sol)
 
 <br/>
 
