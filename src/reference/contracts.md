@@ -29,6 +29,7 @@ The [constants](https://github.com/wormhole-foundation/wormhole/blob/main/sdk/js
 | Injective           | 19                |              | inj17p9rzwnnfxcjp32un9ug7yhhzgtkhvl9l2q74d                         |
 | Aptos               | 22                |              | 0x5bc11445584a763c1fa7ed39081f1b920954da14e04b32440cba863d03e19625 |
 | Arbitrum            | 23                |              | 0xa5f208e072434bC67592E4C49C1B991BA79BCA46                         |
+| Optimism            | 24                | 10           | 0xEe91C335eab126dF5fDB3797EA9d6aD93aeC9722                         |
 | XPLA                | 28                |              | xpla1jn8qmdda5m6f6fqu9qv46rt7ajhklg40ukpqchkejcvy8x7w26cqxamv3w    |
 
 #### Core Bridge - Read Only
@@ -37,7 +38,6 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 
 | Chain Name | Wormhole Chain ID | Network ID | Address                                    |
 | :--------- | :---------------- | :--------- | :----------------------------------------- |
-| Optimism   | 24                | 10         | 0xEe91C335eab126dF5fDB3797EA9d6aD93aeC9722 |
 | Gnosis     | 25                | 100        | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
 
 ### Token Bridge
