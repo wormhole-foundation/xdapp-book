@@ -94,7 +94,7 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | :---------------------- | :---------------- | :--------- | :----------------------------------------------------------------- |
 | Solana                  | 1                 | devnet     | 3u8hJUVTA4jH1wYAyUur7FFZVQ8H635K3tSHHF4ssjQ5                       |
 | Ethereum (Goerli)       | 2                 | 5          | 0x706abc4E45D419950511e474C7B9Ed348A4a716c                         |
-| Ethereum (Ropsten)      | 10001             | 3          | 0x210c5F5e2AF958B4defFe715Dc621b7a3BA888c5                         |
+| Ethereum (Sepolia)      | 10002             | 11155111   | 0x4a8bc80Ed5a4067f1CCf107057b8270E0cC11A78                         |
 | Terra                   | 3                 | bombay-12  | terra1pd65m0q9tl3v8znnz5f5ltsfegyzah7g42cx5v                       |
 | Binance Smart Chain     | 4                 | 97         | 0x68605AD7b15c732a30b1BbC62BE8F2A509D74b4D                         |
 | Polygon (Mumbai)        | 5                 | 80001      | 0x0CBE91CF822c73C2315FB05100C2F714765d5c20                         |
@@ -127,7 +127,7 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | :---------------------- | :---------------- | :--------- | :----------------------------------------------------------------- |
 | Solana                  | 1                 | devnet     | DZnkkTmCiFWfYTfT41X3Rd1kDgozqzxWaHqsw6W4x2oe                       |
 | Ethereum (Goerli)       | 2                 | 5          | 0xF890982f9310df57d00f659cf4fd87e65adEd8d7                         |
-| Ethereum (Ropsten)      | 10001             | 3          | 0xF174F9A837536C449321df1Ca093Bb96948D5386                         |
+| Ethereum (Sepolia)      | 10002             | 11155111   | 0xDB5492265f6038831E89f495670FF909aDe94bd9                         |
 | Terra                   | 3                 | bombay-12  | terra1pseddrv0yfsn76u4zxrjmtf45kdlmalswdv39a                       |
 | Binance Smart Chain     | 4                 | 97         | 0x9dcF9D205C9De35334D646BeE44b2D2859712A09                         |
 | Polygon (Mumbai)        | 5                 | 80001      | 0x377D55a7928c046E18eEbb61977e714d2a76472a                         |
@@ -173,7 +173,7 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | :---------------------- | :---------------- | :--------- | :------------------------------------------- |
 | Solana                  | 1                 | devnet     | 2rHhojZ7hpu1zA91nvZmT8TqWWvMcKmmNBCr2mKTtMq4 |
 | Ethereum (Goerli)       | 2                 | 5          | 0xD8E4C2DbDd2e2bd8F1336EA691dBFF6952B1a6eB   |
-| Ethereum (Ropsten)      | 10001             | 3          | 0x2b048Da40f69c8dc386a56705915f8E966fe1eba   |
+| Ethereum (Sepolia)      | 10002             | 11155111   | 0x6a0B52ac198e4870e5F3797d5B403838a5bbFD99   |
 | Binance Smart Chain     | 4                 | 97         | 0xcD16E5613EF35599dc82B24Cb45B5A93D779f1EE   |
 | Polygon (Mumbai)        | 5                 | 80001      | 0x51a02d0dcb5e52F5b92bdAA38FA013C91c7309A9   |
 | Avalanche (Fuji)        | 6                 | 43113      | 0xD601BAf2EEE3C028344471684F6b27E789D9075D   |
