@@ -113,13 +113,14 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | Injective               | 19                | testnet    | inj1xx3aupmgv3ce537c0yce8zzd3sz567syuyedpg                         |
 | Aptos                   | 22                |            | 0x5bc11445584a763c1fa7ed39081f1b920954da14e04b32440cba863d03e19625 |
 | Arbitrum                | 23                | 421613     | 0xC7A204bDBFe983FCD8d8E61D02b475D4073fF97e                         |
+| Optimism (Goerli)       | 24                | 420        | 0x6b9C8671cdDC8dEab9c719bB87cBd3e782bA6a35                         |
 | Base                    | 30                | 84531      | 0x23908A62110e21C04F3A4e011d24F901F911744A                         |
 
 These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_ messages for other chains.
 
-| Chain Name | Wormhole Chain ID | Network ID | Address                                    |
-| :--------- | :---------------- | :--------- | :----------------------------------------- |
-| Optimism   | 24                | 10         | 0x6b9C8671cdDC8dEab9c719bB87cBd3e782bA6a35 |
+| Chain Name     | Wormhole Chain ID | Network ID | Address                                    |
+| :------------- | :---------------- | :--------- | :----------------------------------------- |
+| Gnosis (Sokol) | 25                | 77         | 0xE4eacc10990ba3308DdCC72d985f2a27D20c7d03 |
 
 ### Token Bridge
 
@@ -145,6 +146,7 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | Injective               | 19                | testnet    | inj1q0e70vhrv063eah90mu97sazhywmeegp7myvnh                         |
 | Aptos                   | 22                |            | 0x576410486a2da45eee6c949c995670112ddf2fbeedab20350d506328eefc9d4f |
 | Arbitrum                | 23                | 421613     | 0x23908A62110e21C04F3A4e011d24F901F911744A                         |
+| Optimism (Goerli)       | 24                | 420        | 0xC7A204bDBFe983FCD8d8E61D02b475D4073fF97e                         |
 | Base                    | 30                | 84531      | 0xA31aa3FDb7aF7Db93d18DDA4e19F811342EDF780                         |
 
 ### Relayer Contracts
@@ -186,6 +188,7 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | Celo                    | 14                | 44787      | 0xaCD8190F647a31E56A656748bC30F69259f245Db   |
 | Moonbase alpha          | 16                | 1287       | 0x98A0F4B96972b32Fcb3BD03cAeB66A44a6aB9Edb   |
 | Arbitrum                | 23                | 421613     | 0xEe3dB83916Ccdc3593b734F7F2d16D630F39F1D0   |
+| Optimism (Goerli)       | 24                | 420        | 0x23908A62110e21C04F3A4e011d24F901F911744A   |
 | Base                    | 30                | 84531      | 0xF681d1cc5F25a3694E348e7975d7564Aa581db59   |
 
 ## Devnet / Tilt
