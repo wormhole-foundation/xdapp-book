@@ -17,6 +17,7 @@ The [constants](https://github.com/wormhole-foundation/wormhole/blob/main/sdk/js
 | Polygon             | 5                 | 137          | 0x7A4B5a56256163F07b2C80A7cA55aBE66c4ec4d7                         |
 | Avalanche (C-Chain) | 6                 | 43114        | 0x54a8e5f9c4CbA08F9943965859F6c34eAF03E26c                         |
 | Oasis (Emerald)     | 7                 | 4262         | 0xfE8cD454b4A1CA468B57D79c0cc77Ef5B6f64585                         |
+| Algorand            | 8                 |              | 842125965                                                          |
 | Aurora              | 9                 | 1313161554   | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E                         |
 | Fantom              | 10                | 250          | 0x126783A6Cb203a3E35344528B26ca3a0489a1485                         |
 | Karura              | 11                | 686          | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E                         |
@@ -51,6 +52,7 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | Polygon             | 5                 | 137          | 0x5a58505a96D1dbf8dF91cB21B54419FC36e93fdE                         |
 | Avalanche (C-Chain) | 6                 | 43114        | 0x0e082F06FF657D94310cB8cE8B0D9a04541d8052                         |
 | Oasis (Emerald)     | 7                 | 4262         | 0x5848C791e09901b40A9Ef749f2a6735b418d7564                         |
+| Algorand            | 8                 |              | 842126029                                                          |
 | Aurora              | 9                 | 1313161554   | 0x51b5123a7b0F9b2bA265f9c4C8de7D78D52f510F                         |
 | Fantom              | 10                | 250          | 0x7C9Fc5741288cDFdD83CeB07f3ea7e22618D79D2                         |
 | Karura              | 11                | 686          | 0xae9d7fe007b3327AA64A32824Aaac52C42a6E624                         |
@@ -68,23 +70,24 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 
 ### NFT Bridge
 
-| Chain Name          | Wormhole Chain ID | Network ID   | Address                                     |
-| :------------------ | :---------------- | :----------- | :------------------------------------------ |
-| Solana              | 1                 | mainnet-beta | WnFt12ZrnzZrFZkt2xsNsaNWoQribnuQ5B5FrDbwDhD |
-| Ethereum            | 2                 | 1            | 0x6FFd7EdE62328b3Af38FCD61461Bbfc52F5651fE  |
-| Binance Smart Chain | 4                 | 56           | 0x5a58505a96D1dbf8dF91cB21B54419FC36e93fdE  |
-| Polygon             | 5                 | 137          | 0x90BBd86a6Fe93D3bc3ed6335935447E75fAb7fCf  |
-| Avalanche (C-Chain) | 6                 | 43114        | 0xf7B6737Ca9c4e08aE573F75A97B73D7a813f5De5  |
-| Oasis (Emerald)     | 7                 | 4262         | 0x04952D522Ff217f40B5Ef3cbF659EcA7b952a6c1  |
-| Aurora              | 9                 | 1313161554   | 0x6dcC0484472523ed9Cdc017F711Bcbf909789284  |
-| Fantom              | 10                | 250          | 0xA9c7119aBDa80d4a4E0C06C8F4d8cF5893234535  |
-| Karura              | 11                | 686          | 0xb91e3638F82A1fACb28690b37e3aAE45d2c33808  |
-| Acala               | 12                | 787          | 0xb91e3638F82A1fACb28690b37e3aAE45d2c33808  |
-| Klaytn              | 13                | 8217         | 0x3c3c561757BAa0b78c5C025CdEAa4ee24C1dFfEf  |
-| Celo                | 14                | 42220        | 0xA6A377d75ca5c9052c9a77ED1e865Cc25Bd97bf3  |
-| Moonbeam            | 16                | 1284         | 0x453cfbe096c0f8d763e8c5f24b441097d577bde2  |
-| Arbitrum            | 23                | 42161        | 0x453cfbe096c0f8d763e8c5f24b441097d577bde2  |
-| Optimism            | 24                | 10           | 0xfE8cD454b4A1CA468B57D79c0cc77Ef5B6f64585  |
+| Chain Name          | Wormhole Chain ID | Network ID   | Address                                                            |
+| :------------------ | :---------------- | :----------- | :----------------------------------------------------------------- |
+| Solana              | 1                 | mainnet-beta | WnFt12ZrnzZrFZkt2xsNsaNWoQribnuQ5B5FrDbwDhD                        |
+| Ethereum            | 2                 | 1            | 0x6FFd7EdE62328b3Af38FCD61461Bbfc52F5651fE                         |
+| Binance Smart Chain | 4                 | 56           | 0x5a58505a96D1dbf8dF91cB21B54419FC36e93fdE                         |
+| Polygon             | 5                 | 137          | 0x90BBd86a6Fe93D3bc3ed6335935447E75fAb7fCf                         |
+| Avalanche (C-Chain) | 6                 | 43114        | 0xf7B6737Ca9c4e08aE573F75A97B73D7a813f5De5                         |
+| Oasis (Emerald)     | 7                 | 4262         | 0x04952D522Ff217f40B5Ef3cbF659EcA7b952a6c1                         |
+| Aurora              | 9                 | 1313161554   | 0x6dcC0484472523ed9Cdc017F711Bcbf909789284                         |
+| Fantom              | 10                | 250          | 0xA9c7119aBDa80d4a4E0C06C8F4d8cF5893234535                         |
+| Karura              | 11                | 686          | 0xb91e3638F82A1fACb28690b37e3aAE45d2c33808                         |
+| Acala               | 12                | 787          | 0xb91e3638F82A1fACb28690b37e3aAE45d2c33808                         |
+| Klaytn              | 13                | 8217         | 0x3c3c561757BAa0b78c5C025CdEAa4ee24C1dFfEf                         |
+| Celo                | 14                | 42220        | 0xA6A377d75ca5c9052c9a77ED1e865Cc25Bd97bf3                         |
+| Moonbeam            | 16                | 1284         | 0x453cfbe096c0f8d763e8c5f24b441097d577bde2                         |
+| Aptos               | 22                |              | 0x1bdffae984043833ed7fe223f7af7a3f8902d04129b14f801823e64827da7130 |
+| Arbitrum            | 23                | 42161        | 0x453cfbe096c0f8d763e8c5f24b441097d577bde2                         |
+| Optimism            | 24                | 10           | 0xfE8cD454b4A1CA468B57D79c0cc77Ef5B6f64585                         |
 
 ## Testnet
 
