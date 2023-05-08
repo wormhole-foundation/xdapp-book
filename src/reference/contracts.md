@@ -2,7 +2,7 @@
 
 Here you can find the addresses for the deployed contracts on all the chains that Wormhole supports, including testnet.
 
-The [constants](https://github.com/wormhole-foundation/wormhole/blob/main/sdk/js/src/utils/consts.ts) of the Wormhole SDK always has the most up-to-date contract addresses, along with additional useful constants. Check there if something you're looking for isn't found here.
+The [constants](https://github.com/wormhole-foundation/wormhole/blob/main/sdk/js/src/utils/consts.ts) of the Wormhole SDK always has the most up-to-date contract addresses, along with additional useful constants. Check there if something you're looking for isn't found here. Note that the Sui contract addresses are the contract state object IDs and not the package IDs. For an overview of objects on Sui, please see the [docs](https://docs.sui.io/learn/objects).
 
 ## Mainnet
 
@@ -28,6 +28,7 @@ The [constants](https://github.com/wormhole-foundation/wormhole/blob/main/sdk/js
 | Moonbeam            | 16                | 1284         | 0xC8e2b0cD52Cf01b0Ce87d389Daa3d414d4cE29f3                         |
 | Terra               | 18                | phoenix-1    | terra12mrnzvhx3rpej6843uge2yyfppfyd3u9c3uq223q8sl48huz9juqffcnh    |
 | Injective           | 19                |              | inj17p9rzwnnfxcjp32un9ug7yhhzgtkhvl9l2q74d                         |
+| Sui                 | 21                |              | 0xaeab97f96cf9877fee2883315d459552b2b921edc16d7ceac6eab944dd88919c |
 | Aptos               | 22                |              | 0x5bc11445584a763c1fa7ed39081f1b920954da14e04b32440cba863d03e19625 |
 | Arbitrum            | 23                |              | 0xa5f208e072434bC67592E4C49C1B991BA79BCA46                         |
 | Optimism            | 24                | 10           | 0xEe91C335eab126dF5fDB3797EA9d6aD93aeC9722                         |
@@ -63,6 +64,7 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | Moonbeam            | 16                | 1284         | 0xb1731c586ca89a23809861c6103f0b96b3f57d92                         |
 | Terra               | 18                | phoenix-1    | terra153366q50k7t8nn7gec00hg66crnhkdggpgdtaxltaq6xrutkkz3s992fw9   |
 | Injective           | 19                |              | inj1ghd753shjuwexxywmgs4xz7x2q732vcnxxynfn                         |
+| Sui                 | 21                |              | 0xc57508ee0d4595e5a8728974a4a93a787d38f339757230d441e895422c07aba9 |
 | Aptos               | 22                |              | 0x576410486a2da45eee6c949c995670112ddf2fbeedab20350d506328eefc9d4f |
 | Arbitrum            | 23                |              | 0x0b2402144Bb366A632D14B83F244D2e0e21bD39c                         |
 | Optimism            | 24                | 10           | 0x1D68124e65faFC907325e3EDbF8c4d84499DAa8b                         |
@@ -114,6 +116,7 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | Moonbase alpha          | 16                | 1287       | 0xa5B7D85a8f27dd7907dc8FdC21FA5657D5E2F901                         |
 | Terra                   | 18                | pisco-1    | terra19nv3xr5lrmmr7egvrk2kqgw4kcn43xrtd5g0mpgwwvhetusk4k7s66jyv0   |
 | Injective               | 19                | testnet    | inj1xx3aupmgv3ce537c0yce8zzd3sz567syuyedpg                         |
+| Sui                     | 21                |            | 0x69ae41bdef4770895eb4e7aaefee5e4673acc08f6917b4856cf55549c4573ca8 |
 | Aptos                   | 22                |            | 0x5bc11445584a763c1fa7ed39081f1b920954da14e04b32440cba863d03e19625 |
 | Arbitrum                | 23                | 421613     | 0xC7A204bDBFe983FCD8d8E61D02b475D4073fF97e                         |
 | Optimism (Goerli)       | 24                | 420        | 0x6b9C8671cdDC8dEab9c719bB87cBd3e782bA6a35                         |
@@ -147,6 +150,7 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | Near                    | 15                |            | token.wormhole.testnet                                             |
 | Moonbase alpha          | 16                | 1287       | 0xbc976D4b9D57E57c3cA52e1Fd136C45FF7955A96                         |
 | Injective               | 19                | testnet    | inj1q0e70vhrv063eah90mu97sazhywmeegp7myvnh                         |
+| Sui                     | 21                |            | 0x32422cb2f929b6a4e3f81b4791ea11ac2af896b310f3d9442aa1fe924ce0bab4 |
 | Aptos                   | 22                |            | 0x576410486a2da45eee6c949c995670112ddf2fbeedab20350d506328eefc9d4f |
 | Arbitrum                | 23                | 421613     | 0x23908A62110e21C04F3A4e011d24F901F911744A                         |
 | Optimism (Goerli)       | 24                | 420        | 0xC7A204bDBFe983FCD8d8E61D02b475D4073fF97e                         |
@@ -207,6 +211,7 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | Algorand            | 8                 |            | 4                                                                  |
 | NEAR                | 15                |            | wormhole.test.near                                                 |
 | Terra2              | 18                |            | terra14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9ssrc8au   |
+| Sui                 | 21                |            | 0x5a5160ca3c2037f4b4051344096ef7a48ebf4400b3f385e57ea90e1628a8bde0 |
 | Aptos               | 22                |            | 0xde0036a9600559e295d5f6802ef6f3f802f510366e0c23912b0655d972166017 |
 | Wormholechain       | 3104              |            | wormhole1ap5vgur5zlgys8whugfegnn43emka567dtq0jl                    |
 
@@ -221,6 +226,7 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | Algorand            | 8                 |            | 6                                                                  |
 | NEAR                | 15                |            | token.test.near                                                    |
 | Terra2              | 18                |            | terra1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrquka9l6   |
+| Sui                 | 21                |            | 0xa6a3da85bbe05da5bfd953708d56f1a3a023e7fb58e5a824a3d4de3791e8f690 |
 | Aptos               | 22                |            | 0x84a5f374d29fc77e370014dce4fd6a55b58ad608de8074b0be5571701724da31 |
 | Wormholechain       | 3104              |            | wormhole1zugu6cajc4z7ue29g9wnes9a5ep9cs7yu7rn3z                    |
 
