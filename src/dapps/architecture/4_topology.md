@@ -22,7 +22,7 @@ You can think of the data flow across a xDapp with a Ultra-light Client as follo
 
 - Very little added smart contract risk.
 - Simple to develop.
-- Easiest way to get heterogenous ecosystem support.
+- Easiest way to get heterogeneous ecosystem support.
 
 **_Disadvantages:_**
 
