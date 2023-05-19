@@ -46,7 +46,7 @@ After the wrapped token is created, you can get the new wrapped token address by
 await targetTokenBridge.createWrapped(Buffer.from(vaaBytes.vaaBytes, "base64"), {
     gasLimit: 2000000
 });
-await new Promise((r) => setTimeout(r, 5000)); //Time out to let block propogate
+await new Promise((r) => setTimeout(r, 5000)); //Time out to let block propagate
 const wrappedTokenAddress = await targetTokenBridge.wrappedAsset(
     network.wormholeChainId,
     Buffer.from(
