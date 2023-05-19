@@ -19,7 +19,7 @@ This explains how the ecosystem arrived at its current state -- CEXs are a solut
 
 Adding to this complexity are blockchains moving toward being general-purpose computing platforms. As such, interoperability will require data structures that are more complex than tokens and operations that are more sophisticated than transfers.
 
-More ad-hoc solutions would only be short-term fixes for long-term problems, so it's critical to design new primatives and core infrastructure that will allow the next generation of decentralized applications to move beyond these lingering limitations.
+More ad-hoc solutions would only be short-term fixes for long-term problems, so it's critical to design new primitives and core infrastructure that will allow the next generation of decentralized applications to move beyond these lingering limitations.
 
 This is why Wormhole exists. Wormhole proposes a new way of developing applications which leverages the strengths of each blockchain while mitigating the problems of the current ecosystem.
 
