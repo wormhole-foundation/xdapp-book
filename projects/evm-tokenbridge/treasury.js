@@ -199,7 +199,7 @@ async function main() {
         await targetTokenBridge.createWrapped(Buffer.from(vaaBytes.vaaBytes, "base64"), {
             gasLimit: 2000000
         })
-        await new Promise((r) => setTimeout(r, 5000)); //Time out to let block propogate
+        await new Promise((r) => setTimeout(r, 5000)); //Time out to let block propagate
         const wrappedTokenAddress = await targetTokenBridge.wrappedAsset(network.wormholeChainId, Buffer.from(tryNativeToHexString(network.testToken, "ethereum"), "hex"));
         console.log("Wrapped token created at: ", wrappedTokenAddress);
         targetDeployment["wrappedTestTokenAddress"] = wrappedTokenAddress;
@@ -261,7 +261,7 @@ async function main() {
         await treasury.approveTokenBridge(bridgeAmt, {
             gasLimit: 2000000,
         });
-        await new Promise((r) => setTimeout(r, 5000)); //Time out to let block propogate
+        await new Promise((r) => setTimeout(r, 5000)); //Time out to let block propagate
 
         const targetNetwork = config.networks[process.argv[4]];
         const targetDeployment = deployment[process.argv[4]]
