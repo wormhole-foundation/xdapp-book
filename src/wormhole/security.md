@@ -7,7 +7,7 @@ Let's take a moment to pause and spell out the most important security elements 
 
 **What are the Core Security Assumptions of Wormhole?**
 
-- Wormhole's core security primative is its signed messages (signed VAAs).
+- Wormhole's core security primitive is its signed messages (signed VAAs).
 
 - The Guardian network is currently secured by a collection of 19 of the world's top validator companies, [listed here](https://wormhole.com/network/).
 - Guardians produce signed state attestations (signed VAAs), when requested by a Core Contract integrator.
