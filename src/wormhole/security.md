@@ -7,7 +7,7 @@ Let's take a moment to pause and spell out the most important security elements 
 
 **What are the Core Security Assumptions of Wormhole?**
 
-- Wormhole's core security primative is its signed messages (signed VAAs).
+- Wormhole's core security primitive is its signed messages (signed VAAs).
 
 - The Guardian network is currently secured by a collection of 19 of the world's top validator companies, [listed here](https://wormhole.com/network/).
 - Guardians produce signed state attestations (signed VAAs), when requested by a Core Contract integrator.
@@ -115,13 +115,13 @@ Guardians Monitor:
 
 ## Wormchain & Asset Layer Protections
 
-One of the most powerful aspects of the Wormhole ecosystem is that Guardians effectively have **the entire state DeFi available to them**.
+One of the most powerful aspects of the Wormhole ecosystem is that Guardians effectively have **the entire state of DeFi available to them**.
 
 Wormchain is a Cosmos based blockchain which runs internally to the Guardian network, whereby the Guardians can effectively execute smart contracts against the current state of all blockchains, rather than just one blockchain.
 
 This enables two additional protections for the Wormhole Asset Layer in addition to the core assumptions:
 
-- **Governor:** The Governor tracks inflows and outflows of all blockchains and delays suspicious transfers which may be indicative of a exploit. [More Info](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0007_governor.md)
+- **Governor:** The Governor tracks inflows and outflows of all blockchains and delays suspicious transfers which may be indicative of an exploit. [More Info](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0007_governor.md)
 - **Global Accountant:** The accountant tracks the total circulating supply of all Wormhole assets across all chains and prevents any blockchain from bridging assets which would violate the supply invariant.
 
 </br>

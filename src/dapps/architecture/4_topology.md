@@ -8,15 +8,15 @@ Topology describes how data flows through your application and defines the respo
 
 Ultra-light Clients are often the best option when designing an MVP for your xDapp. The defining feature of an Ultra-light Client is that you are able to support users from every chain in the Wormhole ecosystem while **only having smart contracts on a single chain (!!!)**.
 
-xDapps with this structure work by having a hub chain that all application contract logic is deployed to and entrypoints which receive and send Wormhole messages to remote chains. The network of Wormhole contracts deployed on other chains across the ecosystem provide the rest of the heavy lifting to send messages across chains.
+xDapps with this structure work by having a hub chain that all application contract logic is deployed to and entry points which receive and send Wormhole messages to remote chains. The network of Wormhole contracts deployed on other chains across the ecosystem provide the rest of the heavy lifting to send messages across chains.
 
 You can think of the data flow across a xDapp with a Ultra-light Client as follows:
 
-1. The end user's wallet interacts with Wormhole contracts on remote chain.
+1. The end user's wallet interacts with Wormhole contracts on the remote chain.
 2. The Wormhole contracts on remote chain generate a VAA which is received by your xDapp contract on the hub chain.
 3. Your xDapp contract on the hub chain performs all necessary operations.
 4. Your xDapp contract interacts with Wormhole contracts on the hub chain.
-5. The Wormhole contracts on hub chain generate a VAA which is sent back to the end user's wallet on the remote chain.
+5. The Wormhole contracts on the hub chain generate a VAA which is sent back to the end user's wallet on the remote chain.
 
 **_Advantages:_**
 
@@ -60,7 +60,7 @@ You can think of the data flow across a Hub-and-Spoke system as follows:
 
 ![Mesh](../../diagrams/images/mesh.PNG "Mesh")
 
-Mesh topologies can somewhat be thought of as the next evolution of the Hub and Spoke model. There are now contracts capable of handling all transactions for an application are deployed on all supported chains. Each contract can be thought of as a peer of other contracts in the trusted network and can act autonomously.
+Mesh topologies can somewhat be thought of as the next evolution of the Hub and Spoke model. There are now contracts capable of handling all transactions for an application that are deployed on all supported chains. Each contract can be thought of as a peer of other contracts in the trusted network and can act autonomously.
 
 This is historically the most popular methodology for going cross-chain. It's very attractive in ecosystems like EVM or Cosmos, where a single smart contract can simply be deployed across many different blockchains.
 
@@ -72,7 +72,7 @@ This is historically the most popular methodology for going cross-chain. It's ve
 **_Disadvantages:_**
 
 - Complexity: there are now quite a few contracts to manage, especially if they are implemented multiple times across different VMs.
-- Data desync: because each blockchain acts independently, each chain will have independent state. This can open up unwanted arbitrage opportunities and other discrepancies.
+- Data desync: because each blockchain acts independently, each chain will have an independent state. This can open up unwanted arbitrage opportunities and other discrepancies.
 - Race conditions: In cases where an event is supposed to propagate through the entire system at a fixed time (for example, when closing a governance vote), it can be difficult to synchronize all the blockchains.
 
 ## Distributed

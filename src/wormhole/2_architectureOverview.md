@@ -16,7 +16,7 @@ Wormhole is a complex ecosystem with several noteworthy components. Before we go
 
   - **Relay Contracts** - _in development\*_ - Contracts that allow xDapps to send messages to a specific blockchain via the decentralized Generic Relayer network.
 
-  - **Gas Oracle** - _in development\*_ - Oracle for recommended fair gas prices across the ecosystem.
+  - **Gas Oracle** - _in development\*_ - Oracle recommended fair gas prices across the ecosystem.
 
   - **Worm Router Contracts** - _in development\*_ - Contracts that allow developers to make their Dapp an xDapp that users on any Wormhole supported chain can interact with purely through client-side code.
 

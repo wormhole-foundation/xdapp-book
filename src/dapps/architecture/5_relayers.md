@@ -49,7 +49,7 @@ Specialized Relayers are relayers that are purpose-built to relay messages for a
 **_Advantages:_**
 
 - Specialized relayers can perform off-chain untrusted computation.
-- They are highly customizeable and can perform batching, conditional delivery, multi-chain deliveries, etc.
+- They are highly customizable and can perform batching, conditional delivery, multi-chain deliveries, etc.
 - Can home-roll an incentive structure.
 
 **_Disadvantages_**
@@ -68,4 +68,4 @@ There are many strategies for reimbursement, and the 'best' strategy for an appl
 - Collect a safe amount of gas money from the end user prior to performing any actions.
 - 'Lazy' relaying, where relaying might only be profitable in certain, potentially rare, market conditions.
 
-Generic relayers have an incentive model built in to the network, so you do not need to design an incentive structure when using them.
+Generic relayers have an incentive model built into the network, so you do not need to design an incentive structure when using them.
