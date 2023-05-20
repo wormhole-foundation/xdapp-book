@@ -52,7 +52,7 @@ The WormholeRelayer contract does not directly send messages. Rather, the Wormho
 
 This allows you to easily combine basic messaging along with other modules of the Wormhole ecosystem, such as the Token Bridge or NFT modules. It even allows for other Wormhole integrators to easily compose with your application! (See [best practices](./bestPractices.md) for more info.)
 
-We'll discuss more complex useage later. For now let's just cover how to send a "Hello World" message. The basic mechanism to request delivery of your VAAs is to call the `send` function on the IWormholeRelayer interface. Here's its basic usage:
+We'll discuss more complex usage later. For now let's just cover how to send a "Hello World" message. The basic mechanism to request delivery of your VAAs is to call the `send` function on the IWormholeRelayer interface. Here's its basic usage:
 
 ```solidity
 function sendHelloWorldMessage() public payable {
@@ -143,7 +143,7 @@ Here are a few other important points to note:
 
 - `receiveWormholeMessages` function should generally not throw an exception or revert during execution. If an exception is thrown, or a 'require' statement is violated, you will enter a delivery failure. When a delivery failure occurs, the execution of `receiveWormholeMessages` is reverted, but the entire transaction is not.
 
-- `receiveWormholeMessages` will only be called with as much gas as was specified by the maxTransactionFee specified when the message delivery was requested. If you exceed this gas amount, you will enter a delivery failure. Ther are more details on maxTransactionFee in a later section.
+- `receiveWormholeMessages` will only be called with as much gas as was specified by the maxTransactionFee specified when the message delivery was requested. If you exceed this gas amount, you will enter a delivery failure. There are more details on maxTransactionFee in a later section.
 
 - `whMessages` is the array of VAAs which were requested for delivery, in the order they were emitted during the requesting transaction. These VAAs are not verified, and should not be considered trusted until you call `core_bridge.parseAndVerifyVM` or otherwise verify them against the Core Contract! (More on this in [Best Practices](./bestPractices.md))
 
@@ -185,7 +185,7 @@ Delivery Failures are not a nebulous 'something went wrong' term in the Wormhole
 
 All three of these scenarios should generally be avoidable by the integrator, and thus it is up to integrator to resolve them.
 
-Any other senario which causes a delivery to not be performed should be considered an **outage** by some component of the system, including potentially the blockchains themselves.
+Any other scenario which causes a delivery to not be performed should be considered an **outage** by some component of the system, including potentially the blockchains themselves.
 
 <br/>
 
@@ -265,7 +265,7 @@ Contrary to `maxTransactionFee`, when specifying a `receiverValue` the RelayProv
 
 ## Forwarding
 
-So far we've discussed how to perform a simple delivery from chain A to chain B. However, a fairly common scenario that you may encounter is that you may want to perform a multi-hop delivery from chain A to B to C, or to round-trip a delivery back to the source chain. Forwarding is a feature specifically designed to suit these usecases.
+So far we've discussed how to perform a simple delivery from chain A to chain B. However, a fairly common scenario that you may encounter is that you may want to perform a multi-hop delivery from chain A to B to C, or to round-trip a delivery back to the source chain. Forwarding is a feature specifically designed to suit these use cases.
 
 Forwarding is quite similar to a normal 'send' action, however it has a couple special traits.
 
@@ -329,7 +329,7 @@ You can request delivery to many chains at once by calling `multichainSend` or `
 
 One of the primary features of the WormholeRelayer protocol is that messages can be delivered faster than finality so long as the RelayProvider supports it. Normally the Token Bridge module can only transfer tokens once finality has been reached on a chain. However, with the WormholeRelayer protocol, you could potentially initiate two transfers in the same transaction.
 
-- The first transfer sends funds instantly from a liqudity source, so that the end user receives their funds quickly.
+- The first transfer sends funds instantly from a liquidity source, so that the end user receives their funds quickly.
 - The second transfer sends funds via the Token Bridge to reimburse the liquidity source on the `targetChain`
 
 Beware, the second transfer may never arrive if there is a rollback on the `sourceChain`. However, this risk can be managed if the primary concern is to provide users with a smooth user experience.

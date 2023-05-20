@@ -1,6 +1,6 @@
 # Glossary
 
-_Disclaimer: In some instances, Wormhole uses general terms for decentralized, cross-chain elements as branded verbiage. In most casese, the definition of the general term does not differ from Wormhole's definition though Wormhole's definitions may be more narrow than general interpretations._
+_Disclaimer: In some instances, Wormhole uses general terms for decentralized, cross-chain elements as branded verbiage. In most cases, the definition of the general term does not differ from Wormhole's definition though Wormhole's definitions may be more narrow than general interpretations._
 
 **Guardian** - One of the 19 validators in the Guardian Network that contributes to the VAA multisig.
 

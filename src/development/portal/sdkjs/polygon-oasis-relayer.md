@@ -161,7 +161,7 @@ Let’s walk through each of the arguments of this function and what they mean.
 
 `CHAIN_ID_OASIS` is a constant that identifies the target chain.
 
-`hexToUint8Array()` translates the target publickey into a wormhole public key.
+`hexToUint8Array()` translates the target public key into a wormhole public key.
 
 `BigNumber.from(feeWei.toString())` identifies the fee in smallest unit of the network for the relayer.
 

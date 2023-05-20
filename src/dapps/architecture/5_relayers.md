@@ -49,7 +49,7 @@ Specialized Relayers are relayers that are purpose-built to relay messages for a
 **_Advantages:_**
 
 - Specialized relayers can perform off-chain untrusted computation.
-- They are highly customizeable and can perform batching, conditional delivery, multi-chain deliveries, etc.
+- They are highly customizable and can perform batching, conditional delivery, multi-chain deliveries, etc.
 - Can home-roll an incentive structure.
 
 **_Disadvantages_**

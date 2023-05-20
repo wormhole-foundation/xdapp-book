@@ -37,7 +37,7 @@ while(!vaaBytes.vaaBytes){
 
 ```
 
-Next, we submit the VAA onto the target chain to create a wrapped version of the Token by calling `createWrapped()`. On an EVM chain, this will deploy a Portal Wrapped Token contract whose mint authority is the Portal Token Bridge on that chain. Sometimes, this transaction throws an unpredicatable gas price error, so set a high gas limit.
+Next, we submit the VAA onto the target chain to create a wrapped version of the Token by calling `createWrapped()`. On an EVM chain, this will deploy a Portal Wrapped Token contract whose mint authority is the Portal Token Bridge on that chain. Sometimes, this transaction throws an unpredictable gas price error, so set a high gas limit.
 
 After the wrapped token is created, you can get the new wrapped token address by calling the `wrappedAsset()` function of the TokenBridge.
 
@@ -46,7 +46,7 @@ After the wrapped token is created, you can get the new wrapped token address by
 await targetTokenBridge.createWrapped(Buffer.from(vaaBytes.vaaBytes, "base64"), {
     gasLimit: 2000000
 });
-await new Promise((r) => setTimeout(r, 5000)); //Time out to let block propogate
+await new Promise((r) => setTimeout(r, 5000)); //Time out to let block propagate
 const wrappedTokenAddress = await targetTokenBridge.wrappedAsset(
     network.wormholeChainId,
     Buffer.from(

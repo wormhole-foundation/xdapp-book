@@ -24,7 +24,7 @@ To start, deploy the code, register the applications on each chain and then send
 
 ### Orchestrator
 
-Orchestrator is a js client that takes arguments from the command line to call various functions on our contract. We'll break down everything Orchestator does at [./client.md](./client.md).
+Orchestrator is a js client that takes arguments from the command line to call various functions on our contract. We'll break down everything Orchestrator does at [./client.md](./client.md).
 
 ### xdapp.config.json
 

@@ -17,9 +17,9 @@ await treasury.approveTokenBridge(bridgeAmt, {
 });
 ```
 
-2. Initate a transfer by calling `transfer` on the token bridge module which will create a transfer VAA. 
+2. Initiate a transfer by calling `transfer` on the token bridge module which will create a transfer VAA. 
 
-_Note that the target receipient is a Wormhole-format address (referred to as 'hex' format in the Typescript SDK)._
+_Note that the target recipient is a Wormhole-format address (referred to as 'hex' format in the Typescript SDK)._
 
 ```js
 const targetRecepient = Buffer.from(

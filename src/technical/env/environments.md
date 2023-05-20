@@ -6,7 +6,7 @@ However, as you get deeper into cross-chain development, you'll likely find your
 
 ### What components do I need now? What components will I need in the future?
 
-- You may be able to get a lot done with just an EVM chain and a Guardian. However, as your application gets more sophisticated, components like relayers, frontends, automated tests, databases, explorers, and other blockchains are likely to get added into the environment.
+- You may be able to get a lot done with just an EVM chain and a Guardian. However, as your application gets more sophisticated, components like relayers, front end, automated tests, databases, explorers, and other blockchains are likely to get added into the environment.
 
 ### What are my dependencies?
 

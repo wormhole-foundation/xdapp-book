@@ -38,7 +38,7 @@ contract Treasury {
 To transfer a token, first we have to _approve_ the Token Bridge to be able to spend that token on our behalf (so it can transfer tokens form our contract to itself). Make sure the `bridgeAmt` properly accounts for decimals in the ERC20 token.
 
 ```js
-// Here we are approving and transfering 50 tokens. The ERC20 token we are transfering has 18 decimal places.
+// Here we are approving and transferring 50 tokens. The ERC20 token we are transferring has 18 decimal places.
 const bridgeAmt = ethers.utils.parseUnits("50", "18");
 
 await treasury.approveTokenBridge(bridgeAmt, {
@@ -46,7 +46,7 @@ await treasury.approveTokenBridge(bridgeAmt, {
 });
 ```
 
-Then we simply call `transfer` to create the transfer VAA and fetch it from the Guardians when it's ready. Note that the target receipient is a Wormhole normalized hex address left-padded to 32 bytes.
+Then we simply call `transfer` to create the transfer VAA and fetch it from the Guardians when it's ready. Note that the target recipient is a Wormhole normalized hex address left-padded to 32 bytes.
 
 ```js
 const targetRecepient = Buffer.from(
