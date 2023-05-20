@@ -1,6 +1,6 @@
 # Protocol Design
 
-They key feature of Wormhole is bringing message passing to the world of blockchain, so it's worthwhile to take some inspiration from other areas of software development that are based on similar principles.
+The key feature of Wormhole is bringing message passing to the world of blockchain, so it's worthwhile to take some inspiration from other areas of software development that are based on similar principles.
 
 Much of the traditional web stack is based on distributed systems that rely on message passing to create interfaces and boundaries for disparate systems to work together. We can think of xDapps as web3 distributed systems founded on similar paradigms.
 
@@ -28,6 +28,6 @@ When dealing with addresses inside your messages, it's recommended to always con
 
 ### Trusted Contract Network
 
-Typically, the first check performed when receiving a message is to validate that it originates from a trusted source. If your protocol has smart contracts deployed to multipe chains, it will be important for your contracts to know which other contracts are 'in network' for your protocol. 
+Typically, the first check performed when receiving a message is to validate that it originates from a trusted source. If your protocol has smart contracts deployed to multiple chains, it will be important for your contracts to know which other contracts are 'in network' for your protocol. 
 
 Generally, this list of trusted contracts is stored in the state of each contract individually. Updating the trusted contracts is tied into the governance mechanism of the protocol.
