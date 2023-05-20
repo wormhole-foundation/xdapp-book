@@ -95,7 +95,7 @@ Let's break down all the things happening in this code.
 - `nonce` - Core Contract nonce. All messages with this nonce will be delivered. Messages without this nonce won't be delivered!
 - `consistencyLevel` - here we use 200 (instant) for the message emission on our "Hello World" message. Deliveries must wait for the _slowest_ message, because the delivery can't take place until there are signed VAAs for every message.
 
-- `deliveryCost` - this calculates the necessary price for the selected RelayProvider to perform a delivery with 500,000 gas on the target chain. Thus, by paying this `deliveryCost`, you can be sure that your `receiveWormholeMessages` function will be invoked with a gas limit of 500,000. There's more info on the how these deliveries work in a later section.
+- `deliveryCost` - this calculates the necessary price for the selected RelayProvider to perform a delivery with 500,000 gas on the target chain. Thus, by paying this `deliveryCost`, you can be sure that your `receiveWormholeMessages` function will be invoked with a gas limit of 500,000. There's more info on how these deliveries work in a later section.
 
 - `relayProvider` - The relayer network which will deliver the request. Here we use the default provider.
 - `targetChain` - Wormhole chainId where the messages should be sent. This is not the same as the EVM Network ID!
@@ -143,7 +143,7 @@ Here are a few other important points to note:
 
 - `receiveWormholeMessages` function should generally not throw an exception or revert during execution. If an exception is thrown, or a 'require' statement is violated, you will enter a delivery failure. When a delivery failure occurs, the execution of `receiveWormholeMessages` is reverted, but the entire transaction is not.
 
-- `receiveWormholeMessages` will only be called with as much gas as was specified by the maxTransactionFee specified when the message delivery was requested. If you exceed this gas amount, you will enter a delivery failure. Ther are more details on maxTransactionFee in a later section.
+- `receiveWormholeMessages` will only be called with as much gas as was specified by the maxTransactionFee specified when the message delivery was requested. If you exceed this gas amount, you will enter a delivery failure. There are more details on maxTransactionFee in a later section.
 
 - `whMessages` is the array of VAAs which were requested for delivery, in the order they were emitted during the requesting transaction. These VAAs are not verified, and should not be considered trusted until you call `core_bridge.parseAndVerifyVM` or otherwise verify them against the Core Contract! (More on this in [Best Practices](./bestPractices.md))
 
@@ -170,7 +170,7 @@ Relay providers should set their prices such that they turn a profit on average,
 
 ### Delivery Failures
 
-All deliveries should result in one of following four outcomes prior to the delivery timeframe of the relay provider. These outcomes are emitted as EVM events from the WormholeRelayer contract when they occur.
+All deliveries should result in one of the following four outcomes prior to the delivery timeframe of the relay provider. These outcomes are emitted as EVM events from the WormholeRelayer contract when they occur.
 
 - Delivery Success
 - Delivery Failure
@@ -185,13 +185,13 @@ Delivery Failures are not a nebulous 'something went wrong' term in the Wormhole
 
 All three of these scenarios should generally be avoidable by the integrator, and thus it is up to integrator to resolve them.
 
-Any other senario which causes a delivery to not be performed should be considered an **outage** by some component of the system, including potentially the blockchains themselves.
+Any other scenario which causes a delivery to not be performed should be considered an **outage** by some component of the system, including potentially the blockchains themselves.
 
 <br/>
 
 ### Redelivery
 
-What happens in the case of a delivery failure is up to you as the integrator. It is perfectly acceptable to just leave the delivery incomplete, if that's acceptable for your usecase.
+What happens in the case of a delivery failure is up to you as the integrator. It is perfectly acceptable to just leave the delivery incomplete, if that's acceptable for your use case.
 
 However, in the scenario where you need to reattempt the delivery, there is a function specifically for this.
 
@@ -265,7 +265,7 @@ Contrary to `maxTransactionFee`, when specifying a `receiverValue` the RelayProv
 
 ## Forwarding
 
-So far we've discussed how to perform a simple delivery from chain A to chain B. However, a fairly common scenario that you may encounter is that you may want to perform a multi-hop delivery from chain A to B to C, or to round-trip a delivery back to the source chain. Forwarding is a feature specifically designed to suit these usecases.
+So far, we've discussed how to perform a simple delivery from chain A to chain B. However, a fairly common scenario that you may encounter is that you may want to perform a multi-hop delivery from chain A to B to C, or to round-trip a delivery back to the source chain. Forwarding is a feature specifically designed to suit these use cases.
 
 Forwarding is quite similar to a normal 'send' action, however it has a couple special traits.
 
@@ -286,7 +286,7 @@ Forwarding is quite similar to a normal 'send' action, however it has a couple s
 
 ### Validating Received Messages
 
-The array of `whMessages` which is passed to `receiveWormholeMessages` are non-validated VAAs. This means _you are responsible for validating these messages_. This is most commonly done by either calling `parseAndVerifyVM` on the Wormhole Core Contract, or by passing the VAA into another contract which will do its own verification. However, this design benefits you quite a few desireable security properties:
+The array of `whMessages` which is passed to `receiveWormholeMessages` are non-validated VAAs. This means _you are responsible for validating these messages_. This is most commonly done by either calling `parseAndVerifyVM` on the Wormhole Core Contract, or by passing the VAA into another contract which will do its own verification. However, this design benefits you quite a few desirable security properties:
 
 - Relayers are not trusted with message content! If they were to modify the content of a VAA during delivery, it would invalidate the signatures and fail to be verified by the Core Contract. This means relayers are only trusted for **liveness**.
 
@@ -296,7 +296,7 @@ However, as always with smart contract development, there are some things you sh
 
 - The Relay Module is technically in **beta** until Batch VAAs are live in mainnet. While in beta, the selected RelayProvider can potentially reorder, omit, or mix-and-match VAAs if they were to behave maliciously. As such, you will either have to trust your RelayProvider to not do this, or code some relatively straightforward checks to detect this scenario.
 
-- Never trust the content of VAAs which haven't been verified by the Core Contract! Your first line of code should essentially always be a verify statement which ensures the VAA originates from a trusted contract.
+- Never trust the content of VAAs which haven't been verified by the Core Contract! Your first line of code should essentially always be a verify statement, which ensures the VAA originates from a trusted contract.
 
 - Deliveries can potentially be performed multiple times, and redeliveries for any delivery can be requested by anyone. If you need replay protection on your deliveries, you will have to enforce it yourself. One common methodology for replay protection is simply to compose with `transferWithPayload` from the Token Bridge module. Because this function enforces replay protection, you can often passively leverage this protection for your own application.
 
@@ -315,7 +315,7 @@ The most common way to accomplish this is to simply specify a large `maxTransact
 
 ### Safe Round-Trips
 
-A very common scenario for Hub-and-Spoke style applications is to want to round-trip a delivery from a Spoke chain to the Hub chain and then back. In this case, it's generally a good idea to capture a large `maxTransactionFee` and then perform a `forward` from the Hub chain with the end-user's wallet set to the `refundAddress`. Thus the end user is ultimately returned all unused funds.
+A very common scenario for Hub-and-Spoke style applications is to want to round-trip a delivery from a Spoke chain to the Hub chain and then back. In this case, it's generally a good idea to capture a large `maxTransactionFee` and then perform a `forward` from the Hub chain with the end-user's wallet set to the `refundAddress`. Thus, the end user is ultimately returned all unused funds.
 
 ### Bridging Multiple Tokens
 
@@ -327,9 +327,9 @@ You can request delivery to many chains at once by calling `multichainSend` or `
 
 ### Faster-than-finality transfers
 
-One of the primary features of the WormholeRelayer protocol is that messages can be delivered faster than finality so long as the RelayProvider supports it. Normally the Token Bridge module can only transfer tokens once finality has been reached on a chain. However, with the WormholeRelayer protocol, you could potentially initiate two transfers in the same transaction.
+One of the primary features of the WormholeRelayer protocol is that messages can be delivered faster than finality so long as the RelayProvider supports it. Normally, the Token Bridge module can only transfer tokens once finality has been reached on a chain. However, with the WormholeRelayer protocol, you could potentially initiate two transfers in the same transaction.
 
-- The first transfer sends funds instantly from a liqudity source, so that the end user receives their funds quickly.
+- The first transfer sends funds instantly from a liquidity source, so that the end user receives their funds quickly.
 - The second transfer sends funds via the Token Bridge to reimburse the liquidity source on the `targetChain`
 
 Beware, the second transfer may never arrive if there is a rollback on the `sourceChain`. However, this risk can be managed if the primary concern is to provide users with a smooth user experience.
