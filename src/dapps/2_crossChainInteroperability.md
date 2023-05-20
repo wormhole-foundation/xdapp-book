@@ -15,7 +15,7 @@ There are some other essential things you should know about bridges before going
 - Bridges are all mutually incompatible with each other. Using multiple bridges just makes 'double wrapped' tokens.
 - If tokens have become double wrapped after traversing multiple bridges or blockchains, there can be a complex unwrapping process to get back to the original token.
 
-This explains how the ecosystem arrived at its current state -- CEXs are a solution to siloed blockchains, DEXs are a simple response to CEXs, and DEXs have created a demand for bridges. Each solution in this timeline is an ad-hoc patch to the previous problem, and the current landscape of fractured liquidity, double wrapped tokens, isolated userbases and wallet incompatibilities is the result.
+This explains how the ecosystem arrived at its current state -- CEXs are a solution to siloed blockchains, DEXs are a simple response to CEXs, and DEXs have created a demand for bridges. Each solution in this timeline is an ad-hoc patch to the previous problem, and the current landscape of fractured liquidity, double wrapped tokens, isolated user bases and wallet incompatibilities is the result.
 
 Adding to this complexity are blockchains moving toward being general-purpose computing platforms. As such, interoperability will require data structures that are more complex than tokens and operations that are more sophisticated than transfers.
 
