@@ -1,6 +1,6 @@
 # Registering Tokens
 
-Registering tokens with the token bridge can be done from any supported blockchain, and only needs to be done once - globally - per token. This is is typically done via a UI (such as [Portal](portalbridge.com)) rather than done on-chain.
+Registering tokens with the token bridge can be done from any supported blockchain, and only needs to be done once - globally - per token. This is typically done via a UI (such as [Portal](portalbridge.com)) rather than done on-chain.
 
 If you need to do it programmatically, you can also use the Typescript SDK to attest a token.
 
