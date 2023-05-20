@@ -30,4 +30,4 @@ Further information can be found in the project's [README](https://github.com/wo
 
 Q: Anvil isn't working
 
-- While Foundry's 'forge' tool is the generally recommended tool for EVM contract compilation, Anvil isn't currently compatible with guardian. Anvil reports block headers in a way which is non-compliant with go-ethereum, which means the guardian node can't correctly read anvil headers.
+- While Foundry's 'forge' tool is the generally recommended tool for EVM contract compilation, Anvil isn't currently compatible with guardiand. Anvil reports block headers in a way which is non-compliant with go-ethereum, which means the guardian node can't correctly read anvil headers.
