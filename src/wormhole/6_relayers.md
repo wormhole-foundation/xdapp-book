@@ -18,7 +18,7 @@ In Wormhole, relayers are neither trusted nor privileged. This means relayers **
 
 From this perspective, relayers are just delivery trucks that deliver VAAs to their destination, and have no capacity to tamper with the delivery outcome. VAAs either get delivered or don't, which makes relayers analogous to the off-chain 'crank turners' of traditional Dapps.
 
-As a result, Wormhole is able to facilitate a variety of heterogeneous relaying mechanisms, and the developer is able to choose whatever best suit their needs.
+As a result, Wormhole is able to facilitate a variety of heterogeneous relaying mechanisms, and the developer is able to choose whatever best suits their needs.
 
 Next, we'll go over a few of the most common relaying strategies.
 
