@@ -6,7 +6,7 @@ Wormhole is a complex ecosystem with several noteworthy components. Before we go
 
 ### On-Chain Components
 
-- **xDapp Contracts** - Contracts developed by xDapp developers. They receive transactions from the end user and then interact with other xDapp contracts and Wormhole Ecosystem Contracts in order to provide their service.
+- **xDapp Contracts** - Contracts developed by xDapp developers. They receive transactions from the end user and then interact with other xDapp contracts and Wormhole Ecosystem Contracts to provide their service.
 
 - **Ecosystem Contracts** - Contracts subject to Wormhole governance which live inside the Wormhole Ecosystem. Their job is to provide the feature suite of Wormhole to xDapp developers.
 
@@ -18,7 +18,7 @@ Wormhole is a complex ecosystem with several noteworthy components. Before we go
 
   - **Gas Oracle** - _in development\*_ - Oracle for recommended fair gas prices across the ecosystem.
 
-  - **Worm Router Contracts** - _in development\*_ - Contracts that allow developers to make their Dapp an xDapp that users on any Wormhole supported chain can interact with purely through client-side code.
+  - **Worm Router Contracts** - _in development\*_ - Contracts that allow developers to make their Dapp an xDapp that users on any Wormhole-supported chain can interact with purely through client-side code.
 
 ### Off-Chain Components
 
@@ -26,7 +26,7 @@ Wormhole is a complex ecosystem with several noteworthy components. Before we go
 
 - **Guardian** - One of 19 validators in the Guardian Network that contributes to the VAA multisig.
 
-- **Spy** - Validators on the Guardian Network which are not part of the Guardian set. A spy can observe and forward network traffic, which helps scale up VAA distribution.
+- **Spy** - Validators on the Guardian Network who are not part of the Guardian set. A spy can observe and forward network traffic, which helps scale up VAA distribution.
 
 - **VAAs** - Verifiable Action Approvals (VAAs) are the key piece of data in the Wormhole ecosystem, containing the messages emitted by xDapps along with information such as what contract emitted the message. The VAAs are signed by the Guardians and need 13/19 signatures to be considered authentic.
 
