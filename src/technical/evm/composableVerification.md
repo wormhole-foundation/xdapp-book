@@ -19,7 +19,7 @@ bytes32 messageHash = keccak256(
 emit LogMessageHash(messageHash);
 ```
 
-After calling `publishMessage`, emit a hash for the message and sequence number. This way, the signature will be unique for two different instances of the same message contents. You could also make it more unique across implementations by including the sending chain id and contract address.
+After calling `publishMessage`, emit a hash for the message and sequence number which makes the announced signature will be unique for two different instances of the same message contents. You could also make it more unique across implementations by including the sending chain id and contract address.
 
 ### 2. Sign the hash
 
