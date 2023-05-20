@@ -22,7 +22,7 @@ Tilt is generally a good starting point for most developers. Here's a succinct l
 
 **Pros**
 
-- Out-of-the-box support for the many components needed to develop across the heterogenous blockchain spaces.
+- Out-of-the-box support for the many components needed to develop across the heterogeneous blockchain spaces.
 - Consistent development environment, where contracts deploy deterministically and everything is already linked up.
 - Ability to easily enable/disable components as needed.
 - Regularly updated as new components join the Wormhole ecosystem.
