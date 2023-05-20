@@ -17,6 +17,6 @@ They'll use the standard Wormhole test mnemonic (`myth like bonus scare over pro
 `npm run solana` will start up a Solana chain and load in Core Bridge (`Bridge1p5gheXUvJ6jGWGeCsgPKgnE3YgdGKRVCMY9o`) and Token Bridge (`B6RHG3mfcckmrYN1UhmJzyS1XX3fZKbkeUcpJe9Sy3FE`) accounts.  
 
 ## Run Wormhole
-After you have the dependencies installed and the chains running, you can run Wormhole.
+After you have the dependencies installed and the chains running, you can run the Wormhole.
 
 Simply run `npm run wormhole` and wait while the Wormhole Guardian builds a docker image. The first time you run this command, it might take a while (up to 550 seconds on a modern laptop!). After the image is built however, it'll be relatively fast to bring it up and down. 
