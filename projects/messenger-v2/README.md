@@ -1,5 +1,5 @@
 ## Wormhole Messenger Sample Project
-Simple messeger project that sends a "hellom, world!" message between EVM, Solana and Aptos chains using Wormhole. 
+Simple messenger project that sends a "hello, world!" message between EVM, Solana and Aptos chains using Wormhole. 
 
 ### Dependencies
 This project uses Foundry to compile and deploy EVM contracts. You can find install instructions at [https://getfoundry.sh](https://getfoundry.sh)
