@@ -265,7 +265,7 @@ Contrary to `maxTransactionFee`, when specifying a `receiverValue` the RelayProv
 
 ## Forwarding
 
-So far we've discussed how to perform a simple delivery from chain A to chain B. However, a fairly common scenario that you may encounter is that you may want to perform a multi-hop delivery from chain A to B to C, or to round-trip a delivery back to the source chain. Forwarding is a feature specifically designed to suit these usecases.
+So far we've discussed how to perform a simple delivery from chain A to chain B. However, a fairly common scenario that you may encounter is that you may want to perform a multi-hop delivery from chain A to B to C, or to round-trip a delivery back to the source chain. Forwarding is a feature specifically designed to suits these usecases.
 
 Forwarding is quite similar to a normal 'send' action, however it has a couple special traits.
 
