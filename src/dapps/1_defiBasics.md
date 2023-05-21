@@ -16,7 +16,7 @@ Now, a rich ecosystem of Dapps exists across an array of smart-contract-enabled 
 
 However, Dapps are not without limitations, many of which are tied to their underlying blockchains.
 
-Two notable limitations are that blockchains have no access to off-chain data and no mechanism to interact with other blockchains. These limitations have led to a fractured ecosystem where each blockchain is closed off from the others by default. That means assets native to one chain are not accessible on another, and some services can't be leveraged on particular chains altogether.
+Two notable limitations are that blockchains have no access to off-chain data and no mechanism to interact with other blockchains. These limitations have led to a fractured ecosystem, where each blockchain is closed off from the others by default. That means assets native to one chain are not accessible on another, and some services can't be leveraged on particular chains altogether.
 
 Blockchain developers are now aiming to solve these interoperability problems to create a unified ecosystem. In this new cross-chain ecosystem, people can move beyond being users of individual blockchains and take advantage of Web3 on a broader scale.
 
