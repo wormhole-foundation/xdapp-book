@@ -10,7 +10,7 @@ In general, Core Contracts are simple and can be broken down to a **sending** an
 
 Below is the mechanism by which Wormhole messages (aka Verified Action Approval, VAA) are emitted:
 
-    publishMessage(
+    publishMessage()(
         int nonce,
         byte[] payload,
         int consistencyLevel
