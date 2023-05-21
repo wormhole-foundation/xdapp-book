@@ -1,6 +1,6 @@
 # Blockchain Interoperability
 
-Because blockchains are siloed by nature, individual cryptocurrencies being bound to their own chains has been a longtime limitation of blockchain technology. The first attempt at solving this problem was the creation of cryptocurrency exchanges like Coinbase and Binance. Today these are referred to as centralized exchanges (CEXs).
+Because blockchains are siloed by nature, individual cryptocurrencies being bound to their own chains has been a longtime limitation of blockchain technology. The first attempt at solving this problem was the creation of cryptocurrency exchanges like Coinbase and Binance. Today, these are referred to as centralized exchanges (CEXs).
 
 Centralized exchanges play an important role in cryptocurrency, but they are not a complete solution for blockchain interoperability for two primary reasons: (1) they're centralized, which is counterproductive to creating a decentralized platform, and (2) they deal only with tokens.
 
@@ -19,7 +19,7 @@ This explains how the ecosystem arrived at its current state -- CEXs are a solut
 
 Adding to this complexity are blockchains moving toward being general-purpose computing platforms. As such, interoperability will require data structures that are more complex than tokens and operations that are more sophisticated than transfers.
 
-More ad-hoc solutions would only be short-term fixes for long-term problems, so it's critical to design new primatives and core infrastructure that will allow the next generation of decentralized applications to move beyond these lingering limitations.
+More ad-hoc solutions would only be short-term fixes for long-term problems, so it's critical to design new primitives and core infrastructure that will allow the next generation of decentralized applications to move beyond these lingering limitations.
 
 This is why Wormhole exists. Wormhole proposes a new way of developing applications which leverages the strengths of each blockchain while mitigating the problems of the current ecosystem.
 
