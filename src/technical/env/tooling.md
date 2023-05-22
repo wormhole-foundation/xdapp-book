@@ -20,7 +20,7 @@ Regardless of the development environment that you use, there are a few wormhole
 
 ### [Wormhole Typescript SDK](https://www.npmjs.com/package/@certusone/wormhole-sdk)
 
-- Typescript SDK distributed on npm. Can greatly aid in writing frontend code for xDapps and utilizing the Wormhole Token Bridge directly.
+- Typescript SDK distributed on npm. It can greatly aid in writing frontend code for xDapps and utilizing the Wormhole Token Bridge directly.
 
 ### [Wormhole Spy SDK](https://github.com/wormhole-foundation/wormhole/tree/main/spydk/js)
 
