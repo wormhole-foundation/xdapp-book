@@ -116,7 +116,7 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | Moonbase alpha          | 16                | 1287       | 0xa5B7D85a8f27dd7907dc8FdC21FA5657D5E2F901                         |
 | Terra                   | 18                | pisco-1    | terra19nv3xr5lrmmr7egvrk2kqgw4kcn43xrtd5g0mpgwwvhetusk4k7s66jyv0   |
 | Injective               | 19                | testnet    | inj1xx3aupmgv3ce537c0yce8zzd3sz567syuyedpg                         |
-| Sui                     | 21                |            | 0x69ae41bdef4770895eb4e7aaefee5e4673acc08f6917b4856cf55549c4573ca8 |
+| Sui                     | 21                |            | 0x31358d198147da50db32eda2562951d53973a0c0ad5ed738e9b17d88b213d790 |
 | Aptos                   | 22                |            | 0x5bc11445584a763c1fa7ed39081f1b920954da14e04b32440cba863d03e19625 |
 | Arbitrum                | 23                | 421613     | 0xC7A204bDBFe983FCD8d8E61D02b475D4073fF97e                         |
 | Optimism (Goerli)       | 24                | 420        | 0x6b9C8671cdDC8dEab9c719bB87cBd3e782bA6a35                         |
@@ -150,7 +150,7 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | Near                    | 15                |            | token.wormhole.testnet                                             |
 | Moonbase alpha          | 16                | 1287       | 0xbc976D4b9D57E57c3cA52e1Fd136C45FF7955A96                         |
 | Injective               | 19                | testnet    | inj1q0e70vhrv063eah90mu97sazhywmeegp7myvnh                         |
-| Sui                     | 21                |            | 0x32422cb2f929b6a4e3f81b4791ea11ac2af896b310f3d9442aa1fe924ce0bab4 |
+| Sui                     | 21                |            | 0x6fb10cdb7aa299e9a4308752dadecb049ff55a892de92992a1edbd7912b3d6da |
 | Aptos                   | 22                |            | 0x576410486a2da45eee6c949c995670112ddf2fbeedab20350d506328eefc9d4f |
 | Arbitrum                | 23                | 421613     | 0x23908A62110e21C04F3A4e011d24F901F911744A                         |
 | Optimism (Goerli)       | 24                | 420        | 0xC7A204bDBFe983FCD8d8E61D02b475D4073fF97e                         |
