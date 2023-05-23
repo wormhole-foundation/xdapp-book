@@ -28,7 +28,7 @@ Let's break it down a bit:
 
 The implementation strategy for publishMessage differs by chain, but the general strategy consists of the Core Contract posting the emitterAddress (the contract which called publishMessage), sequenceNumber, and consistencyLevel into the blockchain logs. Once the desired consistencyLevel has been reached and the message passes all of the Guardians' optional checks, the Guardian Network will produce the requested VAAs.
 
-Currently there are no fees to publish a message (with the exception of publishing on Solana) but this is not guaranteed to always be the case in the future.
+Currently, there are no fees to publish a message (with the exception of publishing on Solana) but this is not guaranteed to always be the case in the future.
 
 ### Receiving
 
@@ -69,7 +69,7 @@ Let's take a moment to point out that there is no destination address or chain i
 
 VAAs simply attest that "this contract on this chain said this thing." Therefore, VAAs are multicast by default and will be verified as authentic on any chain they are brought to.
 
-This multicast-by-default model is integral to the design. Having this multicast capacity makes it easy to synchronize state across the entire ecosystem, because a single blockchain can make its data available to every chain in a single action with low latency. This reduces the complexity of the n^2 problems encountered by routing data to a large number of blockchains.
+This multicast-by-default model is integral to the design. Having this multicast capacity makes it easy to synchronize state across the entire ecosystem because a single blockchain can make its data available to every chain in a single action with low latency. This reduces the complexity of the n^2 problems encountered by routing data to a large number of blockchains.
 
 Use cases where the message has an intended recipient or is only meant to be consumed a single time must be handled in logic outside the Core Contract. There are standard practices for accomplishing these features later on in the code examples, and some ecosystem contracts (namely Token Bridge & the Relaying contract) handle this on behalf of downstream consumers.
 
