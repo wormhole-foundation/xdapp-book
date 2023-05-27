@@ -1,6 +1,6 @@
 # Ecosystem Basics
 
-Since the launch of Bitcoin in 2009, the cryptocurrency and decentralized computing ecosystem has rapidly evolved and expanded. The ecosystem now includes hundreds of blockchains, often also referred to as **Layer 1s**.
+Since the launch of Bitcoin in 2009, the cryptocurrency and decentralized computing ecosystem has rapidly evolved and expanded. The ecosystem now includes hundreds of blockchains, often referred to as **Layer 1s**.
 
 Prior to 2015, blockchain transactions were limited in their capacities, typically being used to transfer funds from one user to another. This changed with the introduction of Ethereum and smart contracts. Smart contracts allowed developers to perform arbitrary on-chain computation as part of a blockchain transaction, opening the door for blockchain technology to become a global computing platform. These innovations laid the groundwork for the creation of **Decentralized Applications** or **Dapps**.
 
