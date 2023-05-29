@@ -1,6 +1,6 @@
 # What is Wormhole?
 
-Wormhole V1 was introduced in 2020 by Certus One and was initially conceived as a traditional token bridge between Ethereum and Solana. It served as the first bridge on Solana and was responsible for bootstrapping a large amount of the liquidity in the early Solana and Serum ecosystems.
+Wormhole V1 was introduced in 2019 by Certus One and was initially conceived as a traditional token bridge between Ethereum and Solana. It served as the first bridge on Solana and was responsible for bootstrapping a large amount of the liquidity in the early Solana and Serum ecosystems.
 
 However, despite its beginnings as a token bridge, Wormhole quickly grew beyond Solana and token transfers.
 
