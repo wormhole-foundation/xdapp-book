@@ -22,7 +22,7 @@ Here's a succinct list of the pros and cons of the environment, so you can decid
 
 You will need Docker running in order to set up WLV. If you're on desktop, [Docker Desktop](https://docs.docker.com/get-docker/) is generally the best choice, though [Docker Engine](https://docs.docker.com/engine/) works fine too.
 
-From there, you just need nodes for the blockchains you're interested in developing on. There is code to spin up EVM and Solana local validators included in the WLV project repo, as well as scripts to deploy the necessary Wormhole contracts to your local instances.
+From there, you just need nodes for the blockchains you're interested in developing on. There is code to spin up EVM, Algorand and Solana local validators included in the WLV project repo, as well as scripts to deploy the necessary Wormhole contracts to your local instances.
 
 Further information can be found in the project's [README](https://github.com/wormhole-foundation/xdapp-book/blob/main/projects/wormhole-local-validator/README.md).
 
