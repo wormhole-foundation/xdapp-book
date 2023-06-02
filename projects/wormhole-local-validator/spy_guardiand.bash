@@ -5,6 +5,7 @@ set -euo pipefail
 
 HOST=
 machine=$(uname -m)
+
 if [ machine = "arm64" ]; then
    HOST="host.docker.internal"
 else
