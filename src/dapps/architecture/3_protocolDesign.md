@@ -6,9 +6,9 @@ Much of the traditional web stack is based on distributed systems that rely on m
 
 ## Protocol First Design
 
-Protocol first design is a design philosophy where you initially lay out your data types, message formats and supported operations into a well-defined protocol. This creates a solid protocol layer which can serve as the foundation for your application. This way, the code instantiating that protocol can be treated as an implementation detail when reasoning about the protocol itself.
+Protocol first design is a design philosophy where you initially lay out your data types, message formats and supported operations into a well-defined protocol. This creates a solid protocol layer that can serve as the foundation for your application. This way, the code instantiating that protocol can be treated as an implementation detail when reasoning about the protocol itself.
 
-At this stage in the design, you should also consider the incentive structures surrounding your protocol. What is the incentive for each party to engage? Are there economic attack vectors in your application which might jeopardize its security? Do certain market conditions result in perverse outcomes? 
+At this stage in the design, you should also consider the incentive structures surrounding your protocol. What is the incentive for each party to engage? Are there economic attack vectors in your application which might jeopardize its security? Do certain market conditions result in undesirable outcomes? 
 
 Depending on your goals, this stage of the process can be as simple as stating "people will want my NFT" or as difficult as designing an entire ecosystem with multiple competing interested parties. 
 
@@ -24,7 +24,7 @@ A Wormhole address is a tuple containing the 2 byte Wormhole chain ID and a 32 b
 
 Because EVM addresses are only 20 bytes in length, to convert this to a Wormhole address, the address is left-padded with zeros until it's length 32. To transmit as this as a single item, the Wormhole chain ID is usually appended to the front, resulting in a 34 byte address.
 
-When dealing with addresses inside your messages, it's recommended to always convert to Wormhole format and transmit in that format. You will regularly encounter addresses in the Wormhole format when interacting with other parts of the ecosystem, and adopting the format in your protocol will enhance your forward compatibility as you add more chains.
+When dealing with addresses inside your messages, it's recommended to always convert to Wormhole format and transmit in that format. You will regularly encounter addresses in the Wormhole format when interacting with other parts of the ecosystem, and adopting the format in your protocol will enhance your future compatibility as you add more chains.
 
 ### Trusted Contract Network
 

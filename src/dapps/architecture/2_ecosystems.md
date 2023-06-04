@@ -29,11 +29,11 @@ Cosmos is a network of blockchains that share a common ecosystem. Cosmos is a ge
 
 ### Algorand
 
-Algorand is a leading blockchain on the state proof front and repesents the bleeding edge of trustlessness. These contracts are written in Python.
+Algorand is a leading blockchain on the state proof front and represents the bleeding edge of trustlessness. These contracts are written in Python.
 
 ### Aptos
 
-Aptos is characterized by its optimisitic approach to computation parallelization to bring increased performance. These contracts are written in Move.
+Aptos is characterized by its optimistic approach to computation parallelization to bring increased performance. These contracts are written in Move.
 
 ### NEAR
 
