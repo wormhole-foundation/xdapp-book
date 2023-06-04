@@ -1,6 +1,6 @@
 # Testnet
 
-Wormhole testnet is spread across many of the most popular testnet blockchains.
+The Wormhole testnet is spread across many of the most popular testnet blockchains.
 
 ### Is Testnet right for you?
 

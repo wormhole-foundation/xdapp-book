@@ -1,6 +1,6 @@
 # Aptos
 
-Aptos is currently only supported in testnet.
+Aptos is currently only supported in Testnet.
 
 The official Wormhole integration can be found [here](https://github.com/wormhole-foundation/wormhole/tree/aptos/integration).
 

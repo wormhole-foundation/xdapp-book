@@ -16,7 +16,7 @@ A few key properties of VAAs:
 
 Relayers are untrusted as an inherent consequence of these properties. Anyone can pick up a VAA and deliver it anywhere, but no one can alter the content of the VAA without invalidating the signatures.
 
-So, when writing your contracts, it's incredibly important to only trust information which is either inside your contract or inside a VAA. If you trust information provided by a relayer, you are opening yourself up to untrusted input attacks.
+So, when writing your contracts, it's incredibly important to only trust information which is either inside your contract or inside a VAA. If you trust information provided by a relayer, you're opening yourself up to untrusted input attacks.
 
 The easiest and most secure way to interact with relayers then is to only accept the VAA as input. If the relayer can't provide any additional args, then there's no way for them to provide untrusted input.
 
@@ -49,7 +49,7 @@ Specialized Relayers are relayers that are purpose-built to relay messages for a
 **_Advantages:_**
 
 - Specialized relayers can perform off-chain untrusted computation.
-- They are highly customizeable and can perform batching, conditional delivery, multi-chain deliveries, etc.
+- They are highly customizable and can perform batching, conditional delivery, multi-chain deliveries, etc.
 - Can home-roll an incentive structure.
 
 **_Disadvantages_**
