@@ -42,7 +42,7 @@ After we have the receipt token account on Solana, it's time to submit the trans
 
 ```ts
 import {
-  trasnferFromEth,
+  transferFromEth,
   parseSequenceFromLogEth,
   getEmitterAddressEth,
   CHAIN_ID_SOLANA,
@@ -60,7 +60,7 @@ const receipt = await transferFromEth(
   recipientAddress
 );
 // Get the sequence number and emitter address required to fetch the signedVAA of our message
-const sequence = parseSequenceFromLogEth(receipt, ETH_BRIDGE_ADDRESS);
+const sequence = parseSequenceFromLogEth(receipt, ETH_TOKEN_BRIDGE_ADDRESS);
 const emitterAddress = getEmitterAddressEth(ETH_TOKEN_BRIDGE_ADDRESS);
 ```
 

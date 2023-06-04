@@ -6,4 +6,4 @@ Additionally there's an extensible relayer (called the [Plugin Relayer](https://
 
 <!-- To aid in the development of relayers, a extensible relayer implementation (called the [plugin relayer]()) has been provided in the Wormhole Core Repository.
 
-It's recommended that integrators create their own plugin for the plugin relayer, rather than home-roll a relayer themselves. Using the plugin relayer allows integrators to take advantage of the robust hot-wallet and scheduling built into the relayer's kernel, as well as leveraging plugins which are built by other integrators.  -->
+It's recommended that integrators create their own plugin for the plugin relayer, rather than home-rolling a relayer themselves. Using the plugin relayer allows integrators to take advantage of the robust hot-wallet and scheduling built into the relayer's kernel, as well as leveraging plugins which are built by other integrators.  -->

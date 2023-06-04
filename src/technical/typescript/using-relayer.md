@@ -30,11 +30,11 @@ Now, set up the two wallets we’ll be sending and receiving from. While we are 
 
 ```ts
 const EmeraldWallet = new ethers.Wallet(
-  privatekey_emerald,
+  privatekey_emerald_wallet,
   new ethers.providers.JsonRpcProvider("https://emerald.oasis.dev")
 );
 const PolygonWallet = new ethers.Wallet(
-  privatekey_polygon,
+  privatekey_polygon_wallet,
   new ethers.providers.JsonRpcProvider("https://polygon-rpc.com/")
 );
 ```
@@ -47,7 +47,7 @@ We will also define the transfer amount in this step. The fee schedule will eith
 
 ```ts
 const transferAmount = BigNumber.from("1000000000000000000"); // We are sending 1 MATIC over the wall to Oasis
-const relayerFeeSchedule = await(
+const relayerFeeSchedule = await (
   await fetch(
     "https://raw.githubusercontent.com/certusone/wormhole-relayer-list/main/relayer.json"
   )
@@ -98,7 +98,7 @@ if (relayerFeeSchedule.feeSchedule[CHAIN_ID_OASIS].type == "flat") {
 
   feeWei = (feeUsd / MATIC_PRICE) * 1e18;
 } else if (relayerFeeSchedule.feeSchedule[CHAIN_ID_OASIS].type == "percent") {
-  let feeWei =
+  feeWei =
     (relayerFeeSchedule.feeSchedule[CHAIN_ID_OASIS].feePercent / 100) *
     transferAmount.toNumber();
 }
@@ -166,12 +166,12 @@ Let’s walk through each of the arguments of this function and what they mean.
 Wait 15 min for finality on Polygon and then check to see if it was submitted. If successful, you’ll be able to fetch a base64 encoded vaaBytes. We need this in the next step where we check if the transaction was successfully relayed.
 
 ```ts
-await new Promise((r) => setTimeout(r, 900000)); //15m in seconds
+await new Promise((r) => setTimeout(r, 900000)); // 15m in seconds
 const WORMHOLE_RPC = "https://wormhole-v2-mainnet-api.certus.one";
 let vaaBytes = undefined;
 while (!vaaBytes) {
   try {
-    vaaBytes = await(
+    vaaBytes = await (
       await fetch(
         `${WORMHOLE_RPC}/v1/signed_vaa/${CHAIN_ID_POLYGON}/${emitterAddress}/${sequence}`
       )
@@ -188,7 +188,7 @@ console.log("VAA Bytes: ", vaaBytes);
 In the final step, use the getIsTransferCompletedEth() method to check if the transfer was completed on the Oasis Emerald chain. If it’s not, wait 5 seconds and check again.
 
 ```ts
-setDefaultWasm("node"); //only needed if running in node.js
+setDefaultWasm("node"); // only needed if running in node.js
 const EMERALD_TOKEN_BRIDGE = "0x5848C791e09901b40A9Ef749f2a6735b418d7564";
 let transferCompleted = await getIsTransferCompletedEth(
   EMERALD_TOKEN_BRIDGE,
