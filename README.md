@@ -1,5 +1,5 @@
 # The xDapp Book
-How to get started building cross chain applications with Wormhole
+How to get started building cross chain applications with Wormhole using cross contract function calls and multi. chain liquidity. 
 
 ## Documentation
 
@@ -28,6 +28,9 @@ cd xdapp-book
 mdbook serve
 ```
 The book will be available at `http://localhost:3000` in your browser.
+
+## Graph Mode
+Open this Repository in any Mind map note taking app like Obsidian or Logseq and visualise the docs ![[Pasted image 20230606142510.png]]
 
 ## License
 The xDapp Book is licensed under [Apache 2.0](./LICENSE).
