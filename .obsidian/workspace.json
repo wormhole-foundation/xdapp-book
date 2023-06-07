@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/dapps/2_crossChainInteroperability.md",
+                "file": "src/dapps/3_xdataxassets.md",
                 "mode": "source",
                 "source": false
               }
@@ -101,7 +101,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "src/dapps/2_crossChainInteroperability.md",
+                "file": "src/dapps/3_xdataxassets.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "src/dapps/2_crossChainInteroperability.md",
+                "file": "src/dapps/3_xdataxassets.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -141,7 +141,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "src/dapps/2_crossChainInteroperability.md"
+                "file": "src/dapps/3_xdataxassets.md"
               }
             }
           }
@@ -164,6 +164,7 @@
   },
   "active": "604b0d9743956ba9",
   "lastOpenFiles": [
+    "src/dapps/2_crossChainInteroperability.md",
     "src/dapps/1_defiBasics.md",
     "src/dapps/0_xdappOverview.md",
     "src/dapps/xDex/stablecoinHighway.md",

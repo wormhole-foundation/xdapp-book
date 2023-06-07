@@ -10,10 +10,10 @@ To solve the centralization problems with CEXs, decentralized exchanges (DEXs) w
 
 There are some other essential things you should know about bridges before going further:
 
-- Bridges are capable of being decentralized in theory, but are often quite centralized in practice.
-- Bridges are currently the only way to hold a token on a chain other than its 'native' chain. If you're holding ETH on a chain other than Ethereum, it is, by definition, a wrapped token.
+- Bridges are capable of being decentralized in theory, but every Bridge has its own trust and security assumptions as its impossibl to make a truelly trustless bridge. 
+- Bridges are currently the one of the ways to hold a token on a chain other than its 'native' chain. If you're holding ETH on a chain other than Ethereum, it is, by definition, a wrapped token that represents the value of ETH on some other chain and uses vaults/ smart contracts to derive the value.
 - Bridges are all mutually incompatible with each other. Using multiple bridges just makes 'double wrapped' tokens.
-- If tokens have become double wrapped after traversing multiple bridges or blockchains, there can be a complex unwrapping process to get back to the original token.
+- If tokens have become double wrapped after traversing multiple bridges or blockchains, there can be a complex unwrapping process to get back to the original token but its improtant to make sure the check the wrapped asset contracts to make sure the mint-burn mechanism works. 
 
 This explains how the ecosystem arrived at its current state -- CEXs are a solution to siloed blockchains, DEXs are a simple response to CEXs, and DEXs have created a demand for bridges. Each solution in this timeline is an ad-hoc patch to the previous problem, and the current landscape of fractured liquidity, double wrapped tokens, isolated user bases and wallet incompatibilities is the result.
 
@@ -21,8 +21,10 @@ Adding to this complexity are blockchains moving toward being general-purpose co
 
 More ad-hoc solutions would only be short-term fixes for long-term problems, so it's critical to design new primitives and core infrastructure that will allow the next generation of decentralized applications to move beyond these lingering limitations.
 
-This is why Wormhole exists. Wormhole proposes a new way of developing applications which leverages the strengths of each blockchain while mitigating the problems of the current ecosystem.
+This is why Wormhole exists. Wormhole proposes a new way of developing applications which leverages the strengths of each blockchain while mitigating the problems of the current ecosystem improving the user experince by abstracting their interactions from the chaint to the dapp.
 
 ---
 
-Rethinking the next generation of decentralized applications means dethroning the token as the fundamental atomic unit of blockchains. We'll expand on this change in the next section.
+Rethinking the next generation of decentralized applications means dethroning the token as the fundamental atomic unit of blockchains but focusing on cross chain interoperability. 
+
+We'll expand on this change in the next section.
