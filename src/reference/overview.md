@@ -4,5 +4,5 @@ Here is a collection of other resources and reference sources which you're likel
 
 - [Glossary & Terms](./glossary.md)
 - [Tools & Helpful Links](./usefulLinks.md)
-- [Contract Addresses & Environment Information](./contracts.md)
+- [Contract Address List & Environment Information](./contracts.md)
 - [RPC Info](./rpcnodes.md)
