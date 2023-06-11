@@ -2,9 +2,9 @@
 
 Here are a few xDapp features that are making an impact across blockchain technologies:
 
-- **Expanded User Base** - Rather than being limited to the users of one blockchain, any user on any blockchain in the ecosystem can interact with an xDapp with Wormhole work
+- **Expanded User Base** - Rather than being limited to the users of one blockchain, any user on any blockchain in the ecosystem can interact with an xDapp which Wormhole supports.
 
-- **Unified Liquidity** - Liquidity fragmentation is a major problem in the current ecosystem. Unlike traditional tokens, xAssets can be pooled and moved anywhere.
+- **Unified Liquidity** - Liquidity fragmentation is a major problem in the current ecosystem. Unlike traditional tokens, xAssets can be pooled and moved anywhere. 
 
 - **Decentralization** - Cross-chain solutions today usually involve centralized exchanges or bridges. However, Wormhole has been designed to be decentralized from day one, and eventually totally trustless.
 
@@ -13,6 +13,7 @@ Here are a few xDapp features that are making an impact across blockchain techno
 - **Broader Market Reach** - Because xAssets move freely through the ecosystem, they can be listed on a variety of exchanges and custodied on any blockchain.
 
 - **Increased Extensibility and Composability** - xDapps can utilize anything across the ecosystem, including other xDapps, expanding upon the composability and openness of smart contracts. 
+  It abstracts the chain away focusing the user experience towards the dapp.
 
 - **Futureproofing** - As new environments and protocols join the decentralized ecosystem, the connected nature of the Wormhole ecosystem allows existing protocols to expand and support them.
 

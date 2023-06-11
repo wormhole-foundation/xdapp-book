@@ -17,3 +17,4 @@ This file parses command line args and filters calls to chain management handler
 
 ### xdapp.config.json
 The config file contains all the information about the network rpc nodes, accounts, and other constants used to communicate with contracts deployed to the selected chains.
+[[remoteStaking]]

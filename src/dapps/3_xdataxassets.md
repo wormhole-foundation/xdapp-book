@@ -8,7 +8,7 @@ Now that we've established the idea of an xAsset, you might think they're an exc
 
 xData is akin to an xAsset in that it exists in its own layer independent of any blockchain, which makes xData accessible by _all_ blockchains. The  difference is that xData represents arbitrary data rather the token information represented by an xAsset.
 
-Cross-chain interoperability then becomes a matter of creating, consuming and managing xData. Once blockchains have the ability to read and write data into a shared, global reservoir, application design can take on innovative new dimensions.
+Cross-chain interoperability then becomes a matter of creating, consuming and managing xData. Once blockchains have the ability to read and write data into a shared, global reservoir, application design can take on innovative new dimensions. 
 
 ---
 

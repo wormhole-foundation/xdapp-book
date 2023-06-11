@@ -11,20 +11,32 @@
             "id": "604b0d9743956ba9",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "src/dapps/3_xdataxassets.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "graph",
+              "state": {}
             }
           },
           {
             "id": "aa41487bb3a3fd31",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "src/development/messages/receiving/overview.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "ba4c7ef0ed51fb68",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "src/development/messages/registration/overview.md",
+                "mode": "source",
+                "source": false
+              }
             }
           },
           {
@@ -35,7 +47,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -101,7 +114,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "src/dapps/3_xdataxassets.md",
+                "file": "src/development/messages/registration/overview.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +131,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "src/dapps/3_xdataxassets.md",
+                "file": "src/development/messages/registration/overview.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -141,7 +154,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "src/dapps/3_xdataxassets.md"
+                "file": "src/development/messages/registration/overview.md"
               }
             }
           }
@@ -162,21 +175,39 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "604b0d9743956ba9",
+  "active": "ba4c7ef0ed51fb68",
   "lastOpenFiles": [
+    "src/development/messages/registration/evm.md",
+    "src/development/messages/receiving/overview.md",
+    "Screenshot 2023-06-12 at 12.39.16 AM.png",
+    "src/development/messages/receiving/evm.md",
+    "src/dapps/3_xdataxassets.md",
+    "src/dapps/4_whatIsanXdapp.md",
+    "Pasted image 20230611142509.png",
     "src/dapps/2_crossChainInteroperability.md",
-    "src/dapps/1_defiBasics.md",
-    "src/dapps/0_xdappOverview.md",
-    "src/dapps/xDex/stablecoinHighway.md",
-    "src/dapps/5_advantages.md",
-    "src/dapps/xDex/remoteStaking.md",
-    "src/dapps/xDex/designOverview.md",
-    "projects/evm-messenger/README.md",
+    "src/technical/typescript/attestingToken.md",
+    "src/technical/relayer/overview.md",
+    "src/technical/solana/core.md",
+    "src/technical/solana/nft.md",
+    "src/technical/solana/overview.md",
+    "src/technical/solana/xasset.md",
+    "src/technical/relayer/genericRelayer.md",
+    "SVM.md",
+    "src/development/messages/receiving/SVM",
+    "Untitled",
+    "src/wormhole/3_coreLayerContracts.md",
     "src/wormhole/2_architectureOverview.md",
+    "src/wormhole/5_guardianNetwork.md",
+    "src/wormhole/4_vaa.md",
     "src/wormhole/1_whatIsWormhole.md",
     "src/wormhole/0_wormholeOverview.md",
-    "README.md",
-    "Pasted image 20230606142510.png",
-    "src/SUMMARY.md"
+    "src/dapps/1_defiBasics.md",
+    "src/development/scaffold/overview.md",
+    "src/dapps/xDex/remoteStaking.md",
+    "src/dapps/xDex/governance.md",
+    "src/dapps/xDex/simpleSwaps.md",
+    "src/diagrams/images/architecture.PNG",
+    "src/development/tilt/mac.md",
+    "Pasted image 20230606142510.png"
   ]
 }

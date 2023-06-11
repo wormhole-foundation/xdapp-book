@@ -4,9 +4,9 @@ The Guardian Network is designed to serve as Wormhole's oracle component, and th
 
 To understand not just _how_ the Guardian Network works, but _why_ it works the way it does, let's first take a step back and go over the key design considerations. To become the best-in-class interoperability platform, there were five critical features Wormhole needed to have:
 
-1. **Decentralization** - Control of the network needs to be distributed amongst many parties.
-2. **Modularity** - Disparate parts of the ecosystem such as the oracle, relayer, applications, etc, should be kept as separate and modular as possible so they can be designed, modified and upgraded independently.
-3. **Chain Agnosticism** - Wormhole should be able to support not only EVM, but also chains like Solana, Algorand, Cosmos, and even platforms that haven't been created yet. It also should not have any one chain as a single point of failure.
+1. **Decentralization** - Control of the network needs to be distributed amongst many parties to prevent malicious intent of one party.
+2. **Modularity** - Disparate parts of the ecosystem such as the oracle, relayer, applications, etc, should be kept as separate and modular as possible so they can be designed, modified and upgraded independently withut halting or effecting the entire entwork. 
+3. **Chain Agnosticism** - Being Chain agnostic and abstracti g the chain specifity allowing users to seemlelsy itneract with the dapp is at the heart of the Omichain thesis. Wormhole should be able to support not only EVM, but also chains like Solana, Algorand, Cosmos, and even platforms that haven't been created yet. It also should not have any one chain as a single point of failure.
 4. **Scalability** - Wormhole should be able to secure a large amount of value immediately and be able to handle the large transaction volume.
 5. **Upgradeability** - As the decentralized computing ecosystem evolves, Wormhole will need to be able to change the implementation of its existing modules without breaking integrators.
 

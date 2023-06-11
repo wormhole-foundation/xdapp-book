@@ -38,6 +38,8 @@ Wormhole is a complex ecosystem with several noteworthy components. Before we go
 
 \*Features listed as _in development_ are not yet available.
 
+**To learn more about the trust and Secruity assumpitonos of wormhol[e head to this page](https://github.com/wormhole-foundation/wormhole/blob/main/docs/assumptions.md)** 
+
 ---
 
 In the next section, we'll give an overview of how the Wormhole Guardian network creates VAAs along with a look at the key design considerations that underpin the network.

@@ -7,3 +7,6 @@ The deployed contract addresses can be found on the [Contracts page](../../refer
 Solana is a rust-based programming environment. You'll likely find the [Wormhole Rust SDK](https://github.com/wormhole-foundation/wormhole/tree/main/sdk/rust) useful.
 
 The Solana integration is also fully supported by the [Wormhole Typescript SDK](https://github.com/wormhole-foundation/wormhole/tree/main/sdk/js).
+
+To get started on Solan devloplment you [can start here ](https://soldev.app/course)
+
