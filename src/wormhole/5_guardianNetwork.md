@@ -8,7 +8,7 @@ To understand not just _how_ the Guardian Network works, but _why_ it works the 
 2. **Modularity** - Disparate parts of the ecosystem such as the oracle, relayer, applications, etc, should be kept as separate and modular as possible so they can be designed, modified and upgraded independently.
 3. **Chain Agnosticism** - Wormhole should be able to support not only EVM, but also chains like Solana, Algorand, Cosmos, and even platforms that haven't been created yet. It also should not have any one chain as a single point of failure.
 4. **Scalability** - Wormhole should be able to secure a large amount of value immediately and be able to handle the large transaction volume.
-5. **Upgradeability** - As the decentralized computing ecosystem evolves, Wormhole will need to be able to change the implementation of its existing modules without breaking integrators.
+5. **Upgradability** - As the decentralized computing ecosystem evolves, Wormhole will need to be able to change the implementation of its existing modules without breaking integrators.
 
 Next, let's go into how Wormhole achieves these one at a time.
 
