@@ -6,7 +6,7 @@ However, despite its beginnings as a token bridge, Wormhole quickly grew beyond 
 
 Wormhole v2 launched in August 2021 as a decentralized generic interoperability protocol for multiple blockchain ecosystems with initial support for Solana, Terra, Ethereum and Binance Smart Chain.
 
-Over the past year, Wormhole has evolved to support an ever-growing list of blockchains across an unrivaled number of smart contract runtimes.
+Over the past year, Wormhole has evolved to support an ever-growing list of blockchains across an unrivaled number of smarts contract runtimes.
 
 While Wormhole is a generic interoperability protocol, it is also an ecosystem and platform for developers to grow the decentralized computing space. Wormhole consists of multiple modular swap-in components that can be leveraged independently and supports an increasing number of composable applications built by numerous teams.
 
