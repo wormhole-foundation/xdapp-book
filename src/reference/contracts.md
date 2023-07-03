@@ -70,6 +70,36 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | Optimism            | 24                | 10           | 0x1D68124e65faFC907325e3EDbF8c4d84499DAa8b                         |
 | XPLA                | 28                |              | xpla137w0wfch2dfmz7jl2ap8pcmswasj8kg06ay4dtjzw7tzkn77ufxqfw7acv    |
 
+### Wormhole Relayer Contract
+
+| Chain Name          | Wormhole Chain ID | Network ID | Address                                    |
+| :------------------ | :---------------- | :--------- | :----------------------------------------- |
+| Ethereum            | 2                 | 1          | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
+| Binance Smart Chain | 4                 | 56         | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
+| Polygon             | 5                 | 137        | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
+| Avalanche (C-Chain) | 6                 | 43114      | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
+| Fantom              | 10                | 250        | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
+| Klaytn              | 13                | 8217       | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
+| Celo                | 14                | 42220      | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
+| Moonbeam            | 16                | 1284       | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
+| Arbitrum            | 23                | 42161      | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
+| Optimism            | 24                | 10         | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
+
+### Default Delivery Providers
+
+| Chain Name          | Wormhole Chain ID | Network ID | Address                                    |
+| :------------------ | :---------------- | :--------- | :----------------------------------------- |
+| Ethereum            | 2                 | 1          | 0x7A0a53847776f7e94Cc35742971aCb2217b0Db81 |
+| Binance Smart Chain | 4                 | 56         | 0x7A0a53847776f7e94Cc35742971aCb2217b0Db81 |
+| Polygon             | 5                 | 137        | 0x7A0a53847776f7e94Cc35742971aCb2217b0Db81 |
+| Avalanche (C-Chain) | 6                 | 43114      | 0x7A0a53847776f7e94Cc35742971aCb2217b0Db81 |
+| Fantom              | 10                | 250        | 0x7A0a53847776f7e94Cc35742971aCb2217b0Db81 |
+| Klaytn              | 13                | 8217       | 0x7A0a53847776f7e94Cc35742971aCb2217b0Db81 |
+| Celo                | 14                | 42220      | 0x7A0a53847776f7e94Cc35742971aCb2217b0Db81 |
+| Moonbeam            | 16                | 1284       | 0x7A0a53847776f7e94Cc35742971aCb2217b0Db81 |
+| Arbitrum            | 23                | 42161      | 0x7A0a53847776f7e94Cc35742971aCb2217b0Db81 |
+| Optimism            | 24                | 10         | 0x7A0a53847776f7e94Cc35742971aCb2217b0Db81 |
+
 ### NFT Bridge
 
 | Chain Name          | Wormhole Chain ID | Network ID   | Address                                                            |
@@ -156,7 +186,7 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | Optimism (Goerli)       | 24                | 420        | 0xC7A204bDBFe983FCD8d8E61D02b475D4073fF97e                         |
 | Base                    | 30                | 84531      | 0xA31aa3FDb7aF7Db93d18DDA4e19F811342EDF780                         |
 
-### Relayer Contracts
+### Wormhole Relayer Contract
 
 | Chain Name          | Wormhole Chain ID | Network ID | Address                                    |
 | :------------------ | :---------------- | :--------- | :----------------------------------------- |
@@ -166,15 +196,15 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | Celo                | 14                | 44787      | 0x306B68267Deb7c5DfCDa3619E22E9Ca39C374f84 |
 | Moonbase            | 16                | 1287       | 0x0591C25ebd0580E0d4F27A82Fc2e24E7489CB5e0 |
 
-### Default Relay Providers
+### Default Delivery Providers
 
 | Chain Name          | Wormhole Chain ID | Network ID | Address                                    |
 | :------------------ | :---------------- | :--------- | :----------------------------------------- |
-| Binance Smart Chain | 4                 | 97         | 0x813AB43ab264362c55BF35A1448d0fd8135049a6 |
-| Polygon (Mumbai)    | 5                 | 80001      | 0xBF684878906629E72079D4f07D75Ef7165238092 |
-| Avalanche (Fuji)    | 6                 | 43113      | 0xd5903a063f604D4615E5c2760b7b80D491564BBe |
-| Celo                | 14                | 44787      | 0x93d56f29542c156B3e36f10dE41124B499664ff7 |
-| Moonbase            | 16                | 1287       | 0xBF684878906629E72079D4f07D75Ef7165238092 |
+| Binance Smart Chain | 4                 | 97         | 0x60a86b97a7596eBFd25fb769053894ed0D9A8366 |
+| Polygon (Mumbai)    | 5                 | 80001      | 0x60a86b97a7596eBFd25fb769053894ed0D9A8366 |
+| Avalanche (Fuji)    | 6                 | 43113      | 0x60a86b97a7596eBFd25fb769053894ed0D9A8366 |
+| Celo                | 14                | 44787      | 0x60a86b97a7596eBFd25fb769053894ed0D9A8366 |
+| Moonbase            | 16                | 1287       | 0x60a86b97a7596eBFd25fb769053894ed0D9A8366 |
 
 ### NFT Bridge
 
