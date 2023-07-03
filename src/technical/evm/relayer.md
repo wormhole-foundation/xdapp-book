@@ -2,7 +2,7 @@
 
 The WormholeRelayer module allows developers to deliver their VAAs via an untrusted **DeliveryProvider**, rather than needing to develop and host their own relay infrastructure.
 
-## Introductory Documentation
+## Quickstart
 
 - [Hello Wormhole](https://github.com/wormhole-foundation/hello-wormhole#readme) - Get a full Wormhole application working, deployed on testnet, and tested both locally and in Testnet
 - [How Does Hello Wormhole Work](https://github.com/wormhole-foundation/hello-wormhole/blob/main/hello-wormhole-explained.md) - Get a quick architecture overview of how HelloWormhole (and automatic relayers as a whole) work behind the scenes
