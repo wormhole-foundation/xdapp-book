@@ -1,8 +1,15 @@
 # Relayer Module
 
-**_Disclaimer: This module is only available in testnet._**
-
 The WormholeRelayer module allows developers to deliver their VAAs via an untrusted **DeliveryProvider**, rather than needing to develop and host their own relay infrastructure.
+
+## Introductory Documentation
+
+- [Hello Wormhole](https://github.com/wormhole-foundation/hello-wormhole#readme) - Get a full Wormhole application working, deployed on testnet, and tested both locally and in Testnet
+- [How Does Hello Wormhole Work](https://github.com/wormhole-foundation/hello-wormhole/blob/main/hello-wormhole-explained.md) - Get a quick architecture overview of how HelloWormhole (and automatic relayers as a whole) work behind the scenes
+- [Beyond Hello Wormhole](https://github.com/wormhole-foundation/hello-wormhole/blob/main/beyond-hello-wormhole.md) - about Protections, Refunds, and Forwards
+- [Hello Token](https://github.com/wormhole-foundation/hello-token#readme) - Get a full TokenBridge Wormhole application working, deployed on testnet, and tested both locally and in Testnet
+- [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk) - Install useful helpers and interface files into your existing application to help it go cross-chain 
+- [Example Cross Chain Borrow Lend](https://github.com/wormhole-foundation/example-cross-chain-borrow-lend) - Example application using the Wormhole Relayer module
 
 <br/>
 <br/>
@@ -263,13 +270,3 @@ Beware, the second transfer may never arrive if there is a rollback on the `sour
 
 <br/>
 <br/>
-<br/>
-<br/>
-
-## Examples
-
-Checkout this [Hello World contract](https://github.com/wormhole-foundation/wormhole/blob/generic-relayer-merge/ethereum/contracts/mock/relayer/MockRelayerIntegration.sol)
-
-<br/>
-
-**More info and features to come. This module is still in development.**
