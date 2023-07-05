@@ -33,7 +33,7 @@ Algorand is a leading blockchain on the state proof front and repesents the blee
 
 ### Aptos
 
-Aptos is characterized by its optimisitic approach to computation parallelization to bring increased performance. These contracts are written in Move.
+Aptos is characterized by its optimistic approach to computation parallelization to bring increased performance. These contracts are written in Move.
 
 ### NEAR
 
