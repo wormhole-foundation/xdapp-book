@@ -72,7 +72,7 @@ This is historically the most popular methodology for going cross-chain. It's ve
 **_Disadvantages:_**
 
 - Complexity: there are now quite a few contracts to manage, especially if they are implemented multiple times across different VMs.
-- Data desync: because each blockchain acts independently, each chain will have independent state. This can open up unwanted arbitrage opportunities and other discrepancies.
+- Data desynchronization: because each blockchain acts independently, each chain will have independent state. This can open up unwanted arbitrage opportunities and other discrepancies.
 - Race conditions: In cases where an event is supposed to propagate through the entire system at a fixed time (for example, when closing a governance vote), it can be difficult to synchronize all the blockchains.
 
 ## Distributed
