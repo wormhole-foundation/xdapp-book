@@ -41,7 +41,7 @@ After we have the receipt token account on Solana, submit the transfer message o
 
 ```ts
 import {
-	trasnferFromEth,
+	transferFromEth,
 	parseSequenceFromLogEth,
 	getEmitterAddressEth,
 	CHAIN_ID_SOLANA,
