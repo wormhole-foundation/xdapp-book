@@ -167,7 +167,7 @@ Receiver Failures are not a nebulous 'something went wrong' term in the Wormhole
 
 All three of these scenarios should generally be avoidable by the integrator, and thus it is up to integrator to resolve them.
 
-Any other senario which causes a delivery to not be performed should be considered an **outage** by some component of the system, including potentially the blockchains themselves.
+Any other scenario which causes a delivery to not be performed should be considered an **outage** by some component of the system, including potentially the blockchains themselves.
 
 <br/>
 
