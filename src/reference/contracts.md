@@ -195,6 +195,7 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | Avalanche (Fuji)    | 6                 | 43113      | 0xA3cF45939bD6260bcFe3D66bc73d60f19e49a8BB |
 | Celo                | 14                | 44787      | 0x306B68267Deb7c5DfCDa3619E22E9Ca39C374f84 |
 | Moonbase            | 16                | 1287       | 0x0591C25ebd0580E0d4F27A82Fc2e24E7489CB5e0 |
+| Base                | 30                | 84531      | 0xea8029CD7FCAEFFcD1F53686430Db0Fc8ed384E1 |
 
 ### Default Delivery Providers
 
@@ -205,6 +206,7 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | Avalanche (Fuji)    | 6                 | 43113      | 0x60a86b97a7596eBFd25fb769053894ed0D9A8366 |
 | Celo                | 14                | 44787      | 0x60a86b97a7596eBFd25fb769053894ed0D9A8366 |
 | Moonbase            | 16                | 1287       | 0x60a86b97a7596eBFd25fb769053894ed0D9A8366 |
+| Base                | 16                | 84531      | 0x60a86b97a7596eBFd25fb769053894ed0D9A8366 |
 
 ### NFT Bridge
 
