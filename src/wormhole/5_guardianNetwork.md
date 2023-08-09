@@ -4,7 +4,7 @@ The Guardian Network is designed to serve as Wormhole's oracle component, and th
 
 To understand not just _how_ the Guardian Network works, but _why_ it works the way it does, let's first take a step back and go over the key design considerations. To become the best-in-class interoperability platform, there were five critical features Wormhole needed to have:
 
-1. **Decentralization** - Control of the network needs to be distributed amongst many parties.
+1. **Decentralization** - Control of the network needs to be distributed among many parties.
 2. **Modularity** - Disparate parts of the ecosystem such as the oracle, relayer, applications, etc, should be kept as separate and modular as possible so they can be designed, modified and upgraded independently.
 3. **Chain Agnosticism** - Wormhole should be able to support not only EVM, but also chains like Solana, Algorand, Cosmos, and even platforms that haven't been created yet. It also should not have any one chain as a single point of failure.
 4. **Scalability** - Wormhole should be able to secure a large amount of value immediately and be able to handle the large transaction volume.
@@ -28,7 +28,7 @@ If Wormhole were to use threshold signatures, the answer would basically be 'as 
 
 All these things considered, 19 seems to be the maximum number and a good tradeoff. If 2/3 of the signatures are needed for consensus, then 13 signatures need to be verified on-chain, which remains reasonable from a gas-cost perspective.
 
-Rather than securing the network with tokenomics, it is better to initially secure the network by involving robust companies which are heavily invested in the success of De-Fi as a whole. The 19 Guardians are not anonymous or small--they are many of the largest and most widely-known validator companies in cryptocurrency. The current list of Guardians can be viewed [here](https://wormhole.com/network/)
+Rather than securing the network with tokenomics, it is better to initially secure the network by involving robust companies that are heavily invested in the success of De-Fi as a whole. The 19 Guardians are not anonymous or small--they are many of the largest and most widely-known validator companies in cryptocurrency. The current list of Guardians can be viewed [here](https://wormhole.com/network/)
 
 That's how we end up with the network of 19 Guardians, each with an equal stake and joined in a purpose-built Proof of Authority consensus mechanism. As threshold signatures become better supported, the Guardian set can expand, and once ZKPs are ubiquitous, the Guardian Network will become fully trustless.
 
@@ -56,7 +56,7 @@ However, once all the full nodes are running, the actual computation and network
 
 ## Upgradability
 
-Over time, the Guardian Set can be expanded beyond 19 with the use of threshold signatures. A variety of relaying models will emerge, each with their own strengths and weaknesses. ZKPs can be used on chains where they are well supported. The xDapp ecosystem will grow, and xDapps will become increasingly intermingled with each other. There are very few APIs in Wormhole, and most items are implementation details from the perspective of an integrator. This creates a clear pathway towards a fully trustlessness interoperability layer which spans the entirety of decentralized computing.
+Over time, the Guardian Set can be expanded beyond 19 with the use of threshold signatures. A variety of relaying models will emerge, each with their own strengths and weaknesses. ZKPs can be used on chains where they are well supported. The xDapp ecosystem will grow, and xDapps will become increasingly intermingled with each other. There are very few APIs in Wormhole, and most items are implementation details from the perspective of an integrator. This creates a clear pathway towards a fully trustlessness interoperability layer that spans the entirety of decentralized computing.
 
 ---
 
