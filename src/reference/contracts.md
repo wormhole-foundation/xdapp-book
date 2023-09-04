@@ -64,7 +64,7 @@ These chains can _verify_ Wormhole messages submitted to them, but cannot _emit_
 | Moonbeam            | 16                | 1284         | 0xb1731c586ca89a23809861c6103f0b96b3f57d92                         |
 | Terra               | 18                | phoenix-1    | terra153366q50k7t8nn7gec00hg66crnhkdggpgdtaxltaq6xrutkkz3s992fw9   |
 | Injective           | 19                |              | inj1ghd753shjuwexxywmgs4xz7x2q732vcnxxynfn                         |
-| Sui                 | 21                |              | 0xc57508ee0d4595e5a8728974a4a93a787d38f339757230d441e895422c07aba9 |
+| Sui                 | 21                |              | 0xccceeb29348f71bdd22ffef43a2a19c1f5b5e17c5cca5411529120182672ade5 |
 | Aptos               | 22                |              | 0x576410486a2da45eee6c949c995670112ddf2fbeedab20350d506328eefc9d4f |
 | Arbitrum            | 23                |              | 0x0b2402144Bb366A632D14B83F244D2e0e21bD39c                         |
 | Optimism            | 24                | 10           | 0x1D68124e65faFC907325e3EDbF8c4d84499DAa8b                         |
